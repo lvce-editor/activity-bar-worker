@@ -11,6 +11,7 @@ import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
 import { handleBlur } from '../HandleBlur/HandleBlur.ts'
 import * as HandleClick from '../HandleClick/HandleClick.ts'
 import { handleSideBarViewletChange } from '../HandleSideBarViewletChange/HandleSideBarViewletChange.ts'
+import { loadContent } from '../LoadContent/LoadContent.ts'
 import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
@@ -19,6 +20,7 @@ export const commandMap = {
   'ActivityBar.focus': WrapCommand.wrapCommand(Focus.focus),
   'ActivityBar.focusFirst': WrapCommand.wrapCommand(FocusFirst.focusFirst),
   'ActivityBar.focusIndex': WrapCommand.wrapCommand(FocusIndex.focusIndex),
+  'ActivityBar.loadContent': WrapCommand.wrapCommand(loadContent),
   'ActivityBar.focusLast': WrapCommand.wrapCommand(FocusLast.focusLast),
   'ActivityBar.focusNext': WrapCommand.wrapCommand(FocusNext.focusNext),
   'ActivityBar.handleBlur': WrapCommand.wrapCommand(handleBlur),
