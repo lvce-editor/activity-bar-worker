@@ -8,4 +8,5 @@ export interface ActivityBarState {
   readonly y: number
   readonly uid: number
   readonly sideBarVisible: boolean
+  readonly activityBarItems: readonly any[]
 }
