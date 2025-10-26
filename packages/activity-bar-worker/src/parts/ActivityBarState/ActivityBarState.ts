@@ -1,5 +1,5 @@
 export interface ActivityBarState {
-  scrollBarHeight: any
+  readonly scrollBarHeight: any
   readonly focus: number
   readonly focused: boolean
   readonly focusedIndex: number
@@ -7,4 +7,5 @@ export interface ActivityBarState {
   readonly x: number
   readonly y: number
   readonly uid: number
+  readonly sideBarVisible: boolean
 }
