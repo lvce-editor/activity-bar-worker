@@ -1,0 +1,33 @@
+{
+  "name": "@lvce-editor/activity-bar-worker-monorepo",
+  "version": "0.0.0-dev",
+  "license": "MIT",
+  "type": "module",
+  "main": "",
+  "scripts": {
+    "build": "node packages/build/src/build.ts",
+    "build:static": "node packages/build/src/build-static.ts",
+    "build:watch": "./packages/build/node_modules/.bin/esbuild --format=esm --bundle --external:node:buffer --external:electron --external:ws --external:node:worker_threads --watch packages/activity-bar-worker/src/activityBarWorkerMain.ts --outfile=.tmp/dist/dist/activityBarWorkerMain.js",
+    "dev": "node packages/build/src/dev.ts",
+    "e2e": "cd packages/e2e && npm run e2e",
+    "format": "prettier --write .",
+    "postinstall": "lerna bootstrap --ci",
+    "lint": "eslint . && prettier --check .",
+    "measure": "cd packages/memory && npm run measure",
+    "test": "lerna run test",
+    "type-check": "tsc -b"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 150
+  },
+  "devDependencies": {
+    "@lerna/legacy-package-management": "^8.2.4",
+    "@lvce-editor/eslint-config": "^1.69.0",
+    "eslint": "^9.38.0",
+    "lerna": "^8.2.4",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3"
+  }
+}
