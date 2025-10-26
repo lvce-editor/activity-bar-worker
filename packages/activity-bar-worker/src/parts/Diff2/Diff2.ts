@@ -1,5 +1,5 @@
-import * as Diff from '../Diff/Diff.ts'
 import * as ExplorerStates from '../ActivityBarStates/ActivityBarStates.ts'
+import * as Diff from '../Diff/Diff.ts'
 
 export const diff2 = (uid: number): readonly number[] => {
   const { oldState, newState } = ExplorerStates.get(uid)
