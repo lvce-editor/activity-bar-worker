@@ -12,4 +12,5 @@ export const createDefaultState = (): ActivityBarState => ({
   uid: 0,
   sideBarVisible: false,
   activityBarItems: [],
+  selectedIndex: -1,
 })
