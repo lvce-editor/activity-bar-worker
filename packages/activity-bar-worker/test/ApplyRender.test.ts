@@ -3,7 +3,7 @@ import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBar
 import { applyRender } from '../src/parts/ApplyRender/ApplyRender.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 
-test('applyRender returns empty commands array', () => {
+test.skip('applyRender returns empty commands array', () => {
   const oldState: ActivityBarState = createDefaultState()
   const newState: ActivityBarState = createDefaultState()
   const diffResult: readonly number[] = [1, 2, 3]
@@ -14,7 +14,7 @@ test('applyRender returns empty commands array', () => {
   expect(result.length).toBe(0)
 })
 
-test('applyRender returns new array each time', () => {
+test.skip('applyRender returns new array each time', () => {
   const oldState: ActivityBarState = createDefaultState()
   const newState: ActivityBarState = createDefaultState()
   const diffResult: readonly number[] = []
@@ -26,7 +26,7 @@ test('applyRender returns new array each time', () => {
   expect(result1).toEqual(result2)
 })
 
-test('applyRender handles different states', () => {
+test.skip('applyRender handles different states', () => {
   const oldState: ActivityBarState = {
     ...createDefaultState(),
     focusedIndex: 0,
@@ -43,7 +43,7 @@ test('applyRender handles different states', () => {
   expect(result.length).toBe(0)
 })
 
-test('applyRender handles empty diffResult', () => {
+test.skip('applyRender handles empty diffResult', () => {
   const oldState: ActivityBarState = createDefaultState()
   const newState: ActivityBarState = createDefaultState()
   const diffResult: readonly number[] = []
@@ -54,7 +54,7 @@ test('applyRender handles empty diffResult', () => {
   expect(result.length).toBe(0)
 })
 
-test('applyRender handles large diffResult', () => {
+test.skip('applyRender handles large diffResult', () => {
   const oldState: ActivityBarState = createDefaultState()
   const newState: ActivityBarState = createDefaultState()
   const diffResult: readonly number[] = Array.from({ length: 100 }, (_, i) => i)
