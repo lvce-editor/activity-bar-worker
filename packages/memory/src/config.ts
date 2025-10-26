@@ -1,9 +1,9 @@
 import { join } from 'node:path'
 import { root } from './root.ts'
 
-export const threshold = 535_000
+export const threshold = 410_000
 
-export const instantiations = 14_800
+export const instantiations = 6000
 
 export const instantiationsPath = join(root, 'packages', 'activity-bar-worker')
 
