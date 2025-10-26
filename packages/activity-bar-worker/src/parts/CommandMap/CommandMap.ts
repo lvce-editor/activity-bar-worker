@@ -1,6 +1,7 @@
 import { terminate } from '@lvce-editor/viewlet-registry'
 import * as WrapCommand from '../ActivityBarStates/ActivityBarStates.ts'
 import * as Create from '../Create/Create.ts'
+import { diff2 } from '../Diff2/Diff2.ts'
 import * as Focus from '../Focus/Focus.ts'
 import * as FocusFirst from '../FocusFirst/FocusFirst.ts'
 import * as FocusIndex from '../FocusIndex/FocusIndex.ts'
@@ -17,21 +18,22 @@ import * as RenderEventListeners from '../RenderEventListeners/RenderEventListen
 import * as SaveState from '../SaveState/SaveState.ts'
 
 export const commandMap = {
+  'ActivityBar.create': Create.create,
+  'ActivityBar.diff2': diff2,
   'ActivityBar.focus': WrapCommand.wrapCommand(Focus.focus),
   'ActivityBar.focusFirst': WrapCommand.wrapCommand(FocusFirst.focusFirst),
   'ActivityBar.focusIndex': WrapCommand.wrapCommand(FocusIndex.focusIndex),
-  'ActivityBar.loadContent': WrapCommand.wrapCommand(loadContent),
   'ActivityBar.focusLast': WrapCommand.wrapCommand(FocusLast.focusLast),
   'ActivityBar.focusNext': WrapCommand.wrapCommand(FocusNext.focusNext),
-  'ActivityBar.handleBlur': WrapCommand.wrapCommand(handleBlur),
   'ActivityBar.focusNone': WrapCommand.wrapCommand(FocusNone.focusNone),
-  'ActivityBar.handleSideBarViewletChange': WrapCommand.wrapCommand(handleSideBarViewletChange),
-  'ActivityBar.getKeyBindings': getKeyBindings,
-  'ActivityBar.handleClick': WrapCommand.wrapCommand(HandleClick.handleClick),
   'ActivityBar.getCommandIds': WrapCommand.getCommandIds,
+  'ActivityBar.getKeyBindings': getKeyBindings,
+  'ActivityBar.handleBlur': WrapCommand.wrapCommand(handleBlur),
+  'ActivityBar.handleClick': WrapCommand.wrapCommand(HandleClick.handleClick),
+  'ActivityBar.handleSideBarViewletChange': WrapCommand.wrapCommand(handleSideBarViewletChange),
+  'ActivityBar.loadContent': WrapCommand.wrapCommand(loadContent),
   'ActivityBar.render2': Render2.render2,
   'ActivityBar.renderEventListeners': RenderEventListeners.renderEventListeners,
   'ActivityBar.saveState': WrapCommand.wrapGetter(SaveState.saveState),
   'ActivityBar.terminate': terminate,
-  'ActivityBar.create': Create.create,
 }
