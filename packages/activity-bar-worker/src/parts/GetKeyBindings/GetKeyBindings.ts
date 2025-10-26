@@ -1,6 +1,6 @@
 import { KeyCode } from '@lvce-editor/constants'
 import { WhenExpression } from '@lvce-editor/constants'
-import { KeyBinding } from '../KeyBinding/KeyBinding.ts'
+import type { KeyBinding } from '../KeyBinding/KeyBinding.ts'
 
 export const getKeyBindings = (): readonly KeyBinding[] => {
   return [
