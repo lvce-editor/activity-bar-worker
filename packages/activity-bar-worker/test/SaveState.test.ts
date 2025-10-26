@@ -8,9 +8,9 @@ test('saveState returns SavedState with uid', () => {
     ...createDefaultState(),
     uid: 123,
   }
-  
+
   const result = saveState(state)
-  
+
   expect(result).toEqual({ uid: 123 })
 })
 
@@ -22,9 +22,9 @@ test('saveState preserves uid from state', () => {
     focused: true,
     activityBarItems: ['item1', 'item2'],
   }
-  
+
   const result = saveState(state)
-  
+
   expect(result.uid).toBe(456)
   expect(result).toEqual({ uid: 456 })
 })
@@ -34,9 +34,9 @@ test('saveState handles uid of 0', () => {
     ...createDefaultState(),
     uid: 0,
   }
-  
+
   const result = saveState(state)
-  
+
   expect(result).toEqual({ uid: 0 })
 })
 
@@ -45,15 +45,15 @@ test('saveState handles negative uid', () => {
     ...createDefaultState(),
     uid: -1,
   }
-  
+
   const result = saveState(state)
-  
+
   expect(result).toEqual({ uid: -1 })
 })
 
 test('saveState returns new object', () => {
   const state: ActivityBarState = createDefaultState()
   const result = saveState(state)
-  
+
   expect(result).not.toBe(state)
 })
