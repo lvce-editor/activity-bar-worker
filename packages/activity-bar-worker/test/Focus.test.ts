@@ -2,8 +2,9 @@ import { expect, test } from '@jest/globals'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { focus } from '../src/parts/Focus/Focus.ts'
+import * as FocusId from '../src/parts/FocusId/FocusId.ts'
 
-test.skip('focus sets focus to List when state.focus is falsy', () => {
+test('focus sets focus to List when state.focus is falsy', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     focus: 0,
@@ -11,22 +12,23 @@ test.skip('focus sets focus to List when state.focus is falsy', () => {
 
   const result: ActivityBarState = focus(state)
 
-  expect(result.focus).toBe(1)
+  expect(result.focus).toBe(FocusId.List)
   expect(result).not.toBe(state)
 })
 
-test.skip('focus returns same state when state.focus is truthy', () => {
+test('focus returns same state when state.focus is truthy', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
-    focus: 0,
+    focus: 2,
   }
 
   const result: ActivityBarState = focus(state)
 
   expect(result).toBe(state)
+  expect(result.focus).toBe(2)
 })
 
-test.skip('focus preserves other state properties when setting focus', () => {
+test('focus preserves other state properties when setting focus', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     focus: 0,
@@ -37,24 +39,37 @@ test.skip('focus preserves other state properties when setting focus', () => {
 
   const result: ActivityBarState = focus(state)
 
-  expect(result.focus).toBe(1)
+  expect(result.focus).toBe(FocusId.List)
   expect(result.focusedIndex).toBe(state.focusedIndex)
   expect(result.focused).toBe(state.focused)
   expect(result.activityBarItems).toBe(state.activityBarItems)
 })
 
-test.skip('focus handles null focus value', () => {
+test('focus returns same state when focus is negative', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
-    focus: null as any,
+    focus: -1,
   }
 
   const result: ActivityBarState = focus(state)
 
-  expect(result.focus).toBe(1)
+  expect(result).toBe(state)
+  expect(result.focus).toBe(-1)
 })
 
-test.skip('focus handles empty string focus value', () => {
+test('focus returns same state when focus is already List', () => {
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    focus: FocusId.List,
+  }
+
+  const result: ActivityBarState = focus(state)
+
+  expect(result).toBe(state)
+  expect(result.focus).toBe(FocusId.List)
+})
+
+test('focus sets focus to List when focus is 0', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     focus: 0,
@@ -62,5 +77,18 @@ test.skip('focus handles empty string focus value', () => {
 
   const result: ActivityBarState = focus(state)
 
-  expect(result.focus).toBe(1)
+  expect(result.focus).toBe(FocusId.List)
+  expect(result).not.toBe(state)
+})
+
+test('focus returns same state when focus is 5', () => {
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    focus: 5,
+  }
+
+  const result: ActivityBarState = focus(state)
+
+  expect(result).toBe(state)
+  expect(result.focus).toBe(5)
 })
