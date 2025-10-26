@@ -14,6 +14,7 @@ export const create = (
   platform: number = 0,
 ): any => {
   const state: ActivityBarState = {
+    currentViewletId: '',
     uid: id,
     focus: 0,
     focused: false,
