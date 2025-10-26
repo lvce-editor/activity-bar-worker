@@ -1,4 +1,5 @@
 export interface ActivityBarState {
+  readonly currentViewletId: string
   readonly scrollBarHeight: any
   readonly focus: number
   readonly focused: boolean

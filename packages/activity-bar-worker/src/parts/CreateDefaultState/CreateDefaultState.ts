@@ -1,6 +1,7 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 
 export const createDefaultState = (): ActivityBarState => ({
+  currentViewletId: '',
   focus: 0,
   focused: false,
   focusedIndex: 0,
