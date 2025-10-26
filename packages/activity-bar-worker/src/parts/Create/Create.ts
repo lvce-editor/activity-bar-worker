@@ -23,6 +23,7 @@ export const create = (
     x: 0,
     y: 0,
     sideBarVisible: false,
+    activityBarItems: [],
   }
   ExplorerStates.set(state.uid, state, state)
   return state
