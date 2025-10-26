@@ -9,4 +9,5 @@ export const createDefaultState = (): ActivityBarState => ({
   y: 0,
   scrollBarHeight: 0,
   uid: 0,
+  sideBarVisible: false,
 })

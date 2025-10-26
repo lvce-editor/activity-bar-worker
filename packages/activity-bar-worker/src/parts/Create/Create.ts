@@ -22,6 +22,7 @@ export const create = (
     width: 0,
     x: 0,
     y: 0,
+    sideBarVisible: false,
   }
   ExplorerStates.set(state.uid, state, state)
   return state
