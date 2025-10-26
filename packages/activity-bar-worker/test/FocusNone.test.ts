@@ -8,9 +8,9 @@ test('focusNone returns same state when focusedIndex is -1', () => {
     ...createDefaultState(),
     focusedIndex: -1,
   }
-  
+
   const result: ActivityBarState = focusNone(state)
-  
+
   expect(result).toBe(state)
 })
 
@@ -19,9 +19,9 @@ test('focusNone calls focusIndex with -1 when focusedIndex is not -1', () => {
     ...createDefaultState(),
     focusedIndex: 2,
   }
-  
+
   const result: ActivityBarState = focusNone(state)
-  
+
   expect(result.focusedIndex).toBe(-1)
   expect(result).not.toBe(state)
 })
@@ -34,9 +34,9 @@ test('focusNone preserves other state properties', () => {
     activityBarItems: ['item1', 'item2'],
     currentViewletId: 'test-viewlet',
   }
-  
+
   const result: ActivityBarState = focusNone(state)
-  
+
   expect(result.focusedIndex).toBe(-1)
   expect(result.focused).toBe(state.focused)
   expect(result.activityBarItems).toBe(state.activityBarItems)
@@ -48,9 +48,9 @@ test('focusNone handles focusedIndex of 0', () => {
     ...createDefaultState(),
     focusedIndex: 0,
   }
-  
+
   const result: ActivityBarState = focusNone(state)
-  
+
   expect(result.focusedIndex).toBe(-1)
 })
 
@@ -59,8 +59,8 @@ test('focusNone handles large focusedIndex', () => {
     ...createDefaultState(),
     focusedIndex: 10,
   }
-  
+
   const result: ActivityBarState = focusNone(state)
-  
+
   expect(result.focusedIndex).toBe(-1)
 })

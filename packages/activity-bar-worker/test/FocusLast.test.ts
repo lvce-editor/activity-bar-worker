@@ -6,7 +6,7 @@ import { focusLast } from '../src/parts/FocusLast/FocusLast.ts'
 test('focusLast calls focusIndex with -1', () => {
   const state: ActivityBarState = createDefaultState()
   const result: ActivityBarState = focusLast(state)
-  
+
   expect(result.focusedIndex).toBe(-1)
   expect(result).not.toBe(state)
 })
@@ -19,9 +19,9 @@ test('focusLast preserves other state properties', () => {
     activityBarItems: ['item1', 'item2'],
     currentViewletId: 'test-viewlet',
   }
-  
+
   const result: ActivityBarState = focusLast(state)
-  
+
   expect(result.focusedIndex).toBe(-1)
   expect(result.focused).toBe(true)
   expect(result.activityBarItems).toBe(state.activityBarItems)
@@ -31,6 +31,6 @@ test('focusLast preserves other state properties', () => {
 test('focusLast returns new state object', () => {
   const state: ActivityBarState = createDefaultState()
   const result: ActivityBarState = focusLast(state)
-  
+
   expect(result).not.toBe(state)
 })
