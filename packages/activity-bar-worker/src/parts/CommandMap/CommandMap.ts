@@ -1,5 +1,6 @@
 import { terminate } from '@lvce-editor/viewlet-registry'
 import * as WrapCommand from '../ActivityBarStates/ActivityBarStates.ts'
+import * as Create from '../Create/Create.ts'
 import * as Focus from '../Focus/Focus.ts'
 import * as FocusFirst from '../FocusFirst/FocusFirst.ts'
 import * as FocusIndex from '../FocusIndex/FocusIndex.ts'
@@ -30,4 +31,5 @@ export const commandMap = {
   'ActivityBar.renderEventListeners': RenderEventListeners.renderEventListeners,
   'ActivityBar.saveState': WrapCommand.wrapGetter(SaveState.saveState),
   'ActivityBar.terminate': terminate,
+  'ActivityBar.create': Create.create,
 }
