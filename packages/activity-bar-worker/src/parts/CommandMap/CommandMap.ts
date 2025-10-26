@@ -7,6 +7,7 @@ import * as FocusLast from '../FocusLast/FocusLast.ts'
 import * as FocusNext from '../FocusNext/FocusNext.ts'
 import * as FocusNone from '../FocusNone/FocusNone.ts'
 import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
+import * as HandleClick from '../HandleClick/HandleClick.ts'
 import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
@@ -19,6 +20,7 @@ export const commandMap = {
   'ActivityBar.focusNext': WrapCommand.wrapCommand(FocusNext.focusNext),
   'ActivityBar.focusNone': WrapCommand.wrapCommand(FocusNone.focusNone),
   'ActivityBar.getKeyBindings': getKeyBindings,
+  'ActivityBar.handleClick': WrapCommand.wrapCommand(HandleClick.handleClick),
   'ActivityBar.getCommandIds': WrapCommand.getCommandIds,
   'ActivityBar.render2': Render2.render2,
   'ActivityBar.renderEventListeners': RenderEventListeners.renderEventListeners,
