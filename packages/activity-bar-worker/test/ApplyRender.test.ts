@@ -23,7 +23,16 @@ test('applyRender returns empty array when diffResult contains RenderCss', () =>
 
   const result: readonly any[] = applyRender(oldState, newState, diffResult)
 
-  expect(result).toEqual([])
+  expect(result).toEqual([
+    [
+      'Viewlet.setCss',
+      0,
+      `:root {
+  --ActivityBarItemHeight: var(--48px);
+}
+`,
+    ],
+  ])
 })
 
 test('applyRender returns empty array when diffResult contains RenderFocusContext with focus not List', () => {
