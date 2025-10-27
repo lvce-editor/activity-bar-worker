@@ -95,7 +95,7 @@ test('handleClick returns same state when index is -1', async () => {
     itemHeight: 48,
   }
 
-  const result = await handleClick(state, MouseEventType.LeftClick, 2000, 100)
+  const result = await handleClick(state, MouseEventType.LeftClick, 0, 2000)
 
   expect(result).toBe(state)
 })
