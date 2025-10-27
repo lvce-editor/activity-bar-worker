@@ -1,7 +1,7 @@
 import { mergeClassNames } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 
-export const getClassName = (isFocused: boolean, marginTop: boolean, isSelected: boolean): string => {
+export const getClassName = (isFocused: boolean | number, marginTop: boolean | number, isSelected: boolean | number): string => {
   const classNames: string[] = [ClassNames.ActivityBarItem]
   if (isFocused) {
     classNames.push(ClassNames.FocusOutline)
