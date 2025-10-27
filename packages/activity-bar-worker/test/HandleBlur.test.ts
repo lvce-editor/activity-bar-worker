@@ -20,6 +20,7 @@ test('handleBlur preserves other state properties', () => {
     ...createDefaultState(),
     focused: true,
     focusedIndex: 2,
+    // @ts-ignore
     activityBarItems: ['item1', 'item2'],
     currentViewletId: 'test-viewlet',
   }

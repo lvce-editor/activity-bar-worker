@@ -43,6 +43,7 @@ test('DiffCss.isEqual should return false when activityBarItems changes', () => 
   const state1 = createDefaultState()
   const state2: ActivityBarState = {
     ...createDefaultState(),
+    // @ts-ignore
     activityBarItems: [{ id: 'test' }],
   }
   const result = DiffCss.isEqual(state1, state2)

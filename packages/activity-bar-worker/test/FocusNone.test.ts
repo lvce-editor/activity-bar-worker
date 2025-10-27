@@ -31,6 +31,7 @@ test('focusNone preserves other state properties', () => {
     ...createDefaultState(),
     focusedIndex: 3,
     focused: true,
+    // @ts-ignore
     activityBarItems: ['item1', 'item2'],
     currentViewletId: 'test-viewlet',
   }
