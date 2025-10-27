@@ -12,7 +12,7 @@ test('getVirtualDom returns empty array for empty items', () => {
 })
 
 test('getVirtualDom creates basic item without flags', () => {
-  const items = [
+  const items: readonly any[] = [
     {
       flags: 0,
       title: 'Explorer',
@@ -30,7 +30,7 @@ test('getVirtualDom creates basic item without flags', () => {
 })
 
 test('getVirtualDom creates item with Tab flag', () => {
-  const items = [
+  const items: readonly any[] = [
     {
       flags: ActivityBarItemFlags.Tab,
       title: 'Explorer',
@@ -45,7 +45,7 @@ test('getVirtualDom creates item with Tab flag', () => {
 })
 
 test('getVirtualDom creates selected item with icon', () => {
-  const items = [
+  const items: readonly any[] = [
     {
       flags: ActivityBarItemFlags.Selected,
       title: 'Explorer',
@@ -62,7 +62,7 @@ test('getVirtualDom creates selected item with icon', () => {
 })
 
 test('getVirtualDom creates selected tab with icon', () => {
-  const items = [
+  const items: readonly any[] = [
     {
       flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Selected,
       title: 'Explorer',
@@ -78,7 +78,7 @@ test('getVirtualDom creates selected tab with icon', () => {
 })
 
 test('getVirtualDom creates item with Focused flag', () => {
-  const items = [
+  const items: readonly any[] = [
     {
       flags: ActivityBarItemFlags.Focused,
       title: 'Explorer',
@@ -92,7 +92,7 @@ test('getVirtualDom creates item with Focused flag', () => {
 })
 
 test('getVirtualDom creates item with MarginTop flag', () => {
-  const items = [
+  const items: readonly any[] = [
     {
       flags: ActivityBarItemFlags.MarginTop,
       title: 'Explorer',
@@ -106,7 +106,7 @@ test('getVirtualDom creates item with MarginTop flag', () => {
 })
 
 test('getVirtualDom creates item with Progress flag', () => {
-  const items = [
+  const items: readonly any[] = [
     {
       flags: ActivityBarItemFlags.Progress,
       title: 'Explorer',
@@ -122,7 +122,7 @@ test('getVirtualDom creates item with Progress flag', () => {
 })
 
 test('getVirtualDom creates item with multiple flags', () => {
-  const items = [
+  const items: readonly any[] = [
     {
       flags: ActivityBarItemFlags.Focused | ActivityBarItemFlags.MarginTop | ActivityBarItemFlags.Selected,
       title: 'Explorer',
@@ -138,7 +138,7 @@ test('getVirtualDom creates item with multiple flags', () => {
 })
 
 test('getVirtualDom creates multiple items', () => {
-  const items = [
+  const items: readonly any[] = [
     {
       flags: 0,
       title: 'Explorer',
@@ -157,7 +157,7 @@ test('getVirtualDom creates multiple items', () => {
 })
 
 test('getVirtualDom handles item with all flags', () => {
-  const items = [
+  const items: readonly any[] = [
     {
       flags:
         ActivityBarItemFlags.Tab |
