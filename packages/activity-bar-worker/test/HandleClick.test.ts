@@ -26,7 +26,7 @@ test.skip('handleClick throws error for Additional Views viewlet due to RPC', as
     activityBarItems: [{ id: 'Additional Views' }],
   }
 
-  await expect(handleClick(state, MouseEventType.LeftClick, 0, 10, 20)).rejects.toThrow()
+  await expect(handleClick(state, MouseEventType.LeftClick, 10, 20)).rejects.toThrow()
 })
 
 test.skip('handleClick throws error for other viewlet due to RPC', async () => {
