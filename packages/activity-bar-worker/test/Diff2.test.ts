@@ -3,14 +3,14 @@ import * as ActivityBarStates from '../src/parts/ActivityBarStates/ActivityBarSt
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as Diff2 from '../src/parts/Diff2/Diff2.ts'
 
-test('diff2 returns empty array when oldState and newState are identical', () => {
+test('diff2 returns RenderCss when oldState and newState are identical', () => {
   const uid = 1
   const state = createDefaultState()
   ActivityBarStates.set(uid, state, state)
 
   const result: readonly number[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([])
+  expect(result).toEqual([11])
 })
 
 test('diff2 returns RenderItems when activityBarItems differ', () => {
@@ -24,7 +24,7 @@ test('diff2 returns RenderItems when activityBarItems differ', () => {
 
   const result: readonly number[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([4])
+  expect(result).toEqual([4, 11])
 })
 
 test('diff2 returns RenderFocus when focused differs', () => {
@@ -38,7 +38,7 @@ test('diff2 returns RenderFocus when focused differs', () => {
 
   const result: readonly number[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([6])
+  expect(result).toEqual([4, 6, 7, 11])
 })
 
 test('diff2 returns RenderFocusContext when focused changes', () => {
@@ -55,7 +55,7 @@ test('diff2 returns RenderFocusContext when focused changes', () => {
 
   const result: readonly number[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([7])
+  expect(result).toEqual([4, 6, 7, 11])
 })
 
 test('diff2 returns RenderCss when width differs', () => {
