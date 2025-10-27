@@ -1,8 +1,6 @@
 import * as ExplorerStates from '../ActivityBarStates/ActivityBarStates.ts'
-import * as Diff from '../Diff/Diff.ts'
+import * as DiffModules from '../DiffModules/DiffModules.ts'
 
 export const diff2 = (uid: number): readonly number[] => {
-  const { oldState, newState } = ExplorerStates.get(uid)
-  const result = Diff.diff(oldState, newState)
-  return result
+  return ExplorerStates.diff(uid, DiffModules.modules, DiffModules.numbers)
 }
