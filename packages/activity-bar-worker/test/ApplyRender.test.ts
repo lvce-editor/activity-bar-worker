@@ -85,8 +85,24 @@ test('applyRender filters out empty results', () => {
 
   const result: readonly any[] = applyRender(oldState, newState, diffResult)
 
-  expect(result.length).toBe(1)
-  expect(result[0][0]).toBe(ViewletCommand.SetFocusContext)
+  expect(result).toEqual([
+    [
+      'Viewlet.setCss',
+      123,
+      `:root {
+      --ActivityBarItemHeight: var(--48px);
+    }`,
+    ],
+    ['Viewlet.setFocusContext', 123, 13],
+    [
+      'Viewlet.setCss',
+      123,
+      `:root {
+      --ActivityBarItemHeight: var(--48px);
+    }
+    `,
+    ],
+  ])
 })
 
 test('applyRender collects multiple non-empty results', () => {
