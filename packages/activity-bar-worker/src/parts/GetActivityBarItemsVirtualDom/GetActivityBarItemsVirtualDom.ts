@@ -3,6 +3,7 @@ import { type VirtualDomNode, mergeClassNames } from '@lvce-editor/virtual-dom-w
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import { getClassName } from '../GetClassName/GetClassName.ts'
 import * as GetIconVirtualDom from '../GetIconVirtualDom/GetIconVirtualDom.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
@@ -22,15 +23,8 @@ const createActivityBarItem = (item: ActivityBarItem): readonly VirtualDomNode[]
   const role = isTab ? AriaRoles.Tab : AriaRoles.Button
   const ariaSelected = getAriaSelected(isTab, isSelected)
   const marginTop = flags & ActivityBarItemFlags.MarginTop
-  let className = ClassNames.ActivityBarItem
-  if (isFocused) {
-    className += ' ' + ClassNames.FocusOutline
-  }
-  if (marginTop) {
-    className += ' ' + ClassNames.MarginTopAuto
-  }
+  let className = getClassName(isFocused, marginTop, isSelected)
   if (isSelected) {
-    className += ' ' + ClassNames.ActivityBarItemSelected
     return [
       {
         type: VirtualDomElements.Div,
