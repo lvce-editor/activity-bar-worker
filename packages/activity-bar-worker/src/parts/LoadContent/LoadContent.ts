@@ -6,5 +6,6 @@ export const loadContent = async (state: ActivityBarState, savedState: any): Pro
   return {
     ...state,
     activityBarItems: items,
+    sideBarVisible: true,
   }
 }
