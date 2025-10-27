@@ -2,8 +2,9 @@ import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import type { SavedState } from '../SavedState/SavedState.ts'
 
 export const saveState = (state: ActivityBarState): SavedState => {
-  const { uid } = state
+  const { uid, currentViewletId } = state
   return {
     uid,
+    currentViewletId,
   }
 }
