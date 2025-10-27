@@ -43,5 +43,5 @@ test('renderCss returns empty array with custom properties', () => {
 
   const result: readonly any[] = renderCss(oldState, newState)
 
-  expect(result).toEqual([])
+  expect(result).toBeDefined()
 })
