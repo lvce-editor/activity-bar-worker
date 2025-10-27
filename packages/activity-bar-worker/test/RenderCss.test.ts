@@ -30,11 +30,13 @@ test('renderCss returns empty array for different states', () => {
 test('renderCss returns empty array with custom properties', () => {
   const oldState: ActivityBarState = {
     ...createDefaultState(),
+    // @ts-ignore
     activityBarItems: [{ id: 'test' }],
     width: 100,
   }
   const newState: ActivityBarState = {
     ...createDefaultState(),
+    // @ts-ignore
     activityBarItems: [{ id: 'test' }],
     width: 200,
   }
