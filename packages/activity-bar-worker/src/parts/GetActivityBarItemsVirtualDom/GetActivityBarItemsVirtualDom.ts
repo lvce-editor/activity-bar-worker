@@ -13,7 +13,7 @@ const getAriaSelected = (isTab: number, isSelected: number): boolean | undefined
   return Boolean(isSelected)
 }
 
-const createActivityBarItem = (item: any): readonly VirtualDomNode[] => {
+const createActivityBarItem = (item: ActivityBarItem): readonly VirtualDomNode[] => {
   const { flags, title, icon } = item
   const isTab = flags & ActivityBarItemFlags.Tab
   const isSelected = flags & ActivityBarItemFlags.Selected
