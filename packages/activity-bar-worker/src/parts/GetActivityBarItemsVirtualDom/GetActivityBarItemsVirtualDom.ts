@@ -1,5 +1,6 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { AriaRoles } from '@lvce-editor/constants'
+import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetIconVirtualDom from '../GetIconVirtualDom/GetIconVirtualDom.ts'
@@ -95,7 +96,7 @@ const createActivityBarItem = (item: any): readonly VirtualDomNode[] => {
   ]
 }
 
-export const getVirtualDom = (visibleItems: readonly any[]): readonly VirtualDomNode[] => {
+export const getVirtualDom = (visibleItems: readonly ActivityBarItem[]): readonly VirtualDomNode[] => {
   const dom = visibleItems.flatMap(createActivityBarItem)
   return dom
 }
