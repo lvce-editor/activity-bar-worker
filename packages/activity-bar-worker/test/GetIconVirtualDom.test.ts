@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
 import { AriaRoles } from '@lvce-editor/constants'
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as GetIconVirtualDom from '../src/parts/GetIconVirtualDom/GetIconVirtualDom.ts'
-import * as VirtualDomElements from '../src/parts/VirtualDomElements/VirtualDomElements.ts'
 
 test('getIconVirtualDom returns correct VirtualDomNode with default type', () => {
   const icon = 'Explorer'
