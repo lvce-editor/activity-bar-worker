@@ -23,7 +23,16 @@ test('applyRender returns empty array when diffResult contains RenderCss', () =>
 
   const result: readonly any[] = applyRender(oldState, newState, diffResult)
 
-  expect(result).toEqual([])
+  expect(result).toEqual([
+    [
+      'Viewlet.setCss',
+      0,
+      `:root {
+  --ActivityBarItemHeight: var(--48px);
+}
+`,
+    ],
+  ])
 })
 
 test('applyRender returns empty array when diffResult contains RenderFocusContext with focus not List', () => {
@@ -85,8 +94,25 @@ test('applyRender filters out empty results', () => {
 
   const result: readonly any[] = applyRender(oldState, newState, diffResult)
 
-  expect(result.length).toBe(1)
-  expect(result[0][0]).toBe(ViewletCommand.SetFocusContext)
+  expect(result).toEqual([
+    [
+      'Viewlet.setCss',
+      123,
+      `:root {
+  --ActivityBarItemHeight: var(--48px);
+}
+`,
+    ],
+    ['Viewlet.setFocusContext', 123, 13],
+    [
+      'Viewlet.setCss',
+      123,
+      `:root {
+  --ActivityBarItemHeight: var(--48px);
+}
+`,
+    ],
+  ])
 })
 
 test('applyRender collects multiple non-empty results', () => {
