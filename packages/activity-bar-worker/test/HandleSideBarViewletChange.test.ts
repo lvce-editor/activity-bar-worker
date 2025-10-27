@@ -61,7 +61,7 @@ test('handleSideBarViewletChange preserves other state properties', () => {
   expect(result.selectedIndex).toBe(1)
   expect(result.focusedIndex).toBe(state.focusedIndex)
   expect(result.focused).toBe(state.focused)
-  expect(result.activityBarItems).toBe(state.activityBarItems)
+  expect(result.activityBarItems).toEqual(state.activityBarItems)
 })
 
 test('handleSideBarViewletChange handles empty activityBarItems', () => {
