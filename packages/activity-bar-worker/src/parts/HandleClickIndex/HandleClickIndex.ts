@@ -8,10 +8,10 @@ export const handleClickIndex = async (state: ActivityBarState, button: number, 
   if (button !== MouseEventType.LeftClick) {
     return state
   }
-  const { activityBarItems } = state
   if (index === -1) {
     return state
   }
+  const { activityBarItems } = state
   const item = activityBarItems[index]
   const viewletId = item.id
   switch (viewletId) {
