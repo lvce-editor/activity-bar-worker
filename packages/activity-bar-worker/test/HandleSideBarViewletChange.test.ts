@@ -1,13 +1,19 @@
 import { expect, test } from '@jest/globals'
+import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { handleSideBarViewletChange } from '../src/parts/HandleSideBarViewletChange/HandleSideBarViewletChange.ts'
 
 test('handleSideBarViewletChange sets selectedIndex to found index', () => {
+  const items: readonly ActivityBarItem[] = [
+    { id: 'item1', title: 'Item 1', icon: 'icon1', flags: 0, keyShortcuts: '' },
+    { id: 'item2', title: 'Item 2', icon: 'icon2', flags: 0, keyShortcuts: '' },
+    { id: 'item3', title: 'Item 3', icon: 'icon3', flags: 0, keyShortcuts: '' },
+  ]
+
   const state: ActivityBarState = {
     ...createDefaultState(),
-    // @ts-ignore
-    activityBarItems: [{ id: 'item1' }, { id: 'item2' }, { id: 'item3' }],
+    activityBarItems: items,
     selectedIndex: -1,
   }
 
@@ -18,10 +24,14 @@ test('handleSideBarViewletChange sets selectedIndex to found index', () => {
 })
 
 test('handleSideBarViewletChange sets selectedIndex to -1 when item not found', () => {
+  const items: readonly ActivityBarItem[] = [
+    { id: 'item1', title: 'Item 1', icon: 'icon1', flags: 0, keyShortcuts: '' },
+    { id: 'item2', title: 'Item 2', icon: 'icon2', flags: 0, keyShortcuts: '' },
+  ]
+
   const state: ActivityBarState = {
     ...createDefaultState(),
-    // @ts-ignore
-    activityBarItems: [{ id: 'item1' }, { id: 'item2' }],
+    activityBarItems: items,
     selectedIndex: 0,
   }
 
@@ -32,10 +42,14 @@ test('handleSideBarViewletChange sets selectedIndex to -1 when item not found', 
 })
 
 test('handleSideBarViewletChange preserves other state properties', () => {
+  const items: readonly ActivityBarItem[] = [
+    { id: 'item1', title: 'Item 1', icon: 'icon1', flags: 0, keyShortcuts: '' },
+    { id: 'item2', title: 'Item 2', icon: 'icon2', flags: 0, keyShortcuts: '' },
+  ]
+
   const state: ActivityBarState = {
     ...createDefaultState(),
-    // @ts-ignore
-    activityBarItems: [{ id: 'item1' }, { id: 'item2' }],
+    activityBarItems: items,
     selectedIndex: 0,
     focusedIndex: 1,
     focused: true,
@@ -63,10 +77,14 @@ test('handleSideBarViewletChange handles empty activityBarItems', () => {
 })
 
 test('handleSideBarViewletChange handles first item', () => {
+  const items: readonly ActivityBarItem[] = [
+    { id: 'first', title: 'First', icon: 'icon1', flags: 0, keyShortcuts: '' },
+    { id: 'second', title: 'Second', icon: 'icon2', flags: 0, keyShortcuts: '' },
+  ]
+
   const state: ActivityBarState = {
     ...createDefaultState(),
-    // @ts-ignore
-    activityBarItems: [{ id: 'first' }, { id: 'second' }],
+    activityBarItems: items,
     selectedIndex: -1,
   }
 
@@ -76,10 +94,15 @@ test('handleSideBarViewletChange handles first item', () => {
 })
 
 test('handleSideBarViewletChange handles last item', () => {
+  const items: readonly ActivityBarItem[] = [
+    { id: 'first', title: 'First', icon: 'icon1', flags: 0, keyShortcuts: '' },
+    { id: 'second', title: 'Second', icon: 'icon2', flags: 0, keyShortcuts: '' },
+    { id: 'third', title: 'Third', icon: 'icon3', flags: 0, keyShortcuts: '' },
+  ]
+
   const state: ActivityBarState = {
     ...createDefaultState(),
-    // @ts-ignore
-    activityBarItems: [{ id: 'first' }, { id: 'second' }, { id: 'third' }],
+    activityBarItems: items,
     selectedIndex: -1,
   }
 
