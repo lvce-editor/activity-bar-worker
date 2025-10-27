@@ -23,5 +23,5 @@ test('hide calls Layout.hideSideBar', async () => {
     'Layout.hideSideBar'() {},
   })
   await hide()
-  expect(mockRpc.invocations[0]).toEqual(['Layout.hideSideBar'])
+  expect(mockRpc.invocations).toEqual([['Layout.hideSideBar']])
 })
