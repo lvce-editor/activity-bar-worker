@@ -1,5 +1,5 @@
-import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { AriaRoles } from '@lvce-editor/constants'
+import { type VirtualDomNode, mergeClassNames } from '@lvce-editor/virtual-dom-worker'
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
@@ -86,7 +86,7 @@ const createActivityBarItem = (item: any): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Div,
-      className: `${className} Icon${icon}`,
+      className: mergeClassNames(className, `Icon${icon}`),
       ariaLabel: '',
       title,
       role,
