@@ -6,11 +6,11 @@ export const handleClickOther = async (state: ActivityBarState, x: number, y: nu
   if (sideBarVisible) {
     if (currentViewletId === viewletId) {
       await SideBar.hide()
-    } else {
-      await SideBar.show(sideBarVisible, viewletId)
+      return state
     }
-  } else {
-    await SideBar.show(sideBarVisible, currentViewletId)
+    await SideBar.show(sideBarVisible, viewletId)
+    return state
   }
+  await SideBar.show(sideBarVisible, currentViewletId)
   return state
 }
