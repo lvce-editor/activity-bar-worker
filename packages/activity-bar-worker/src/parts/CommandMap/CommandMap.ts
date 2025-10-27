@@ -20,6 +20,7 @@ import { loadContent } from '../LoadContent/LoadContent.ts'
 import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
+import { toggleActivityBarItem } from '../ToggleActivityBarItem/ToggleActivityBarItem.ts'
 
 export const commandMap = {
   'ActivityBar.create': Create.create,
@@ -33,15 +34,16 @@ export const commandMap = {
   'ActivityBar.getCommandIds': WrapCommand.getCommandIds,
   'ActivityBar.getKeyBindings': getKeyBindings,
   'ActivityBar.handleBlur': WrapCommand.wrapCommand(handleBlur),
-  'ActivityBar.handleResize': WrapCommand.wrapCommand(handleResize),
   'ActivityBar.handleClick': WrapCommand.wrapCommand(HandleClick.handleClick),
-  'ActivityBar.handleContextMenu': WrapCommand.wrapCommand(handleContextMenu),
-  'ActivityBar.handleSideBarHidden': WrapCommand.wrapCommand(handleSideBarHidden),
   'ActivityBar.handleClickIndex': WrapCommand.wrapCommand(handleClickIndex),
+  'ActivityBar.handleContextMenu': WrapCommand.wrapCommand(handleContextMenu),
+  'ActivityBar.handleResize': WrapCommand.wrapCommand(handleResize),
+  'ActivityBar.handleSideBarHidden': WrapCommand.wrapCommand(handleSideBarHidden),
   'ActivityBar.handleSideBarViewletChange': WrapCommand.wrapCommand(handleSideBarViewletChange),
   'ActivityBar.loadContent': WrapCommand.wrapCommand(loadContent),
   'ActivityBar.render2': Render2.render2,
   'ActivityBar.renderEventListeners': RenderEventListeners.renderEventListeners,
   'ActivityBar.saveState': WrapCommand.wrapGetter(SaveState.saveState),
   'ActivityBar.terminate': terminate,
+  'ActivityBar.toggleActivityBarItem': WrapCommand.wrapCommand(toggleActivityBarItem),
 }
