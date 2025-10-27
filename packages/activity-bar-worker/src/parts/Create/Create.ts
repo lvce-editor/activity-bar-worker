@@ -28,6 +28,6 @@ export const create = (
     selectedIndex: -1,
     itemHeight: 48,
   }
-  ExplorerStates.set(state.uid, state, state)
+  ExplorerStates.set(id, state, state)
   return state
 }
