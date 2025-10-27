@@ -42,21 +42,20 @@ test('handleClick calculates index correctly for second item', async () => {
     currentViewletId: '',
   }
 
-  const result = await handleClick(state, MouseEventType.LeftClick, 48, 0)
+  const result = await handleClick(state, MouseEventType.LeftClick, 0, 48)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show', 48, 0, MenuEntryId.Settings, []]])
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show', 0, 48, MenuEntryId.Settings, []]])
 })
 
 test('handleClick calculates index correctly for multiple items', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show'() {},
     'Layout.showSideBar'() {},
   })
   const items: readonly ActivityBarItem[] = [
     { id: 'Explorer', title: 'Explorer', icon: 'icon1', flags: 0, keyShortcuts: '' },
     { id: 'Search', title: 'Search', icon: 'icon2', flags: 0, keyShortcuts: '' },
-    { id: 'Settings', title: 'Settings', icon: 'icon3', flags: 0, keyShortcuts: '' },
+    { id: 'Explorer2', title: 'Explorer2', icon: 'icon3', flags: 0, keyShortcuts: '' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -67,10 +66,10 @@ test('handleClick calculates index correctly for multiple items', async () => {
     currentViewletId: '',
   }
 
-  const result = await handleClick(state, MouseEventType.LeftClick, 146, 50)
+  const result = await handleClick(state, MouseEventType.LeftClick, 0, 146)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show', 146, 50, MenuEntryId.Settings, []]])
+  expect(mockRpc.invocations).toEqual([['Layout.showSideBar', '']])
 })
 
 test('handleClick returns same state when button is not left click', async () => {
