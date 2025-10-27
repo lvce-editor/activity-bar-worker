@@ -86,11 +86,6 @@ test('toggleActivityBarItem should handle multiple toggles', async () => {
   }
 
   const result1 = await toggleActivityBarItem(state, { label: 'test1' })
-  const updatedItem2 = { ...item2, enabled: true }
-  const state2: ActivityBarState = {
-    ...createDefaultState(),
-    activityBarItems: [{ ...item1, enabled: false }, updatedItem2],
-  }
   const result2 = await toggleActivityBarItem(result1, { label: 'test2' })
 
   expect(result2.activityBarItems.length).toBe(0)
