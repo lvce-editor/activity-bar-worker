@@ -20,6 +20,7 @@ test('saveState preserves uid from state', () => {
     uid: 456,
     focusedIndex: 2,
     focused: true,
+    // @ts-ignore
     activityBarItems: ['item1', 'item2'],
   }
 

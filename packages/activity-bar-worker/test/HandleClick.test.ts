@@ -14,6 +14,7 @@ test.skip('handleClick returns same state for non-left click', async () => {
 test.skip('handleClick throws error for Settings viewlet due to RPC', async () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
+    // @ts-ignore
     activityBarItems: [{ id: 'Settings' }],
   }
 
@@ -23,6 +24,7 @@ test.skip('handleClick throws error for Settings viewlet due to RPC', async () =
 test.skip('handleClick throws error for Additional Views viewlet due to RPC', async () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
+    // @ts-ignore
     activityBarItems: [{ id: 'Additional Views' }],
   }
 
@@ -32,6 +34,7 @@ test.skip('handleClick throws error for Additional Views viewlet due to RPC', as
 test.skip('handleClick throws error for other viewlet due to RPC', async () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
+    // @ts-ignore
     activityBarItems: [{ id: 'Explorer' }],
     sideBarVisible: true,
     currentViewletId: 'Explorer',
