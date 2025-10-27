@@ -26,6 +26,7 @@ export const create = (
     sideBarVisible: false,
     activityBarItems: [],
     selectedIndex: -1,
+    itemHeight: 48,
   }
   ExplorerStates.set(state.uid, state, state)
   return state

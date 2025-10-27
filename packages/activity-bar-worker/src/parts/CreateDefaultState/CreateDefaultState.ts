@@ -13,4 +13,5 @@ export const createDefaultState = (): ActivityBarState => ({
   sideBarVisible: false,
   activityBarItems: [],
   selectedIndex: -1,
+  itemHeight: 48,
 })
