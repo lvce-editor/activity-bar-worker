@@ -1,3 +1,3 @@
-export const getIndexFromPosition = (eventX: number, eventY: number, itemHeight: number): number => {
-  return 0
+export const getIndexFromPosition = (eventX: number, eventY: number, itemHeight: number, itemCount: number): number => {
+  return -1
 }
