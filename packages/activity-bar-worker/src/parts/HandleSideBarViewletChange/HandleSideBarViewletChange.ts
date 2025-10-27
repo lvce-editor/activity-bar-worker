@@ -11,5 +11,6 @@ export const handleSideBarViewletChange = (state: ActivityBarState, id: string, 
     selectedIndex: index,
     currentViewletId: id,
     activityBarItems: newActivityBarItems,
+    sideBarVisible: true,
   }
 }
