@@ -99,17 +99,17 @@ test('applyRender filters out empty results', () => {
       'Viewlet.setCss',
       123,
       `:root {
-      --ActivityBarItemHeight: var(--48px);
-    }`,
+  --ActivityBarItemHeight: var(--48px);
+}`,
     ],
     ['Viewlet.setFocusContext', 123, 13],
     [
       'Viewlet.setCss',
       123,
       `:root {
-      --ActivityBarItemHeight: var(--48px);
-    }
-    `,
+  --ActivityBarItemHeight: var(--48px);
+}
+`,
     ],
   ])
 })
