@@ -1,59 +1,60 @@
 import { expect, test } from '@jest/globals'
+import * as ActivityBarStates from '../src/parts/ActivityBarStates/ActivityBarStates.ts'
+import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
+import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import * as DiffType from '../src/parts/DiffType/DiffType.ts'
 import { render2 } from '../src/parts/Render2/Render2.ts'
 
-test('render2 throws error when ActivityBarStates.get returns undefined', () => {
+test('render2 updates states in registry and returns commands', () => {
   const uid = 123
-  const diffResult: readonly number[] = [1, 2, 3]
+  const oldState: ActivityBarState = { ...createDefaultState(), uid, focusedIndex: 0 }
+  const newState: ActivityBarState = { ...createDefaultState(), uid, focusedIndex: 1 }
+  ActivityBarStates.set(uid, oldState, newState)
+  const diffResult: readonly number[] = [DiffType.RenderItems]
 
-  // This test will fail due to ActivityBarStates.get returning undefined
-  expect(() => {
-    render2(uid, diffResult)
-  }).toThrow()
+  const commands = render2(uid, diffResult)
+
+  expect(commands).toBeDefined()
+  expect(Array.isArray(commands)).toBe(true)
+  const { oldState: storedOldState, newState: storedNewState } = ActivityBarStates.get(uid)
+  expect(storedOldState).toEqual(storedNewState)
 })
 
-test('render2 throws error with empty diffResult', () => {
-  const uid = 999
+test('render2 returns empty commands array for empty diffResult', () => {
+  const uid = 456
+  const oldState: ActivityBarState = { ...createDefaultState(), uid, focusedIndex: 0 }
+  const newState: ActivityBarState = { ...createDefaultState(), uid, focusedIndex: 1 }
+  ActivityBarStates.set(uid, oldState, newState)
   const diffResult: readonly number[] = []
 
-  // This test will fail due to ActivityBarStates.get returning undefined
-  expect(() => {
-    render2(uid, diffResult)
-  }).toThrow()
+  const commands = render2(uid, diffResult)
+
+  expect(commands).toEqual([])
 })
 
-test('render2 throws error with large diffResult', () => {
+test('render2 handles multiple diff types', () => {
+  const uid = 789
+  const oldState: ActivityBarState = { ...createDefaultState(), uid, focusedIndex: 0 }
+  const newState: ActivityBarState = { ...createDefaultState(), uid, focusedIndex: 1 }
+  ActivityBarStates.set(uid, oldState, newState)
+  const diffResult: readonly number[] = [DiffType.RenderItems, DiffType.RenderCss]
+
+  const commands = render2(uid, diffResult)
+
+  expect(commands.length).toBeGreaterThan(0)
+})
+
+test('render2 updates registry states correctly', () => {
   const uid = 111
-  const diffResult: readonly number[] = Array.from({ length: 100 }, (_, i) => i)
+  const oldState: ActivityBarState = { ...createDefaultState(), uid, focusedIndex: 0 }
+  const newState: ActivityBarState = { ...createDefaultState(), uid, focusedIndex: 1 }
+  ActivityBarStates.set(uid, oldState, newState)
+  const diffResult: readonly number[] = [DiffType.RenderFocusContext]
 
-  // This test will fail due to ActivityBarStates.get returning undefined
-  expect(() => {
-    render2(uid, diffResult)
-  }).toThrow()
-})
+  render2(uid, diffResult)
 
-test('render2 throws error with different uid values', () => {
-  const diffResult: readonly number[] = [1, 2, 3]
-
-  // This test will fail due to ActivityBarStates.get returning undefined
-  expect(() => {
-    render2(0, diffResult)
-  }).toThrow()
-
-  expect(() => {
-    render2(999, diffResult)
-  }).toThrow()
-
-  expect(() => {
-    render2(-1, diffResult)
-  }).toThrow()
-})
-
-test('render2 throws error with negative uid', () => {
-  const uid = -1
-  const diffResult: readonly number[] = [1, 2]
-
-  // This test will fail due to ActivityBarStates.get returning undefined
-  expect(() => {
-    render2(uid, diffResult)
-  }).toThrow()
+  const { oldState: storedOldState, newState: storedNewState } = ActivityBarStates.get(uid)
+  expect(storedOldState.focusedIndex).toBe(1)
+  expect(storedNewState.focusedIndex).toBe(1)
+  expect(storedOldState).toEqual(storedNewState)
 })
