@@ -44,7 +44,6 @@ test('handleSideBarViewletChange preserves other state properties', () => {
   expect(result.selectedIndex).toBe(1)
   expect(result.focusedIndex).toBe(state.focusedIndex)
   expect(result.focused).toBe(state.focused)
-  expect(result.currentViewletId).toBe(state.currentViewletId)
   expect(result.activityBarItems).toBe(state.activityBarItems)
 })
 

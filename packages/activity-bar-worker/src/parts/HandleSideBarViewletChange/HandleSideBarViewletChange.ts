@@ -7,5 +7,6 @@ export const handleSideBarViewletChange = (state: ActivityBarState, id: string, 
   return {
     ...state,
     selectedIndex: index,
+    currentViewletId: id,
   }
 }
