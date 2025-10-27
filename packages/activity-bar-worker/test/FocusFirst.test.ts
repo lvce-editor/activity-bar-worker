@@ -1,4 +1,5 @@
 import { expect, test } from '@jest/globals'
+import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { focusFirst } from '../src/parts/FocusFirst/FocusFirst.ts'
@@ -27,12 +28,28 @@ test('focusFirst returns a new state object', () => {
 })
 
 test('focusFirst works with custom state', () => {
+  const items: readonly ActivityBarItem[] = [
+    {
+      id: 'item1',
+      title: 'Item 1',
+      icon: 'icon1',
+      flags: 0,
+      keyShortcuts: '',
+    },
+    {
+      id: 'item2',
+      title: 'Item 2',
+      icon: 'icon2',
+      flags: 0,
+      keyShortcuts: '',
+    },
+  ]
+
   const state: ActivityBarState = {
     ...createDefaultState(),
     focusedIndex: 5,
     focused: false,
-    // @ts-ignore
-    activityBarItems: ['item1', 'item2'],
+    activityBarItems: items,
     currentViewletId: 'test-viewlet',
   }
 
