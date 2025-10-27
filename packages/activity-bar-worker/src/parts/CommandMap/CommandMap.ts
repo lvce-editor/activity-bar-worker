@@ -12,6 +12,7 @@ import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
 import { handleBlur } from '../HandleBlur/HandleBlur.ts'
 import * as HandleClick from '../HandleClick/HandleClick.ts'
 import { handleClickIndex } from '../HandleClickIndex/HandleClickIndex.ts'
+import { handleContextMenu } from '../HandleContextMenu/HandleContextMenu.ts'
 import { handleResize } from '../HandleResize/HandleResize.ts'
 import { handleSideBarViewletChange } from '../HandleSideBarViewletChange/HandleSideBarViewletChange.ts'
 import { loadContent } from '../LoadContent/LoadContent.ts'
@@ -33,6 +34,7 @@ export const commandMap = {
   'ActivityBar.handleBlur': WrapCommand.wrapCommand(handleBlur),
   'ActivityBar.handleResize': WrapCommand.wrapCommand(handleResize),
   'ActivityBar.handleClick': WrapCommand.wrapCommand(HandleClick.handleClick),
+  'ActivityBar.handleContextMenu': WrapCommand.wrapCommand(handleContextMenu),
   'ActivityBar.handleClickIndex': WrapCommand.wrapCommand(handleClickIndex),
   'ActivityBar.handleSideBarViewletChange': WrapCommand.wrapCommand(handleSideBarViewletChange),
   'ActivityBar.loadContent': WrapCommand.wrapCommand(loadContent),
