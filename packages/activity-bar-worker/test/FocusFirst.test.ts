@@ -31,6 +31,7 @@ test('focusFirst works with custom state', () => {
     ...createDefaultState(),
     focusedIndex: 5,
     focused: false,
+    // @ts-ignore
     activityBarItems: ['item1', 'item2'],
     currentViewletId: 'test-viewlet',
   }
