@@ -1,7 +1,7 @@
 import { WebWorkerRpcClient } from '@lvce-editor/rpc'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import { registerCommands } from '../ActivityBarStates/ActivityBarStates.ts'
 import * as CommandMap from '../CommandMap/CommandMap.ts'
-import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
 
 export const listen = async (): Promise<void> => {
   registerCommands(CommandMap.commandMap)
