@@ -34,6 +34,7 @@ test('focus preserves other state properties when setting focus', () => {
     focus: 0,
     focusedIndex: 2,
     focused: true,
+    // @ts-ignore
     activityBarItems: ['item1', 'item2'],
   }
 
