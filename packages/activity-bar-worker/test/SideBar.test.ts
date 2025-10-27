@@ -7,41 +7,21 @@ test('show calls SideBar.show when sideBarVisible is true', async () => {
     'SideBar.show'() {},
   })
   await show(true, 'test-id')
-  expect(mockRpc.invocations).toEqual(['SideBar.show', 'test-id'])
+  expect(mockRpc.invocations[0]).toEqual(['SideBar.show', 'test-id'])
 })
 
 test('show calls Layout.showSideBar when sideBarVisible is false', async () => {
-  let calledMethod: string | undefined
-  let calledArgs: any[] | undefined
-
-  const commandMap: Record<string, any> = {}
-  const mockRpc = RendererWorker.registerMockRpc(commandMap)
-  mockRpc.invoke = async (method: string, ...args: any[]): Promise<void> => {
-    calledMethod = method
-    calledArgs = args
-  }
-  RendererWorker.set(mockRpc)
-
+  const mockRpc = RendererWorker.registerMockRpc({
+    'Layout.showSideBar'() {},
+  })
   await show(false, 'test-id')
-
-  expect(calledMethod).toBe('Layout.showSideBar')
-  expect(calledArgs).toEqual(['test-id'])
+  expect(mockRpc.invocations[0]).toEqual(['Layout.showSideBar', 'test-id'])
 })
 
 test('hide calls Layout.hideSideBar', async () => {
-  let calledMethod: string | undefined
-  let calledArgs: any[] | undefined
-
-  const commandMap: Record<string, any> = {}
-  const mockRpc = RendererWorker.registerMockRpc(commandMap)
-  mockRpc.invoke = async (method: string, ...args: any[]): Promise<void> => {
-    calledMethod = method
-    calledArgs = args
-  }
-  RendererWorker.set(mockRpc)
-
+  const mockRpc = RendererWorker.registerMockRpc({
+    'Layout.hideSideBar'() {},
+  })
   await hide()
-
-  expect(calledMethod).toBe('Layout.hideSideBar')
-  expect(calledArgs).toEqual([])
+  expect(mockRpc.invocations[0]).toEqual(['Layout.hideSideBar'])
 })
