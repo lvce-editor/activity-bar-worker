@@ -100,7 +100,8 @@ test('applyRender filters out empty results', () => {
       123,
       `:root {
   --ActivityBarItemHeight: var(--48px);
-}`,
+}
+`,
     ],
     ['Viewlet.setFocusContext', 123, 13],
     [
