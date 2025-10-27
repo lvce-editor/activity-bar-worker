@@ -67,10 +67,10 @@ test('handleClick calculates index correctly for multiple items', async () => {
     currentViewletId: '',
   }
 
-  const result = await handleClick(state, MouseEventType.LeftClick, 98, 50)
+  const result = await handleClick(state, MouseEventType.LeftClick, 146, 50)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show', 98, 50, MenuEntryId.Settings, []]])
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show', 146, 50, MenuEntryId.Settings, []]])
 })
 
 test('handleClick returns same state when button is not left click', async () => {
