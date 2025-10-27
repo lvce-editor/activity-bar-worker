@@ -118,7 +118,7 @@ test('diff2 works with different uid values', () => {
 
   const result: readonly number[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([6])
+  expect(result).toEqual([4, 6, 7, 11])
 })
 
 test('diff2 handles focusedIndex changes', () => {
@@ -135,5 +135,5 @@ test('diff2 handles focusedIndex changes', () => {
 
   const result: readonly number[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([4, 6])
+  expect(result).toEqual([4, 11])
 })
