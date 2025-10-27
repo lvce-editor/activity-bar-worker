@@ -4,18 +4,19 @@ import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBar
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { saveState } from '../src/parts/SaveState/SaveState.ts'
 
-test('saveState returns SavedState with uid', () => {
+test('saveState returns SavedState with uid and currentViewletId', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     uid: 123,
+    currentViewletId: 'explorer',
   }
 
   const result = saveState(state)
 
-  expect(result).toEqual({ uid: 123 })
+  expect(result).toEqual({ uid: 123, currentViewletId: 'explorer' })
 })
 
-test('saveState preserves uid from state', () => {
+test('saveState preserves uid and currentViewletId from state', () => {
   const items: readonly ActivityBarItem[] = [
     {
       id: 'item1',
@@ -36,6 +37,7 @@ test('saveState preserves uid from state', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     uid: 456,
+    currentViewletId: 'search',
     focusedIndex: 2,
     focused: true,
     activityBarItems: items,
@@ -44,29 +46,32 @@ test('saveState preserves uid from state', () => {
   const result = saveState(state)
 
   expect(result.uid).toBe(456)
-  expect(result).toEqual({ uid: 456 })
+  expect(result.currentViewletId).toBe('search')
+  expect(result).toEqual({ uid: 456, currentViewletId: 'search' })
 })
 
 test('saveState handles uid of 0', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     uid: 0,
+    currentViewletId: 'debug',
   }
 
   const result = saveState(state)
 
-  expect(result).toEqual({ uid: 0 })
+  expect(result).toEqual({ uid: 0, currentViewletId: 'debug' })
 })
 
 test('saveState handles negative uid', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     uid: -1,
+    currentViewletId: 'scm',
   }
 
   const result = saveState(state)
 
-  expect(result).toEqual({ uid: -1 })
+  expect(result).toEqual({ uid: -1, currentViewletId: 'scm' })
 })
 
 test('saveState returns new object', () => {
@@ -74,4 +79,5 @@ test('saveState returns new object', () => {
   const result = saveState(state)
 
   expect(result).not.toBe(state)
+  expect(result.currentViewletId).toBe(state.currentViewletId)
 })
