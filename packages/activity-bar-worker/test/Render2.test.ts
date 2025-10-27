@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
-import * as ActivityBarStates from '../src/parts/ActivityBarStates/ActivityBarStates.ts'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
+import * as ActivityBarStates from '../src/parts/ActivityBarStates/ActivityBarStates.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as DiffType from '../src/parts/DiffType/DiffType.ts'
 import { render2 } from '../src/parts/Render2/Render2.ts'
