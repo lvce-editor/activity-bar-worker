@@ -5,5 +5,6 @@ export const handleSideBarHidden = (state: ActivityBarState): ActivityBarState =
     ...state,
     focusedIndex: -1,
     selectedIndex: -1,
+    sideBarVisible: false,
   }
 }
