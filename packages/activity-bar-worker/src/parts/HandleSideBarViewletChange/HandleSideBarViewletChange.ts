@@ -1,13 +1,13 @@
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
+import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { findIndex } from '../FindIndex/FindIndex.ts'
+import { setFlag } from '../SetFlag/SetFlag.ts'
 
 const getNewItems = (items: readonly ActivityBarItem[], selectedIndex: number): readonly ActivityBarItem[] => {
-  return items.map((item) => {
-    return {
-      ...item,
-      // TODO set selected property if it matches the selected index
-    }
+  return items.map((item, index) => {
+    const isSelected = index === selectedIndex
+    return setFlag(item, ActivityBarItemFlags.Selected, isSelected)
   })
 }
 
