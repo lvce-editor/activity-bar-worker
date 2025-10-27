@@ -1,5 +1,7 @@
+import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
+
 export interface ActivityBarState {
-  readonly activityBarItems: readonly any[]
+  readonly activityBarItems: readonly ActivityBarItem[]
   readonly currentViewletId: string
   readonly focus: number
   readonly focused: boolean
