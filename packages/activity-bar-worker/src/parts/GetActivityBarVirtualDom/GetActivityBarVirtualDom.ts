@@ -9,12 +9,14 @@ import * as DomId from '../DomId/DomId.ts'
 import * as GetActivityBarItemsVirtualDom from '../GetActivityBarItemsVirtualDom/GetActivityBarItemsVirtualDom.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
+const className = mergeClassNames(ClassNames.Viewlet, ClassNames.ActivityBar)
+
 export const getActivityBarVirtualDom = (visibleItems: readonly any[]): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Div,
       id: DomId.ActivityBar,
-      className: mergeClassNames(ClassNames.Viewlet, ClassNames.ActivityBar),
+      className,
       role: AriaRoles.ToolBar,
       ariaRoleDescription: ActivityBarStrings.activityBar(),
       ariaOrientation: AriaOrientationType.Vertical,
