@@ -28,7 +28,7 @@ test('loadContent preserves other state properties', async () => {
 
   expect(result.uid).toBe(123)
   expect(result.width).toBe(100)
-  expect(result.currentViewletId).toBe('test')
+  expect(result.currentViewletId).toBe('Explorer')
 })
 
 test('loadContent adds activityBarItems to state', async () => {
