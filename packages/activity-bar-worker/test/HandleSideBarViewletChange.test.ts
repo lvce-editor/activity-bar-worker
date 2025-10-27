@@ -6,6 +6,7 @@ import { handleSideBarViewletChange } from '../src/parts/HandleSideBarViewletCha
 test('handleSideBarViewletChange sets selectedIndex to found index', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
+    // @ts-ignore
     activityBarItems: [{ id: 'item1' }, { id: 'item2' }, { id: 'item3' }],
     selectedIndex: -1,
   }
@@ -19,6 +20,7 @@ test('handleSideBarViewletChange sets selectedIndex to found index', () => {
 test('handleSideBarViewletChange sets selectedIndex to -1 when item not found', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
+    // @ts-ignore
     activityBarItems: [{ id: 'item1' }, { id: 'item2' }],
     selectedIndex: 0,
   }
@@ -32,6 +34,7 @@ test('handleSideBarViewletChange sets selectedIndex to -1 when item not found', 
 test('handleSideBarViewletChange preserves other state properties', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
+    // @ts-ignore
     activityBarItems: [{ id: 'item1' }, { id: 'item2' }],
     selectedIndex: 0,
     focusedIndex: 1,
@@ -62,6 +65,7 @@ test('handleSideBarViewletChange handles empty activityBarItems', () => {
 test('handleSideBarViewletChange handles first item', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
+    // @ts-ignore
     activityBarItems: [{ id: 'first' }, { id: 'second' }],
     selectedIndex: -1,
   }
@@ -74,6 +78,7 @@ test('handleSideBarViewletChange handles first item', () => {
 test('handleSideBarViewletChange handles last item', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
+    // @ts-ignore
     activityBarItems: [{ id: 'first' }, { id: 'second' }, { id: 'third' }],
     selectedIndex: -1,
   }
