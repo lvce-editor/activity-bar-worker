@@ -1,5 +1,6 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import { getActivityBarItems } from '../GetActivityBarItems/GetActivityBarItems.ts'
+import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 
 export const loadContent = async (state: ActivityBarState, savedState: any): Promise<ActivityBarState> => {
   const items = getActivityBarItems()
@@ -7,5 +8,6 @@ export const loadContent = async (state: ActivityBarState, savedState: any): Pro
     ...state,
     activityBarItems: items,
     sideBarVisible: true,
+    currentViewletId: ViewletModuleId.Explorer,
   }
 }
