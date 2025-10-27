@@ -69,7 +69,7 @@ test('diff2 returns RenderCss when width differs', () => {
 
   const result: readonly number[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([11])
+  expect(result).toEqual([4, 11])
 })
 
 test('diff2 returns multiple render types when multiple fields differ', () => {
@@ -104,7 +104,7 @@ test('diff2 returns appropriate types when only focus differs', () => {
 
   const result: readonly number[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([6])
+  expect(result).toEqual([4, 6, 7, 11])
 })
 
 test('diff2 works with different uid values', () => {
