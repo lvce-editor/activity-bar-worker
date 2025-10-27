@@ -60,7 +60,7 @@ test('handleSideBarHidden preserves other state properties', () => {
 
   const result: ActivityBarState = handleSideBarHidden(state)
 
-  expect(result.activityBarItems).toEqual(state.activityBarItems)
+  expect(result.activityBarItems).toHaveLength(state.activityBarItems.length)
   expect(result.currentViewletId).toBe(state.currentViewletId)
   expect(result.focused).toBe(state.focused)
   expect(result.focus).toBe(state.focus)
@@ -101,4 +101,23 @@ test('handleSideBarHidden returns new state object', () => {
   const result: ActivityBarState = handleSideBarHidden(state)
 
   expect(result).not.toBe(state)
+})
+
+test('handleSideBarHidden clears Selected and Focused flags from all items', () => {
+  const Selected = 1 << 4
+  const Focused = 1 << 5
+  const items: readonly ActivityBarItem[] = [
+    { id: 'item1', title: 'Item 1', icon: 'icon1', flags: Selected, keyShortcuts: '' },
+    { id: 'item2', title: 'Item 2', icon: 'icon2', flags: Selected | Focused, keyShortcuts: '' },
+  ]
+
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: items,
+  }
+
+  const result: ActivityBarState = handleSideBarHidden(state)
+
+  expect(result.activityBarItems[0].flags).toBe(0)
+  expect(result.activityBarItems[1].flags).toBe(0)
 })
