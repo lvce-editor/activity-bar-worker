@@ -2,7 +2,8 @@ import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import * as FocusId from '../FocusId/FocusId.ts'
 
 export const focus = (state: ActivityBarState): ActivityBarState => {
-  if (state.focus) {
+  const { focus } = state
+  if (focus) {
     return state
   }
   return {
