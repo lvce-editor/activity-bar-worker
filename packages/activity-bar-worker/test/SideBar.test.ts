@@ -7,7 +7,7 @@ test('show calls SideBar.show when sideBarVisible is true', async () => {
     'SideBar.show'() {},
   })
   await show(true, 'test-id')
-  expect(mockRpc.invocations[0]).toEqual(['SideBar.show', 'test-id'])
+  expect(mockRpc.invocations).toEqual([['SideBar.show', 'test-id']])
 })
 
 test('show calls Layout.showSideBar when sideBarVisible is false', async () => {
@@ -15,7 +15,7 @@ test('show calls Layout.showSideBar when sideBarVisible is false', async () => {
     'Layout.showSideBar'() {},
   })
   await show(false, 'test-id')
-  expect(mockRpc.invocations[0]).toEqual(['Layout.showSideBar', 'test-id'])
+  expect(mockRpc.invocations).toEqual([['Layout.showSideBar', 'test-id']])
 })
 
 test('hide calls Layout.hideSideBar', async () => {
