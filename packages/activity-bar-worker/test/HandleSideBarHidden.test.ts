@@ -64,7 +64,7 @@ test('handleSideBarHidden preserves other state properties', () => {
   expect(result.currentViewletId).toBe(state.currentViewletId)
   expect(result.focused).toBe(state.focused)
   expect(result.focus).toBe(state.focus)
-  expect(result.sideBarVisible).toBe(state.sideBarVisible)
+  expect(result.sideBarVisible).toBe(false)
   expect(result.width).toBe(state.width)
   expect(result.itemHeight).toBe(state.itemHeight)
 })
