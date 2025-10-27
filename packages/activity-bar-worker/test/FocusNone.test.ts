@@ -1,4 +1,5 @@
 import { expect, test } from '@jest/globals'
+import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { focusNone } from '../src/parts/FocusNone/FocusNone.ts'
@@ -27,12 +28,28 @@ test('focusNone calls focusIndex with -1 when focusedIndex is not -1', () => {
 })
 
 test('focusNone preserves other state properties', () => {
+  const items: readonly ActivityBarItem[] = [
+    {
+      id: 'item1',
+      title: 'Item 1',
+      icon: 'icon1',
+      flags: 0,
+      keyShortcuts: '',
+    },
+    {
+      id: 'item2',
+      title: 'Item 2',
+      icon: 'icon2',
+      flags: 0,
+      keyShortcuts: '',
+    },
+  ]
+
   const state: ActivityBarState = {
     ...createDefaultState(),
     focusedIndex: 3,
     focused: true,
-    // @ts-ignore
-    activityBarItems: ['item1', 'item2'],
+    activityBarItems: items,
     currentViewletId: 'test-viewlet',
   }
 

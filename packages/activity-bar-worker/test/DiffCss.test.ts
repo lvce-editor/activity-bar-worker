@@ -1,4 +1,5 @@
 import { test, expect } from '@jest/globals'
+import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as DiffCss from '../src/parts/DiffCss/DiffCss.ts'
@@ -40,11 +41,20 @@ test('DiffCss.isEqual should return false when focused changes', () => {
 })
 
 test('DiffCss.isEqual should return false when activityBarItems changes', () => {
+  const items: readonly ActivityBarItem[] = [
+    {
+      id: 'test',
+      title: 'Test',
+      icon: 'icon',
+      flags: 0,
+      keyShortcuts: '',
+    },
+  ]
+
   const state1 = createDefaultState()
   const state2: ActivityBarState = {
     ...createDefaultState(),
-    // @ts-ignore
-    activityBarItems: [{ id: 'test' }],
+    activityBarItems: items,
   }
   const result = DiffCss.isEqual(state1, state2)
   expect(result).toBe(false)
