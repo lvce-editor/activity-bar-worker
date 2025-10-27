@@ -2,6 +2,7 @@
  * @deprecated
  */
 export const getFileIcon = ({ name }: { readonly name: string }): string => {
+  // @ts-ignore
   console.warn('do not use')
   return ''
 }
@@ -10,6 +11,7 @@ export const getFileIcon = ({ name }: { readonly name: string }): string => {
  * @deprecated
  */
 export const getIcon = (dirent: any): string => {
+  // @ts-ignore
   console.warn('do not use')
   return ''
 }
@@ -18,6 +20,7 @@ export const getIcon = (dirent: any): string => {
  * @deprecated
  */
 export const getFolderIcon = (dirent: any): string => {
+  // @ts-ignore
   console.warn('do not use')
   return ''
 }
