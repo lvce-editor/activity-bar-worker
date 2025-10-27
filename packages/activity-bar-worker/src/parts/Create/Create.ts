@@ -27,6 +27,6 @@ export const create = (
     activityBarItems: [],
     selectedIndex: -1,
   }
-  ExplorerStates.set(state.uid, state, state)
+  ExplorerStates.set(id, state, state)
   return state
 }
