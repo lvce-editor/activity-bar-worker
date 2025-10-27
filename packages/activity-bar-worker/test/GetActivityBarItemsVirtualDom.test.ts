@@ -1,9 +1,9 @@
 import { expect, test } from '@jest/globals'
 import { AriaRoles } from '@lvce-editor/constants'
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetActivityBarItemsVirtualDom from '../src/parts/GetActivityBarItemsVirtualDom/GetActivityBarItemsVirtualDom.ts'
-import * as VirtualDomElements from '../src/parts/VirtualDomElements/VirtualDomElements.ts'
 
 test('getVirtualDom returns empty array for empty items', () => {
   const result = GetActivityBarItemsVirtualDom.getVirtualDom([])

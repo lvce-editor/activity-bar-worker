@@ -1,11 +1,10 @@
 import { AriaRoles } from '@lvce-editor/constants'
-import { type VirtualDomNode, mergeClassNames } from '@lvce-editor/virtual-dom-worker'
+import { type VirtualDomNode, mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getClassName } from '../GetClassName/GetClassName.ts'
 import * as GetIconVirtualDom from '../GetIconVirtualDom/GetIconVirtualDom.ts'
-import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
 const getAriaSelected = (isTab: number, isSelected: number): boolean | undefined => {
   if (!isTab) {

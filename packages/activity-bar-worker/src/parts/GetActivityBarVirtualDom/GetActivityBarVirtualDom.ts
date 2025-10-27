@@ -1,6 +1,6 @@
 import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { AriaRoles } from '@lvce-editor/constants'
-import { mergeClassNames } from '@lvce-editor/virtual-dom-worker'
+import { mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import * as ActivityBarStrings from '../ActivityBarStrings/ActivityBarStrings.ts'
 import * as AriaOrientationType from '../AriaOrientationType/AriaOrientationType.ts'
@@ -8,7 +8,6 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as DomId from '../DomId/DomId.ts'
 import * as GetActivityBarItemsVirtualDom from '../GetActivityBarItemsVirtualDom/GetActivityBarItemsVirtualDom.ts'
-import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
 const className = mergeClassNames(ClassNames.Viewlet, ClassNames.ActivityBar)
 
