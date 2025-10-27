@@ -53,7 +53,7 @@ test('handleClickOther calls Layout.showSideBar when sidebar is not visible', as
 })
 
 test('handleClickOther preserves state properties', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  RendererWorker.registerMockRpc({
     'Layout.showSideBar'() {},
   })
   const state: ActivityBarState = {
@@ -88,4 +88,3 @@ test('handleClickOther handles empty currentViewletId', async () => {
   expect(mockRpc.invocations).toEqual([['Layout.hideSideBar']])
   expect(result).toBe(state)
 })
-
