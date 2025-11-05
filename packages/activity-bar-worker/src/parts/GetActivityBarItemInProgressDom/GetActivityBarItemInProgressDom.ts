@@ -1,5 +1,5 @@
 import { AriaRoles } from '@lvce-editor/constants'
-import { type VirtualDomNode, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { type VirtualDomNode, mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
@@ -28,14 +28,13 @@ export const getActivityBarItemInProgressDom = (item: ActivityBarItem): readonly
     },
     {
       type: VirtualDomElements.Div,
-      className: ClassNames.Icon,
+      className: mergeClassNames(ClassNames.Icon, `MaskIcon${icon}`),
       role: AriaRoles.None,
       childCount: 0,
-      maskImage: icon,
     },
     {
       type: VirtualDomElements.Div,
-      className: ClassNames.Badge,
+      className: mergeClassNames(ClassNames.Badge, ClassNames.ActivityBarItemBadge),
       childCount: 1,
     },
     {
@@ -45,8 +44,8 @@ export const getActivityBarItemInProgressDom = (item: ActivityBarItem): readonly
     },
     {
       type: VirtualDomElements.Div,
-      className: ClassNames.Icon,
-      maskImage: 'Progress',
+      className: mergeClassNames(ClassNames.Icon, ClassNames.MaskIconProgress),
+      childCount: 0,
     },
   ]
 }
