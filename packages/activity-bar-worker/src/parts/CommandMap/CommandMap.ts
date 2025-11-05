@@ -16,6 +16,7 @@ import { handleContextMenu } from '../HandleContextMenu/HandleContextMenu.ts'
 import { handleResize } from '../HandleResize/HandleResize.ts'
 import { handleSideBarHidden } from '../HandleSideBarHidden/HandleSideBarHidden.ts'
 import { handleSideBarViewletChange } from '../HandleSideBarViewletChange/HandleSideBarViewletChange.ts'
+import { handleUpdateStateChange } from '../HandleUpdateStateChange/HandleUpdateStateChange.ts'
 import { loadContent } from '../LoadContent/LoadContent.ts'
 import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
@@ -29,6 +30,7 @@ export const commandMap = {
   'ActivityBar.focusFirst': WrapCommand.wrapCommand(FocusFirst.focusFirst),
   'ActivityBar.focusIndex': WrapCommand.wrapCommand(FocusIndex.focusIndex),
   'ActivityBar.focusLast': WrapCommand.wrapCommand(FocusLast.focusLast),
+  'ActivityBar.handleUpdateStateChange': WrapCommand.wrapCommand(handleUpdateStateChange),
   'ActivityBar.focusNext': WrapCommand.wrapCommand(FocusNext.focusNext),
   'ActivityBar.focusNone': WrapCommand.wrapCommand(FocusNone.focusNone),
   'ActivityBar.getCommandIds': WrapCommand.getCommandIds,
