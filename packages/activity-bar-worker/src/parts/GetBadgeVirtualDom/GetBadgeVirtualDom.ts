@@ -15,7 +15,7 @@ export const getBadgeVirtualDom = (): readonly VirtualDomNode[] => {
     },
     {
       type: VirtualDomElements.Div,
-      className: mergeClassNames(ClassNames.Icon, ClassNames.MaskIconProgress),
+      className: mergeClassNames(ClassNames.Icon, ClassNames.ActivityBarBadgeIcon, ClassNames.MaskIconProgress),
       childCount: 0,
     },
   ]
