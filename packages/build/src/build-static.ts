@@ -1,4 +1,4 @@
-import { cp, readFile } from 'node:fs/promises'
+import { cp, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { root } from './root.ts'
@@ -23,19 +23,17 @@ export const getRemoteUrl = (path: string): string => {
   return `/remote/${url}`
 }
 
-// @ts-ignore
 const content = await readFile(rendererWorkerPath, 'utf8')
 const workerPath = join(root, '.tmp/dist/dist/activityBarWorkerMain.js')
-// @ts-ignore
 const remoteUrl = getRemoteUrl(workerPath)
 
-// const occurrence = `// const explorerWorkerUrl = \`\${assetDir}/packages/explorer-worker/dist/activityBarWorkerMain.js\`
-// const explorerWorkerUrl = \`${remoteUrl}\``
-// const replacement = `const explorerWorkerUrl = \`\${assetDir}/packages/explorer-worker/dist/activityBarWorkerMain.js\``
-// if (!content.includes(occurrence)) {
-//   throw new Error('occurrence not found')
-// }
-// const newContent = content.replace(occurrence, replacement)
-// await writeFile(rendererWorkerPath, newContent)
+const occurrence = `// const activityBarWorkerUrl = \`\${assetDir}/packages/activity-bar-worker/dist/activityBarWorkerMain.js\`
+const activityBarWorkerUrl = \`${remoteUrl}\``
+const replacement = `const activityBarWorkerUrl = \`\${assetDir}/packages/activity-bar-worker/dist/activityBarWorkerMain.js\``
+if (!content.includes(occurrence)) {
+  throw new Error('occurrence not found')
+}
+const newContent = content.replace(occurrence, replacement)
+await writeFile(rendererWorkerPath, newContent)
 
 await cp(join(root, 'dist'), join(root, '.tmp', 'static'), { recursive: true })
