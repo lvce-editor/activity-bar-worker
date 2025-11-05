@@ -5,4 +5,5 @@ export interface ActivityBarItem {
   readonly flags: number
   readonly keyShortcuts: string
   readonly badgeIcon?: string
+  readonly badgeText?: string
 }

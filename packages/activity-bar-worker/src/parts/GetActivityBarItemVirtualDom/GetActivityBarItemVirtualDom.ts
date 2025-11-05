@@ -3,12 +3,13 @@ import { type VirtualDomNode, mergeClassNames, VirtualDomElements } from '@lvce-
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { getActivityBarItemInProgressDom } from '../GetActivityBarItemInProgressDom/GetActivityBarItemInProgressDom.ts'
+import { getActivityBarItemWithBadgeDom } from '../GetActivityBarItemWithBadgeDom/GetActivityBarItemWithBadgeDom.ts'
 import { getAriaSelected } from '../GetAriaSelected/GetAriaSelected.ts'
 import { getClassName } from '../GetClassName/GetClassName.ts'
 import * as GetIconVirtualDom from '../GetIconVirtualDom/GetIconVirtualDom.ts'
 
 export const getActivityBarItemVirtualDom = (item: ActivityBarItem): readonly VirtualDomNode[] => {
-  const { flags, title, icon } = item
+  const { flags, title, icon, badgeText } = item
   const isTab = flags & ActivityBarItemFlags.Tab
   const isSelected = flags & ActivityBarItemFlags.Selected
   const isFocused = flags & ActivityBarItemFlags.Focused
@@ -37,6 +38,9 @@ export const getActivityBarItemVirtualDom = (item: ActivityBarItem): readonly Vi
     return getActivityBarItemInProgressDom(item)
   }
 
+  if (badgeText) {
+    return getActivityBarItemWithBadgeDom(item)
+  }
   return [
     {
       type: VirtualDomElements.Div,
