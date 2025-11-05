@@ -4,6 +4,7 @@ import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getAriaSelected } from '../GetAriaSelected/GetAriaSelected.ts'
+import { getBadgeVirtualDom } from '../GetBadgeVirtualDom/GetBadgeVirtualDom.ts'
 import { getClassName } from '../GetClassName/GetClassName.ts'
 
 export const getActivityBarItemInProgressDom = (item: ActivityBarItem): readonly VirtualDomNode[] => {
@@ -32,20 +33,6 @@ export const getActivityBarItemInProgressDom = (item: ActivityBarItem): readonly
       role: AriaRoles.None,
       childCount: 0,
     },
-    {
-      type: VirtualDomElements.Div,
-      className: mergeClassNames(ClassNames.Badge, ClassNames.ActivityBarItemBadge),
-      childCount: 1,
-    },
-    {
-      type: VirtualDomElements.Div,
-      className: ClassNames.BadgeContent,
-      childCount: 1,
-    },
-    {
-      type: VirtualDomElements.Div,
-      className: mergeClassNames(ClassNames.Icon, ClassNames.MaskIconProgress),
-      childCount: 0,
-    },
+    ...getBadgeVirtualDom(),
   ]
 }
