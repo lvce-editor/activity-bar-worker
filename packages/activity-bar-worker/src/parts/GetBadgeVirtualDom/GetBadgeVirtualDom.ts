@@ -5,7 +5,7 @@ export const getBadgeVirtualDom = (): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Div,
-      className: mergeClassNames(ClassNames.Badge, ClassNames.ActivityBarItemBadge),
+      className: ClassNames.ActivityBarItemBadge,
       childCount: 1,
     },
     {
