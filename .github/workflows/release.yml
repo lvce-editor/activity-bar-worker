@@ -103,7 +103,6 @@ jobs:
           node-version-file: '.nvmrc'
           registry-url: 'https://registry.npmjs.org'
       - run: npm publish --access public
-      - run: npm publish --access public
         working-directory: ./.tmp/dist
       - name: Publish GitHub release
         env:
