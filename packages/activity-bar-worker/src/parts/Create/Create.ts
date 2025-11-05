@@ -27,6 +27,8 @@ export const create = (
     activityBarItems: [],
     selectedIndex: -1,
     itemHeight: 48,
+    updateState: '',
+    updateProgress: 0,
   }
   ExplorerStates.set(id, state, state)
   return state

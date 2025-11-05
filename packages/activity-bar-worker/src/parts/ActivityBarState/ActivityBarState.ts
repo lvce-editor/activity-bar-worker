@@ -11,6 +11,8 @@ export interface ActivityBarState {
   readonly selectedIndex: number
   readonly sideBarVisible: boolean
   readonly uid: number
+  readonly updateProgress: number
+  readonly updateState: any
   readonly width: number
   readonly x: number
   readonly y: number
