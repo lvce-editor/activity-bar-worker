@@ -1,6 +1,7 @@
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import type { UpdateConfig } from '../UpdateConfig/UpdateConfig.ts'
+import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 
 const getNewItems = (items: readonly ActivityBarItem[], state: number): readonly ActivityBarItem[] => {
   return items.map((item) => {
@@ -8,6 +9,7 @@ const getNewItems = (items: readonly ActivityBarItem[], state: number): readonly
       return {
         ...item,
         badgeIcon: 'clock',
+        flags: item.flags | ActivityBarItemFlags.Progress,
       }
     }
     return item
