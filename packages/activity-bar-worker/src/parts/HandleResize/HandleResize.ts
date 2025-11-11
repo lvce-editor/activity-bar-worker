@@ -1,9 +1,16 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 
-export const handleResize = (state: ActivityBarState): ActivityBarState => {
-  // TODO
-  // 1. update dimensions
-  // 2. update activity bar items, depending on available height
-  // 3. render ellipsis with additional items if needed
+// TODO
+// 1. update dimensions
+// 2. update activity bar items, depending on available height
+// 3. render ellipsis with additional items if needed
+interface Dimensions {
+  readonly x: number
+  readonly y: number
+  readonly width: number
+  readonly height: number
+}
+
+export const handleResize = (state: ActivityBarState, dimensions: Dimensions): ActivityBarState => {
   return state
 }
