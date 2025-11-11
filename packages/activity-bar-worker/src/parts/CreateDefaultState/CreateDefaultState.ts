@@ -17,4 +17,5 @@ export const createDefaultState = (): ActivityBarState => ({
   itemHeight: 48,
   updateState: '',
   updateProgress: 0,
+  filteredItems: [],
 })
