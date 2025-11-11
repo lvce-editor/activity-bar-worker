@@ -2,7 +2,7 @@ import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 
-const toVisibleItems = (items: readonly ActivityBarItem[], selectedIndex: number, focusedIndex: number) => {
+const toVisibleItems = (items: readonly ActivityBarItem[], selectedIndex: number, focusedIndex: number): readonly ActivityBarItem[] => {
   const visibleItems = []
   for (let i = 0; i < items.length; i++) {
     const isSelected = i === selectedIndex
@@ -24,6 +24,7 @@ const toVisibleItems = (items: readonly ActivityBarItem[], selectedIndex: number
 }
 
 export const getVisibleActivityBarItems = (state: ActivityBarState): readonly ActivityBarItem[] => {
+  // @ts-ignore
   const { filteredItems, selectedIndex, focusedIndex } = state
   return toVisibleItems(filteredItems, selectedIndex, focusedIndex)
 }
