@@ -39,7 +39,7 @@ export const commandMap = {
   'ActivityBar.handleClick': WrapCommand.wrapCommand(HandleClick.handleClick),
   'ActivityBar.handleClickIndex': WrapCommand.wrapCommand(handleClickIndex),
   'ActivityBar.handleContextMenu': WrapCommand.wrapCommand(handleContextMenu),
-  'ActivityBar.handleResize': WrapCommand.wrapCommand(handleResize),
+  'ActivityBar.resize': WrapCommand.wrapCommand(handleResize),
   'ActivityBar.handleSideBarHidden': WrapCommand.wrapCommand(handleSideBarHidden),
   'ActivityBar.handleSideBarViewletChange': WrapCommand.wrapCommand(handleSideBarViewletChange),
   'ActivityBar.loadContent': WrapCommand.wrapCommand(loadContent),
