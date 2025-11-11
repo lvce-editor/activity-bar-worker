@@ -1,7 +1,7 @@
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 
-export const getNumberOfVisibleItems = (state: ActivityBarState): number => {
+export const getNumberOfVisibleItems = (state: { height: number; itemHeight: number }): number => {
   const { height, itemHeight } = state
   const numberOfVisibleItemsTop = Math.floor(height / itemHeight)
   return numberOfVisibleItemsTop
