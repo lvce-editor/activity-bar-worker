@@ -5,7 +5,7 @@ export const getMenuEntryIds = (): readonly number[] => {
   return [MenuEntryId.ActivityBar, MenuEntryId.ActivityBarAdditionalViews, MenuEntryId.Settings]
 }
 
-export const getMenuEntries = (): readonly MenuEntry[] => {
+export const getMenuEntries = (id: number): readonly MenuEntry[] => {
   // TODO
   return []
 }
