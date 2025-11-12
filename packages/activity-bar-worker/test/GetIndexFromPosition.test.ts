@@ -65,13 +65,14 @@ test('getIndexFromPosition handles single item', () => {
   const itemHeight = 50
   const itemCount = 1
   const height = 400
+  // Single item is treated as a top item (not Settings at bottom)
 
   expect(getIndexFromPosition(y, 200, 100, itemHeight, itemCount, height)).toBe(0)
   expect(getIndexFromPosition(y, 200, 149, itemHeight, itemCount, height)).toBe(0)
   expect(getIndexFromPosition(y, 200, 150, itemHeight, itemCount, height)).toBe(-1)
-  // Settings at bottom
-  expect(getIndexFromPosition(y, 200, 450, itemHeight, itemCount, height)).toBe(0)
-  expect(getIndexFromPosition(y, 200, 499, itemHeight, itemCount, height)).toBe(0)
+  // Bottom area is not valid for single item (treated as top item)
+  expect(getIndexFromPosition(y, 200, 450, itemHeight, itemCount, height)).toBe(-1)
+  expect(getIndexFromPosition(y, 200, 499, itemHeight, itemCount, height)).toBe(-1)
 })
 
 test('getIndexFromPosition handles empty count', () => {
