@@ -5,7 +5,7 @@ import * as MenuEntrySeparator from '../MenuEntrySeparator/MenuEntrySeparator.ts
 
 const keyBindingsUri = 'app://keybindings'
 
-export const getMenuEntries = (): readonly MenuEntry[] => {
+export const getMenuEntriesSettings = (): readonly MenuEntry[] => {
   return [
     {
       id: 'commandPalette',
