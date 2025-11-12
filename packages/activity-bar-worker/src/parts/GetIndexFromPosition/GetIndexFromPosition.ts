@@ -2,7 +2,16 @@ export const getIndexFromPosition = (y: number, eventX: number, eventY: number, 
   if (itemCount === 0) {
     return -1
   }
-  // Settings is always at the bottom (last item)
+  // If there's only one item, treat it as a top item (not Settings at bottom)
+  if (itemCount === 1) {
+    const relativeY = eventY - y
+    const index = Math.floor(relativeY / itemHeight)
+    if (index < 0 || index >= itemCount) {
+      return -1
+    }
+    return index
+  }
+  // Settings is always at the bottom (last item) when there are multiple items
   const settingsBottomY = y + height
   const settingsTopY = settingsBottomY - itemHeight
   // Check if click is in the Settings area (bottom)
