@@ -17,7 +17,7 @@ const toContextMenuItem = (activityBarItem: ActivityBarItem): MenuEntry => {
   }
 }
 
-export const getMenuEntries = (state: ActivityBarState): readonly MenuEntry[] => {
+export const getMenuEntriesActivityBar = (state: ActivityBarState): readonly MenuEntry[] => {
   const { activityBarItems, sideBarLocation } = state
   return [
     ...activityBarItems.map(toContextMenuItem),
