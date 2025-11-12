@@ -5,13 +5,18 @@ import { getMenuEntriesActivityBar } from '../GetMenuEntriesActivityBar/GetMenuE
 import { getMenuEntriesAdditionalViews } from '../GetMenuEntriesAdditionalViews/GetMenuEntriesAdditionalViews.ts'
 import { getMenuEntriesSettings } from '../GetMenuEntriesSettings/GetMenuEntriesSettings.ts'
 
-export const getMenuEntries = (id: number): readonly MenuEntry[] => {
+interface ContextMenuOptions {
+  readonly menuId: number
+}
+
+export const getMenuEntries = (id: number, options: ContextMenuOptions): readonly MenuEntry[] => {
   const tuple = ActivityBarStates.get(id)
   if (!tuple) {
     return []
   }
   const { newState } = tuple
-  switch (id) {
+  const { menuId } = options
+  switch (menuId) {
     case MenuEntryId.ActivityBar:
       return getMenuEntriesActivityBar(newState)
     case MenuEntryId.ActivityBarAdditionalViews:
