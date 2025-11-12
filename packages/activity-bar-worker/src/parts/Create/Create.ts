@@ -31,6 +31,7 @@ export const create = (
     updateState: '',
     updateProgress: 0,
     filteredItems: [],
+    numberOfVisibleItems: 0,
   }
   ExplorerStates.set(id, state, state)
   return state
