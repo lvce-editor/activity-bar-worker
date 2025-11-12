@@ -4,12 +4,15 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import { getFilteredActivityBarItems } from '../src/parts/GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { handleClickIndex } from '../src/parts/HandleClickIndex/HandleClickIndex.ts'
 
 test('handleClickIndex returns same state for non-left click', async () => {
+  const items: readonly ActivityBarItem[] = [{ id: 'Settings', title: 'Settings', icon: 'icon', flags: 0, keyShortcuts: '' }]
   const state: ActivityBarState = {
     ...createDefaultState(),
-    activityBarItems: [{ id: 'Settings', title: 'Settings', icon: 'icon', flags: 0, keyShortcuts: '' }],
+    activityBarItems: items,
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
   }
 
   const result = await handleClickIndex(state, MouseEventType.Keyboard, 0, 10, 20)
@@ -18,9 +21,11 @@ test('handleClickIndex returns same state for non-left click', async () => {
 })
 
 test('handleClickIndex returns same state when index is -1', async () => {
+  const items: readonly ActivityBarItem[] = [{ id: 'Settings', title: 'Settings', icon: 'icon', flags: 0, keyShortcuts: '' }]
   const state: ActivityBarState = {
     ...createDefaultState(),
-    activityBarItems: [{ id: 'Settings', title: 'Settings', icon: 'icon', flags: 0, keyShortcuts: '' }],
+    activityBarItems: items,
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
   }
 
   const result = await handleClickIndex(state, MouseEventType.LeftClick, -1, 10, 20)
@@ -36,6 +41,7 @@ test('handleClickIndex handles Settings viewlet click', async () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
   }
 
   const result = await handleClickIndex(state, MouseEventType.LeftClick, 0, 10, 20)
@@ -52,6 +58,7 @@ test('handleClickIndex handles Additional Views viewlet click', async () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
   }
 
   const result = await handleClickIndex(state, MouseEventType.LeftClick, 0, 100, 200)
@@ -70,6 +77,7 @@ test('handleClickIndex handles other viewlet click when sidebar is hidden', asyn
     activityBarItems: items,
     sideBarVisible: false,
     currentViewletId: '',
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
   }
 
   const result = await handleClickIndex(state, MouseEventType.LeftClick, 0, 50, 75)
@@ -88,6 +96,7 @@ test('handleClickIndex handles other viewlet click when sidebar is visible and d
     activityBarItems: items,
     sideBarVisible: true,
     currentViewletId: 'Search',
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
   }
 
   const result = await handleClickIndex(state, MouseEventType.LeftClick, 0, 30, 40)
@@ -106,6 +115,7 @@ test('handleClickIndex handles other viewlet click when same viewlet is already 
     activityBarItems: items,
     sideBarVisible: true,
     currentViewletId: 'Explorer',
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
   }
 
   const result = await handleClickIndex(state, MouseEventType.LeftClick, 0, 100, 200)
@@ -126,6 +136,7 @@ test('handleClickIndex handles different indices in items array', async () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
   }
 
   const result = await handleClickIndex(state, MouseEventType.LeftClick, 1, 15, 25)

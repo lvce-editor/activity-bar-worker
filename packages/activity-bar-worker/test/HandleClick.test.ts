@@ -4,6 +4,7 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import { getFilteredActivityBarItems } from '../src/parts/GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { handleClick } from '../src/parts/HandleClick/HandleClick.ts'
 
 test('handleClick calculates index correctly for first item', async () => {
@@ -16,6 +17,7 @@ test('handleClick calculates index correctly for first item', async () => {
     activityBarItems: items,
     y: 100,
     itemHeight: 48,
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
   }
 
   const result = await handleClick(state, MouseEventType.LeftClick, 0, 100)
@@ -40,6 +42,7 @@ test('handleClick calculates index correctly for second item', async () => {
     itemHeight: 48,
     sideBarVisible: false,
     currentViewletId: '',
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
   }
 
   const result = await handleClick(state, MouseEventType.LeftClick, 0, 48)
@@ -64,6 +67,7 @@ test('handleClick calculates index correctly for multiple items', async () => {
     itemHeight: 48,
     sideBarVisible: false,
     currentViewletId: '',
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
   }
 
   const result = await handleClick(state, MouseEventType.LeftClick, 0, 146)
@@ -79,6 +83,7 @@ test('handleClick returns same state when button is not left click', async () =>
     activityBarItems: items,
     y: 0,
     itemHeight: 48,
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
   }
 
   const result = await handleClick(state, MouseEventType.Keyboard, 0, 0)
@@ -93,6 +98,7 @@ test('handleClick returns same state when index is -1', async () => {
     activityBarItems: items,
     y: 100,
     itemHeight: 48,
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
   }
 
   const result = await handleClick(state, MouseEventType.LeftClick, 0, 2000)
@@ -112,6 +118,7 @@ test('handleClick handles Explorer viewlet click', async () => {
     currentViewletId: '',
     y: 100,
     itemHeight: 48,
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
   }
 
   const result = await handleClick(state, MouseEventType.LeftClick, 0, 100)
@@ -130,6 +137,7 @@ test('handleClick handles Additional Views viewlet click', async () => {
     activityBarItems: items,
     y: 100,
     itemHeight: 48,
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
   }
 
   const result = await handleClick(state, MouseEventType.LeftClick, 0, 100)
@@ -148,6 +156,7 @@ test('handleClick handles different y and itemHeight values', async () => {
     activityBarItems: items,
     y: 200,
     itemHeight: 64,
+    filteredItems: getFilteredActivityBarItems(items, 400, 64),
   }
 
   const result = await handleClick(state, MouseEventType.LeftClick, 64, 200)
