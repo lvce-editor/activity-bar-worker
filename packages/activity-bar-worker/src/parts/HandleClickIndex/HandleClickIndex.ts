@@ -11,8 +11,8 @@ export const handleClickIndex = async (state: ActivityBarState, button: number, 
   if (index === -1) {
     return state
   }
-  const { activityBarItems } = state
-  const item = activityBarItems[index]
+  const { filteredItems } = state
+  const item = filteredItems[index]
   const viewletId = item.id
   switch (viewletId) {
     case 'Settings':
