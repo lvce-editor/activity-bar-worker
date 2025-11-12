@@ -2,6 +2,7 @@ import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import { getActivityBarItems } from '../GetActivityBarItems/GetActivityBarItems.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { markSelected } from '../MarkSelected/MarkSelected.ts'
+import * as SideBarLocationType from '../SideBarLocationType/SideBarLocationType.ts'
 import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 
 export const loadContent = async (state: ActivityBarState, savedState: any): Promise<ActivityBarState> => {
@@ -16,6 +17,7 @@ export const loadContent = async (state: ActivityBarState, savedState: any): Pro
     currentViewletId: ViewletModuleId.Explorer,
     filteredItems,
     selectedIndex: explorerIndex,
+    sideBarLocation: SideBarLocationType.Left,
     sideBarVisible: true,
   }
 }
