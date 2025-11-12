@@ -35,7 +35,7 @@ test('handleClickIndex returns same state when index is -1', async () => {
 
 test('handleClickIndex handles Settings viewlet click', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show'() {},
+    'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [{ id: 'Settings', title: 'Settings', icon: 'icon', flags: 0, keyShortcuts: '' }]
   const state: ActivityBarState = {
@@ -47,12 +47,12 @@ test('handleClickIndex handles Settings viewlet click', async () => {
   const result = await handleClickIndex(state, MouseEventType.LeftClick, 0, 10, 20)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show', 10, 20, MenuEntryId.Settings, []]])
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, MenuEntryId.Settings, 10, 20, { menuId: MenuEntryId.Settings }]])
 })
 
 test('handleClickIndex handles Additional Views viewlet click', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show'() {},
+    'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [{ id: 'Additional Views', title: 'Additional Views', icon: 'icon', flags: 0, keyShortcuts: '' }]
   const state: ActivityBarState = {
@@ -64,7 +64,16 @@ test('handleClickIndex handles Additional Views viewlet click', async () => {
   const result = await handleClickIndex(state, MouseEventType.LeftClick, 0, 100, 200)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show', 100, 200, MenuEntryId.ActivityBarAdditionalViews, []]])
+  expect(mockRpc.invocations).toEqual([
+    [
+      'ContextMenu.show2',
+      0,
+      MenuEntryId.ActivityBarAdditionalViews,
+      100,
+      200,
+      { menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: 'Additional Views' },
+    ],
+  ])
 })
 
 test('handleClickIndex handles other viewlet click when sidebar is hidden', async () => {
@@ -126,7 +135,7 @@ test('handleClickIndex handles other viewlet click when same viewlet is already 
 
 test('handleClickIndex handles different indices in items array', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show'() {},
+    'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [
     { id: 'Other', title: 'Other', icon: 'icon1', flags: 0, keyShortcuts: '' },
@@ -142,5 +151,5 @@ test('handleClickIndex handles different indices in items array', async () => {
   const result = await handleClickIndex(state, MouseEventType.LeftClick, 1, 15, 25)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show', 15, 25, MenuEntryId.Settings, []]])
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, MenuEntryId.Settings, 15, 25, { menuId: MenuEntryId.Settings }]])
 })

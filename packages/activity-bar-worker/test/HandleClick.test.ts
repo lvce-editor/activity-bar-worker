@@ -9,7 +9,7 @@ import { handleClick } from '../src/parts/HandleClick/HandleClick.ts'
 
 test('handleClick calculates index correctly for first item', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show'() {},
+    'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [{ id: 'Settings', title: 'Settings', icon: 'icon', flags: 0, keyShortcuts: '' }]
   const state: ActivityBarState = {
@@ -23,12 +23,12 @@ test('handleClick calculates index correctly for first item', async () => {
   const result = await handleClick(state, MouseEventType.LeftClick, 0, 100)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show', 0, 100, MenuEntryId.Settings, []]])
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, MenuEntryId.Settings, 0, 100, { menuId: MenuEntryId.Settings }]])
 })
 
 test('handleClick calculates index correctly for second item', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show'() {},
+    'ContextMenu.show2'() {},
     'Layout.showSideBar'() {},
   })
   const items: readonly ActivityBarItem[] = [
@@ -50,7 +50,7 @@ test('handleClick calculates index correctly for second item', async () => {
   const result = await handleClick(state, MouseEventType.LeftClick, 0, settingsY)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show', 0, settingsY, MenuEntryId.Settings, []]])
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, MenuEntryId.Settings, 0, settingsY, { menuId: MenuEntryId.Settings }]])
 })
 
 test('handleClick calculates index correctly for multiple items', async () => {
@@ -133,7 +133,7 @@ test('handleClick handles Explorer viewlet click', async () => {
 
 test('handleClick handles Additional Views viewlet click', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show'() {},
+    'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [{ id: 'Additional Views', title: 'Additional Views', icon: 'icon', flags: 0, keyShortcuts: '' }]
   const state: ActivityBarState = {
@@ -147,12 +147,21 @@ test('handleClick handles Additional Views viewlet click', async () => {
   const result = await handleClick(state, MouseEventType.LeftClick, 0, 100)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show', 0, 100, MenuEntryId.ActivityBarAdditionalViews, []]])
+  expect(mockRpc.invocations).toEqual([
+    [
+      'ContextMenu.show2',
+      0,
+      MenuEntryId.ActivityBarAdditionalViews,
+      0,
+      100,
+      { menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: 'Additional Views' },
+    ],
+  ])
 })
 
 test('handleClick handles different y and itemHeight values', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show'() {},
+    'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [{ id: 'Settings', title: 'Settings', icon: 'icon', flags: 0, keyShortcuts: '' }]
   const state: ActivityBarState = {
@@ -166,5 +175,5 @@ test('handleClick handles different y and itemHeight values', async () => {
   const result = await handleClick(state, MouseEventType.LeftClick, 64, 200)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show', 64, 200, MenuEntryId.Settings, []]])
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, MenuEntryId.Settings, 64, 200, { menuId: MenuEntryId.Settings }]])
 })
