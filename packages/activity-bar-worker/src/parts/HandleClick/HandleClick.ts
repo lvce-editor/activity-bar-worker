@@ -3,7 +3,7 @@ import { getIndexFromPosition } from '../GetIndexFromPosition/GetIndexFromPositi
 import { handleClickIndex } from '../HandleClickIndex/HandleClickIndex.ts'
 
 export const handleClick = async (state: ActivityBarState, button: number, eventX: number, eventY: number): Promise<ActivityBarState> => {
-  const { filteredItems, itemHeight, y } = state
-  const index = getIndexFromPosition(y, eventX, eventY, itemHeight, filteredItems.length)
+  const { filteredItems, itemHeight, y, height } = state
+  const index = getIndexFromPosition(y, eventX, eventY, itemHeight, filteredItems.length, height)
   return handleClickIndex(state, button, index, eventX, eventY)
 }
