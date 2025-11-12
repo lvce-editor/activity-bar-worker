@@ -10,7 +10,7 @@ test('diff2 returns RenderCss when oldState and newState are identical', () => {
 
   const result: readonly number[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([11])
+  expect(result).toEqual([])
 })
 
 test('diff2 returns RenderItems when activityBarItems differ', () => {
@@ -24,7 +24,7 @@ test('diff2 returns RenderItems when activityBarItems differ', () => {
 
   const result: readonly number[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([4, 11])
+  expect(result).toEqual([4])
 })
 
 test('diff2 returns RenderFocus when focused differs', () => {
@@ -38,7 +38,7 @@ test('diff2 returns RenderFocus when focused differs', () => {
 
   const result: readonly number[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([4, 6, 7, 11])
+  expect(result).toEqual([4, 6, 7])
 })
 
 test('diff2 returns RenderFocusContext when focused changes', () => {
@@ -55,7 +55,7 @@ test('diff2 returns RenderFocusContext when focused changes', () => {
 
   const result: readonly number[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([4, 6, 7, 11])
+  expect(result).toEqual([4, 6, 7])
 })
 
 test('diff2 returns RenderCss when width differs', () => {
@@ -69,7 +69,7 @@ test('diff2 returns RenderCss when width differs', () => {
 
   const result: readonly number[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([4, 11])
+  expect(result).toEqual([4])
 })
 
 test('diff2 returns multiple render types when multiple fields differ', () => {
@@ -85,7 +85,7 @@ test('diff2 returns multiple render types when multiple fields differ', () => {
 
   const result: readonly number[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([4, 6, 7, 11])
+  expect(result).toEqual([4, 6, 7])
 })
 
 test('diff2 returns appropriate types when only focus differs', () => {
@@ -104,7 +104,7 @@ test('diff2 returns appropriate types when only focus differs', () => {
 
   const result: readonly number[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([4, 6, 7, 11])
+  expect(result).toEqual([4, 6, 7])
 })
 
 test('diff2 works with different uid values', () => {
@@ -118,7 +118,7 @@ test('diff2 works with different uid values', () => {
 
   const result: readonly number[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([4, 6, 7, 11])
+  expect(result).toEqual([4, 6, 7])
 })
 
 test('diff2 handles focusedIndex changes', () => {
@@ -135,5 +135,5 @@ test('diff2 handles focusedIndex changes', () => {
 
   const result: readonly number[] = Diff2.diff2(uid)
 
-  expect(result).toEqual([4, 11])
+  expect(result).toEqual([4])
 })

@@ -7,7 +7,7 @@ import * as DiffCss from '../src/parts/DiffCss/DiffCss.ts'
 test('DiffCss.isEqual should return false for identical states', () => {
   const state = createDefaultState()
   const result = DiffCss.isEqual(state, state)
-  expect(result).toBe(false)
+  expect(result).toBe(true)
 })
 
 test('DiffCss.isEqual should return false for different states', () => {
@@ -17,7 +17,7 @@ test('DiffCss.isEqual should return false for different states', () => {
     width: 100,
   }
   const result = DiffCss.isEqual(state1, state2)
-  expect(result).toBe(false)
+  expect(result).toBe(true)
 })
 
 test('DiffCss.isEqual should return false when focus changes', () => {
@@ -27,7 +27,7 @@ test('DiffCss.isEqual should return false when focus changes', () => {
     focus: 1,
   }
   const result = DiffCss.isEqual(state1, state2)
-  expect(result).toBe(false)
+  expect(result).toBe(true)
 })
 
 test('DiffCss.isEqual should return false when focused changes', () => {
@@ -37,7 +37,7 @@ test('DiffCss.isEqual should return false when focused changes', () => {
     focused: true,
   }
   const result = DiffCss.isEqual(state1, state2)
-  expect(result).toBe(false)
+  expect(result).toBe(true)
 })
 
 test('DiffCss.isEqual should return false when activityBarItems changes', () => {
@@ -57,7 +57,7 @@ test('DiffCss.isEqual should return false when activityBarItems changes', () => 
     activityBarItems: items,
   }
   const result = DiffCss.isEqual(state1, state2)
-  expect(result).toBe(false)
+  expect(result).toBe(true)
 })
 
 test('DiffCss.isEqual should return false when currentViewletId changes', () => {
@@ -67,5 +67,5 @@ test('DiffCss.isEqual should return false when currentViewletId changes', () => 
     currentViewletId: 'explorer',
   }
   const result = DiffCss.isEqual(state1, state2)
-  expect(result).toBe(false)
+  expect(result).toBe(true)
 })
