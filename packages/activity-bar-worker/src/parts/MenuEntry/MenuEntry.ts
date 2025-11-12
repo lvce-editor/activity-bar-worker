@@ -3,4 +3,5 @@ export interface MenuEntry {
   readonly label: string
   readonly flags: number
   readonly command: string
+  readonly args?: any
 }
