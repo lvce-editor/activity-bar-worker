@@ -9,6 +9,7 @@ import * as FocusLast from '../FocusLast/FocusLast.ts'
 import * as FocusNext from '../FocusNext/FocusNext.ts'
 import * as FocusNone from '../FocusNone/FocusNone.ts'
 import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
+import { getMenuEntryIds, getMenuEntries } from '../GetMenuEntries/GetMenuEntries.ts'
 import { handleBlur } from '../HandleBlur/HandleBlur.ts'
 import * as HandleClick from '../HandleClick/HandleClick.ts'
 import { handleClickIndex } from '../HandleClickIndex/HandleClickIndex.ts'
@@ -30,21 +31,23 @@ export const commandMap = {
   'ActivityBar.focusFirst': WrapCommand.wrapCommand(FocusFirst.focusFirst),
   'ActivityBar.focusIndex': WrapCommand.wrapCommand(FocusIndex.focusIndex),
   'ActivityBar.focusLast': WrapCommand.wrapCommand(FocusLast.focusLast),
-  'ActivityBar.handleUpdateStateChange': WrapCommand.wrapCommand(handleUpdateStateChange),
   'ActivityBar.focusNext': WrapCommand.wrapCommand(FocusNext.focusNext),
   'ActivityBar.focusNone': WrapCommand.wrapCommand(FocusNone.focusNone),
   'ActivityBar.getCommandIds': WrapCommand.getCommandIds,
   'ActivityBar.getKeyBindings': getKeyBindings,
+  'ActivityBar.getMenuEntries': getMenuEntries,
+  'ActivityBar.getMenuEntryIds': getMenuEntryIds,
   'ActivityBar.handleBlur': WrapCommand.wrapCommand(handleBlur),
   'ActivityBar.handleClick': WrapCommand.wrapCommand(HandleClick.handleClick),
   'ActivityBar.handleClickIndex': WrapCommand.wrapCommand(handleClickIndex),
   'ActivityBar.handleContextMenu': WrapCommand.wrapCommand(handleContextMenu),
-  'ActivityBar.resize': WrapCommand.wrapCommand(handleResize),
   'ActivityBar.handleSideBarHidden': WrapCommand.wrapCommand(handleSideBarHidden),
   'ActivityBar.handleSideBarViewletChange': WrapCommand.wrapCommand(handleSideBarViewletChange),
+  'ActivityBar.handleUpdateStateChange': WrapCommand.wrapCommand(handleUpdateStateChange),
   'ActivityBar.loadContent': WrapCommand.wrapCommand(loadContent),
   'ActivityBar.render2': Render2.render2,
   'ActivityBar.renderEventListeners': RenderEventListeners.renderEventListeners,
+  'ActivityBar.resize': WrapCommand.wrapCommand(handleResize),
   'ActivityBar.saveState': WrapCommand.wrapGetter(SaveState.saveState),
   'ActivityBar.terminate': terminate,
   'ActivityBar.toggleActivityBarItem': WrapCommand.wrapCommand(toggleActivityBarItem),
