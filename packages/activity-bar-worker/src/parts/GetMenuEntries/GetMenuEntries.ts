@@ -1,7 +1,8 @@
+import { MenuEntryId } from '@lvce-editor/constants'
 import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
 
 export const getMenuEntryIds = (): readonly number[] => {
-  return []
+  return [MenuEntryId.ActivityBar, MenuEntryId.ActivityBarAdditionalViews]
 }
 
 export const getMenuEntries = (): readonly MenuEntry[] => {
