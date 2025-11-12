@@ -7,41 +7,41 @@ import { handleContextMenu } from '../src/parts/HandleContextMenu/HandleContextM
 
 test('handleContextMenu calls ContextMenu.show with correct parameters', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show'() {},
+    'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()
 
   await handleContextMenu(state, 2, 100, 200)
 
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show', 100, 200, MenuEntryId.ActivityBar, []]])
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, MenuEntryId.ActivityBar, 100, 200, { menuId: MenuEntryId.ActivityBar }]])
 })
 
 test('handleContextMenu returns the same state', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show'() {},
+    'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()
 
   const result = await handleContextMenu(state, 2, 100, 200)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show', 100, 200, MenuEntryId.ActivityBar, []]])
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, MenuEntryId.ActivityBar, 100, 200, { menuId: MenuEntryId.ActivityBar }]])
 })
 
 test('handleContextMenu calls ContextMenu.show with right button', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show'() {},
+    'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()
 
   await handleContextMenu(state, 2, 50, 75)
 
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show', 50, 75, MenuEntryId.ActivityBar, []]])
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, MenuEntryId.ActivityBar, 50, 75, { menuId: MenuEntryId.ActivityBar }]])
 })
 
 test('handleContextMenu handles different coordinates', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show'() {},
+    'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()
 
@@ -49,7 +49,7 @@ test('handleContextMenu handles different coordinates', async () => {
   await handleContextMenu(state, 2, 500, 1000)
 
   expect(mockRpc.invocations).toEqual([
-    ['ContextMenu.show', 0, 0, MenuEntryId.ActivityBar, []],
-    ['ContextMenu.show', 500, 1000, MenuEntryId.ActivityBar, []],
+    ['ContextMenu.show2', 0, MenuEntryId.ActivityBar, 0, 0, { menuId: MenuEntryId.ActivityBar }],
+    ['ContextMenu.show2', 0, MenuEntryId.ActivityBar, 500, 1000, { menuId: MenuEntryId.ActivityBar }],
   ])
 })
