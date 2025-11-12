@@ -11,6 +11,7 @@ export const handleClickAdditionalViews = async (
   const { uid } = state
   await ContextMenu.show2(uid, MenuEntryId.ActivityBarAdditionalViews, eventX, eventY, {
     menuId: MenuEntryId.ActivityBarAdditionalViews,
+    viewletId,
   })
   return state
 }
