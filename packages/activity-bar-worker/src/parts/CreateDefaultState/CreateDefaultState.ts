@@ -19,4 +19,5 @@ export const createDefaultState = (): ActivityBarState => ({
   updateProgress: 0,
   filteredItems: [],
   numberOfVisibleItems: 0,
+  sideBarLocation: 0,
 })
