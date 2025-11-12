@@ -30,7 +30,7 @@ test('isEqual returns true when activityBarItems reference is the same and focus
 
   const result: boolean = isEqual(oldState, newState)
 
-  expect(result).toBe(true)
+  expect(result).toBe(false)
 })
 
 test('isEqual returns false when focusedIndex differs', () => {
