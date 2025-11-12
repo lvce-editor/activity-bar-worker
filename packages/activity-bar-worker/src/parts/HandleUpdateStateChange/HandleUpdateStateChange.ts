@@ -28,12 +28,12 @@ const getNewItems = (items: readonly ActivityBarItem[], state: number): readonly
 }
 
 export const handleUpdateStateChange = async (state: ActivityBarState, config: UpdateConfig): Promise<ActivityBarState> => {
-  const { activityBarItems } = state
-  const newItems = getNewItems(activityBarItems, config.state)
+  const { filteredItems } = state
+  const newItems = getNewItems(filteredItems, config.state)
   return {
     ...state,
     updateState: config.state,
     updateProgress: config.progress,
-    activityBarItems: newItems,
+    filteredItems: newItems,
   }
 }
