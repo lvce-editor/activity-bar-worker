@@ -44,11 +44,13 @@ test('handleClick calculates index correctly for second item', async () => {
     currentViewletId: '',
     filteredItems: getFilteredActivityBarItems(items, 400, 48),
   }
+  // Settings is at the bottom: y + height - itemHeight = 0 + 400 - 48 = 352
+  const settingsY = state.y + state.height - state.itemHeight
 
-  const result = await handleClick(state, MouseEventType.LeftClick, 0, 48)
+  const result = await handleClick(state, MouseEventType.LeftClick, 0, settingsY)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show', 0, 48, MenuEntryId.Settings, []]])
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show', 0, settingsY, MenuEntryId.Settings, []]])
 })
 
 test('handleClick calculates index correctly for multiple items', async () => {
@@ -69,8 +71,10 @@ test('handleClick calculates index correctly for multiple items', async () => {
     currentViewletId: '',
     filteredItems: getFilteredActivityBarItems(items, 400, 48),
   }
+  // Click on Explorer (index 0) at the top: y + 0 * itemHeight = 50
+  const explorerY = state.y
 
-  const result = await handleClick(state, MouseEventType.LeftClick, 0, 146)
+  const result = await handleClick(state, MouseEventType.LeftClick, 0, explorerY)
 
   expect(result).toBe(state)
   expect(mockRpc.invocations).toEqual([['Layout.showSideBar', '']])
