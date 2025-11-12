@@ -5,7 +5,7 @@ import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ViewletActivityBarStrings from '../ActivityBarStrings/ActivityBarStrings.ts'
 import { menuEntryMoveSideBar } from '../MenuEntryMoveSideBar/MenuEntryMoveSideBar.ts'
-import * as MenuEntrySeparator from '../MenuEntrySeparator/MenuEntrySeparator.js'
+import * as MenuEntrySeparator from '../MenuEntrySeparator/MenuEntrySeparator.ts'
 
 const toContextMenuItem = (activityBarItem: ActivityBarItem): MenuEntry => {
   const isEnabled = activityBarItem.flags & ActivityBarItemFlags.Enabled
@@ -17,7 +17,7 @@ const toContextMenuItem = (activityBarItem: ActivityBarItem): MenuEntry => {
   }
 }
 
-export const getMenuEntries = (state: ActivityBarState): readonly MenuEntry[] => {
+export const getMenuEntriesActivityBar = (state: ActivityBarState): readonly MenuEntry[] => {
   const { activityBarItems, sideBarLocation } = state
   return [
     ...activityBarItems.map(toContextMenuItem),
