@@ -6,6 +6,8 @@ test('getIndexFromPosition returns correct index within bounds', () => {
   const itemHeight = 50
   const itemCount = 5
   const height = 400
+  // Top items: indices 0-3 (at y, y+itemHeight, y+2*itemHeight, y+3*itemHeight)
+  // Settings: index 4 (at y+height-itemHeight)
 
   expect(getIndexFromPosition(y, 200, 120, itemHeight, itemCount, height)).toBe(0)
   expect(getIndexFromPosition(y, 200, 149, itemHeight, itemCount, height)).toBe(0)
@@ -13,6 +15,8 @@ test('getIndexFromPosition returns correct index within bounds', () => {
   expect(getIndexFromPosition(y, 200, 180, itemHeight, itemCount, height)).toBe(1)
   expect(getIndexFromPosition(y, 200, 199, itemHeight, itemCount, height)).toBe(1)
   expect(getIndexFromPosition(y, 200, 200, itemHeight, itemCount, height)).toBe(2)
+  // Settings at bottom
+  expect(getIndexFromPosition(y, 200, 450, itemHeight, itemCount, height)).toBe(4)
 })
 
 test('getIndexFromPosition returns -1 when index is negative', () => {
@@ -112,17 +116,16 @@ test('getIndexFromPosition returns Settings index for bottom positions', () => {
   const settingsTopY = y + height - itemHeight // 100 + 400 - 50 = 450
   const settingsBottomY = y + height // 100 + 400 = 500
 
-  // Top items
+  // Top items (indices 0, 1)
   expect(getIndexFromPosition(y, 200, 100, itemHeight, itemCount, height)).toBe(0)
   expect(getIndexFromPosition(y, 200, 149, itemHeight, itemCount, height)).toBe(0)
   expect(getIndexFromPosition(y, 200, 150, itemHeight, itemCount, height)).toBe(1)
   expect(getIndexFromPosition(y, 200, 199, itemHeight, itemCount, height)).toBe(1)
-  expect(getIndexFromPosition(y, 200, 200, itemHeight, itemCount, height)).toBe(2)
-  expect(getIndexFromPosition(y, 200, 249, itemHeight, itemCount, height)).toBe(2)
   // Gap area (should return -1)
-  expect(getIndexFromPosition(y, 200, 250, itemHeight, itemCount, height)).toBe(-1)
+  expect(getIndexFromPosition(y, 200, 200, itemHeight, itemCount, height)).toBe(-1)
+  expect(getIndexFromPosition(y, 200, 249, itemHeight, itemCount, height)).toBe(-1)
   expect(getIndexFromPosition(y, 200, 449, itemHeight, itemCount, height)).toBe(-1)
-  // Settings at bottom
+  // Settings at bottom (index 2)
   expect(getIndexFromPosition(y, 200, settingsTopY, itemHeight, itemCount, height)).toBe(2)
   expect(getIndexFromPosition(y, 200, settingsTopY + 10, itemHeight, itemCount, height)).toBe(2)
   expect(getIndexFromPosition(y, 200, settingsBottomY - 1, itemHeight, itemCount, height)).toBe(2)
