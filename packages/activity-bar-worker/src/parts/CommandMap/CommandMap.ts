@@ -36,7 +36,7 @@ export const commandMap = {
   'ActivityBar.focusNone': WrapCommand.wrapCommand(FocusNone.focusNone),
   'ActivityBar.getCommandIds': WrapCommand.getCommandIds,
   'ActivityBar.getKeyBindings': getKeyBindings,
-  'ActivityBar.getMenuEntries': getMenuEntries,
+  'ActivityBar.getMenuEntries': WrapCommand.wrapGetter(getMenuEntries),
   'ActivityBar.getMenuEntryIds': getMenuEntryIds,
   'ActivityBar.handleBlur': WrapCommand.wrapCommand(handleBlur),
   'ActivityBar.handleClick': WrapCommand.wrapCommand(HandleClick.handleClick),
