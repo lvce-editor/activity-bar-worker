@@ -2,10 +2,14 @@ import { execa } from 'execa'
 import { root } from './root.ts'
 
 const main = async () => {
+  const isWindows = process.platform === 'win32'
+  const arg0 = isWindows ? 'node' : `packages/build/node_modules/esbuild/bin/esbuild`
+  const arg1 = isWindows ? [`packages/build/node_modules/esbuild/bin/esbuild`] : []
+
   execa(
-    'node',
+    arg0,
     [
-      `packages/build/node_modules/esbuild/bin/esbuild`,
+      ...arg1,
       '--format=esm',
       '--bundle',
       '--external:node:buffer',
