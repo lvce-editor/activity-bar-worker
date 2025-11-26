@@ -1,23 +1,18 @@
 import { MenuEntryId } from '@lvce-editor/constants'
-import type { ContextMenuOptions } from '../ContextMenuOptions/ContextMenuOptions.ts'
+import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
+import type { ContextMenuProps } from '../ContextMenuProps/ContextMenuProps.ts'
 import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
-import * as ActivityBarStates from '../ActivityBarStates/ActivityBarStates.ts'
 import { getMenuEntriesActivityBar } from '../GetMenuEntriesActivityBar/GetMenuEntriesActivityBar.ts'
 import { getMenuEntriesAdditionalViews } from '../GetMenuEntriesAdditionalViews/GetMenuEntriesAdditionalViews.ts'
 import { getMenuEntriesSettings } from '../GetMenuEntriesSettings/GetMenuEntriesSettings.ts'
 
-export const getMenuEntries = (id: number, options: ContextMenuOptions): readonly MenuEntry[] => {
-  const tuple = ActivityBarStates.get(id)
-  if (!tuple) {
-    return []
-  }
-  const { newState } = tuple
+export const getMenuEntries = (state: ActivityBarState, options: ContextMenuProps): readonly MenuEntry[] => {
   const { menuId } = options
   switch (menuId) {
     case MenuEntryId.ActivityBar:
-      return getMenuEntriesActivityBar(newState)
+      return getMenuEntriesActivityBar(state)
     case MenuEntryId.ActivityBarAdditionalViews:
-      return getMenuEntriesAdditionalViews(newState)
+      return getMenuEntriesAdditionalViews(state)
     case MenuEntryId.Settings:
       return getMenuEntriesSettings()
     default:
