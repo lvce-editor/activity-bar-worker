@@ -38,7 +38,7 @@ export const getMenuEntriesSettings = (): readonly MenuEntry[] => {
       id: 'checkForUpdates',
       label: HelpStrings.checkForUpdates(),
       flags: MenuItemFlags.None,
-      command: /* TODO */ '-1',
+      command: 'AutoUpdater.checkForUpdates',
     },
   ]
 }
