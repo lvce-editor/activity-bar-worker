@@ -20,4 +20,5 @@ export interface ActivityBarState {
   readonly width: number
   readonly x: number
   readonly y: number
+  readonly platform: number
 }
