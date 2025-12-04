@@ -20,4 +20,5 @@ export const createDefaultState = (): ActivityBarState => ({
   filteredItems: [],
   numberOfVisibleItems: 0,
   sideBarLocation: 0,
+  platform: 0,
 })

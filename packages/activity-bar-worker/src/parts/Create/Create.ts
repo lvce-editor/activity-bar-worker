@@ -33,6 +33,7 @@ export const create = (
     filteredItems: [],
     numberOfVisibleItems: 0,
     sideBarLocation: 0,
+    platform: 0,
   }
   ExplorerStates.set(id, state, state)
   return state
