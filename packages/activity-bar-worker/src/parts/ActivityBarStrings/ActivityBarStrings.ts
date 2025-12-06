@@ -44,3 +44,19 @@ export const moveSideBarLeft = (): string => {
 export const hideActivityBar = (): string => {
   return I18nString.i18nString(UiStrings.HideActivityBar)
 }
+
+export const checkForUpdates = (): string => {
+  return I18nString.i18nString(UiStrings.CheckForUpdates)
+}
+
+export const commandPalette = (): string => {
+  return I18nString.i18nString(UiStrings.CommandPalette)
+}
+
+export const keyboardShortcuts = (): string => {
+  return I18nString.i18nString(UiStrings.KeyboardShortcuts)
+}
+
+export const colorTheme = (): string => {
+  return I18nString.i18nString(UiStrings.ColorTheme)
+}
