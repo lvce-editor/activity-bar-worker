@@ -10,9 +10,9 @@ test('renderItems returns commands with SetDom2', () => {
   const items: readonly any[] = []
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    uid: 123,
     activityBarItems: items,
     filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    uid: 123,
   }
 
   const result: any = renderItems(oldState, newState)
@@ -28,9 +28,9 @@ test('renderItems returns correct uid', () => {
   const items: readonly any[] = []
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    uid: 456,
     activityBarItems: items,
     filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    uid: 456,
   }
 
   const result: any = renderItems(oldState, newState)
@@ -43,9 +43,9 @@ test('renderItems returns DOM structure', () => {
   const items: readonly any[] = []
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    uid: 789,
     activityBarItems: items,
     filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    uid: 789,
   }
 
   const result: any = renderItems(oldState, newState)
@@ -55,19 +55,19 @@ test('renderItems returns DOM structure', () => {
 })
 
 test('renderItems ignores oldState', () => {
-  const oldItems: readonly any[] = [{ id: 'old', title: 'Old', icon: 'oldIcon', flags: 0, keyShortcuts: '' }]
+  const oldItems: readonly any[] = [{ flags: 0, icon: 'oldIcon', id: 'old', keyShortcuts: '', title: 'Old' }]
   const oldState: ActivityBarState = {
     ...createDefaultState(),
-    uid: 111,
     activityBarItems: oldItems,
     filteredItems: getFilteredActivityBarItems(oldItems, 400, 48),
+    uid: 111,
   }
-  const newItems: readonly any[] = [{ id: 'new', title: 'New', icon: 'newIcon', flags: 0, keyShortcuts: '' }]
+  const newItems: readonly any[] = [{ flags: 0, icon: 'newIcon', id: 'new', keyShortcuts: '', title: 'New' }]
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    uid: 222,
     activityBarItems: newItems,
     filteredItems: getFilteredActivityBarItems(newItems, 400, 48),
+    uid: 222,
   }
 
   const result: any = renderItems(oldState, newState)
@@ -78,14 +78,14 @@ test('renderItems ignores oldState', () => {
 test('renderItems uses newState activityBarItems', () => {
   const oldState: ActivityBarState = createDefaultState()
   const items: readonly any[] = [
-    { id: 'item1', title: 'Item1', icon: 'icon1', flags: 0, keyShortcuts: '' },
-    { id: 'item2', title: 'Item2', icon: 'icon2', flags: 0, keyShortcuts: '' },
+    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item1' },
+    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item2' },
   ]
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    uid: 333,
     activityBarItems: items,
     filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    uid: 333,
   }
 
   const result: any = renderItems(oldState, newState)
@@ -98,9 +98,9 @@ test('renderItems returns new command each time', () => {
   const items: readonly any[] = []
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    uid: 444,
     activityBarItems: items,
     filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    uid: 444,
   }
 
   const result1: any = renderItems(oldState, newState)
@@ -111,12 +111,12 @@ test('renderItems returns new command each time', () => {
 
 test('renderItems returns command with correct structure', () => {
   const oldState: ActivityBarState = createDefaultState()
-  const items: readonly any[] = [{ id: 'test', title: 'Test', icon: 'icon', flags: 0, keyShortcuts: '' }]
+  const items: readonly any[] = [{ flags: 0, icon: 'icon', id: 'test', keyShortcuts: '', title: 'Test' }]
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    uid: 555,
     activityBarItems: items,
     filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    uid: 555,
   }
 
   const result: any = renderItems(oldState, newState)

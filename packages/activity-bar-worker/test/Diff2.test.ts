@@ -18,7 +18,7 @@ test('diff2 returns RenderItems when activityBarItems differ', () => {
   const oldState = createDefaultState()
   const newState = {
     ...createDefaultState(),
-    activityBarItems: [{ id: 'test', title: 'Test', icon: 'icon', flags: 0, keyShortcuts: '' }],
+    activityBarItems: [{ flags: 0, icon: 'icon', id: 'test', keyShortcuts: '', title: 'Test' }],
   }
   ActivityBarStates.set(uid, oldState, newState)
 
@@ -77,7 +77,7 @@ test('diff2 returns multiple render types when multiple fields differ', () => {
   const oldState = createDefaultState()
   const newState: typeof oldState = {
     ...createDefaultState(),
-    activityBarItems: [{ id: 'test', title: 'Test', icon: 'icon', flags: 0, keyShortcuts: '' }],
+    activityBarItems: [{ flags: 0, icon: 'icon', id: 'test', keyShortcuts: '', title: 'Test' }],
     focused: true,
     width: 100,
   }
@@ -92,13 +92,13 @@ test('diff2 returns appropriate types when only focus differs', () => {
   const uid = 7
   const oldState = {
     ...createDefaultState(),
-    focused: false,
     focus: 0,
+    focused: false,
   }
   const newState = {
     ...createDefaultState(),
-    focused: false,
     focus: 1,
+    focused: false,
   }
   ActivityBarStates.set(uid, oldState, newState)
 

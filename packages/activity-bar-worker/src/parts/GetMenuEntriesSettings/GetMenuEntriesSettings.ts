@@ -8,37 +8,37 @@ const keyBindingsUri = 'app://keybindings'
 export const getMenuEntriesSettings = (): readonly MenuEntry[] => {
   return [
     {
+      command: 'QuickPick.showEverything',
+      flags: MenuItemFlags.None,
       id: 'commandPalette',
       label: HelpStrings.commandPalette(),
-      flags: MenuItemFlags.None,
-      command: 'QuickPick.showEverything',
     },
     MenuEntrySeparator.menuEntrySeparator,
     {
+      command: 'Preferences.openSettingsJson',
+      flags: MenuItemFlags.None,
       id: 'settings',
       label: HelpStrings.settings(),
-      flags: MenuItemFlags.None,
-      command: 'Preferences.openSettingsJson',
     },
     {
+      args: [keyBindingsUri],
+      command: 'Main.openUri',
+      flags: MenuItemFlags.None,
       id: 'keyboardShortcuts',
       label: HelpStrings.keyboardShortcuts(),
-      flags: MenuItemFlags.None,
-      command: 'Main.openUri',
-      args: [keyBindingsUri],
     },
     {
+      command: 'QuickPick.showColorTheme',
+      flags: MenuItemFlags.None,
       id: 'colorTheme',
       label: HelpStrings.colorTheme(),
-      flags: MenuItemFlags.None,
-      command: 'QuickPick.showColorTheme',
     },
     MenuEntrySeparator.menuEntrySeparator,
     {
+      command: 'AutoUpdater.checkForUpdates',
+      flags: MenuItemFlags.None,
       id: 'checkForUpdates',
       label: HelpStrings.checkForUpdates(),
-      flags: MenuItemFlags.None,
-      command: 'AutoUpdater.checkForUpdates',
     },
   ]
 }

@@ -4,14 +4,14 @@ import * as GetFilteredActivityBarItems from '../GetFilteredActivityBarItems/Get
 
 export const handleResize = (state: ActivityBarState, dimensions: Dimensions): ActivityBarState => {
   const { activityBarItems, itemHeight } = state
-  const { x, y, width, height } = dimensions
+  const { height, width, x, y } = dimensions
   const filteredItems = GetFilteredActivityBarItems.getFilteredActivityBarItems(activityBarItems, height, itemHeight)
   return {
     ...state,
+    filteredItems,
+    height,
+    width,
     x,
     y,
-    width,
-    height,
-    filteredItems,
   }
 }

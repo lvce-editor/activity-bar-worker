@@ -32,27 +32,27 @@ test('focus returns same state when state.focus is truthy', () => {
 test('focus preserves other state properties when setting focus', () => {
   const items: readonly ActivityBarItem[] = [
     {
-      id: 'item1',
-      title: 'Item 1',
-      icon: 'icon1',
       flags: 0,
+      icon: 'icon1',
+      id: 'item1',
       keyShortcuts: '',
+      title: 'Item 1',
     },
     {
-      id: 'item2',
-      title: 'Item 2',
-      icon: 'icon2',
       flags: 0,
+      icon: 'icon2',
+      id: 'item2',
       keyShortcuts: '',
+      title: 'Item 2',
     },
   ]
 
   const state: ActivityBarState = {
     ...createDefaultState(),
-    focus: 0,
-    focusedIndex: 2,
-    focused: true,
     activityBarItems: items,
+    focus: 0,
+    focused: true,
+    focusedIndex: 2,
   }
 
   const result: ActivityBarState = focus(state)

@@ -19,27 +19,27 @@ test('handleBlur sets focused to false', () => {
 test('handleBlur preserves other state properties', () => {
   const items: readonly ActivityBarItem[] = [
     {
-      id: 'item1',
-      title: 'Item 1',
-      icon: 'icon1',
       flags: 0,
+      icon: 'icon1',
+      id: 'item1',
       keyShortcuts: '',
+      title: 'Item 1',
     },
     {
-      id: 'item2',
-      title: 'Item 2',
-      icon: 'icon2',
       flags: 0,
+      icon: 'icon2',
+      id: 'item2',
       keyShortcuts: '',
+      title: 'Item 2',
     },
   ]
 
   const state: ActivityBarState = {
     ...createDefaultState(),
-    focused: true,
-    focusedIndex: 2,
     activityBarItems: items,
     currentViewletId: 'test-viewlet',
+    focused: true,
+    focusedIndex: 2,
   }
 
   const result: ActivityBarState = handleBlur(state)

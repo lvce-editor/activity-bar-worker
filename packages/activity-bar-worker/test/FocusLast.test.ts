@@ -15,27 +15,27 @@ test('focusLast calls focusIndex with -1', () => {
 test('focusLast preserves other state properties', () => {
   const items: readonly ActivityBarItem[] = [
     {
-      id: 'item1',
-      title: 'Item 1',
-      icon: 'icon1',
       flags: 0,
+      icon: 'icon1',
+      id: 'item1',
       keyShortcuts: '',
+      title: 'Item 1',
     },
     {
-      id: 'item2',
-      title: 'Item 2',
-      icon: 'icon2',
       flags: 0,
+      icon: 'icon2',
+      id: 'item2',
       keyShortcuts: '',
+      title: 'Item 2',
     },
   ]
 
   const state: ActivityBarState = {
     ...createDefaultState(),
-    focusedIndex: 2,
-    focused: false,
     activityBarItems: items,
     currentViewletId: 'test-viewlet',
+    focused: false,
+    focusedIndex: 2,
   }
 
   const result: ActivityBarState = focusLast(state)

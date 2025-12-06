@@ -7,17 +7,17 @@ export const menuEntryMoveSideBar = (sideBarLocation: number): MenuEntry => {
   switch (sideBarLocation) {
     case SideBarLocationType.Left:
       return {
+        command: 'Layout.moveSideBarRight',
+        flags: MenuItemFlags.None,
         id: 'moveSideBarRight',
         label: ViewletActivityBarStrings.moveSideBarRight(),
-        flags: MenuItemFlags.None,
-        command: 'Layout.moveSideBarRight',
       }
     case SideBarLocationType.Right:
       return {
+        command: 'Layout.moveSideBarLeft',
+        flags: MenuItemFlags.None,
         id: 'moveSideBarLeft',
         label: ViewletActivityBarStrings.moveSideBarLeft(),
-        flags: MenuItemFlags.None,
-        command: 'Layout.moveSideBarLeft',
       }
     default:
       throw new Error('unexpected side bar location')

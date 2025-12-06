@@ -19,9 +19,9 @@ test('loadContent returns state with activityBarItems', async () => {
 test('loadContent preserves other state properties', async () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
+    currentViewletId: 'test',
     uid: 123,
     width: 100,
-    currentViewletId: 'test',
   }
   const savedState: any = {}
 

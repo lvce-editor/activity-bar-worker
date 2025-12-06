@@ -32,8 +32,8 @@ export const handleUpdateStateChange = async (state: ActivityBarState, config: U
   const newItems = getNewItems(filteredItems, config.state)
   return {
     ...state,
-    updateState: config.state,
-    updateProgress: config.progress,
     filteredItems: newItems,
+    updateProgress: config.progress,
+    updateState: config.state,
   }
 }

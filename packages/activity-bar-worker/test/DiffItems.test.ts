@@ -6,8 +6,8 @@ import { isEqual } from '../src/parts/DiffItems/DiffItems.ts'
 test('isEqual returns true when states are identical', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
+    activityBarItems: [{ flags: 0, icon: 'icon', id: 'test', keyShortcuts: '', title: 'Test' }],
     focusedIndex: 0,
-    activityBarItems: [{ id: 'test', title: 'Test', icon: 'icon', flags: 0, keyShortcuts: '' }],
   }
 
   const result: boolean = isEqual(state, state)
@@ -16,16 +16,16 @@ test('isEqual returns true when states are identical', () => {
 })
 
 test('isEqual returns true when activityBarItems reference is the same and focusedIndex matches', () => {
-  const items = [{ id: 'test', title: 'Test', icon: 'icon', flags: 0, keyShortcuts: '' }]
+  const items = [{ flags: 0, icon: 'icon', id: 'test', keyShortcuts: '', title: 'Test' }]
   const oldState: ActivityBarState = {
     ...createDefaultState(),
-    focusedIndex: 5,
     activityBarItems: items,
+    focusedIndex: 5,
   }
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    focusedIndex: 5,
     activityBarItems: items,
+    focusedIndex: 5,
   }
 
   const result: boolean = isEqual(oldState, newState)
@@ -36,13 +36,13 @@ test('isEqual returns true when activityBarItems reference is the same and focus
 test('isEqual returns false when focusedIndex differs', () => {
   const oldState: ActivityBarState = {
     ...createDefaultState(),
-    focusedIndex: 0,
     activityBarItems: [],
+    focusedIndex: 0,
   }
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    focusedIndex: 1,
     activityBarItems: [],
+    focusedIndex: 1,
   }
 
   const result: boolean = isEqual(oldState, newState)
@@ -53,13 +53,13 @@ test('isEqual returns false when focusedIndex differs', () => {
 test('isEqual returns false when activityBarItems differ', () => {
   const oldState: ActivityBarState = {
     ...createDefaultState(),
+    activityBarItems: [{ flags: 0, icon: 'icon1', id: 'test1', keyShortcuts: '', title: 'Test1' }],
     focusedIndex: 0,
-    activityBarItems: [{ id: 'test1', title: 'Test1', icon: 'icon1', flags: 0, keyShortcuts: '' }],
   }
   const newState: ActivityBarState = {
     ...createDefaultState(),
+    activityBarItems: [{ flags: 0, icon: 'icon2', id: 'test2', keyShortcuts: '', title: 'Test2' }],
     focusedIndex: 0,
-    activityBarItems: [{ id: 'test2', title: 'Test2', icon: 'icon2', flags: 0, keyShortcuts: '' }],
   }
 
   const result: boolean = isEqual(oldState, newState)
@@ -70,13 +70,13 @@ test('isEqual returns false when activityBarItems differ', () => {
 test('isEqual returns false when activityBarItems have different lengths', () => {
   const oldState: ActivityBarState = {
     ...createDefaultState(),
+    activityBarItems: [{ flags: 0, icon: 'icon1', id: 'test1', keyShortcuts: '', title: 'Test1' }],
     focusedIndex: 0,
-    activityBarItems: [{ id: 'test1', title: 'Test1', icon: 'icon1', flags: 0, keyShortcuts: '' }],
   }
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    focusedIndex: 0,
     activityBarItems: [],
+    focusedIndex: 0,
   }
 
   const result: boolean = isEqual(oldState, newState)
@@ -87,13 +87,13 @@ test('isEqual returns false when activityBarItems have different lengths', () =>
 test('isEqual returns false when both focusedIndex and activityBarItems differ', () => {
   const oldState: ActivityBarState = {
     ...createDefaultState(),
+    activityBarItems: [{ flags: 0, icon: 'icon1', id: 'test1', keyShortcuts: '', title: 'Test1' }],
     focusedIndex: 0,
-    activityBarItems: [{ id: 'test1', title: 'Test1', icon: 'icon1', flags: 0, keyShortcuts: '' }],
   }
   const newState: ActivityBarState = {
     ...createDefaultState(),
+    activityBarItems: [{ flags: 0, icon: 'icon2', id: 'test2', keyShortcuts: '', title: 'Test2' }],
     focusedIndex: 5,
-    activityBarItems: [{ id: 'test2', title: 'Test2', icon: 'icon2', flags: 0, keyShortcuts: '' }],
   }
 
   const result: boolean = isEqual(oldState, newState)

@@ -15,10 +15,10 @@ export const handleClickIndex = async (state: ActivityBarState, button: number, 
   const item = filteredItems[index]
   const viewletId = item.id
   switch (viewletId) {
-    case 'Settings':
-      return HandleClickSettings.handleClickSettings(state, x, y, viewletId)
     case 'Additional Views':
       return HandleClickAdditionalViews.handleClickAdditionalViews(state, x, y, viewletId)
+    case 'Settings':
+      return HandleClickSettings.handleClickSettings(state, x, y, viewletId)
     default:
       return HandleClickOther.handleClickOther(state, x, y, viewletId)
   }

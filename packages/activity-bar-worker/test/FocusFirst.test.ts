@@ -30,27 +30,27 @@ test('focusFirst returns a new state object', () => {
 test('focusFirst works with custom state', () => {
   const items: readonly ActivityBarItem[] = [
     {
-      id: 'item1',
-      title: 'Item 1',
-      icon: 'icon1',
       flags: 0,
+      icon: 'icon1',
+      id: 'item1',
       keyShortcuts: '',
+      title: 'Item 1',
     },
     {
-      id: 'item2',
-      title: 'Item 2',
-      icon: 'icon2',
       flags: 0,
+      icon: 'icon2',
+      id: 'item2',
       keyShortcuts: '',
+      title: 'Item 2',
     },
   ]
 
   const state: ActivityBarState = {
     ...createDefaultState(),
-    focusedIndex: 5,
-    focused: false,
     activityBarItems: items,
     currentViewletId: 'test-viewlet',
+    focused: false,
+    focusedIndex: 5,
   }
 
   const result: ActivityBarState = focusFirst(state)
