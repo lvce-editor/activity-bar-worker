@@ -10,11 +10,11 @@ export const getFilteredActivityBarItems = (items: readonly ActivityBarItem[], h
     return items
   }
   const showMoreItem: ActivityBarItem = {
-    id: 'Additional Views',
-    title: ViewletActivityBarStrings.additionalViews(),
-    icon: Icon.Ellipsis,
     flags: ActivityBarItemFlags.Button,
+    icon: Icon.Ellipsis,
+    id: 'Additional Views',
     keyShortcuts: '',
+    title: ViewletActivityBarStrings.additionalViews(),
   }
   return [...items.slice(0, numberOfVisibleItems - 2), showMoreItem, items.at(-1)!]
 }

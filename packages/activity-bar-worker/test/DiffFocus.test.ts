@@ -6,13 +6,13 @@ import { isEqual } from '../src/parts/DiffFocus/DiffFocus.ts'
 test('isEqual returns true when focused and focus are the same', () => {
   const oldState: ActivityBarState = {
     ...createDefaultState(),
-    focused: true,
     focus: 1,
+    focused: true,
   }
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    focused: true,
     focus: 1,
+    focused: true,
   }
 
   const result: boolean = isEqual(oldState, newState)
@@ -23,8 +23,8 @@ test('isEqual returns true when focused and focus are the same', () => {
 test('isEqual returns true when both states are identical', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
-    focused: false,
     focus: 0,
+    focused: false,
   }
 
   const result: boolean = isEqual(state, state)
@@ -35,13 +35,13 @@ test('isEqual returns true when both states are identical', () => {
 test('isEqual returns false when focused differs', () => {
   const oldState: ActivityBarState = {
     ...createDefaultState(),
-    focused: false,
     focus: 0,
+    focused: false,
   }
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    focused: true,
     focus: 0,
+    focused: true,
   }
 
   const result: boolean = isEqual(oldState, newState)
@@ -52,13 +52,13 @@ test('isEqual returns false when focused differs', () => {
 test('isEqual returns false when focus differs', () => {
   const oldState: ActivityBarState = {
     ...createDefaultState(),
-    focused: true,
     focus: 0,
+    focused: true,
   }
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    focused: true,
     focus: 1,
+    focused: true,
   }
 
   const result: boolean = isEqual(oldState, newState)
@@ -69,13 +69,13 @@ test('isEqual returns false when focus differs', () => {
 test('isEqual returns false when both focused and focus differ', () => {
   const oldState: ActivityBarState = {
     ...createDefaultState(),
-    focused: false,
     focus: 0,
+    focused: false,
   }
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    focused: true,
     focus: 5,
+    focused: true,
   }
 
   const result: boolean = isEqual(oldState, newState)
@@ -86,13 +86,13 @@ test('isEqual returns false when both focused and focus differ', () => {
 test('isEqual returns true when both are false and focus is same', () => {
   const oldState: ActivityBarState = {
     ...createDefaultState(),
-    focused: false,
     focus: 2,
+    focused: false,
   }
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    focused: false,
     focus: 2,
+    focused: false,
   }
 
   const result: boolean = isEqual(oldState, newState)
@@ -103,13 +103,13 @@ test('isEqual returns true when both are false and focus is same', () => {
 test('isEqual returns true when both are true and focus is same', () => {
   const oldState: ActivityBarState = {
     ...createDefaultState(),
-    focused: true,
     focus: 3,
+    focused: true,
   }
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    focused: true,
     focus: 3,
+    focused: true,
   }
 
   const result: boolean = isEqual(oldState, newState)
@@ -120,13 +120,13 @@ test('isEqual returns true when both are true and focus is same', () => {
 test('isEqual returns false when focused changes from true to false', () => {
   const oldState: ActivityBarState = {
     ...createDefaultState(),
-    focused: true,
     focus: 1,
+    focused: true,
   }
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    focused: false,
     focus: 1,
+    focused: false,
   }
 
   const result: boolean = isEqual(oldState, newState)
@@ -137,13 +137,13 @@ test('isEqual returns false when focused changes from true to false', () => {
 test('isEqual returns false when focused changes from false to true', () => {
   const oldState: ActivityBarState = {
     ...createDefaultState(),
-    focused: false,
     focus: 1,
+    focused: false,
   }
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    focused: true,
     focus: 1,
+    focused: true,
   }
 
   const result: boolean = isEqual(oldState, newState)

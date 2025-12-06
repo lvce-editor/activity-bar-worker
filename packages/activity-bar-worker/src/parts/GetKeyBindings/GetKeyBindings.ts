@@ -5,43 +5,43 @@ import type { KeyBinding } from '../KeyBinding/KeyBinding.ts'
 export const getKeyBindings = (): readonly KeyBinding[] => {
   return [
     {
-      key: KeyCode.DownArrow,
       command: 'ActivityBar.focusNext',
+      key: KeyCode.DownArrow,
       when: WhenExpression.FocusActivityBar,
     },
     {
-      key: KeyCode.UpArrow,
       command: 'ActivityBar.focusPrevious',
+      key: KeyCode.UpArrow,
       when: WhenExpression.FocusActivityBar,
     },
     {
+      command: 'ActivityBar.focusFirst',
       key: KeyCode.Home,
-      command: 'ActivityBar.focusFirst',
       when: WhenExpression.FocusActivityBar,
     },
     {
+      command: 'ActivityBar.focusFirst',
       key: KeyCode.PageUp,
-      command: 'ActivityBar.focusFirst',
       when: WhenExpression.FocusActivityBar,
     },
     {
+      command: 'ActivityBar.focusLast',
       key: KeyCode.PageDown,
-      command: 'ActivityBar.focusLast',
       when: WhenExpression.FocusActivityBar,
     },
     {
+      command: 'ActivityBar.focusLast',
       key: KeyCode.End,
-      command: 'ActivityBar.focusLast',
       when: WhenExpression.FocusActivityBar,
     },
     {
+      command: 'ActivityBar.selectCurrent',
       key: KeyCode.Space,
-      command: 'ActivityBar.selectCurrent',
       when: WhenExpression.FocusActivityBar,
     },
     {
-      key: KeyCode.Enter,
       command: 'ActivityBar.selectCurrent',
+      key: KeyCode.Enter,
       when: WhenExpression.FocusActivityBar,
     },
   ]

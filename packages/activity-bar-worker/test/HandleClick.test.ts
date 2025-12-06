@@ -11,13 +11,13 @@ test('handleClick calculates index correctly for first item', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
-  const items: readonly ActivityBarItem[] = [{ id: 'Settings', title: 'Settings', icon: 'icon', flags: 0, keyShortcuts: '' }]
+  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' }]
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
-    y: 100,
-    itemHeight: 48,
     filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    itemHeight: 48,
+    y: 100,
   }
 
   const result = await handleClick(state, MouseEventType.LeftClick, 0, 100)
@@ -32,17 +32,17 @@ test('handleClick calculates index correctly for second item', async () => {
     'Layout.showSideBar'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { id: 'Explorer', title: 'Explorer', icon: 'icon1', flags: 0, keyShortcuts: '' },
-    { id: 'Settings', title: 'Settings', icon: 'icon2', flags: 0, keyShortcuts: '' },
+    { flags: 0, icon: 'icon1', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+    { flags: 0, icon: 'icon2', id: 'Settings', keyShortcuts: '', title: 'Settings' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
-    y: 0,
-    itemHeight: 48,
-    sideBarVisible: false,
     currentViewletId: '',
     filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    itemHeight: 48,
+    sideBarVisible: false,
+    y: 0,
   }
   // Settings is at the bottom: y + height - itemHeight = 0 + 400 - 48 = 352
   const settingsY = state.y + state.height - state.itemHeight
@@ -58,18 +58,18 @@ test('handleClick calculates index correctly for multiple items', async () => {
     'Layout.showSideBar'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { id: 'Explorer', title: 'Explorer', icon: 'icon1', flags: 0, keyShortcuts: '' },
-    { id: 'Search', title: 'Search', icon: 'icon2', flags: 0, keyShortcuts: '' },
-    { id: 'Explorer2', title: 'Explorer2', icon: 'icon3', flags: 0, keyShortcuts: '' },
+    { flags: 0, icon: 'icon1', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+    { flags: 0, icon: 'icon2', id: 'Search', keyShortcuts: '', title: 'Search' },
+    { flags: 0, icon: 'icon3', id: 'Explorer2', keyShortcuts: '', title: 'Explorer2' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
-    y: 50,
-    itemHeight: 48,
-    sideBarVisible: false,
     currentViewletId: '',
     filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    itemHeight: 48,
+    sideBarVisible: false,
+    y: 50,
   }
   // Click on Explorer (index 0) at the top: y + 0 * itemHeight = 50
   const explorerY = state.y
@@ -81,13 +81,13 @@ test('handleClick calculates index correctly for multiple items', async () => {
 })
 
 test('handleClick returns same state when button is not left click', async () => {
-  const items: readonly ActivityBarItem[] = [{ id: 'Settings', title: 'Settings', icon: 'icon', flags: 0, keyShortcuts: '' }]
+  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' }]
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
-    y: 0,
-    itemHeight: 48,
     filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    itemHeight: 48,
+    y: 0,
   }
 
   const result = await handleClick(state, MouseEventType.Keyboard, 0, 0)
@@ -96,13 +96,13 @@ test('handleClick returns same state when button is not left click', async () =>
 })
 
 test('handleClick returns same state when index is -1', async () => {
-  const items: readonly ActivityBarItem[] = [{ id: 'Settings', title: 'Settings', icon: 'icon', flags: 0, keyShortcuts: '' }]
+  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' }]
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
-    y: 100,
-    itemHeight: 48,
     filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    itemHeight: 48,
+    y: 100,
   }
 
   const result = await handleClick(state, MouseEventType.LeftClick, 0, 2000)
@@ -114,15 +114,15 @@ test('handleClick handles Explorer viewlet click', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
     'Layout.showSideBar'() {},
   })
-  const items: readonly ActivityBarItem[] = [{ id: 'Explorer', title: 'Explorer', icon: 'icon', flags: 0, keyShortcuts: '' }]
+  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Explorer', keyShortcuts: '', title: 'Explorer' }]
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
-    sideBarVisible: false,
     currentViewletId: '',
-    y: 100,
-    itemHeight: 48,
     filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    itemHeight: 48,
+    sideBarVisible: false,
+    y: 100,
   }
 
   const result = await handleClick(state, MouseEventType.LeftClick, 0, 100)
@@ -135,13 +135,13 @@ test('handleClick handles Additional Views viewlet click', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
-  const items: readonly ActivityBarItem[] = [{ id: 'Additional Views', title: 'Additional Views', icon: 'icon', flags: 0, keyShortcuts: '' }]
+  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Additional Views', keyShortcuts: '', title: 'Additional Views' }]
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
-    y: 100,
-    itemHeight: 48,
     filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    itemHeight: 48,
+    y: 100,
   }
 
   const result = await handleClick(state, MouseEventType.LeftClick, 0, 100)
@@ -163,13 +163,13 @@ test('handleClick handles different y and itemHeight values', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
-  const items: readonly ActivityBarItem[] = [{ id: 'Settings', title: 'Settings', icon: 'icon', flags: 0, keyShortcuts: '' }]
+  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' }]
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
-    y: 200,
-    itemHeight: 64,
     filteredItems: getFilteredActivityBarItems(items, 400, 64),
+    itemHeight: 64,
+    y: 200,
   }
 
   const result = await handleClick(state, MouseEventType.LeftClick, 64, 200)

@@ -31,11 +31,11 @@ test('renderCss returns empty array for different states', () => {
 test('renderCss returns empty array with custom properties', () => {
   const items: readonly ActivityBarItem[] = [
     {
-      id: 'test',
-      title: 'Test',
-      icon: 'icon',
       flags: 0,
+      icon: 'icon',
+      id: 'test',
       keyShortcuts: '',
+      title: 'Test',
     },
   ]
 

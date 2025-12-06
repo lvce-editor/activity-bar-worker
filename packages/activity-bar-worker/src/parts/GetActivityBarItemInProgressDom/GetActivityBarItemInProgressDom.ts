@@ -8,7 +8,7 @@ import { getBadgeVirtualDom } from '../GetBadgeVirtualDom/GetBadgeVirtualDom.ts'
 import { getClassName } from '../GetClassName/GetClassName.ts'
 
 export const getActivityBarItemInProgressDom = (item: ActivityBarItem): readonly VirtualDomNode[] => {
-  const { flags, title, icon } = item
+  const { flags, icon, title } = item
   const isTab = flags & ActivityBarItemFlags.Tab
   const isSelected = flags & ActivityBarItemFlags.Selected
   const isFocused = flags & ActivityBarItemFlags.Focused
@@ -19,19 +19,19 @@ export const getActivityBarItemInProgressDom = (item: ActivityBarItem): readonly
   className += ' ' + ClassNames.ActivityBarItemNested
   return [
     {
-      type: VirtualDomElements.Div,
-      className,
       ariaLabel: '',
-      title,
-      role,
       ariaSelected,
       childCount: 2,
+      className,
+      role,
+      title,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
+      childCount: 0,
       className: mergeClassNames(ClassNames.Icon, `MaskIcon${icon}`),
       role: AriaRoles.None,
-      childCount: 0,
+      type: VirtualDomElements.Div,
     },
     ...getBadgeVirtualDom(),
   ]

@@ -5,7 +5,7 @@ import { handleResize } from '../src/parts/HandleResize/HandleResize.ts'
 
 test.skip('handleResize returns the same state', () => {
   const state: ActivityBarState = createDefaultState()
-  const result: ActivityBarState = handleResize(state, { x: 0, width: 0, height: 0, y: 0 })
+  const result: ActivityBarState = handleResize(state, { height: 0, width: 0, x: 0, y: 0 })
 
   expect(result).toBe(state)
 })
@@ -17,7 +17,7 @@ test.skip('handleResize returns the same state for custom state', () => {
     x: 20,
     y: 30,
   }
-  const result: ActivityBarState = handleResize(state, { x: 0, width: 0, height: 0, y: 0 })
+  const result: ActivityBarState = handleResize(state, { height: 0, width: 0, x: 0, y: 0 })
 
   expect(result).toBe(state)
   expect(result.width).toBe(100)
@@ -27,7 +27,7 @@ test.skip('handleResize returns the same state for custom state', () => {
 
 test.skip('handleResize returns the same state reference', () => {
   const state: ActivityBarState = createDefaultState()
-  const result: ActivityBarState = handleResize(state, { x: 0, width: 0, height: 0, y: 0 })
+  const result: ActivityBarState = handleResize(state, { height: 0, width: 0, x: 0, y: 0 })
 
   expect(result).toBe(state)
 })

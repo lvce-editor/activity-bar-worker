@@ -6,14 +6,14 @@ import * as RenderItems from '../RenderItems/RenderItems.ts'
 
 export const getRenderer = (diffType: number): Renderer => {
   switch (diffType) {
-    case DiffType.RenderItems:
-      return RenderItems.renderItems
-    case DiffType.RenderFocusContext:
-      return RenderFocusContext.renderFocusContext
-    case DiffType.RenderFocus:
-      return RenderFocusContext.renderFocusContext
     case DiffType.RenderCss:
       return renderCss
+    case DiffType.RenderFocus:
+      return RenderFocusContext.renderFocusContext
+    case DiffType.RenderFocusContext:
+      return RenderFocusContext.renderFocusContext
+    case DiffType.RenderItems:
+      return RenderItems.renderItems
     default:
       throw new Error('unknown renderer')
   }

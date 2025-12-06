@@ -4,8 +4,8 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { toggleActivityBarItem } from '../src/parts/ToggleActivityBarItem/ToggleActivityBarItem.ts'
 
 test('toggleActivityBarItem should disable an enabled item', async () => {
-  const item1 = { id: 'test1', title: 'Test1', icon: 'icon1', flags: 0, keyShortcuts: '', enabled: true } as any
-  const item2 = { id: 'test2', title: 'Test2', icon: 'icon2', flags: 0, keyShortcuts: '', enabled: true } as any
+  const item1 = { enabled: true, flags: 0, icon: 'icon1', id: 'test1', keyShortcuts: '', title: 'Test1' } as any
+  const item2 = { enabled: true, flags: 0, icon: 'icon2', id: 'test2', keyShortcuts: '', title: 'Test2' } as any
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: [item1, item2],
@@ -18,7 +18,7 @@ test('toggleActivityBarItem should disable an enabled item', async () => {
 })
 
 test('toggleActivityBarItem should enable a disabled item when re-adding', async () => {
-  const item1 = { id: 'test1', title: 'Test1', icon: 'icon1', flags: 0, keyShortcuts: '', enabled: false } as any
+  const item1 = { enabled: false, flags: 0, icon: 'icon1', id: 'test1', keyShortcuts: '', title: 'Test1' } as any
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: [item1],
@@ -31,9 +31,9 @@ test('toggleActivityBarItem should enable a disabled item when re-adding', async
 })
 
 test('toggleActivityBarItem should filter out disabled items', async () => {
-  const item1 = { id: 'test1', title: 'Test1', icon: 'icon1', flags: 0, keyShortcuts: '', enabled: true } as any
-  const item2 = { id: 'test2', title: 'Test2', icon: 'icon2', flags: 0, keyShortcuts: '', enabled: false } as any
-  const item3 = { id: 'test3', title: 'Test3', icon: 'icon3', flags: 0, keyShortcuts: '', enabled: true } as any
+  const item1 = { enabled: true, flags: 0, icon: 'icon1', id: 'test1', keyShortcuts: '', title: 'Test1' } as any
+  const item2 = { enabled: false, flags: 0, icon: 'icon2', id: 'test2', keyShortcuts: '', title: 'Test2' } as any
+  const item3 = { enabled: true, flags: 0, icon: 'icon3', id: 'test3', keyShortcuts: '', title: 'Test3' } as any
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: [item1, item2, item3],
@@ -46,13 +46,13 @@ test('toggleActivityBarItem should filter out disabled items', async () => {
 })
 
 test('toggleActivityBarItem should keep other state properties', async () => {
-  const item1 = { id: 'test1', title: 'Test1', icon: 'icon1', flags: 0, keyShortcuts: '', enabled: true } as any
+  const item1 = { enabled: true, flags: 0, icon: 'icon1', id: 'test1', keyShortcuts: '', title: 'Test1' } as any
   const state: ActivityBarState = {
     ...createDefaultState(),
-    uid: 123,
-    focus: 5,
-    currentViewletId: 'viewlet1',
     activityBarItems: [item1],
+    currentViewletId: 'viewlet1',
+    focus: 5,
+    uid: 123,
   }
 
   const result = await toggleActivityBarItem(state, { label: 'test1' })
@@ -63,9 +63,9 @@ test('toggleActivityBarItem should keep other state properties', async () => {
 })
 
 test('toggleActivityBarItem should return all enabled items when item is disabled', async () => {
-  const item1 = { id: 'test1', title: 'Test1', icon: 'icon1', flags: 0, keyShortcuts: '', enabled: false } as any
-  const item2 = { id: 'test2', title: 'Test2', icon: 'icon2', flags: 0, keyShortcuts: '', enabled: true } as any
-  const item3 = { id: 'test3', title: 'Test3', icon: 'icon3', flags: 0, keyShortcuts: '', enabled: true } as any
+  const item1 = { enabled: false, flags: 0, icon: 'icon1', id: 'test1', keyShortcuts: '', title: 'Test1' } as any
+  const item2 = { enabled: true, flags: 0, icon: 'icon2', id: 'test2', keyShortcuts: '', title: 'Test2' } as any
+  const item3 = { enabled: true, flags: 0, icon: 'icon3', id: 'test3', keyShortcuts: '', title: 'Test3' } as any
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: [item1, item2, item3],
@@ -78,8 +78,8 @@ test('toggleActivityBarItem should return all enabled items when item is disable
 })
 
 test('toggleActivityBarItem should handle multiple toggles', async () => {
-  const item1 = { id: 'test1', title: 'Test1', icon: 'icon1', flags: 0, keyShortcuts: '', enabled: true } as any
-  const item2 = { id: 'test2', title: 'Test2', icon: 'icon2', flags: 0, keyShortcuts: '', enabled: true } as any
+  const item1 = { enabled: true, flags: 0, icon: 'icon1', id: 'test1', keyShortcuts: '', title: 'Test1' } as any
+  const item2 = { enabled: true, flags: 0, icon: 'icon2', id: 'test2', keyShortcuts: '', title: 'Test2' } as any
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: [item1, item2],

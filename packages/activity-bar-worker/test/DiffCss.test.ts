@@ -43,11 +43,11 @@ test('DiffCss.isEqual should return false when focused changes', () => {
 test('DiffCss.isEqual should return false when activityBarItems changes', () => {
   const items: readonly ActivityBarItem[] = [
     {
-      id: 'test',
-      title: 'Test',
-      icon: 'icon',
       flags: 0,
+      icon: 'icon',
+      id: 'test',
       keyShortcuts: '',
+      title: 'Test',
     },
   ]
 

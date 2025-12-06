@@ -4,19 +4,19 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 export const getBadgeVirtualDom = (): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
+      childCount: 1,
       className: ClassNames.ActivityBarItemBadge,
-      childCount: 1,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
+      childCount: 1,
       className: ClassNames.BadgeContent,
-      childCount: 1,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
-      className: mergeClassNames(ClassNames.Icon, ClassNames.ActivityBarBadgeIcon, ClassNames.MaskIconProgress),
       childCount: 0,
+      className: mergeClassNames(ClassNames.Icon, ClassNames.ActivityBarBadgeIcon, ClassNames.MaskIconProgress),
+      type: VirtualDomElements.Div,
     },
   ]
 }

@@ -10,8 +10,8 @@ test('handleClickOther calls SideBar.hide when sidebar is visible and currentVie
   })
   const state: ActivityBarState = {
     ...createDefaultState(),
-    sideBarVisible: true,
     currentViewletId: 'test-viewlet',
+    sideBarVisible: true,
   }
 
   const result: ActivityBarState = await handleClickOther(state, 10, 20, 'test-viewlet')
@@ -26,8 +26,8 @@ test('handleClickOther calls SideBar.show when sidebar is visible and currentVie
   })
   const state: ActivityBarState = {
     ...createDefaultState(),
-    sideBarVisible: true,
     currentViewletId: 'current-viewlet',
+    sideBarVisible: true,
   }
 
   const result: ActivityBarState = await handleClickOther(state, 10, 20, 'new-viewlet')
@@ -42,8 +42,8 @@ test('handleClickOther calls Layout.showSideBar when sidebar is not visible', as
   })
   const state: ActivityBarState = {
     ...createDefaultState(),
-    sideBarVisible: false,
     currentViewletId: 'test-viewlet',
+    sideBarVisible: false,
   }
 
   const result: ActivityBarState = await handleClickOther(state, 10, 20, 'new-viewlet')
@@ -58,10 +58,10 @@ test('handleClickOther preserves state properties', async () => {
   })
   const state: ActivityBarState = {
     ...createDefaultState(),
-    sideBarVisible: false,
     currentViewletId: 'test-viewlet',
-    focusedIndex: 2,
     focused: true,
+    focusedIndex: 2,
+    sideBarVisible: false,
     width: 100,
   }
 
@@ -79,8 +79,8 @@ test('handleClickOther handles empty currentViewletId', async () => {
   })
   const state: ActivityBarState = {
     ...createDefaultState(),
-    sideBarVisible: true,
     currentViewletId: '',
+    sideBarVisible: true,
   }
 
   const result: ActivityBarState = await handleClickOther(state, 10, 20, '')

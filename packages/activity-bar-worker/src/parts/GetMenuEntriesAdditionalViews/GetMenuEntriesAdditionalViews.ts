@@ -6,10 +6,10 @@ import { getHiddenItems } from '../ViewletActivityBar/ViewletActivityBarGetHidde
 
 const toContextMenuItem = (activityBarItem: ActivityBarItem): MenuEntry => {
   return {
-    label: activityBarItem.id,
-    id: '8000', // TODO
-    flags: MenuItemFlags.None,
     command: '-1', // TODO
+    flags: MenuItemFlags.None,
+    id: '8000', // TODO
+    label: activityBarItem.id,
   }
 }
 

@@ -10,10 +10,10 @@ import * as MenuEntrySeparator from '../MenuEntrySeparator/MenuEntrySeparator.ts
 const toContextMenuItem = (activityBarItem: ActivityBarItem): MenuEntry => {
   const isEnabled = activityBarItem.flags & ActivityBarItemFlags.Enabled
   return {
-    label: activityBarItem.id,
-    id: '', // TODO
-    flags: isEnabled ? MenuItemFlags.Checked : MenuItemFlags.Unchecked,
     command: '',
+    flags: isEnabled ? MenuItemFlags.Checked : MenuItemFlags.Unchecked,
+    id: '', // TODO
+    label: activityBarItem.id,
   }
 }
 
@@ -24,10 +24,10 @@ export const getMenuEntriesActivityBar = (state: ActivityBarState): readonly Men
     MenuEntrySeparator.menuEntrySeparator,
     menuEntryMoveSideBar(sideBarLocation),
     {
+      command: 'Layout.hideActivityBar',
+      flags: MenuItemFlags.None,
       id: 'hideActivityBar',
       label: ViewletActivityBarStrings.hideActivityBar(),
-      flags: MenuItemFlags.None,
-      command: 'Layout.hideActivityBar',
     },
   ]
 }

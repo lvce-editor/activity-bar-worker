@@ -14,18 +14,18 @@ const className = mergeClassNames(ClassNames.Viewlet, ClassNames.ActivityBar)
 export const getActivityBarVirtualDom = (visibleItems: readonly ActivityBarItem[]): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
-      id: DomId.ActivityBar,
-      className,
-      role: AriaRoles.ToolBar,
-      ariaRoleDescription: ActivityBarStrings.activityBar(),
       ariaOrientation: AriaOrientationType.Vertical,
-      tabIndex: 0,
-      onMouseDown: DomEventListenerFunctions.HandleMouseDown,
+      ariaRoleDescription: ActivityBarStrings.activityBar(),
+      childCount: visibleItems.length,
+      className,
+      id: DomId.ActivityBar,
+      onBlur: DomEventListenerFunctions.HandleBlur,
       onContextMenu: DomEventListenerFunctions.HandleContextMenu,
       onFocus: DomEventListenerFunctions.HandleFocus,
-      onBlur: DomEventListenerFunctions.HandleBlur,
-      childCount: visibleItems.length,
+      onMouseDown: DomEventListenerFunctions.HandleMouseDown,
+      role: AriaRoles.ToolBar,
+      tabIndex: 0,
+      type: VirtualDomElements.Div,
     },
     ...GetActivityBarItemsVirtualDom.getVirtualDom(visibleItems),
   ]
