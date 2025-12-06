@@ -7,7 +7,7 @@ import { getAriaSelected } from '../GetAriaSelected/GetAriaSelected.ts'
 import { getClassName } from '../GetClassName/GetClassName.ts'
 
 export const getActivityBarItemWithBadgeDom = (item: ActivityBarItem): readonly VirtualDomNode[] => {
-  const { flags, title, icon, badgeText } = item
+  const { badgeText, flags, icon, title } = item
   if (!badgeText) {
     // TODO should not happen
     return []
@@ -22,24 +22,24 @@ export const getActivityBarItemWithBadgeDom = (item: ActivityBarItem): readonly 
   className += ' ' + ClassNames.ActivityBarItemNested
   return [
     {
-      type: VirtualDomElements.Div,
-      className,
       ariaLabel: '',
-      title,
-      role,
       ariaSelected,
       childCount: 2,
+      className,
+      role,
+      title,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
+      childCount: 0,
       className: mergeClassNames(ClassNames.Icon, `MaskIcon${icon}`),
       role: AriaRoles.None,
-      childCount: 0,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ActivityBarItemBadge,
       childCount: 1,
+      className: ClassNames.ActivityBarItemBadge,
+      type: VirtualDomElements.Div,
     },
     text(badgeText),
   ]

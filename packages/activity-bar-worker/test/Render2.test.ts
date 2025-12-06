@@ -7,8 +7,8 @@ import { render2 } from '../src/parts/Render2/Render2.ts'
 
 test('render2 updates states in registry and returns commands', () => {
   const uid = 123
-  const oldState: ActivityBarState = { ...createDefaultState(), uid, focusedIndex: 0 }
-  const newState: ActivityBarState = { ...createDefaultState(), uid, focusedIndex: 1 }
+  const oldState: ActivityBarState = { ...createDefaultState(), focusedIndex: 0, uid }
+  const newState: ActivityBarState = { ...createDefaultState(), focusedIndex: 1, uid }
   ActivityBarStates.set(uid, oldState, newState)
   const diffResult: readonly number[] = [DiffType.RenderItems]
 
@@ -16,14 +16,14 @@ test('render2 updates states in registry and returns commands', () => {
 
   expect(commands).toBeDefined()
   expect(Array.isArray(commands)).toBe(true)
-  const { oldState: storedOldState, newState: storedNewState } = ActivityBarStates.get(uid)
+  const { newState: storedNewState, oldState: storedOldState } = ActivityBarStates.get(uid)
   expect(storedOldState).toEqual(storedNewState)
 })
 
 test('render2 returns empty commands array for empty diffResult', () => {
   const uid = 456
-  const oldState: ActivityBarState = { ...createDefaultState(), uid, focusedIndex: 0 }
-  const newState: ActivityBarState = { ...createDefaultState(), uid, focusedIndex: 1 }
+  const oldState: ActivityBarState = { ...createDefaultState(), focusedIndex: 0, uid }
+  const newState: ActivityBarState = { ...createDefaultState(), focusedIndex: 1, uid }
   ActivityBarStates.set(uid, oldState, newState)
   const diffResult: readonly number[] = []
 
@@ -34,8 +34,8 @@ test('render2 returns empty commands array for empty diffResult', () => {
 
 test('render2 handles multiple diff types', () => {
   const uid = 789
-  const oldState: ActivityBarState = { ...createDefaultState(), uid, focusedIndex: 0 }
-  const newState: ActivityBarState = { ...createDefaultState(), uid, focusedIndex: 1 }
+  const oldState: ActivityBarState = { ...createDefaultState(), focusedIndex: 0, uid }
+  const newState: ActivityBarState = { ...createDefaultState(), focusedIndex: 1, uid }
   ActivityBarStates.set(uid, oldState, newState)
   const diffResult: readonly number[] = [DiffType.RenderItems, DiffType.RenderCss]
 
@@ -46,14 +46,14 @@ test('render2 handles multiple diff types', () => {
 
 test('render2 updates registry states correctly', () => {
   const uid = 111
-  const oldState: ActivityBarState = { ...createDefaultState(), uid, focusedIndex: 0 }
-  const newState: ActivityBarState = { ...createDefaultState(), uid, focusedIndex: 1 }
+  const oldState: ActivityBarState = { ...createDefaultState(), focusedIndex: 0, uid }
+  const newState: ActivityBarState = { ...createDefaultState(), focusedIndex: 1, uid }
   ActivityBarStates.set(uid, oldState, newState)
   const diffResult: readonly number[] = [DiffType.RenderFocusContext]
 
   render2(uid, diffResult)
 
-  const { oldState: storedOldState, newState: storedNewState } = ActivityBarStates.get(uid)
+  const { newState: storedNewState, oldState: storedOldState } = ActivityBarStates.get(uid)
   expect(storedOldState.focusedIndex).toBe(1)
   expect(storedNewState.focusedIndex).toBe(1)
   expect(storedOldState).toEqual(storedNewState)

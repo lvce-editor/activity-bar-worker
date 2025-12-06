@@ -6,7 +6,7 @@ import * as SideBarLocationType from '../SideBarLocationType/SideBarLocationType
 import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 
 export const loadContent = async (state: ActivityBarState, savedState: any): Promise<ActivityBarState> => {
-  const { itemHeight, height } = state
+  const { height, itemHeight } = state
   const items = getActivityBarItems()
   const explorerIndex = 0
   const itemsWithSelected = markSelected(items, explorerIndex)

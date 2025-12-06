@@ -39,8 +39,8 @@ test('applyRender returns empty array when diffResult contains RenderFocusContex
   const oldState: ActivityBarState = createDefaultState()
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    uid: 123,
     focus: 0,
+    uid: 123,
   }
   const diffResult: readonly number[] = [DiffType.RenderFocusContext]
 
@@ -53,8 +53,8 @@ test('applyRender returns commands when diffResult contains RenderFocusContext w
   const oldState: ActivityBarState = createDefaultState()
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    uid: 456,
     focus: FocusId.List,
+    uid: 456,
   }
   const diffResult: readonly number[] = [DiffType.RenderFocusContext]
 
@@ -70,8 +70,8 @@ test('applyRender returns commands when diffResult contains RenderItems', () => 
   const oldState: ActivityBarState = createDefaultState()
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    uid: 789,
     activityBarItems: [],
+    uid: 789,
   }
   const diffResult: readonly number[] = [DiffType.RenderItems]
 
@@ -87,8 +87,8 @@ test('applyRender filters out empty results', () => {
   const oldState: ActivityBarState = createDefaultState()
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    uid: 123,
     focus: FocusId.List,
+    uid: 123,
   }
   const diffResult: readonly number[] = [DiffType.RenderCss, DiffType.RenderFocusContext, DiffType.RenderCss]
 
@@ -119,9 +119,9 @@ test('applyRender collects multiple non-empty results', () => {
   const oldState: ActivityBarState = createDefaultState()
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    uid: 456,
-    focus: FocusId.List,
     activityBarItems: [],
+    focus: FocusId.List,
+    uid: 456,
   }
   const diffResult: readonly number[] = [DiffType.RenderItems, DiffType.RenderFocusContext]
 
@@ -158,8 +158,8 @@ test('applyRender handles RenderFocus with focus List', () => {
   const oldState: ActivityBarState = createDefaultState()
   const newState: ActivityBarState = {
     ...createDefaultState(),
-    uid: 111,
     focus: FocusId.List,
+    uid: 111,
   }
   const diffResult: readonly number[] = [DiffType.RenderFocus]
 

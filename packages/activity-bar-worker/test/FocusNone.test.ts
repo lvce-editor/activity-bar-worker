@@ -30,27 +30,27 @@ test('focusNone calls focusIndex with -1 when focusedIndex is not -1', () => {
 test('focusNone preserves other state properties', () => {
   const items: readonly ActivityBarItem[] = [
     {
-      id: 'item1',
-      title: 'Item 1',
-      icon: 'icon1',
       flags: 0,
+      icon: 'icon1',
+      id: 'item1',
       keyShortcuts: '',
+      title: 'Item 1',
     },
     {
-      id: 'item2',
-      title: 'Item 2',
-      icon: 'icon2',
       flags: 0,
+      icon: 'icon2',
+      id: 'item2',
       keyShortcuts: '',
+      title: 'Item 2',
     },
   ]
 
   const state: ActivityBarState = {
     ...createDefaultState(),
-    focusedIndex: 3,
-    focused: true,
     activityBarItems: items,
     currentViewletId: 'test-viewlet',
+    focused: true,
+    focusedIndex: 3,
   }
 
   const result: ActivityBarState = focusNone(state)

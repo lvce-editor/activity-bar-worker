@@ -10,6 +10,7 @@ export interface ActivityBarState {
   readonly height: number
   readonly itemHeight: number
   readonly numberOfVisibleItems: number
+  readonly platform: number
   readonly scrollBarHeight: any
   readonly selectedIndex: number
   readonly sideBarLocation: number
@@ -20,5 +21,4 @@ export interface ActivityBarState {
   readonly width: number
   readonly x: number
   readonly y: number
-  readonly platform: number
 }

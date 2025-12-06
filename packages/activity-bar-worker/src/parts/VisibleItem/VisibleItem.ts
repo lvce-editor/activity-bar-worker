@@ -1,9 +1,9 @@
 export interface VisibleItem {
-  readonly title: string
+  readonly hasMarginTop: boolean
   readonly icon: string
-  readonly isTab: boolean
-  readonly isSelected: boolean
   readonly isFocused: boolean
   readonly isProgress: boolean
-  readonly hasMarginTop: boolean
+  readonly isSelected: boolean
+  readonly isTab: boolean
+  readonly title: string
 }

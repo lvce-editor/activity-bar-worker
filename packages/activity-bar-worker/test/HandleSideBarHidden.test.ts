@@ -43,19 +43,19 @@ test('handleSideBarHidden sets both focusedIndex and selectedIndex to -1', () =>
 
 test('handleSideBarHidden preserves other state properties', () => {
   const items: readonly ActivityBarItem[] = [
-    { id: 'item1', title: 'Item 1', icon: 'icon1', flags: 0, keyShortcuts: '' },
-    { id: 'item2', title: 'Item 2', icon: 'icon2', flags: 0, keyShortcuts: '' },
+    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
   ]
 
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
     currentViewletId: 'test-viewlet',
-    focused: true,
     focus: 2,
+    focused: true,
+    itemHeight: 50,
     sideBarVisible: true,
     width: 100,
-    itemHeight: 50,
   }
 
   const result: ActivityBarState = handleSideBarHidden(state)
@@ -107,8 +107,8 @@ test('handleSideBarHidden clears Selected and Focused flags from all items', () 
   const Selected = 1 << 4
   const Focused = 1 << 5
   const items: readonly ActivityBarItem[] = [
-    { id: 'item1', title: 'Item 1', icon: 'icon1', flags: Selected, keyShortcuts: '' },
-    { id: 'item2', title: 'Item 2', icon: 'icon2', flags: Selected | Focused, keyShortcuts: '' },
+    { flags: Selected, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: Selected | Focused, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
   ]
 
   const state: ActivityBarState = {

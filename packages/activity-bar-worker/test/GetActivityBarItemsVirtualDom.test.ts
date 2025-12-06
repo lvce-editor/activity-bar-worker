@@ -15,8 +15,8 @@ test('getVirtualDom creates basic item without flags', () => {
   const items: readonly any[] = [
     {
       flags: 0,
-      title: 'Explorer',
       icon: 'Explorer',
+      title: 'Explorer',
     },
   ]
 
@@ -33,8 +33,8 @@ test('getVirtualDom creates item with Tab flag', () => {
   const items: readonly any[] = [
     {
       flags: ActivityBarItemFlags.Tab,
-      title: 'Explorer',
       icon: 'Explorer',
+      title: 'Explorer',
     },
   ]
 
@@ -48,8 +48,8 @@ test('getVirtualDom creates selected item with icon', () => {
   const items: readonly any[] = [
     {
       flags: ActivityBarItemFlags.Selected,
-      title: 'Explorer',
       icon: 'Explorer',
+      title: 'Explorer',
     },
   ]
 
@@ -65,8 +65,8 @@ test('getVirtualDom creates selected tab with icon', () => {
   const items: readonly any[] = [
     {
       flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Selected,
-      title: 'Explorer',
       icon: 'Explorer',
+      title: 'Explorer',
     },
   ]
 
@@ -81,8 +81,8 @@ test('getVirtualDom creates item with Focused flag', () => {
   const items: readonly any[] = [
     {
       flags: ActivityBarItemFlags.Focused,
-      title: 'Explorer',
       icon: 'Explorer',
+      title: 'Explorer',
     },
   ]
 
@@ -95,8 +95,8 @@ test('getVirtualDom creates item with MarginTop flag', () => {
   const items: readonly any[] = [
     {
       flags: ActivityBarItemFlags.MarginTop,
-      title: 'Explorer',
       icon: 'Explorer',
+      title: 'Explorer',
     },
   ]
 
@@ -109,8 +109,8 @@ test('getVirtualDom creates item with Progress flag', () => {
   const items: readonly any[] = [
     {
       flags: ActivityBarItemFlags.Progress,
-      title: 'Explorer',
       icon: 'Explorer',
+      title: 'Explorer',
     },
   ]
 
@@ -125,8 +125,8 @@ test('getVirtualDom creates item with multiple flags', () => {
   const items: readonly any[] = [
     {
       flags: ActivityBarItemFlags.Focused | ActivityBarItemFlags.MarginTop | ActivityBarItemFlags.Selected,
-      title: 'Explorer',
       icon: 'Explorer',
+      title: 'Explorer',
     },
   ]
 
@@ -141,13 +141,13 @@ test('getVirtualDom creates multiple items', () => {
   const items: readonly any[] = [
     {
       flags: 0,
-      title: 'Explorer',
       icon: 'Explorer',
+      title: 'Explorer',
     },
     {
       flags: ActivityBarItemFlags.Selected,
-      title: 'Settings',
       icon: 'Settings',
+      title: 'Settings',
     },
   ]
 
@@ -165,8 +165,8 @@ test('getVirtualDom handles item with all flags', () => {
         ActivityBarItemFlags.Selected |
         ActivityBarItemFlags.Focused |
         ActivityBarItemFlags.MarginTop,
-      title: 'Explorer',
       icon: 'Explorer',
+      title: 'Explorer',
     },
   ]
 

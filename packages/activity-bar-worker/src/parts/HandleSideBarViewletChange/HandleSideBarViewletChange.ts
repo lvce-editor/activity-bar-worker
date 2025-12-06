@@ -10,10 +10,10 @@ export const handleSideBarViewletChange = (state: ActivityBarState, id: string, 
   const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)
   return {
     ...state,
-    selectedIndex: index,
-    currentViewletId: id,
     activityBarItems: newActivityBarItems,
+    currentViewletId: id,
     filteredItems,
+    selectedIndex: index,
     sideBarVisible: true,
   }
 }

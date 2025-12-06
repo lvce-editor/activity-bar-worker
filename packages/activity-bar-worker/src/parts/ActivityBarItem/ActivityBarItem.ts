@@ -1,9 +1,9 @@
 export interface ActivityBarItem {
-  readonly id: string // TODO should be number
-  readonly title: string
-  readonly icon: string
-  readonly flags: number
-  readonly keyShortcuts: string
   readonly badgeIcon?: string
   readonly badgeText?: string
+  readonly flags: number
+  readonly icon: string
+  readonly id: string // TODO should be number
+  readonly keyShortcuts: string
+  readonly title: string
 }

@@ -7,9 +7,9 @@ import { handleSideBarViewletChange } from '../src/parts/HandleSideBarViewletCha
 
 test('handleSideBarViewletChange sets selectedIndex to found index', () => {
   const items: readonly ActivityBarItem[] = [
-    { id: 'item1', title: 'Item 1', icon: 'icon1', flags: 0, keyShortcuts: '' },
-    { id: 'item2', title: 'Item 2', icon: 'icon2', flags: 0, keyShortcuts: '' },
-    { id: 'item3', title: 'Item 3', icon: 'icon3', flags: 0, keyShortcuts: '' },
+    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
   ]
 
   const state: ActivityBarState = {
@@ -29,8 +29,8 @@ test('handleSideBarViewletChange sets selectedIndex to found index', () => {
 
 test('handleSideBarViewletChange sets selectedIndex to -1 when item not found', () => {
   const items: readonly ActivityBarItem[] = [
-    { id: 'item1', title: 'Item 1', icon: 'icon1', flags: 0, keyShortcuts: '' },
-    { id: 'item2', title: 'Item 2', icon: 'icon2', flags: 0, keyShortcuts: '' },
+    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
   ]
 
   const state: ActivityBarState = {
@@ -47,17 +47,17 @@ test('handleSideBarViewletChange sets selectedIndex to -1 when item not found', 
 
 test('handleSideBarViewletChange preserves other state properties', () => {
   const items: readonly ActivityBarItem[] = [
-    { id: 'item1', title: 'Item 1', icon: 'icon1', flags: ActivityBarItemFlags.Tab, keyShortcuts: '' },
-    { id: 'item2', title: 'Item 2', icon: 'icon2', flags: ActivityBarItemFlags.Tab, keyShortcuts: '' },
+    { flags: ActivityBarItemFlags.Tab, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Tab, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
   ]
 
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
-    selectedIndex: 0,
-    focusedIndex: 1,
-    focused: true,
     currentViewletId: 'test-viewlet',
+    focused: true,
+    focusedIndex: 1,
+    selectedIndex: 0,
   }
 
   const result: ActivityBarState = handleSideBarViewletChange(state, 'item2')
@@ -83,8 +83,8 @@ test('handleSideBarViewletChange handles empty activityBarItems', () => {
 
 test('handleSideBarViewletChange handles first item', () => {
   const items: readonly ActivityBarItem[] = [
-    { id: 'first', title: 'First', icon: 'icon1', flags: 0, keyShortcuts: '' },
-    { id: 'second', title: 'Second', icon: 'icon2', flags: 0, keyShortcuts: '' },
+    { flags: 0, icon: 'icon1', id: 'first', keyShortcuts: '', title: 'First' },
+    { flags: 0, icon: 'icon2', id: 'second', keyShortcuts: '', title: 'Second' },
   ]
 
   const state: ActivityBarState = {
@@ -102,9 +102,9 @@ test('handleSideBarViewletChange handles first item', () => {
 
 test('handleSideBarViewletChange handles last item', () => {
   const items: readonly ActivityBarItem[] = [
-    { id: 'first', title: 'First', icon: 'icon1', flags: 0, keyShortcuts: '' },
-    { id: 'second', title: 'Second', icon: 'icon2', flags: 0, keyShortcuts: '' },
-    { id: 'third', title: 'Third', icon: 'icon3', flags: 0, keyShortcuts: '' },
+    { flags: 0, icon: 'icon1', id: 'first', keyShortcuts: '', title: 'First' },
+    { flags: 0, icon: 'icon2', id: 'second', keyShortcuts: '', title: 'Second' },
+    { flags: 0, icon: 'icon3', id: 'third', keyShortcuts: '', title: 'Third' },
   ]
 
   const state: ActivityBarState = {

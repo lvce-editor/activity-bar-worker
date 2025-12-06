@@ -25,6 +25,6 @@ const toVisibleItems = (items: readonly ActivityBarItem[], selectedIndex: number
 
 export const getVisibleActivityBarItems = (state: ActivityBarState): readonly ActivityBarItem[] => {
   // @ts-ignore
-  const { filteredItems, selectedIndex, focusedIndex } = state
+  const { filteredItems, focusedIndex, selectedIndex } = state
   return toVisibleItems(filteredItems, selectedIndex, focusedIndex)
 }
