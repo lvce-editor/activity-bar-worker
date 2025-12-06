@@ -14,20 +14,8 @@ const UiStrings = {
   ToggleDeveloperTools: 'Toggle Developer Tools',
 }
 
-export const toggleDeveloperTools = (): string => {
-  return I18nString.i18nString(UiStrings.ToggleDeveloperTools)
-}
-
-export const openProcessExplorer = (): string => {
-  return I18nString.i18nString(UiStrings.OpenProcessExplorer)
-}
-
 export const checkForUpdates = (): string => {
   return I18nString.i18nString(UiStrings.CheckForUpdates)
-}
-
-export const about = (): string => {
-  return I18nString.i18nString(UiStrings.About)
 }
 
 export const commandPalette = (): string => {
