@@ -49,9 +49,7 @@ test('handleBadgeCountChange preserves other state properties', async () => {
     },
   })
 
-  const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-  ]
+  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }]
 
   const state: ActivityBarState = {
     ...createDefaultState(),

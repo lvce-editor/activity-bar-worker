@@ -125,11 +125,7 @@ test('getActivityBarItemWithBadgeDom handles MarginTop flag', () => {
 test('getActivityBarItemWithBadgeDom handles multiple flags together', () => {
   const item: ActivityBarItem = {
     badgeText: '99',
-    flags:
-      ActivityBarItemFlags.Tab |
-      ActivityBarItemFlags.Selected |
-      ActivityBarItemFlags.Focused |
-      ActivityBarItemFlags.MarginTop,
+    flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Selected | ActivityBarItemFlags.Focused | ActivityBarItemFlags.MarginTop,
     icon: 'Explorer',
     title: 'Explorer',
   } as any
