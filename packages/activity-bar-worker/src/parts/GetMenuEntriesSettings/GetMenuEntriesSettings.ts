@@ -1,12 +1,14 @@
-import { MenuItemFlags } from '@lvce-editor/constants'
+import { MenuItemFlags, PlatformType } from '@lvce-editor/constants'
+import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
 import * as HelpStrings from '../HelpStrings/HelpStrings.ts'
 import * as MenuEntrySeparator from '../MenuEntrySeparator/MenuEntrySeparator.ts'
 
 const keyBindingsUri = 'app://keybindings'
 
-export const getMenuEntriesSettings = (): readonly MenuEntry[] => {
-  return [
+export const getMenuEntriesSettings = (state: ActivityBarState): readonly MenuEntry[] => {
+  const { platform } = state
+  const items = [
     {
       command: 'QuickPick.showEverything',
       flags: MenuItemFlags.None,
@@ -33,12 +35,14 @@ export const getMenuEntriesSettings = (): readonly MenuEntry[] => {
       id: 'colorTheme',
       label: HelpStrings.colorTheme(),
     },
-    MenuEntrySeparator.menuEntrySeparator,
-    {
+  ]
+  if (platform !== PlatformType.Web) {
+    items.push(MenuEntrySeparator.menuEntrySeparator, {
       command: 'AutoUpdater.checkForUpdates',
       flags: MenuItemFlags.None,
       id: 'checkForUpdates',
       label: HelpStrings.checkForUpdates(),
-    },
-  ]
+    })
+  }
+  return items
 }
