@@ -23,7 +23,7 @@ export const create = (
     height,
     itemHeight: 48,
     numberOfVisibleItems: 0,
-    platform: 0,
+    platform,
     scrollBarHeight: 0,
     selectedIndex: -1,
     sideBarLocation: 0,
