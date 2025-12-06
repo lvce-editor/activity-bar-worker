@@ -44,3 +44,19 @@ test('ActivityBarStrings.moveSideBarLeft should return correct string', () => {
 test('ActivityBarStrings.hideActivityBar should return correct string', () => {
   expect(ActivityBarStrings.hideActivityBar()).toBe('Hide Activity Bar')
 })
+
+test('ActivityBarStrings.checkForUpdates should return correct string', () => {
+  expect(ActivityBarStrings.checkForUpdates()).toBe('Check For Updates')
+})
+
+test('ActivityBarStrings.commandPalette should return correct string', () => {
+  expect(ActivityBarStrings.commandPalette()).toBe('Command Palette')
+})
+
+test('ActivityBarStrings.keyboardShortcuts should return correct string', () => {
+  expect(ActivityBarStrings.keyboardShortcuts()).toBe('Keyboard Shortcuts')
+})
+
+test('ActivityBarStrings.colorTheme should return correct string', () => {
+  expect(ActivityBarStrings.colorTheme()).toBe('Color Theme')
+})
