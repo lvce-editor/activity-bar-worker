@@ -45,6 +45,21 @@ test('getMenuEntries returns menu entries for Settings menuId', () => {
   expect(result[0].command).toBe('QuickPick.showEverything')
 })
 
+test('getMenuEntries returns menu entries for Account menuId', () => {
+  const state: ActivityBarState = createDefaultState()
+  const options: ContextMenuProps = {
+    menuId: 1000 as any,
+  }
+
+  const result = getMenuEntries(state, options)
+
+  expect(result.length).toBe(2)
+  expect(result[0].command).toBe('Account.signIn')
+  expect(result[0].label).toBe('Sign In')
+  expect(result[1].command).toBe('Account.signOut')
+  expect(result[1].label).toBe('Sign Out')
+})
+
 test('getMenuEntries returns empty array for unknown menuId', () => {
   const state: ActivityBarState = createDefaultState()
   const options: ContextMenuProps = {

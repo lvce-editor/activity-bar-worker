@@ -17,4 +17,8 @@ export interface ContextMenuPropsActivityBar extends ContextMenuPropsBase {
   readonly menuId: typeof MenuEntryId.ActivityBar
 }
 
-export type ContextMenuProps = ContextMenuPropsAdditionalViews | ContextMenuPropsSettings | ContextMenuPropsActivityBar
+export interface ContextMenuPropsAccount extends ContextMenuPropsBase {
+  readonly menuId: number
+}
+
+export type ContextMenuProps = ContextMenuPropsAdditionalViews | ContextMenuPropsSettings | ContextMenuPropsActivityBar | ContextMenuPropsAccount
