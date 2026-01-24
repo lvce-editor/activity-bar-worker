@@ -1,6 +1,7 @@
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 
 export interface ActivityBarState {
+  readonly accountEnabled: boolean
   readonly activityBarItems: readonly ActivityBarItem[]
   readonly currentViewletId: string
   readonly filteredItems: readonly ActivityBarItem[]
