@@ -13,14 +13,14 @@ const ACCOUNT_MENU_ID = 1000
 export const getMenuEntries = (state: ActivityBarState, options: ContextMenuProps): readonly MenuEntry[] => {
   const { menuId } = options
   switch (menuId) {
+    case ACCOUNT_MENU_ID:
+      return getMenuEntriesAccount(state)
     case MenuEntryId.ActivityBar:
       return getMenuEntriesActivityBar(state)
     case MenuEntryId.ActivityBarAdditionalViews:
       return getMenuEntriesAdditionalViews(state)
     case MenuEntryId.Settings:
       return getMenuEntriesSettings(state)
-    case ACCOUNT_MENU_ID:
-      return getMenuEntriesAccount(state)
     default:
       return []
   }
