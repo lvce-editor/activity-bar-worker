@@ -46,7 +46,7 @@ export const getActivityBarItems = (state: ActivityBarState): readonly ActivityB
     },
     // Bottom
   ]
-  
+
   if (accountEnabled) {
     items.push({
       flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled | ActivityBarItemFlags.MarginTop,
@@ -56,7 +56,7 @@ export const getActivityBarItems = (state: ActivityBarState): readonly ActivityB
       title: ViewletActivityBarStrings.account(),
     })
   }
-  
+
   items.push({
     flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled | ActivityBarItemFlags.MarginTop,
     icon: Icon.SettingsGear,
@@ -64,6 +64,6 @@ export const getActivityBarItems = (state: ActivityBarState): readonly ActivityB
     keyShortcuts: '',
     title: ViewletActivityBarStrings.settings(),
   })
-  
+
   return items
 }
