@@ -1,3 +1,4 @@
+export const Account = 'Account'
 export const DebugAlt2 = 'DebugAlt2'
 export const Extensions = 'Extensions'
 export const Files = 'Files'
