@@ -177,3 +177,22 @@ test('handleClick handles different y and itemHeight values', async () => {
   expect(result).toBe(state)
   expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, MenuEntryId.Settings, 64, 200, { menuId: MenuEntryId.Settings }]])
 })
+
+test('handleClick handles Account button click', async () => {
+  const mockRpc = RendererWorker.registerMockRpc({
+    'ContextMenu.show2'() {},
+  })
+  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'Account', id: 'Account', keyShortcuts: '', title: 'Account' }]
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: items,
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    itemHeight: 48,
+    y: 100,
+  }
+
+  const result = await handleClick(state, MouseEventType.LeftClick, 0, 100)
+
+  expect(result).toBe(state)
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, 1000, 0, 100, { menuId: 1000 }]])
+})
