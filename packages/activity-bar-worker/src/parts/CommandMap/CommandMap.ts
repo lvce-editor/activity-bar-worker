@@ -25,6 +25,7 @@ import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import { toggleActivityBarItem } from '../ToggleActivityBarItem/ToggleActivityBarItem.ts'
+import { setAccountEnabled } from '../SetAccountEnabled/SetAccountEnabled.ts'
 
 export const commandMap = {
   'ActivityBar.create': Create.create,
@@ -52,6 +53,7 @@ export const commandMap = {
   'ActivityBar.renderEventListeners': RenderEventListeners.renderEventListeners,
   'ActivityBar.resize': WrapCommand.wrapCommand(handleResize),
   'ActivityBar.saveState': WrapCommand.wrapGetter(SaveState.saveState),
+  'ActivityBar.setAccountEnabled': WrapCommand.wrapCommand(setAccountEnabled),
   'ActivityBar.terminate': terminate,
   'ActivityBar.toggleActivityBarItem': WrapCommand.wrapCommand(toggleActivityBarItem),
 }
