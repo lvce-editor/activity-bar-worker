@@ -1,11 +1,13 @@
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
+import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ViewletActivityBarStrings from '../ActivityBarStrings/ActivityBarStrings.ts'
 import * as Icon from '../Icon/Icon.ts'
 import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 
-export const getActivityBarItems = (): readonly ActivityBarItem[] => {
-  return [
+export const getActivityBarItems = (state: ActivityBarState): readonly ActivityBarItem[] => {
+  const { accountEnabled } = state
+  const items = [
     // Top
     {
       flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
@@ -43,12 +45,25 @@ export const getActivityBarItems = (): readonly ActivityBarItem[] => {
       title: ViewletActivityBarStrings.extensions(),
     },
     // Bottom
-    {
-      flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled | ActivityBarItemFlags.MarginTop,
-      icon: Icon.SettingsGear,
-      id: 'Settings',
-      keyShortcuts: '',
-      title: ViewletActivityBarStrings.settings(),
-    },
   ]
+
+  if (accountEnabled) {
+    items.push({
+      flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled | ActivityBarItemFlags.MarginTop,
+      icon: Icon.Account,
+      id: 'Account',
+      keyShortcuts: '',
+      title: ViewletActivityBarStrings.account(),
+    })
+  }
+
+  items.push({
+    flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled | ActivityBarItemFlags.MarginTop,
+    icon: Icon.SettingsGear,
+    id: 'Settings',
+    keyShortcuts: '',
+    title: ViewletActivityBarStrings.settings(),
+  })
+
+  return items
 }

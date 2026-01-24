@@ -18,7 +18,7 @@ export const getActiveView = async (): Promise<string> => {
 
 export const loadContent = async (state: ActivityBarState, savedState: any): Promise<ActivityBarState> => {
   const { height, itemHeight } = state
-  const items = getActivityBarItems()
+  const items = getActivityBarItems(state)
   const activeView = await getActiveView()
   const index = items.findIndex((item) => item.id === activeView)
   const itemsWithSelected = markSelected(items, index)
