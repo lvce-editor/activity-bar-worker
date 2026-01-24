@@ -1,35 +1,31 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { getActiveView } from '../src/parts/GetActiveView/GetActiveView.ts'
+import { expect, test } from '@jest/globals'
 import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { getActiveView } from '../src/parts/GetActiveView/GetActiveView.ts'
 import * as ViewletModuleId from '../src/parts/ViewletModuleId/ViewletModuleId.ts'
 
-vi.mock('@lvce-editor/rpc-registry', () => ({
-  RendererWorker: {
-    invoke: vi.fn(),
-  },
-}))
-
-describe('getActiveView', () => {
-  beforeEach(() => {
-    vi.clearAllMocks()
+test('getActiveView returns the active view from Layout.getActiveSideBarView', async () => {
+  const mockActiveView = 'test-view'
+  const mockRpc = RendererWorker.registerMockRpc({
+    'Layout.getActiveSideBarView'() {
+      return mockActiveView
+    },
   })
 
-  it('should return the active view from Layout.getActiveSideBarView', async () => {
-    const mockActiveView = 'test-view'
-    vi.mocked(RendererWorker.invoke).mockResolvedValue(mockActiveView)
+  const result = await getActiveView()
 
-    const result = await getActiveView()
+  expect(mockRpc.invocations).toEqual([['Layout.getActiveSideBarView']])
+  expect(result).toBe(mockActiveView)
+})
 
-    expect(RendererWorker.invoke).toHaveBeenCalledWith('Layout.getActiveSideBarView')
-    expect(result).toBe(mockActiveView)
+test('getActiveView returns Explorer as fallback when invoke fails', async () => {
+  const mockRpc = RendererWorker.registerMockRpc({
+    'Layout.getActiveSideBarView'() {
+      throw new Error('Failed to get active view')
+    },
   })
 
-  it('should return Explorer as fallback when invoke fails', async () => {
-    vi.mocked(RendererWorker.invoke).mockRejectedValue(new Error('Failed to get active view'))
+  const result = await getActiveView()
 
-    const result = await getActiveView()
-
-    expect(RendererWorker.invoke).toHaveBeenCalledWith('Layout.getActiveSideBarView')
-    expect(result).toBe(ViewletModuleId.Explorer)
-  })
+  expect(mockRpc.invocations).toEqual([['Layout.getActiveSideBarView']])
+  expect(result).toBe(ViewletModuleId.Explorer)
 })
