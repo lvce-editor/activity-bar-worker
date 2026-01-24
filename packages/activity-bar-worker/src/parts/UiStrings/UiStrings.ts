@@ -1,3 +1,4 @@
+export const Account = 'Account'
 export const Explorer = 'Explorer'
 export const Search = 'Search'
 export const SourceControl = 'Source Control'
