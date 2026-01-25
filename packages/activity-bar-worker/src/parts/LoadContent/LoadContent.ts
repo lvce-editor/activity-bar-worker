@@ -1,4 +1,3 @@
-import { SideBarLocationType } from '@lvce-editor/constants'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import { getActiveView } from '../GetActiveView/GetActiveView.ts'
 import { getActivityBarItems } from '../GetActivityBarItems/GetActivityBarItems.ts'

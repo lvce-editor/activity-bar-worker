@@ -1,8 +1,7 @@
 import { expect, test } from '@jest/globals'
-import { MenuItemFlags } from '@lvce-editor/constants'
+import { MenuItemFlags, SideBarLocationType } from '@lvce-editor/constants'
 import * as ViewletActivityBarStrings from '../src/parts/ActivityBarStrings/ActivityBarStrings.ts'
 import { menuEntryMoveSideBar } from '../src/parts/MenuEntryMoveSideBar/MenuEntryMoveSideBar.ts'
-import * as SideBarLocationType from '../src/parts/SideBarLocationType/SideBarLocationType.ts'
 
 test('menuEntryMoveSideBar returns correct menu entry for Left side bar location', () => {
   const result = menuEntryMoveSideBar(SideBarLocationType.Left)
