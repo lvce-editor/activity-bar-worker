@@ -24,8 +24,8 @@ import { loadContent } from '../LoadContent/LoadContent.ts'
 import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
-import { toggleActivityBarItem } from '../ToggleActivityBarItem/ToggleActivityBarItem.ts'
 import { setAccountEnabled } from '../SetAccountEnabled/SetAccountEnabled.ts'
+import { toggleActivityBarItem } from '../ToggleActivityBarItem/ToggleActivityBarItem.ts'
 
 export const commandMap = {
   'ActivityBar.create': Create.create,
