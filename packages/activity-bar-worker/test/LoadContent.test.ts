@@ -6,9 +6,8 @@ import { loadContent } from '../src/parts/LoadContent/LoadContent.ts'
 
 test('loadContent returns state with activityBarItems', async () => {
   const state: ActivityBarState = createDefaultState()
-  const savedState: any = {}
 
-  const result: ActivityBarState = await loadContent(state, savedState)
+  const result: ActivityBarState = await loadContent(state)
 
   expect(result).not.toBe(state)
   expect(result.activityBarItems).toBeDefined()
@@ -23,9 +22,8 @@ test('loadContent preserves other state properties', async () => {
     uid: 123,
     width: 100,
   }
-  const savedState: any = {}
 
-  const result: ActivityBarState = await loadContent(state, savedState)
+  const result: ActivityBarState = await loadContent(state)
 
   expect(result.uid).toBe(123)
   expect(result.width).toBe(100)
@@ -35,9 +33,8 @@ test('loadContent preserves other state properties', async () => {
 
 test('loadContent adds activityBarItems to state', async () => {
   const state: ActivityBarState = createDefaultState()
-  const savedState: any = {}
 
-  const result: ActivityBarState = await loadContent(state, savedState)
+  const result: ActivityBarState = await loadContent(state)
 
   expect(result.activityBarItems.length).toBe(6)
   expect(result.activityBarItems[0].id).toBeDefined()
@@ -47,9 +44,8 @@ test('loadContent adds activityBarItems to state', async () => {
 
 test('loadContent marks explorer item as selected', async () => {
   const state: ActivityBarState = createDefaultState()
-  const savedState: any = {}
 
-  const result: ActivityBarState = await loadContent(state, savedState)
+  const result: ActivityBarState = await loadContent(state)
 
   const explorerItem = result.activityBarItems[0]
   expect(explorerItem.flags & ActivityBarItemFlags.Selected).toBeTruthy()
@@ -57,18 +53,16 @@ test('loadContent marks explorer item as selected', async () => {
 
 test('loadContent returns new state object', async () => {
   const state: ActivityBarState = createDefaultState()
-  const savedState: any = {}
 
-  const result: ActivityBarState = await loadContent(state, savedState)
+  const result: ActivityBarState = await loadContent(state)
 
   expect(result).not.toBe(state)
 })
 
 test('loadContent marks only explorer item as selected', async () => {
   const state: ActivityBarState = createDefaultState()
-  const savedState: any = {}
 
-  const result: ActivityBarState = await loadContent(state, savedState)
+  const result: ActivityBarState = await loadContent(state)
 
   expect(result.activityBarItems[0].flags & ActivityBarItemFlags.Selected).toBeTruthy()
   expect(result.activityBarItems[1].flags & ActivityBarItemFlags.Selected).toBeFalsy()
@@ -80,9 +74,8 @@ test('loadContent marks only explorer item as selected', async () => {
 
 test('loadContent includes account button when accountEnabled is true', async () => {
   const state: ActivityBarState = { ...createDefaultState(), accountEnabled: true }
-  const savedState: any = {}
 
-  const result: ActivityBarState = await loadContent(state, savedState)
+  const result: ActivityBarState = await loadContent(state)
 
   expect(result.activityBarItems.length).toBe(7)
   const accountItem = result.activityBarItems.find((item) => item.id === 'Account')
@@ -92,9 +85,8 @@ test('loadContent includes account button when accountEnabled is true', async ()
 
 test('loadContent does not include account button when accountEnabled is false', async () => {
   const state: ActivityBarState = createDefaultState()
-  const savedState: any = {}
 
-  const result: ActivityBarState = await loadContent(state, savedState)
+  const result: ActivityBarState = await loadContent(state)
 
   expect(result.activityBarItems.length).toBe(6)
   const accountItem = result.activityBarItems.find((item) => item.id === 'Account')
