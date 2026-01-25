@@ -7,7 +7,7 @@ import { markSelected } from '../MarkSelected/MarkSelected.ts'
 import { updateItemsWithBadgeCount } from '../UpdateItemsWithBadgeCount/UpdateItemsWithBadgeCount.ts'
 import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 
-export const loadContent = async (state: ActivityBarState, savedState: any): Promise<ActivityBarState> => {
+export const loadContent = async (state: ActivityBarState): Promise<ActivityBarState> => {
   const { height, itemHeight } = state
   const items = getActivityBarItems(state)
   const activeView = await getActiveView()
