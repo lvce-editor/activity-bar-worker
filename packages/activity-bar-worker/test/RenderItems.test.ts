@@ -85,6 +85,7 @@ test('renderItems uses newState activityBarItems', () => {
     ...createDefaultState(),
     activityBarItems: items,
     filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    initial: false,
     uid: 333,
   }
 
@@ -116,6 +117,7 @@ test('renderItems returns command with correct structure', () => {
     ...createDefaultState(),
     activityBarItems: items,
     filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    initial: false,
     uid: 555,
   }
 
@@ -124,4 +126,22 @@ test('renderItems returns command with correct structure', () => {
   expect(result[0]).toBe(ViewletCommand.SetDom2)
   expect(result[1]).toBe(555)
   expect(result[2]).toBeDefined()
+})
+
+test('renderItems returns empty DOM when initial is true', () => {
+  const oldState: ActivityBarState = createDefaultState()
+  const items: readonly any[] = [{ flags: 0, icon: 'icon', id: 'test', keyShortcuts: '', title: 'Test' }]
+  const newState: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: items,
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    initial: true,
+    uid: 666,
+  }
+
+  const result: any = renderItems(oldState, newState)
+
+  expect(result[0]).toBe(ViewletCommand.SetDom2)
+  expect(result[1]).toBe(666)
+  expect(result[2]).toEqual([])
 })
