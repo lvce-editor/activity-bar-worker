@@ -9,6 +9,7 @@ export interface ActivityBarState {
   readonly focused: boolean
   readonly focusedIndex: number
   readonly height: number
+  readonly initial: boolean
   readonly itemHeight: number
   readonly numberOfVisibleItems: number
   readonly platform: number
