@@ -20,6 +20,7 @@ export const loadContent = async (state: ActivityBarState, savedState: any): Pro
     activityBarItems: itemsWithSelected,
     currentViewletId: ViewletModuleId.Explorer,
     filteredItems: newItems,
+    initial: false,
     selectedIndex: index,
     sideBarLocation: SideBarLocationType.Left,
     sideBarVisible: true,
