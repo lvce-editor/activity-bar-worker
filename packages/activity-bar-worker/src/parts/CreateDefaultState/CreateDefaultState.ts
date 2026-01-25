@@ -9,6 +9,7 @@ export const createDefaultState = (): ActivityBarState => ({
   focused: false,
   focusedIndex: 0,
   height: 400,
+  initial: true,
   itemHeight: 48,
   numberOfVisibleItems: 0,
   platform: 0,

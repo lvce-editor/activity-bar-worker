@@ -22,6 +22,7 @@ export const create = (
     focused: false,
     focusedIndex: -1,
     height,
+    initial: true,
     itemHeight: 48,
     numberOfVisibleItems: 0,
     platform,
