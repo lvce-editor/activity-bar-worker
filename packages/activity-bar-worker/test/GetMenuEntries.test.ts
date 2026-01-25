@@ -1,10 +1,9 @@
 import { expect, test } from '@jest/globals'
-import { MenuEntryId } from '@lvce-editor/constants'
+import { MenuEntryId, SideBarLocationType } from '@lvce-editor/constants'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import type { ContextMenuProps } from '../src/parts/ContextMenuProps/ContextMenuProps.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getMenuEntries } from '../src/parts/GetMenuEntries/GetMenuEntries.ts'
-import * as SideBarLocationType from '../src/parts/SideBarLocationType/SideBarLocationType.ts'
 
 test('getMenuEntries returns menu entries for ActivityBar menuId', () => {
   const state: ActivityBarState = {

@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals'
-import { MenuItemFlags } from '@lvce-editor/constants'
+import { MenuItemFlags, SideBarLocationType } from '@lvce-editor/constants'
 import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import type { MenuEntry } from '../src/parts/MenuEntry/MenuEntry.ts'
@@ -8,7 +8,6 @@ import * as ActivityBarStrings from '../src/parts/ActivityBarStrings/ActivityBar
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getMenuEntriesActivityBar } from '../src/parts/GetMenuEntriesActivityBar/GetMenuEntriesActivityBar.ts'
 import * as MenuEntrySeparator from '../src/parts/MenuEntrySeparator/MenuEntrySeparator.ts'
-import * as SideBarLocationType from '../src/parts/SideBarLocationType/SideBarLocationType.ts'
 
 test('getMenuEntriesActivityBar returns menu entries with items, separator, move side bar, and hide activity bar', () => {
   const items: readonly ActivityBarItem[] = [
