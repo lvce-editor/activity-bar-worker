@@ -6,9 +6,10 @@ import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFl
 export const toContextMenuItem = (activityBarItem: ActivityBarItem): MenuEntry => {
   const isEnabled = activityBarItem.flags & ActivityBarItemFlags.Enabled
   return {
-    command: '',
+    args: [activityBarItem.id],
+    command: 'ActivityBar.toggleActivityBarItem',
     flags: isEnabled ? MenuItemFlags.Checked : MenuItemFlags.Unchecked,
-    id: '', // TODO
+    id: `toggle-${activityBarItem.id}`,
     label: activityBarItem.id,
   }
 }
