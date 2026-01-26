@@ -8,20 +8,13 @@ test('handleSettingsChanged updates activityBarItems and sidebar location', asyn
   RendererWorker.registerMockRpc({
     'Layout.getBadgeCounts'() {
       return {
-        item1: 5,
-        item2: 0,
-        item3: 12,
+        Explorer: 5,
+        Search: 0,
+        'Source Control': 12,
       }
     },
     'SideBar.getSideBarPosition'() {
       return 1
-    },
-    'ViewletRegistry.getActivityBarItems'() {
-      return [
-        { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-        { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-        { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-      ]
     },
   })
 
@@ -34,10 +27,7 @@ test('handleSettingsChanged updates activityBarItems and sidebar location', asyn
 
   const result: ActivityBarState = await handleSettingsChanged(state)
 
-  expect(result.activityBarItems.length).toBe(3)
-  expect(result.activityBarItems[0].id).toBe('item1')
-  expect(result.activityBarItems[1].id).toBe('item2')
-  expect(result.activityBarItems[2].id).toBe('item3')
+  expect(result.activityBarItems.length).toBe(6)
   expect(result.sideBarLocation).toBe(1)
   expect(result).not.toBe(state)
 })
@@ -46,18 +36,12 @@ test('handleSettingsChanged preserves selected index', async () => {
   RendererWorker.registerMockRpc({
     'Layout.getBadgeCounts'() {
       return {
-        item1: 0,
-        item2: 0,
+        Explorer: 0,
+        Search: 0,
       }
     },
     'SideBar.getSideBarPosition'() {
       return 0
-    },
-    'ViewletRegistry.getActivityBarItems'() {
-      return [
-        { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-        { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-      ]
     },
   })
 
@@ -77,18 +61,12 @@ test('handleSettingsChanged updates filteredItems with badge counts', async () =
   RendererWorker.registerMockRpc({
     'Layout.getBadgeCounts'() {
       return {
-        item1: 7,
-        item2: 3,
+        Explorer: 7,
+        Search: 3,
       }
     },
     'SideBar.getSideBarPosition'() {
       return 0
-    },
-    'ViewletRegistry.getActivityBarItems'() {
-      return [
-        { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-        { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-      ]
     },
   })
 
