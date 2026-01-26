@@ -25,15 +25,17 @@ test('getMenuEntriesActivityBar returns menu entries with items, separator, move
 
   expect(result.length).toBe(5)
   expect(result[0]).toEqual({
-    command: '',
+    args: ['item1'],
+    command: 'ActivityBar.toggleActivityBarItem',
     flags: MenuItemFlags.Unchecked,
-    id: '',
+    id: 'toggle-item1',
     label: 'item1',
   })
   expect(result[1]).toEqual({
-    command: '',
+    args: ['item2'],
+    command: 'ActivityBar.toggleActivityBarItem',
     flags: MenuItemFlags.Checked,
-    id: '',
+    id: 'toggle-item2',
     label: 'item2',
   })
   expect(result[2]).toBe(MenuEntrySeparator.menuEntrySeparator)
