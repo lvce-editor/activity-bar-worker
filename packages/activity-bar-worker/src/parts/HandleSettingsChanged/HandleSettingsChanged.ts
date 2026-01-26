@@ -7,7 +7,7 @@ import { updateItemsWithBadgeCount } from '../UpdateItemsWithBadgeCount/UpdateIt
 
 export const handleSettingsChanged = async (state: ActivityBarState): Promise<ActivityBarState> => {
   const { height, itemHeight, selectedIndex } = state
-  const items = getActivityBarItems(state)
+  const items = await getActivityBarItems(state)
   const itemsWithSelected = markSelected(items, selectedIndex)
   const filteredItems = getFilteredActivityBarItems(itemsWithSelected, height, itemHeight)
   const newItems = await updateItemsWithBadgeCount(filteredItems)
