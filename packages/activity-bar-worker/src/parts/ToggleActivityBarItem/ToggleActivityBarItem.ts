@@ -1,16 +1,20 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
+import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 
-const isEnabled = (activityBarItem: any): boolean => {
-  return activityBarItem.enabled
-}
-
-export const toggleActivityBarItem = async (state: ActivityBarState, item: any): Promise<ActivityBarState> => {
+export const toggleActivityBarItem = async (state: ActivityBarState, itemId: string): Promise<ActivityBarState> => {
   const { activityBarItems } = state
-  const activityBarItem = activityBarItems.find((activityBarItem) => activityBarItem.id === item.label)
-  // @ts-ignore
-  activityBarItem.enabled = !activityBarItem.enabled
+  const updatedItems = activityBarItems.map((item) => {
+    if (item.id === itemId) {
+      const isCurrentlyEnabled = item.flags & ActivityBarItemFlags.Enabled
+      return {
+        ...item,
+        flags: isCurrentlyEnabled ? item.flags & ~ActivityBarItemFlags.Enabled : item.flags | ActivityBarItemFlags.Enabled,
+      }
+    }
+    return item
+  })
   return {
     ...state,
-    activityBarItems: activityBarItems.filter(isEnabled),
+    activityBarItems: updatedItems,
   }
 }
