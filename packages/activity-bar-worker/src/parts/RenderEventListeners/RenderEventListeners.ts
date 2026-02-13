@@ -20,8 +20,8 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     {
       name: DomEventListenerFunctions.HandleMouseDown,
       params: ['handleClick', EventExpression.Button, EventExpression.ClientX, EventExpression.ClientY],
-      preventDefault: true,
-      stopPropagation: true,
+      preventDefault: false,
+      stopPropagation: false,
     },
   ]
 }
