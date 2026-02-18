@@ -5,7 +5,7 @@ import * as ViewletModuleId from '../src/parts/ViewletModuleId/ViewletModuleId.t
 
 test('getActiveView returns the active view from Layout.getActiveSideBarView', async () => {
   const mockActiveView = 'test-view'
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Layout.getActiveSideBarView'() {
       return mockActiveView
     },
@@ -18,7 +18,7 @@ test('getActiveView returns the active view from Layout.getActiveSideBarView', a
 })
 
 test('getActiveView returns Explorer as fallback when invoke fails', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Layout.getActiveSideBarView'() {
       throw new Error('Failed to get active view')
     },

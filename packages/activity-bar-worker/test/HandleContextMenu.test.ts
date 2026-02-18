@@ -6,7 +6,7 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { handleContextMenu } from '../src/parts/HandleContextMenu/HandleContextMenu.ts'
 
 test('handleContextMenu calls ContextMenu.show with correct parameters', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()
@@ -17,7 +17,7 @@ test('handleContextMenu calls ContextMenu.show with correct parameters', async (
 })
 
 test('handleContextMenu returns the same state', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()
@@ -29,7 +29,7 @@ test('handleContextMenu returns the same state', async () => {
 })
 
 test('handleContextMenu calls ContextMenu.show with right button', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()
@@ -40,7 +40,7 @@ test('handleContextMenu calls ContextMenu.show with right button', async () => {
 })
 
 test('handleContextMenu handles different coordinates', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()

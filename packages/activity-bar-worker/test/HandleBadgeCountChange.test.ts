@@ -6,7 +6,7 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { handleBadgeCountChange } from '../src/parts/handleBadgeCountChange/handleBadgeCountChange.ts'
 
 test('handleBadgeCountChange updates filteredItems with badge counts', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Layout.getBadgeCounts'() {
       return {
         item1: 5,
@@ -72,7 +72,7 @@ test('handleBadgeCountChange preserves other state properties', async () => {
 })
 
 test('handleBadgeCountChange handles empty filteredItems', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Layout.getBadgeCounts'() {
       return {}
     },
