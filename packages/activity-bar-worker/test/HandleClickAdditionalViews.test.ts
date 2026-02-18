@@ -6,7 +6,7 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { handleClickAdditionalViews } from '../src/parts/HandleClickAdditionalViews/HandleClickAdditionalViews.ts'
 
 test('handleClickAdditionalViews calls ContextMenu.show with correct parameters', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()
@@ -27,7 +27,7 @@ test('handleClickAdditionalViews calls ContextMenu.show with correct parameters'
 })
 
 test('handleClickAdditionalViews returns the same state', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()
@@ -48,7 +48,7 @@ test('handleClickAdditionalViews returns the same state', async () => {
 })
 
 test('handleClickAdditionalViews calls ContextMenu.show with different coordinates', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()
@@ -77,7 +77,7 @@ test('handleClickAdditionalViews calls ContextMenu.show with different coordinat
 })
 
 test('handleClickAdditionalViews calls with ActivityBarAdditionalViews MenuEntryId', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()
@@ -97,7 +97,7 @@ test('handleClickAdditionalViews calls with ActivityBarAdditionalViews MenuEntry
 })
 
 test('handleClickAdditionalViews preserves state regardless of viewletId', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()
