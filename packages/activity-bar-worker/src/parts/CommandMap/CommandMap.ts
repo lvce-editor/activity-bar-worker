@@ -16,6 +16,7 @@ import { handleBlur } from '../HandleBlur/HandleBlur.ts'
 import * as HandleClick from '../HandleClick/HandleClick.ts'
 import { handleClickIndex } from '../HandleClickIndex/HandleClickIndex.ts'
 import { handleContextMenu } from '../HandleContextMenu/HandleContextMenu.ts'
+import { handleFocus } from '../HandleFocus/HandleFocus.ts'
 import { handleResize } from '../HandleResize/HandleResize.ts'
 import { handleSettingsChanged } from '../HandleSettingsChanged/HandleSettingsChanged.ts'
 import { handleSideBarHidden } from '../HandleSideBarHidden/HandleSideBarHidden.ts'
@@ -46,6 +47,7 @@ export const commandMap = {
   'ActivityBar.handleClick': WrapCommand.wrapCommand(HandleClick.handleClick),
   'ActivityBar.handleClickIndex': WrapCommand.wrapCommand(handleClickIndex),
   'ActivityBar.handleContextMenu': WrapCommand.wrapCommand(handleContextMenu),
+  'ActivityBar.handleFocus': WrapCommand.wrapCommand(handleFocus),
   'ActivityBar.handleSettingsChanged': WrapCommand.wrapCommand(handleSettingsChanged),
   'ActivityBar.handleSideBarHidden': WrapCommand.wrapCommand(handleSideBarHidden),
   'ActivityBar.handleSideBarViewletChange': WrapCommand.wrapCommand(handleSideBarViewletChange),
