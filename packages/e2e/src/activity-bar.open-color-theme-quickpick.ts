@@ -11,6 +11,7 @@ export const test: Test = async ({ Command, ContextMenu, expect, Locator, QuickP
   // act
   await ContextMenu.selectItem('Color Theme')
 
+  // assert
   const quickPick = Locator('.QuickPick')
   await expect(quickPick).toBeVisible()
 }
