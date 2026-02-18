@@ -4,9 +4,9 @@ export const name = 'activity-bar.account.context-menu'
 
 export const skip = 1
 
-export const test: Test = async ({ Command, expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, expect, Locator }) => {
   // act - enable account item
-  await Command.execute('ActivityBar.setAccountEnabled', true)
+  await ActivityBar.setAccountEnabled(true)
 
   // act - click the account item
   const account = Locator('.ActivityBarItem[title="Account"]')
