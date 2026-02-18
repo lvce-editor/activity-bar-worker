@@ -2,8 +2,6 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.update-downloaded-waiting-for-restart'
 
-export const skip = 1
-
 export const test: Test = async ({ Command, expect, Locator }) => {
   // assert
   const activityBar = Locator('.ActivityBar')
