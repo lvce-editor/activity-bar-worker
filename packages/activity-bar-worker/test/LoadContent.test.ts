@@ -1,4 +1,5 @@
 import { expect, test } from '@jest/globals'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
@@ -91,4 +92,21 @@ test('loadContent does not include account button when accountEnabled is false',
   expect(result.activityBarItems.length).toBe(6)
   const accountItem = result.activityBarItems.find((item) => item.id === 'Account')
   expect(accountItem).toBeUndefined()
+})
+
+test('loadContent does not mark any item as selected when side bar is hidden', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'Layout.getSideBarVisible'() {
+      return false
+    },
+  })
+  const state: ActivityBarState = createDefaultState()
+
+  const result: ActivityBarState = await loadContent(state)
+
+  expect(mockRpc.invocations).toEqual(expect.arrayContaining([['Layout.getSideBarVisible']]))
+  expect(result.selectedIndex).toBe(-1)
+  for (const item of result.activityBarItems) {
+    expect(item.flags & ActivityBarItemFlags.Selected).toBeFalsy()
+  }
 })
