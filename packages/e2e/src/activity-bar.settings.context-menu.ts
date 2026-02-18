@@ -7,9 +7,9 @@ export const test: Test = async ({ Command, ContextMenu, expect, Locator }) => {
   await Command.execute('ActivityBar.handleClickSettings', 300, 300)
 
   // act
-  await ContextMenu.selectItem('Command Palette')
+  await ContextMenu.selectItem('Settings')
 
   // assert
-  const sideBarHeaderTitle = Locator('.SideBarTitleAreaTitle')
-  await expect(sideBarHeaderTitle).toHaveText('Settings')
+  const tab = Locator('.MainTab[title="app://settings.json"]')
+  await expect(tab).toBeVisible()
 }
