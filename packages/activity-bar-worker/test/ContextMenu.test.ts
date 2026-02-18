@@ -4,7 +4,7 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as ContextMenu from '../src/parts/ContextMenu/ContextMenu.ts'
 
 test.skip('ContextMenu.show calls RendererWorker.showContextMenu with correct parameters', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show'() {},
   })
 
@@ -15,7 +15,7 @@ test.skip('ContextMenu.show calls RendererWorker.showContextMenu with correct pa
 })
 
 test.skip('ContextMenu.show calls showContextMenu with different menu entry IDs', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show'() {},
   })
 
@@ -26,7 +26,7 @@ test.skip('ContextMenu.show calls showContextMenu with different menu entry IDs'
 })
 
 test.skip('ContextMenu.show calls showContextMenu with additional args', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show'() {},
   })
 
@@ -37,7 +37,7 @@ test.skip('ContextMenu.show calls showContextMenu with additional args', async (
 })
 
 test.skip('ContextMenu.show handles different coordinates', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show'() {},
   })
 
@@ -48,7 +48,7 @@ test.skip('ContextMenu.show handles different coordinates', async () => {
 })
 
 test.skip('ContextMenu.show handles empty args', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show'() {},
   })
 
@@ -59,7 +59,7 @@ test.skip('ContextMenu.show handles empty args', async () => {
 })
 
 test.skip('ContextMenu.show can be called multiple times', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show'() {},
   })
 

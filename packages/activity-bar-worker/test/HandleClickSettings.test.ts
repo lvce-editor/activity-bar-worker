@@ -6,7 +6,7 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { handleClickSettings } from '../src/parts/HandleClickSettings/HandleClickSettings.ts'
 
 test('handleClickSettings calls ContextMenu.show with correct parameters', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()
@@ -18,7 +18,7 @@ test('handleClickSettings calls ContextMenu.show with correct parameters', async
 })
 
 test('handleClickSettings returns the same state', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()
@@ -30,7 +30,7 @@ test('handleClickSettings returns the same state', async () => {
 })
 
 test('handleClickSettings calls ContextMenu.show with different coordinates', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()
@@ -45,7 +45,7 @@ test('handleClickSettings calls ContextMenu.show with different coordinates', as
 })
 
 test('handleClickSettings calls with Settings MenuEntryId', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()
@@ -56,7 +56,7 @@ test('handleClickSettings calls with Settings MenuEntryId', async () => {
 })
 
 test('handleClickSettings preserves state regardless of viewletId', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const state: ActivityBarState = createDefaultState()

@@ -34,7 +34,7 @@ test('handleClickIndex returns same state when index is -1', async () => {
 })
 
 test('handleClickIndex handles Settings viewlet click', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' }]
@@ -51,7 +51,7 @@ test('handleClickIndex handles Settings viewlet click', async () => {
 })
 
 test('handleClickIndex handles Additional Views viewlet click', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Additional Views', keyShortcuts: '', title: 'Additional Views' }]
@@ -77,7 +77,7 @@ test('handleClickIndex handles Additional Views viewlet click', async () => {
 })
 
 test('handleClickIndex handles other viewlet click when sidebar is hidden', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Layout.showSideBar'() {},
   })
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Explorer', keyShortcuts: '', title: 'Explorer' }]
@@ -96,7 +96,7 @@ test('handleClickIndex handles other viewlet click when sidebar is hidden', asyn
 })
 
 test('handleClickIndex handles other viewlet click when sidebar is visible and different viewlet selected', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'SideBar.show'() {},
   })
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Explorer', keyShortcuts: '', title: 'Explorer' }]
@@ -115,7 +115,7 @@ test('handleClickIndex handles other viewlet click when sidebar is visible and d
 })
 
 test('handleClickIndex handles other viewlet click when same viewlet is already selected', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Layout.hideSideBar'() {},
   })
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Explorer', keyShortcuts: '', title: 'Explorer' }]
@@ -134,7 +134,7 @@ test('handleClickIndex handles other viewlet click when same viewlet is already 
 })
 
 test('handleClickIndex handles different indices in items array', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [

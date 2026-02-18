@@ -8,7 +8,7 @@ import { getFilteredActivityBarItems } from '../src/parts/GetFilteredActivityBar
 import { handleClick } from '../src/parts/HandleClick/HandleClick.ts'
 
 test('handleClick calculates index correctly for first item', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' }]
@@ -27,7 +27,7 @@ test('handleClick calculates index correctly for first item', async () => {
 })
 
 test('handleClick calculates index correctly for second item', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
     'Layout.showSideBar'() {},
   })
@@ -54,7 +54,7 @@ test('handleClick calculates index correctly for second item', async () => {
 })
 
 test('handleClick calculates index correctly for multiple items', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Layout.showSideBar'() {},
   })
   const items: readonly ActivityBarItem[] = [
@@ -111,7 +111,7 @@ test('handleClick returns same state when index is -1', async () => {
 })
 
 test('handleClick handles Explorer viewlet click', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Layout.showSideBar'() {},
   })
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Explorer', keyShortcuts: '', title: 'Explorer' }]
@@ -132,7 +132,7 @@ test('handleClick handles Explorer viewlet click', async () => {
 })
 
 test('handleClick handles Additional Views viewlet click', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Additional Views', keyShortcuts: '', title: 'Additional Views' }]
@@ -160,7 +160,7 @@ test('handleClick handles Additional Views viewlet click', async () => {
 })
 
 test('handleClick handles different y and itemHeight values', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' }]
@@ -179,7 +179,7 @@ test('handleClick handles different y and itemHeight values', async () => {
 })
 
 test('handleClick handles Account button click', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'Account', id: 'Account', keyShortcuts: '', title: 'Account' }]

@@ -5,7 +5,7 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { handleClickOther } from '../src/parts/HandleClickOther/HandleClickOther.ts'
 
 test('handleClickOther calls SideBar.hide when sidebar is visible and currentViewletId matches viewletId', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Layout.hideSideBar'() {},
   })
   const state: ActivityBarState = {
@@ -21,7 +21,7 @@ test('handleClickOther calls SideBar.hide when sidebar is visible and currentVie
 })
 
 test('handleClickOther calls SideBar.show when sidebar is visible and currentViewletId differs from viewletId', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'SideBar.show'() {},
   })
   const state: ActivityBarState = {
@@ -37,7 +37,7 @@ test('handleClickOther calls SideBar.show when sidebar is visible and currentVie
 })
 
 test('handleClickOther calls Layout.showSideBar when sidebar is not visible', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Layout.showSideBar'() {},
   })
   const state: ActivityBarState = {
@@ -74,7 +74,7 @@ test('handleClickOther preserves state properties', async () => {
 })
 
 test('handleClickOther handles empty currentViewletId', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Layout.hideSideBar'() {},
   })
   const state: ActivityBarState = {
