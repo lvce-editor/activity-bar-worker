@@ -15,9 +15,11 @@ test('getMenuEntries returns menu entries for ActivityBar menuId', () => {
   }
 
   const result = getMenuEntries(state, options)
+  const lastEntry = result.at(-1)
 
   expect(result.length).toBeGreaterThan(0)
-  expect(result[result.length - 1].command).toBe('Layout.hideActivityBar')
+  expect(lastEntry).toBeDefined()
+  expect(lastEntry?.command).toBe('Layout.hideActivityBar')
 })
 
 test('getMenuEntries returns menu entries for ActivityBarAdditionalViews menuId', () => {
