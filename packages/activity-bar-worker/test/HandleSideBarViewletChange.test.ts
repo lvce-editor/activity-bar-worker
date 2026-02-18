@@ -1,11 +1,12 @@
 import { expect, test } from '@jest/globals'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { handleSideBarViewletChange } from '../src/parts/HandleSideBarViewletChange/HandleSideBarViewletChange.ts'
 
-test('handleSideBarViewletChange sets selectedIndex to found index', () => {
+test('handleSideBarViewletChange sets selectedIndex to found index', async () => {
   const items: readonly ActivityBarItem[] = [
     { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
     { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
@@ -18,7 +19,7 @@ test('handleSideBarViewletChange sets selectedIndex to found index', () => {
     selectedIndex: -1,
   }
 
-  const result: ActivityBarState = handleSideBarViewletChange(state, 'item2')
+  const result: ActivityBarState = await handleSideBarViewletChange(state, 'item2')
 
   expect(result.selectedIndex).toBe(1)
   expect(result.activityBarItems[1].flags & ActivityBarItemFlags.Selected).toBeTruthy()
@@ -27,7 +28,7 @@ test('handleSideBarViewletChange sets selectedIndex to found index', () => {
   expect(result).not.toBe(state)
 })
 
-test('handleSideBarViewletChange sets selectedIndex to -1 when item not found', () => {
+test('handleSideBarViewletChange sets selectedIndex to -1 when item not found', async () => {
   const items: readonly ActivityBarItem[] = [
     { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
     { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
@@ -39,13 +40,13 @@ test('handleSideBarViewletChange sets selectedIndex to -1 when item not found', 
     selectedIndex: 0,
   }
 
-  const result: ActivityBarState = handleSideBarViewletChange(state, 'nonexistent')
+  const result: ActivityBarState = await handleSideBarViewletChange(state, 'nonexistent')
 
   expect(result.selectedIndex).toBe(-1)
   expect(result).not.toBe(state)
 })
 
-test('handleSideBarViewletChange preserves other state properties', () => {
+test('handleSideBarViewletChange preserves other state properties', async () => {
   const items: readonly ActivityBarItem[] = [
     { flags: ActivityBarItemFlags.Tab, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
     { flags: ActivityBarItemFlags.Tab, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
@@ -60,7 +61,7 @@ test('handleSideBarViewletChange preserves other state properties', () => {
     selectedIndex: 0,
   }
 
-  const result: ActivityBarState = handleSideBarViewletChange(state, 'item2')
+  const result: ActivityBarState = await handleSideBarViewletChange(state, 'item2')
 
   expect(result.selectedIndex).toBe(1)
   expect(result.focusedIndex).toBe(state.focusedIndex)
@@ -69,19 +70,19 @@ test('handleSideBarViewletChange preserves other state properties', () => {
   expect(result.activityBarItems[1].flags & ActivityBarItemFlags.Selected).toBeTruthy()
 })
 
-test('handleSideBarViewletChange handles empty activityBarItems', () => {
+test('handleSideBarViewletChange handles empty activityBarItems', async () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: [],
     selectedIndex: 0,
   }
 
-  const result: ActivityBarState = handleSideBarViewletChange(state, 'any')
+  const result: ActivityBarState = await handleSideBarViewletChange(state, 'any')
 
   expect(result.selectedIndex).toBe(-1)
 })
 
-test('handleSideBarViewletChange handles first item', () => {
+test('handleSideBarViewletChange handles first item', async () => {
   const items: readonly ActivityBarItem[] = [
     { flags: 0, icon: 'icon1', id: 'first', keyShortcuts: '', title: 'First' },
     { flags: 0, icon: 'icon2', id: 'second', keyShortcuts: '', title: 'Second' },
@@ -93,14 +94,14 @@ test('handleSideBarViewletChange handles first item', () => {
     selectedIndex: -1,
   }
 
-  const result: ActivityBarState = handleSideBarViewletChange(state, 'first')
+  const result: ActivityBarState = await handleSideBarViewletChange(state, 'first')
 
   expect(result.selectedIndex).toBe(0)
   expect(result.activityBarItems[0].flags & ActivityBarItemFlags.Selected).toBeTruthy()
   expect(result.activityBarItems[1].flags & ActivityBarItemFlags.Selected).toBeFalsy()
 })
 
-test('handleSideBarViewletChange handles last item', () => {
+test('handleSideBarViewletChange handles last item', async () => {
   const items: readonly ActivityBarItem[] = [
     { flags: 0, icon: 'icon1', id: 'first', keyShortcuts: '', title: 'First' },
     { flags: 0, icon: 'icon2', id: 'second', keyShortcuts: '', title: 'Second' },
@@ -113,10 +114,28 @@ test('handleSideBarViewletChange handles last item', () => {
     selectedIndex: -1,
   }
 
-  const result: ActivityBarState = handleSideBarViewletChange(state, 'third')
+  const result: ActivityBarState = await handleSideBarViewletChange(state, 'third')
 
   expect(result.selectedIndex).toBe(2)
   expect(result.activityBarItems[2].flags & ActivityBarItemFlags.Selected).toBeTruthy()
   expect(result.activityBarItems[0].flags & ActivityBarItemFlags.Selected).toBeFalsy()
   expect(result.activityBarItems[1].flags & ActivityBarItemFlags.Selected).toBeFalsy()
+})
+
+test('handleSideBarViewletChange gets sideBarVisible from renderer worker', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'Layout.getSideBarVisible'() {
+      return false
+    },
+  })
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }],
+    sideBarVisible: true,
+  }
+
+  const result: ActivityBarState = await handleSideBarViewletChange(state, 'item1')
+
+  expect(mockRpc.invocations).toEqual(expect.arrayContaining([['Layout.getSideBarVisible']]))
+  expect(result.sideBarVisible).toBe(false)
 })
