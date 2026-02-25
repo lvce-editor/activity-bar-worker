@@ -23,6 +23,6 @@ export const handleClickIndex = async (state: ActivityBarState, button: number, 
     case 'Settings':
       return HandleClickSettings.handleClickSettings(state, x, y, viewletId)
     default:
-      return HandleClickOther.handleClickOther(state, x, y, viewletId)
+      return HandleClickOther.handleClickOther(state, viewletId)
   }
 }

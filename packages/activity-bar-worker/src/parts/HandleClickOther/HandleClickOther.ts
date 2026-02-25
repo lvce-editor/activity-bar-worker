@@ -1,7 +1,7 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import * as SideBar from '../SideBar/SideBar.ts'
 
-export const handleClickOther = async (state: ActivityBarState, x: number, y: number, viewletId: string): Promise<ActivityBarState> => {
+export const handleClickOther = async (state: ActivityBarState, viewletId: string): Promise<ActivityBarState> => {
   const { currentViewletId, sideBarVisible } = state
   if (sideBarVisible) {
     if (currentViewletId === viewletId) {

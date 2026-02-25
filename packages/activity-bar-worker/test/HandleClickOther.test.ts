@@ -14,7 +14,7 @@ test('handleClickOther calls SideBar.hide when sidebar is visible and currentVie
     sideBarVisible: true,
   }
 
-  const result: ActivityBarState = await handleClickOther(state, 10, 20, 'test-viewlet')
+  const result: ActivityBarState = await handleClickOther(state, 'test-viewlet')
 
   expect(mockRpc.invocations).toEqual([['Layout.hideSideBar']])
   expect(result).toBe(state)
@@ -30,7 +30,7 @@ test('handleClickOther calls SideBar.show when sidebar is visible and currentVie
     sideBarVisible: true,
   }
 
-  const result: ActivityBarState = await handleClickOther(state, 10, 20, 'new-viewlet')
+  const result: ActivityBarState = await handleClickOther(state, 'new-viewlet')
 
   expect(mockRpc.invocations).toEqual([['SideBar.show', 'new-viewlet']])
   expect(result).toBe(state)
@@ -46,7 +46,7 @@ test('handleClickOther calls Layout.showSideBar when sidebar is not visible', as
     sideBarVisible: false,
   }
 
-  const result: ActivityBarState = await handleClickOther(state, 10, 20, 'new-viewlet')
+  const result: ActivityBarState = await handleClickOther(state, 'new-viewlet')
 
   expect(mockRpc.invocations).toEqual([['Layout.showSideBar', 'test-viewlet']])
   expect(result).toBe(state)
@@ -65,7 +65,7 @@ test('handleClickOther preserves state properties', async () => {
     width: 100,
   }
 
-  const result: ActivityBarState = await handleClickOther(state, 15, 25, 'new-viewlet')
+  const result: ActivityBarState = await handleClickOther(state, 'new-viewlet')
 
   expect(result).toBe(state)
   expect(result.focusedIndex).toBe(2)
@@ -83,7 +83,7 @@ test('handleClickOther handles empty currentViewletId', async () => {
     sideBarVisible: true,
   }
 
-  const result: ActivityBarState = await handleClickOther(state, 10, 20, '')
+  const result: ActivityBarState = await handleClickOther(state, '')
 
   expect(mockRpc.invocations).toEqual([['Layout.hideSideBar']])
   expect(result).toBe(state)
