@@ -7,5 +7,8 @@ export const renderIncremental = (oldState: ActivityBarState, newState: Activity
   const oldDom = renderItems(oldState, oldState)[2]
   const newDom = renderItems(newState, newState)[2]
   const patches = diffTree(oldDom, newDom)
+  if (patches.length === 0) {
+    return []
+  }
   return [ViewletCommand.SetPatches, newState.uid, patches]
 }
