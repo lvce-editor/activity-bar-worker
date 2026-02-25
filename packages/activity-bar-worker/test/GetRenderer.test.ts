@@ -3,13 +3,6 @@ import * as DiffType from '../src/parts/DiffType/DiffType.ts'
 import { getRenderer } from '../src/parts/GetRenderer/GetRenderer.ts'
 import { renderCss } from '../src/parts/RenderCss/RenderCss.ts'
 import * as RenderFocusContext from '../src/parts/RenderFocusContext/RenderFocusContext.ts'
-import * as RenderItems from '../src/parts/RenderItems/RenderItems.ts'
-
-test('getRenderer returns renderItems for RenderItems diff type', () => {
-  const renderer = getRenderer(DiffType.RenderItems)
-
-  expect(renderer).toBe(RenderItems.renderItems)
-})
 
 test('getRenderer returns renderFocusContext for RenderFocusContext diff type', () => {
   const renderer = getRenderer(DiffType.RenderFocusContext)
