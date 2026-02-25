@@ -3,6 +3,7 @@ import * as DiffType from '../src/parts/DiffType/DiffType.ts'
 import { getRenderer } from '../src/parts/GetRenderer/GetRenderer.ts'
 import { renderCss } from '../src/parts/RenderCss/RenderCss.ts'
 import * as RenderFocusContext from '../src/parts/RenderFocusContext/RenderFocusContext.ts'
+import { renderIncremental } from '../src/parts/RenderIncremental/RenderIncremental.ts'
 import * as RenderItems from '../src/parts/RenderItems/RenderItems.ts'
 
 test('getRenderer returns renderItems for RenderItems diff type', () => {
@@ -27,6 +28,12 @@ test('getRenderer returns renderCss for RenderCss diff type', () => {
   const renderer = getRenderer(DiffType.RenderCss)
 
   expect(renderer).toBe(renderCss)
+})
+
+test('getRenderer returns renderIncremental for RenderIncremental diff type', () => {
+  const renderer = getRenderer(DiffType.RenderIncremental)
+
+  expect(renderer).toBe(renderIncremental)
 })
 
 test('getRenderer throws error for unknown diff type', () => {
