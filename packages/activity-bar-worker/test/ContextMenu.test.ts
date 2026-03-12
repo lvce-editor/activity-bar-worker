@@ -3,7 +3,7 @@ import { MenuEntryId } from '@lvce-editor/constants'
 import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as ContextMenu from '../src/parts/ContextMenu/ContextMenu.ts'
 
-test.skip('ContextMenu.show calls RendererWorker.showContextMenu with correct parameters', async () => {
+test('ContextMenu.show calls RendererWorker.showContextMenu with correct parameters', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show'() {},
   })
@@ -14,7 +14,7 @@ test.skip('ContextMenu.show calls RendererWorker.showContextMenu with correct pa
   expect(mockRpc.invocations).toEqual([['ContextMenu.show', 100, 200, MenuEntryId.ActivityBar, []]])
 })
 
-test.skip('ContextMenu.show calls showContextMenu with different menu entry IDs', async () => {
+test('ContextMenu.show calls showContextMenu with different menu entry IDs', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show'() {},
   })
@@ -25,7 +25,7 @@ test.skip('ContextMenu.show calls showContextMenu with different menu entry IDs'
   expect(mockRpc.invocations).toEqual([['ContextMenu.show', 50, 75, MenuEntryId.Settings, []]])
 })
 
-test.skip('ContextMenu.show calls showContextMenu with additional args', async () => {
+test('ContextMenu.show calls showContextMenu with additional args', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show'() {},
   })
@@ -36,7 +36,7 @@ test.skip('ContextMenu.show calls showContextMenu with additional args', async (
   expect(mockRpc.invocations).toEqual([['ContextMenu.show', 0, 0, MenuEntryId.ActivityBar, ['arg1', 'arg2', 'arg3']]])
 })
 
-test.skip('ContextMenu.show handles different coordinates', async () => {
+test('ContextMenu.show handles different coordinates', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show'() {},
   })
@@ -47,7 +47,7 @@ test.skip('ContextMenu.show handles different coordinates', async () => {
   expect(mockRpc.invocations).toEqual([['ContextMenu.show', 500, 1000, MenuEntryId.ActivityBar, []]])
 })
 
-test.skip('ContextMenu.show handles empty args', async () => {
+test('ContextMenu.show handles empty args', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show'() {},
   })
@@ -58,14 +58,14 @@ test.skip('ContextMenu.show handles empty args', async () => {
   expect(mockRpc.invocations).toEqual([['ContextMenu.show', 100, 200, MenuEntryId.ActivityBarAdditionalViews, []]])
 })
 
-test.skip('ContextMenu.show can be called multiple times', async () => {
+test('ContextMenu.show can be called multiple times', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show'() {},
   })
 
   // @ts-ignore
 
-  // @ts-ignoreawait ContextMenu.show(10, 20, MenuEntryId.ActivityBar)
+  await ContextMenu.show(10, 20, MenuEntryId.ActivityBar)
   await ContextMenu.show(30, 40, MenuEntryId.Settings)
 
   expect(mockRpc.invocations).toEqual([
