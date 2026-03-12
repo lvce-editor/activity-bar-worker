@@ -45,14 +45,15 @@
     }
   },
   "devDependencies": {
-    "@jest/globals": "^30.2.0",
-    "@lvce-editor/constants": "^3.1.0",
+    "@jest/globals": "^30.3.0",
+    "@lvce-editor/constants": "^5.3.0",
     "@lvce-editor/i18n": "^2.1.0",
-    "@lvce-editor/rpc": "^6.1.0",
-    "@lvce-editor/rpc-registry": "^8.7.0",
-    "@lvce-editor/viewlet-registry": "^3.0.0",
-    "@lvce-editor/virtual-dom-worker": "^6.11.0",
-    "jest": "^30.2.0",
+    "@lvce-editor/rpc": "^6.4.0",
+    "@lvce-editor/rpc-registry": "^9.5.0",
+    "@lvce-editor/viewlet-registry": "^4.1.0",
+    "@lvce-editor/virtual-dom-worker": "^8.11.0",
+    "@types/node": "^25.4.0",
+    "jest": "^30.3.0",
     "ts-jest": "^29.4.6"
   }
 }
