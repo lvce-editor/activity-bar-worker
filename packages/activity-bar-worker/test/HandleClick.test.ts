@@ -6,6 +6,7 @@ import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBar
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getFilteredActivityBarItems } from '../src/parts/GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { handleClick } from '../src/parts/HandleClick/HandleClick.ts'
+import { ACCOUNT_MENU_ID } from '../src/parts/HandleClickAccount/HandleClickAccount.ts'
 
 test('handleClick calculates index correctly for first item', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
@@ -194,7 +195,7 @@ test('handleClick handles Account button click', async () => {
   const result = await handleClick(state, MouseEventType.LeftClick, 0, 100)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, 1000, 0, 100, { menuId: 1000 }]])
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, ACCOUNT_MENU_ID, 0, 100, { menuId: ACCOUNT_MENU_ID }]])
 })
 
 test('handleClick resolves account button from bottom stack when settings is also visible', async () => {
@@ -220,5 +221,5 @@ test('handleClick resolves account button from bottom stack when settings is als
   const result = await handleClick(state, MouseEventType.LeftClick, 12, accountY)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, 1000, 12, accountY, { menuId: 1000 }]])
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, ACCOUNT_MENU_ID, 12, accountY, { menuId: ACCOUNT_MENU_ID }]])
 })
