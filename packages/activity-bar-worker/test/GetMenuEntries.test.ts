@@ -55,10 +55,37 @@ test('getMenuEntries returns menu entries for Account menuId', () => {
   const result = getMenuEntries(state, options)
 
   expect(result.length).toBe(2)
-  expect(result[0].command).toBe('Account.signIn')
+  expect(result[0].command).toBe('ActivityBar.handleClickSignIn')
   expect(result[0].label).toBe('Sign In')
-  expect(result[1].command).toBe('Account.signOut')
+  expect(result[1].command).toBe('ActivityBar.handleClickSignOut')
   expect(result[1].label).toBe('Sign Out')
+})
+
+test('getMenuEntries returns account menu entries for logging in state', () => {
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    userLoginState: 'logging in',
+  }
+  const options: ContextMenuProps = {
+    menuId: 1000 as any,
+  }
+
+  const result = getMenuEntries(state, options)
+
+  expect(result).toEqual([
+    {
+      command: 'ActivityBar.handleClickSignIn',
+      flags: 0,
+      id: 'signIn',
+      label: 'Signing In...',
+    },
+    {
+      command: 'ActivityBar.handleClickSignOut',
+      flags: 0,
+      id: 'signOut',
+      label: 'Sign Out',
+    },
+  ])
 })
 
 test('getMenuEntries returns empty array for unknown menuId', () => {
