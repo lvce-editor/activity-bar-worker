@@ -196,3 +196,29 @@ test('handleClick handles Account button click', async () => {
   expect(result).toBe(state)
   expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, 1000, 0, 100, { menuId: 1000 }]])
 })
+
+test('handleClick resolves account button from bottom stack when settings is also visible', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'ContextMenu.show2'() {},
+  })
+  const items: readonly ActivityBarItem[] = [
+    { flags: 0, icon: 'Explorer', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+    { flags: 0, icon: 'Search', id: 'Search', keyShortcuts: '', title: 'Search' },
+    { flags: 0, icon: 'Account', id: 'Account', keyShortcuts: '', title: 'Account' },
+    { flags: 0, icon: 'Settings', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+  ]
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    accountEnabled: true,
+    activityBarItems: items,
+    filteredItems: items,
+    itemHeight: 48,
+    y: 100,
+  }
+  const accountY = state.y + state.height - state.itemHeight * 2
+
+  const result = await handleClick(state, MouseEventType.LeftClick, 12, accountY)
+
+  expect(result).toBe(state)
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, 1000, 12, accountY, { menuId: 1000 }]])
+})
