@@ -84,6 +84,22 @@ test('loadContent includes account button when accountEnabled is true', async ()
   expect(accountItem?.icon).toBe('Account')
 })
 
+test('loadContent gets accountEnabled from preferences', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'Preferences.get'() {
+      return true
+    },
+  })
+  const state: ActivityBarState = createDefaultState()
+
+  const result: ActivityBarState = await loadContent(state)
+
+  expect(mockRpc.invocations).toEqual(expect.arrayContaining([['Preferences.get', 'activityBar.accountEnabled']]))
+  expect(result.accountEnabled).toBe(true)
+  const accountItem = result.activityBarItems.find((item) => item.id === 'Account')
+  expect(accountItem).toBeDefined()
+})
+
 test('loadContent does not include account button when accountEnabled is false', async () => {
   const state: ActivityBarState = createDefaultState()
 

@@ -118,3 +118,29 @@ test('handleSettingsChanged preserves other state properties', async () => {
   expect(result.width).toBe(400)
   expect(result.accountEnabled).toBe(true)
 })
+
+test('handleSettingsChanged gets accountEnabled from preferences', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'Layout.getBadgeCounts'() {
+      return {
+        Explorer: 0,
+      }
+    },
+    'Layout.getSideBarPosition'() {
+      return 0
+    },
+    'Preferences.get'() {
+      return true
+    },
+  })
+
+  const state: ActivityBarState = createDefaultState()
+
+  const result: ActivityBarState = await handleSettingsChanged(state)
+
+  expect(mockRpc.invocations).toEqual(
+    expect.arrayContaining([['Layout.getBadgeCounts'], ['Layout.getSideBarPosition'], ['Preferences.get', 'activityBar.accountEnabled']]),
+  )
+  expect(result.accountEnabled).toBe(true)
+  expect(result.activityBarItems.some((item) => item.id === 'Account')).toBe(true)
+})
