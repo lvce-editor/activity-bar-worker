@@ -1,4 +1,5 @@
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
+import type { UserLoginState } from '../UserLoginState/UserLoginState.ts'
 
 export interface ActivityBarState {
   readonly accountEnabled: boolean
@@ -20,6 +21,7 @@ export interface ActivityBarState {
   readonly uid: number
   readonly updateProgress: number
   readonly updateState: any
+  readonly userLoginState: UserLoginState
   readonly width: number
   readonly x: number
   readonly y: number

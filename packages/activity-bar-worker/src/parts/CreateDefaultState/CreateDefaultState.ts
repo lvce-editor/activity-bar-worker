@@ -20,6 +20,7 @@ export const createDefaultState = (): ActivityBarState => ({
   uid: 0,
   updateProgress: 0,
   updateState: '',
+  userLoginState: 'logged out',
   width: 48,
   x: 0,
   y: 0,

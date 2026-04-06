@@ -33,6 +33,7 @@ export const create = (
     uid: id,
     updateProgress: 0,
     updateState: '',
+    userLoginState: 'logged out',
     width,
     x,
     y,
