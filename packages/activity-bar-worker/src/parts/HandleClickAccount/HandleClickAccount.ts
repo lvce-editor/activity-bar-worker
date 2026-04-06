@@ -1,8 +1,7 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import * as ContextMenu from '../ContextMenu/ContextMenu.ts'
 
-// Use a unique number for the Account menu ID
-const ACCOUNT_MENU_ID = 1000
+export const ACCOUNT_MENU_ID = 32_122
 
 export const handleClickAccount = async (state: ActivityBarState, eventX: number, eventY: number, viewletId: string): Promise<ActivityBarState> => {
   const { uid } = state
