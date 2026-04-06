@@ -165,3 +165,18 @@ test('getActivityBarItemWithBadgeDom uses correct badgeText', () => {
 
   expect(result[3]).toEqual(text('42'))
 })
+
+test('getActivityBarItemWithBadgeDom adds ariaHasPopup for settings item', () => {
+  const item: ActivityBarItem = {
+    badgeText: '1',
+    flags: 0,
+    icon: 'SettingsGear',
+    id: 'Settings',
+    keyShortcuts: '',
+    title: 'Settings',
+  }
+
+  const result = getActivityBarItemWithBadgeDom(item)
+
+  expect(result[0].ariaHasPopup).toBe(true)
+})

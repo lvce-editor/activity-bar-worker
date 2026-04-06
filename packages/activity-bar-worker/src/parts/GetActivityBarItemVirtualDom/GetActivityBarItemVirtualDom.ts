@@ -2,6 +2,7 @@ import { AriaRoles } from '@lvce-editor/constants'
 import { type VirtualDomNode, mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
+import { getActivityBarItemHasPopup } from '../GetActivityBarItemHasPopup/GetActivityBarItemHasPopup.ts'
 import { getActivityBarItemInProgressDom } from '../GetActivityBarItemInProgressDom/GetActivityBarItemInProgressDom.ts'
 import { getActivityBarItemWithBadgeDom } from '../GetActivityBarItemWithBadgeDom/GetActivityBarItemWithBadgeDom.ts'
 import { getAriaSelected } from '../GetAriaSelected/GetAriaSelected.ts'
@@ -10,6 +11,7 @@ import * as GetIconVirtualDom from '../GetIconVirtualDom/GetIconVirtualDom.ts'
 
 export const getActivityBarItemVirtualDom = (item: ActivityBarItem): readonly VirtualDomNode[] => {
   const { badgeText, flags, icon, title } = item
+  const ariaHasPopup = getActivityBarItemHasPopup(item) || undefined
   const isTab = flags & ActivityBarItemFlags.Tab
   const isSelected = flags & ActivityBarItemFlags.Selected
   const isFocused = flags & ActivityBarItemFlags.Focused
@@ -21,6 +23,7 @@ export const getActivityBarItemVirtualDom = (item: ActivityBarItem): readonly Vi
   if (isSelected) {
     return [
       {
+        ariaHasPopup,
         ariaLabel: '',
         ariaSelected,
         childCount: 1,
@@ -43,6 +46,7 @@ export const getActivityBarItemVirtualDom = (item: ActivityBarItem): readonly Vi
   }
   return [
     {
+      ariaHasPopup,
       ariaLabel: '',
       ariaSelected,
       childCount: 0,

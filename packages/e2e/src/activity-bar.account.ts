@@ -12,4 +12,5 @@ export const test: Test = async ({ ActivityBar, expect, Locator }) => {
   const account = Locator('.ActivityBarItem[title="Account"]')
   await expect(account).toBeVisible()
   await expect(account).toHaveClass('IconAccount')
+  await expect(account).toHaveAttribute('aria-haspopup', 'true')
 }

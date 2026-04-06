@@ -1,4 +1,5 @@
 import { test, expect } from '@jest/globals'
+import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as CreateDefaultState from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as GetActivityBarItems from '../src/parts/GetActivityBarItems/GetActivityBarItems.ts'
 
@@ -79,6 +80,21 @@ test('GetActivityBarItems.getActivityBarItems should include account button when
   expect(accountItem).toBeDefined()
   expect(accountItem?.icon).toBe('Account')
   expect(accountItem?.title).toBe('Account')
+})
+
+test('GetActivityBarItems.getActivityBarItems should only apply MarginTop to the first bottom item when accountEnabled is true', () => {
+  const state = { ...CreateDefaultState.createDefaultState(), accountEnabled: true }
+  const result = GetActivityBarItems.getActivityBarItems(state)
+
+  const accountItem = result.find((item) => item.id === 'Account')
+  const settingsItem = result.find((item) => item.id === 'Settings')
+
+  if (!accountItem || !settingsItem) {
+    throw new Error('expected account and settings items to be present')
+  }
+
+  expect(accountItem.flags & ActivityBarItemFlags.MarginTop).toBe(ActivityBarItemFlags.MarginTop)
+  expect(settingsItem.flags & ActivityBarItemFlags.MarginTop).toBe(0)
 })
 
 test('GetActivityBarItems.getActivityBarItems should not include account button when accountEnabled is false', () => {
