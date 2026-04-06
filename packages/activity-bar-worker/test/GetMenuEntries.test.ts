@@ -4,6 +4,7 @@ import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBar
 import type { ContextMenuProps } from '../src/parts/ContextMenuProps/ContextMenuProps.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getMenuEntries } from '../src/parts/GetMenuEntries/GetMenuEntries.ts'
+import { ACCOUNT_MENU_ID } from '../src/parts/HandleClickAccount/HandleClickAccount.ts'
 
 test('getMenuEntries returns menu entries for ActivityBar menuId', () => {
   const state: ActivityBarState = {
@@ -49,7 +50,7 @@ test('getMenuEntries returns menu entries for Settings menuId', () => {
 test('getMenuEntries returns menu entries for Account menuId', () => {
   const state: ActivityBarState = createDefaultState()
   const options: ContextMenuProps = {
-    menuId: 1000 as any,
+    menuId: ACCOUNT_MENU_ID,
   }
 
   const result = getMenuEntries(state, options)
@@ -65,7 +66,7 @@ test('getMenuEntries returns account menu entries for logging in state', () => {
     userLoginState: 'logging in',
   }
   const options: ContextMenuProps = {
-    menuId: 1000 as any,
+    menuId: ACCOUNT_MENU_ID,
   }
 
   const result = getMenuEntries(state, options)
@@ -86,7 +87,7 @@ test('getMenuEntries returns account menu entries for logged in state', () => {
     userLoginState: 'logged in',
   }
   const options: ContextMenuProps = {
-    menuId: 1000 as any,
+    menuId: ACCOUNT_MENU_ID,
   }
 
   const result = getMenuEntries(state, options)
@@ -107,7 +108,7 @@ test('getMenuEntries returns account menu entries for logging out state', () => 
     userLoginState: 'logging out',
   }
   const options: ContextMenuProps = {
-    menuId: 1000 as any,
+    menuId: ACCOUNT_MENU_ID,
   }
 
   const result = getMenuEntries(state, options)
