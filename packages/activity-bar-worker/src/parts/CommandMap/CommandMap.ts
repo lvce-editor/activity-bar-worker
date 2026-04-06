@@ -16,6 +16,8 @@ import { handleBlur } from '../HandleBlur/HandleBlur.ts'
 import * as HandleClick from '../HandleClick/HandleClick.ts'
 import { handleClickIndex } from '../HandleClickIndex/HandleClickIndex.ts'
 import { handleClickSettings } from '../HandleClickSettings/HandleClickSettings.ts'
+import { handleClickSignIn } from '../HandleClickSignIn/HandleClickSignIn.ts'
+import { handleClickSignOut } from '../HandleClickSignOut/HandleClickSignOut.ts'
 import { handleContextMenu } from '../HandleContextMenu/HandleContextMenu.ts'
 import { handleFocus } from '../HandleFocus/HandleFocus.ts'
 import { handleResize } from '../HandleResize/HandleResize.ts'
@@ -28,6 +30,7 @@ import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import { setAccountEnabled } from '../SetAccountEnabled/SetAccountEnabled.ts'
+import { setUserLoginState } from '../SetUserLoginState/SetUserLoginState.ts'
 import { toggleActivityBarItem } from '../ToggleActivityBarItem/ToggleActivityBarItem.ts'
 
 export const commandMap = {
@@ -48,6 +51,8 @@ export const commandMap = {
   'ActivityBar.handleClick': WrapCommand.wrapCommand(HandleClick.handleClick),
   'ActivityBar.handleClickIndex': WrapCommand.wrapCommand(handleClickIndex),
   'ActivityBar.handleClickSettings': WrapCommand.wrapCommand(handleClickSettings),
+  'ActivityBar.handleClickSignIn': WrapCommand.wrapCommand(handleClickSignIn),
+  'ActivityBar.handleClickSignOut': WrapCommand.wrapCommand(handleClickSignOut),
   'ActivityBar.handleContextMenu': WrapCommand.wrapCommand(handleContextMenu),
   'ActivityBar.handleFocus': WrapCommand.wrapCommand(handleFocus),
   'ActivityBar.handleSettingsChanged': WrapCommand.wrapCommand(handleSettingsChanged),
@@ -60,6 +65,7 @@ export const commandMap = {
   'ActivityBar.resize': WrapCommand.wrapCommand(handleResize),
   'ActivityBar.saveState': WrapCommand.wrapGetter(SaveState.saveState),
   'ActivityBar.setAccountEnabled': WrapCommand.wrapCommand(setAccountEnabled),
+  'ActivityBar.setUserLoginState': WrapCommand.wrapCommand(setUserLoginState),
   'ActivityBar.terminate': terminate,
   'ActivityBar.toggleActivityBarItem': WrapCommand.wrapCommand(toggleActivityBarItem),
 }
