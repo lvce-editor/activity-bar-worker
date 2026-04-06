@@ -1,4 +1,6 @@
 import { expect, test } from '@jest/globals'
+import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
+import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { getIndexFromPosition } from '../src/parts/GetIndexFromPosition/GetIndexFromPosition.ts'
 
 test('getIndexFromPosition returns correct index within bounds', () => {
@@ -151,4 +153,37 @@ test('getIndexFromPosition handles Settings at bottom with gap', () => {
   expect(getIndexFromPosition(y, 0, settingsTopY, itemHeight, itemCount, height)).toBe(1)
   expect(getIndexFromPosition(y, 0, settingsTopY + 10, itemHeight, itemCount, height)).toBe(1)
   expect(getIndexFromPosition(y, 0, settingsBottomY - 1, itemHeight, itemCount, height)).toBe(1)
+})
+
+test('getIndexFromPosition returns account index for second bottom slot', () => {
+  const y = 100
+  const itemHeight = 50
+  const height = 400
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Tab, icon: 'Files', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+    { flags: ActivityBarItemFlags.Tab, icon: 'Search', id: 'Search', keyShortcuts: '', title: 'Search' },
+    { flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.MarginTop, icon: 'Account', id: 'Account', keyShortcuts: '', title: 'Account' },
+    { flags: ActivityBarItemFlags.Button, icon: 'Settings', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+  ]
+  const accountTopY = y + height - itemHeight * 2
+  const settingsTopY = y + height - itemHeight
+
+  expect(getIndexFromPosition(y, 0, accountTopY, itemHeight, items, height)).toBe(2)
+  expect(getIndexFromPosition(y, 0, accountTopY + 10, itemHeight, items, height)).toBe(2)
+  expect(getIndexFromPosition(y, 0, settingsTopY, itemHeight, items, height)).toBe(3)
+})
+
+test('getIndexFromPosition keeps additional views in top section when settings is bottom-aligned', () => {
+  const y = 0
+  const itemHeight = 48
+  const height = 400
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Button, icon: 'Ellipsis', id: 'Additional Views', keyShortcuts: '', title: 'Additional Views' },
+    { flags: ActivityBarItemFlags.Button, icon: 'SettingsGear', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+  ]
+  const settingsTopY = y + height - itemHeight
+
+  expect(getIndexFromPosition(y, 0, 0, itemHeight, items, height)).toBe(0)
+  expect(getIndexFromPosition(y, 0, settingsTopY, itemHeight, items, height)).toBe(1)
+  expect(getIndexFromPosition(y, 0, itemHeight, itemHeight, items, height)).toBe(-1)
 })

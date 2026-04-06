@@ -6,9 +6,7 @@ import { getMenuEntriesAccount } from '../GetMenuEntriesAccount/GetMenuEntriesAc
 import { getMenuEntriesActivityBar } from '../GetMenuEntriesActivityBar/GetMenuEntriesActivityBar.ts'
 import { getMenuEntriesAdditionalViews } from '../GetMenuEntriesAdditionalViews/GetMenuEntriesAdditionalViews.ts'
 import { getMenuEntriesSettings } from '../GetMenuEntriesSettings/GetMenuEntriesSettings.ts'
-
-// Use a unique number for the Account menu ID
-const ACCOUNT_MENU_ID = 1000
+import { ACCOUNT_MENU_ID } from '../HandleClickAccount/HandleClickAccount.ts'
 
 export const getMenuEntries = (state: ActivityBarState, options: ContextMenuProps): readonly MenuEntry[] => {
   const { menuId } = options

@@ -4,6 +4,7 @@ import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBar
 import type { ContextMenuProps } from '../src/parts/ContextMenuProps/ContextMenuProps.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getMenuEntries } from '../src/parts/GetMenuEntries/GetMenuEntries.ts'
+import { ACCOUNT_MENU_ID } from '../src/parts/HandleClickAccount/HandleClickAccount.ts'
 
 test('getMenuEntries returns menu entries for ActivityBar menuId', () => {
   const state: ActivityBarState = {
@@ -49,16 +50,14 @@ test('getMenuEntries returns menu entries for Settings menuId', () => {
 test('getMenuEntries returns menu entries for Account menuId', () => {
   const state: ActivityBarState = createDefaultState()
   const options: ContextMenuProps = {
-    menuId: 1000 as any,
+    menuId: ACCOUNT_MENU_ID,
   }
 
   const result = getMenuEntries(state, options)
 
-  expect(result.length).toBe(2)
+  expect(result.length).toBe(1)
   expect(result[0].command).toBe('ActivityBar.handleClickSignIn')
   expect(result[0].label).toBe('Sign In')
-  expect(result[1].command).toBe('ActivityBar.handleClickSignOut')
-  expect(result[1].label).toBe('Sign Out')
 })
 
 test('getMenuEntries returns account menu entries for logging in state', () => {
@@ -67,7 +66,7 @@ test('getMenuEntries returns account menu entries for logging in state', () => {
     userLoginState: 'logging in',
   }
   const options: ContextMenuProps = {
-    menuId: 1000 as any,
+    menuId: ACCOUNT_MENU_ID,
   }
 
   const result = getMenuEntries(state, options)
@@ -79,11 +78,47 @@ test('getMenuEntries returns account menu entries for logging in state', () => {
       id: 'signIn',
       label: 'Signing In...',
     },
+  ])
+})
+
+test('getMenuEntries returns account menu entries for logged in state', () => {
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    userLoginState: 'logged in',
+  }
+  const options: ContextMenuProps = {
+    menuId: ACCOUNT_MENU_ID,
+  }
+
+  const result = getMenuEntries(state, options)
+
+  expect(result).toEqual([
     {
       command: 'ActivityBar.handleClickSignOut',
       flags: 0,
       id: 'signOut',
       label: 'Sign Out',
+    },
+  ])
+})
+
+test('getMenuEntries returns account menu entries for logging out state', () => {
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    userLoginState: 'logging out',
+  }
+  const options: ContextMenuProps = {
+    menuId: ACCOUNT_MENU_ID,
+  }
+
+  const result = getMenuEntries(state, options)
+
+  expect(result).toEqual([
+    {
+      command: 'ActivityBar.handleClickSignOut',
+      flags: 0,
+      id: 'signOut',
+      label: 'Signing Out...',
     },
   ])
 })
