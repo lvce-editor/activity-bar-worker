@@ -7,6 +7,7 @@ import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 
 export const getActivityBarItems = (state: ActivityBarState): readonly ActivityBarItem[] => {
   const { accountEnabled } = state
+  const settingsFlags = ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled | (accountEnabled ? 0 : ActivityBarItemFlags.MarginTop)
   const items = [
     // Top
     {
@@ -58,7 +59,7 @@ export const getActivityBarItems = (state: ActivityBarState): readonly ActivityB
   }
 
   items.push({
-    flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled | ActivityBarItemFlags.MarginTop,
+    flags: settingsFlags,
     icon: Icon.SettingsGear,
     id: 'Settings',
     keyShortcuts: '',

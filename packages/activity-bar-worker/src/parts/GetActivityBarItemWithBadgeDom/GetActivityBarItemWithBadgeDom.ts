@@ -3,6 +3,7 @@ import { type VirtualDomNode, mergeClassNames, text, VirtualDomElements } from '
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import { getActivityBarItemHasPopup } from '../GetActivityBarItemHasPopup/GetActivityBarItemHasPopup.ts'
 import { getAriaSelected } from '../GetAriaSelected/GetAriaSelected.ts'
 import { getClassName } from '../GetClassName/GetClassName.ts'
 
@@ -17,11 +18,13 @@ export const getActivityBarItemWithBadgeDom = (item: ActivityBarItem): readonly 
   const isFocused = flags & ActivityBarItemFlags.Focused
   const role = isTab ? AriaRoles.Tab : AriaRoles.Button
   const ariaSelected = getAriaSelected(isTab, isSelected)
+  const ariaHasPopup = getActivityBarItemHasPopup(item) || undefined
   const marginTop = flags & ActivityBarItemFlags.MarginTop
   let className = getClassName(isFocused, marginTop, isSelected)
   className += ' ' + ClassNames.ActivityBarItemNested
   return [
     {
+      ariaHasPopup,
       ariaLabel: '',
       ariaSelected,
       childCount: 2,

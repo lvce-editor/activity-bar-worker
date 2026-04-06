@@ -7,4 +7,5 @@ export const test: Test = async ({ expect, Locator }) => {
   const explorer = Locator('.ActivityBarItem[title="Settings"]')
   await expect(explorer).toBeVisible()
   await expect(explorer).toHaveClass('IconSettingsGear')
+  await expect(explorer).toHaveAttribute('aria-haspopup', 'true')
 }

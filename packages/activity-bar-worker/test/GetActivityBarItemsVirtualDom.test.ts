@@ -174,3 +174,33 @@ test('getVirtualDom handles item with all flags', () => {
 
   expect(result.length).toBeGreaterThan(0)
 })
+
+test('getVirtualDom adds ariaHasPopup for account item', () => {
+  const items: readonly any[] = [
+    {
+      flags: 0,
+      icon: 'Account',
+      id: 'Account',
+      title: 'Account',
+    },
+  ]
+
+  const result = GetActivityBarItemsVirtualDom.getVirtualDom(items)
+
+  expect(result[0].ariaHasPopup).toBe(true)
+})
+
+test('getVirtualDom does not add ariaHasPopup for regular activity bar item', () => {
+  const items: readonly any[] = [
+    {
+      flags: 0,
+      icon: 'Explorer',
+      id: 'Explorer',
+      title: 'Explorer',
+    },
+  ]
+
+  const result = GetActivityBarItemsVirtualDom.getVirtualDom(items)
+
+  expect(result[0].ariaHasPopup).toBe(undefined)
+})
