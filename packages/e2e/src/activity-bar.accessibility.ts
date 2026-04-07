@@ -2,8 +2,6 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.accessibility'
 
-export const skip = 1
-
 export const test: Test = async ({ expect, Locator }) => {
   // Test activity bar accessibility attributes
   const activityBar = Locator('.ActivityBar')
@@ -15,7 +13,7 @@ export const test: Test = async ({ expect, Locator }) => {
 
   // Test activity bar items (tabs) accessibility attributes
   const activityBarItems = Locator('.ActivityBarItem')
-  await expect(activityBarItems).toHaveCount(8) // Explorer, Search, Source Control, Run & Debug, Extensions, Account, Settings, Update
+  await expect(activityBarItems).toHaveCount(6)
 
   // Check first item (Explorer)
   const explorerItem = Locator('.ActivityBarItem[title="Explorer"]')
@@ -36,7 +34,7 @@ export const test: Test = async ({ expect, Locator }) => {
   await expect(sourceControlItem).toHaveAttribute('aria-selected', 'false')
 
   // Check fourth item (Run & Debug)
-  const runDebugItem = Locator('.ActivityBarItem[title="Run & Debug"]')
+  const runDebugItem = Locator('.ActivityBarItem[title="Run and Debug"]')
   await expect(runDebugItem).toBeVisible()
   await expect(runDebugItem).toHaveAttribute('role', 'tab')
   await expect(runDebugItem).toHaveAttribute('aria-selected', 'false')
@@ -47,21 +45,16 @@ export const test: Test = async ({ expect, Locator }) => {
   await expect(extensionsItem).toHaveAttribute('role', 'tab')
   await expect(extensionsItem).toHaveAttribute('aria-selected', 'false')
 
-  // Check sixth item (Account)
-  const accountItem = Locator('.ActivityBarItem[title="Account"]')
-  await expect(accountItem).toBeVisible()
-  await expect(accountItem).toHaveAttribute('role', 'tab')
-  await expect(accountItem).toHaveAttribute('aria-selected', 'false')
-
-  // Check seventh item (Settings)
+  // Check sixth item (Settings)
   const settingsItem = Locator('.ActivityBarItem[title="Settings"]')
   await expect(settingsItem).toBeVisible()
-  await expect(settingsItem).toHaveAttribute('role', 'tab')
-  await expect(settingsItem).toHaveAttribute('aria-selected', 'false')
+  await expect(settingsItem).toHaveAttribute('role', 'button')
+  await expect(settingsItem).toHaveAttribute('aria-haspopup', 'true')
+  await expect(settingsItem).toHaveAttribute('aria-selected', null)
 
-  // Check eighth item (Update)
+  const accountItem = Locator('.ActivityBarItem[title="Account"]')
+  await expect(accountItem).toHaveCount(0)
+
   const updateItem = Locator('.ActivityBarItem[title="Update"]')
-  await expect(updateItem).toBeVisible()
-  await expect(updateItem).toHaveAttribute('role', 'tab')
-  await expect(updateItem).toHaveAttribute('aria-selected', 'false')
+  await expect(updateItem).toHaveCount(0)
 }

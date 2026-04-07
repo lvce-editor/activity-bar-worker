@@ -1,19 +1,19 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const name = 'activity-bar.account.context-menu'
+export const name = 'activity-bar.account.context-menu.logging-out'
 
-export const test: Test = async ({ ActivityBar, expect, Locator }) => {
-  // act - enable account item
+export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
   await ActivityBar.setAccountEnabled(true)
+  await Command.execute('ActivityBar.setUserLoginState', 'logging out')
 
-  // act - click the account item
   const account = Locator('.ActivityBarItem[title="Account"]')
   await account.click({ button: 'left' })
 
-  // assert - context menu should be visible with expected items
   const signIn = Locator('.ContextMenuItem[title="Sign In"]')
-  await expect(signIn).toBeVisible()
-
+  const signingOut = Locator('.ContextMenuItem[title="Signing Out..."]')
   const signOut = Locator('.ContextMenuItem[title="Sign Out"]')
+
+  await expect(signIn).toBeVisible()
+  await expect(signingOut).toBeVisible()
   await expect(signOut).toHaveCount(0)
 }
