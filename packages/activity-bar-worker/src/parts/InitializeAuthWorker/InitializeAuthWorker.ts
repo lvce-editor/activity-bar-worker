@@ -6,7 +6,7 @@ const send = async (port: MessagePort): Promise<void> => {
   await RendererWorker.sendMessagePortToAuthWorker(port)
 }
 
-export const listen = async (): Promise<void> => {
+export const initializeAuthWorker = async (): Promise<void> => {
   const rpc = await LazyTransferMessagePortRpcParent.create({
     commandMap: {},
     send,
