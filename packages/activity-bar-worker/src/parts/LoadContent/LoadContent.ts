@@ -10,16 +10,16 @@ import { updateItemsWithBadgeCount } from '../UpdateItemsWithBadgeCount/UpdateIt
 import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 
 export const loadContent = async (state: ActivityBarState): Promise<ActivityBarState> => {
-  const { height, itemHeight } = state
-  const [accountEnabled, activeView, sideBarVisible, sidebarLocation] = await Promise.all([
-    getAccountEnabled(state.accountEnabled),
+  const { accountEnabled, height, itemHeight } = state
+  const [accountEnabledNew, activeView, sideBarVisible, sidebarLocation] = await Promise.all([
+    getAccountEnabled(accountEnabled),
     getActiveView(),
     getSideBarVisible(),
     getSideBarPosition(),
   ])
   const newState = {
     ...state,
-    accountEnabled,
+    accountEnabled: accountEnabledNew,
   }
   const items = getActivityBarItems(newState)
   const index = items.findIndex((item) => item.id === activeView)
