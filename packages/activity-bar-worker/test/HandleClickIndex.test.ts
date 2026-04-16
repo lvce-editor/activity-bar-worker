@@ -79,6 +79,7 @@ test('handleClickIndex handles Additional Views viewlet click', async () => {
 test('handleClickIndex handles other viewlet click when sidebar is hidden', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'Layout.showSideBar'() {},
+    'SideBar.show'() {},
   })
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Explorer', keyShortcuts: '', title: 'Explorer' }]
   const state: ActivityBarState = {
@@ -91,8 +92,14 @@ test('handleClickIndex handles other viewlet click when sidebar is hidden', asyn
 
   const result = await handleClickIndex(state, MouseEventType.LeftClick, 0, 50, 75)
 
-  expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['Layout.showSideBar', '']])
+  expect(result).not.toBe(state)
+  expect(result.currentViewletId).toBe('Explorer')
+  expect(result.selectedIndex).toBe(0)
+  expect(result.sideBarVisible).toBe(true)
+  expect(mockRpc.invocations).toEqual([
+    ['SideBar.show', 'Explorer'],
+    ['Layout.showSideBar', 'Explorer'],
+  ])
 })
 
 test('handleClickIndex handles other viewlet click when sidebar is visible and different viewlet selected', async () => {
