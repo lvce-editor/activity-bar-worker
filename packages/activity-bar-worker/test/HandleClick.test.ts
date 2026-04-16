@@ -57,6 +57,7 @@ test('handleClick calculates index correctly for second item', async () => {
 test('handleClick calculates index correctly for multiple items', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'Layout.showSideBar'() {},
+    'SideBar.show'() {},
   })
   const items: readonly ActivityBarItem[] = [
     { flags: 0, icon: 'icon1', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
@@ -77,8 +78,14 @@ test('handleClick calculates index correctly for multiple items', async () => {
 
   const result = await handleClick(state, MouseEventType.LeftClick, 0, explorerY)
 
-  expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['Layout.showSideBar', '']])
+  expect(result).not.toBe(state)
+  expect(result.currentViewletId).toBe('Explorer')
+  expect(result.selectedIndex).toBe(0)
+  expect(result.sideBarVisible).toBe(true)
+  expect(mockRpc.invocations).toEqual([
+    ['SideBar.show', 'Explorer'],
+    ['Layout.showSideBar', 'Explorer'],
+  ])
 })
 
 test('handleClick returns same state when button is not left click', async () => {
@@ -114,6 +121,7 @@ test('handleClick returns same state when index is -1', async () => {
 test('handleClick handles Explorer viewlet click', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'Layout.showSideBar'() {},
+    'SideBar.show'() {},
   })
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Explorer', keyShortcuts: '', title: 'Explorer' }]
   const state: ActivityBarState = {
@@ -128,8 +136,14 @@ test('handleClick handles Explorer viewlet click', async () => {
 
   const result = await handleClick(state, MouseEventType.LeftClick, 0, 100)
 
-  expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['Layout.showSideBar', '']])
+  expect(result).not.toBe(state)
+  expect(result.currentViewletId).toBe('Explorer')
+  expect(result.selectedIndex).toBe(0)
+  expect(result.sideBarVisible).toBe(true)
+  expect(mockRpc.invocations).toEqual([
+    ['SideBar.show', 'Explorer'],
+    ['Layout.showSideBar', 'Explorer'],
+  ])
 })
 
 test('handleClick handles Additional Views viewlet click', async () => {
