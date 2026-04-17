@@ -13,3 +13,7 @@ export const show = async (sideBarVisible: boolean, id: string): Promise<void> =
 export const hide = async (): Promise<void> => {
   await RendererWorker.invoke('Layout.hideSideBar')
 }
+
+export const toggle = async (id: string): Promise<void> => {
+  await RendererWorker.invoke('SideBar.toggle', id)
+}

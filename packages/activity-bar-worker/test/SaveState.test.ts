@@ -3,7 +3,7 @@ import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBar
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { saveState } from '../src/parts/SaveState/SaveState.ts'
 
-test('saveState returns SavedState with currentViewletId', () => {
+test('saveState returns an empty saved state object', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     currentViewletId: 'explorer',
@@ -11,10 +11,10 @@ test('saveState returns SavedState with currentViewletId', () => {
 
   const result = saveState(state)
 
-  expect(result).toEqual({ currentViewletId: 'explorer' })
+  expect(result).toEqual({})
 })
 
-test('saveState preserves currentViewletId from state', () => {
+test('saveState ignores transient view state', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     currentViewletId: 'search',
@@ -24,8 +24,7 @@ test('saveState preserves currentViewletId from state', () => {
 
   const result = saveState(state)
 
-  expect(result.currentViewletId).toBe('search')
-  expect(result).toEqual({ currentViewletId: 'search' })
+  expect(result).toEqual({})
 })
 
 test('saveState returns new object', () => {
@@ -33,5 +32,4 @@ test('saveState returns new object', () => {
   const result = saveState(state)
 
   expect(result).not.toBe(state)
-  expect(result.currentViewletId).toBe(state.currentViewletId)
 })

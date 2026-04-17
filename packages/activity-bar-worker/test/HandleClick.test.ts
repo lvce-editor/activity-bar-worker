@@ -5,8 +5,9 @@ import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarIt
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getFilteredActivityBarItems } from '../src/parts/GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
-import { handleClick } from '../src/parts/HandleClick/HandleClick.ts'
 import { ACCOUNT_MENU_ID } from '../src/parts/HandleClickAccount/HandleClickAccount.ts'
+
+const { handleClick } = await import('../src/parts/HandleClick/HandleClick.ts')
 
 test('handleClick calculates index correctly for first item', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
@@ -56,8 +57,7 @@ test('handleClick calculates index correctly for second item', async () => {
 
 test('handleClick calculates index correctly for multiple items', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'Layout.showSideBar'() {},
-    'SideBar.show'() {},
+    'SideBar.toggle'() {},
   })
   const items: readonly ActivityBarItem[] = [
     { flags: 0, icon: 'icon1', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
@@ -82,10 +82,7 @@ test('handleClick calculates index correctly for multiple items', async () => {
   expect(result.currentViewletId).toBe('Explorer')
   expect(result.selectedIndex).toBe(0)
   expect(result.sideBarVisible).toBe(true)
-  expect(mockRpc.invocations).toEqual([
-    ['SideBar.show', 'Explorer'],
-    ['Layout.showSideBar', 'Explorer'],
-  ])
+  expect(mockRpc.invocations).toEqual([['SideBar.toggle', 'Explorer']])
 })
 
 test('handleClick returns same state when button is not left click', async () => {
@@ -120,8 +117,7 @@ test('handleClick returns same state when index is -1', async () => {
 
 test('handleClick handles Explorer viewlet click', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'Layout.showSideBar'() {},
-    'SideBar.show'() {},
+    'SideBar.toggle'() {},
   })
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Explorer', keyShortcuts: '', title: 'Explorer' }]
   const state: ActivityBarState = {
@@ -140,10 +136,7 @@ test('handleClick handles Explorer viewlet click', async () => {
   expect(result.currentViewletId).toBe('Explorer')
   expect(result.selectedIndex).toBe(0)
   expect(result.sideBarVisible).toBe(true)
-  expect(mockRpc.invocations).toEqual([
-    ['SideBar.show', 'Explorer'],
-    ['Layout.showSideBar', 'Explorer'],
-  ])
+  expect(mockRpc.invocations).toEqual([['SideBar.toggle', 'Explorer']])
 })
 
 test('handleClick handles Additional Views viewlet click', async () => {
