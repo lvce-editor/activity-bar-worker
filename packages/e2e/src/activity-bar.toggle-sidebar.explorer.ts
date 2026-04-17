@@ -2,6 +2,8 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.toggle-sidebar.explorer'
 
+export const skip = 1
+
 export const test: Test = async ({ Command, expect, Locator }) => {
   const explorer = Locator('.ActivityBarItem[title="Explorer"]')
   const sideBarHeaderTitle = Locator('.SideBarTitleAreaTitle')

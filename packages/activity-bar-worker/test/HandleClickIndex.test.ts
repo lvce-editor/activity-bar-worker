@@ -6,6 +6,7 @@ import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBar
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getFilteredActivityBarItems } from '../src/parts/GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { handleClickIndex } from '../src/parts/HandleClickIndex/HandleClickIndex.ts'
+import { markSelected } from '../src/parts/MarkSelected/MarkSelected.ts'
 
 test('handleClickIndex returns same state for non-left click', async () => {
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' }]
@@ -116,8 +117,17 @@ test('handleClickIndex handles other viewlet click when sidebar is visible and d
   }
 
   const result = await handleClickIndex(state, MouseEventType.LeftClick, 0, 30, 40)
+  const expectedActivityBarItems = markSelected(items, 0)
+  const expectedFilteredItems = getFilteredActivityBarItems(expectedActivityBarItems, 400, 48)
 
-  expect(result).toBe(state)
+  expect(result).toEqual({
+    ...state,
+    activityBarItems: expectedActivityBarItems,
+    currentViewletId: 'Explorer',
+    filteredItems: expectedFilteredItems,
+    selectedIndex: 0,
+    sideBarVisible: true,
+  })
   expect(mockRpc.invocations).toEqual([['SideBar.show', 'Explorer']])
 })
 
@@ -135,8 +145,17 @@ test('handleClickIndex handles other viewlet click when same viewlet is already 
   }
 
   const result = await handleClickIndex(state, MouseEventType.LeftClick, 0, 100, 200)
+  const expectedActivityBarItems = markSelected(items, 0)
+  const expectedFilteredItems = getFilteredActivityBarItems(expectedActivityBarItems, 400, 48)
 
-  expect(result).toBe(state)
+  expect(result).toEqual({
+    ...state,
+    activityBarItems: expectedActivityBarItems,
+    currentViewletId: 'Explorer',
+    filteredItems: expectedFilteredItems,
+    selectedIndex: 0,
+    sideBarVisible: true,
+  })
   expect(mockRpc.invocations).toEqual([['Layout.hideSideBar']])
 })
 
