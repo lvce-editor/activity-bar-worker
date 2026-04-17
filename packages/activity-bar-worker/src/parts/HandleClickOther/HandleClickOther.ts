@@ -46,7 +46,6 @@ export const handleClickOther = async (state: ActivityBarState, viewletId: strin
   const { activityBarItems, currentViewletId, height, itemHeight, sideBarVisible } = state
   const sideBarChange = getSideBarChange(sideBarVisible, currentViewletId, viewletId)
   await applySideBarChange(sideBarChange)
-  await SideBar.show(sideBarVisible, viewletId)
   const selectedIndex = findIndex(activityBarItems, viewletId)
   const newActivityBarItems = markSelected(activityBarItems, selectedIndex)
   const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)
