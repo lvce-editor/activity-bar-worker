@@ -1,4 +1,4 @@
-import { type VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
+import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import { getActivityBarItemVirtualDom } from '../GetActivityBarItemVirtualDom/GetActivityBarItemVirtualDom.ts'
 
