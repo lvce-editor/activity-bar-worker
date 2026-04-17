@@ -9,7 +9,15 @@ export const test: Test = async ({ ActivityBar, expect, Locator }) => {
   await ActivityBar.handleContextMenu()
 
   // assert
-  const explorer = Locator('.ActivityBarItem[title="Search"]')
+  const explorer = Locator('.ContextMenuItem[title="Explorer"]')
+  const search = Locator('.ContextMenuItem[title="Search"]')
+  const moveSideBarRight = Locator('.ContextMenuItem[title="Move Side Bar Right"]')
+  const moveSideBarLeft = Locator('.ContextMenuItem[title="Move Side Bar Left"]')
+  const hideActivityBar = Locator('.ContextMenuItem[title="Hide Activity Bar"]')
+
   await expect(explorer).toBeVisible()
-  await expect(explorer).toHaveClass('IconSearch')
+  await expect(search).toBeVisible()
+  await expect(moveSideBarRight).toBeVisible()
+  await expect(moveSideBarLeft).toHaveCount(0)
+  await expect(hideActivityBar).toBeVisible()
 }
