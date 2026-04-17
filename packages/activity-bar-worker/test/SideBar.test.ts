@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
 import { RendererWorker } from '@lvce-editor/rpc-registry'
-import { hide, show } from '../src/parts/SideBar/SideBar.ts'
+import { hide, show, toggle } from '../src/parts/SideBar/SideBar.ts'
 
 test('show calls SideBar.show when sideBarVisible is true', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
@@ -28,4 +28,12 @@ test('hide calls Layout.hideSideBar', async () => {
   })
   await hide()
   expect(mockRpc.invocations).toEqual([['Layout.hideSideBar']])
+})
+
+test('toggle calls SideBar.toggle', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'SideBar.toggle'() {},
+  })
+  await toggle('test-id')
+  expect(mockRpc.invocations).toEqual([['SideBar.toggle', 'test-id']])
 })
