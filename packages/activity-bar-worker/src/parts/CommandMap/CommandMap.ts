@@ -22,8 +22,7 @@ import { handleContextMenu } from '../HandleContextMenu/HandleContextMenu.ts'
 import { handleFocus } from '../HandleFocus/HandleFocus.ts'
 import { handleResize } from '../HandleResize/HandleResize.ts'
 import { handleSettingsChanged } from '../HandleSettingsChanged/HandleSettingsChanged.ts'
-import { handleSideBarHidden } from '../HandleSideBarHidden/HandleSideBarHidden.ts'
-import { handleSideBarViewletChange } from '../HandleSideBarViewletChange/HandleSideBarViewletChange.ts'
+import { handleSideBarStateChange } from '../HandleSideBarStateChange/HandleSideBarStateChange.ts'
 import { handleUpdateStateChange } from '../HandleUpdateStateChange/HandleUpdateStateChange.ts'
 import { loadContent } from '../LoadContent/LoadContent.ts'
 import * as Render2 from '../Render2/Render2.ts'
@@ -56,8 +55,7 @@ export const commandMap = {
   'ActivityBar.handleContextMenu': WrapCommand.wrapCommand(handleContextMenu),
   'ActivityBar.handleFocus': WrapCommand.wrapCommand(handleFocus),
   'ActivityBar.handleSettingsChanged': WrapCommand.wrapCommand(handleSettingsChanged),
-  'ActivityBar.handleSideBarHidden': WrapCommand.wrapCommand(handleSideBarHidden),
-  'ActivityBar.handleSideBarViewletChange': WrapCommand.wrapCommand(handleSideBarViewletChange),
+  'ActivityBar.handleSideBarStateChange': WrapCommand.wrapCommand(handleSideBarStateChange),
   'ActivityBar.handleUpdateStateChange': WrapCommand.wrapCommand(handleUpdateStateChange),
   'ActivityBar.loadContent': WrapCommand.wrapCommand(loadContent),
   'ActivityBar.render2': Render2.render2,

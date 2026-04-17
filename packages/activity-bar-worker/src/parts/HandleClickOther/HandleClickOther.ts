@@ -28,24 +28,21 @@ const getSideBarChange = (sideBarVisible: boolean, currentViewletId: string, vie
   }
 }
 
-const applySideBarChange = async (change: SideBarChangeResult): Promise<void> => {
-  switch (change.type) {
-    case 'hide':
-      await SideBar.hide()
-      break
-    case 'show':
-      await SideBar.show(false, change.viewletId)
-      break
-    case 'switch':
-      await SideBar.show(true, change.viewletId)
-      break
-  }
-}
-
 export const handleClickOther = async (state: ActivityBarState, viewletId: string): Promise<ActivityBarState> => {
   const { activityBarItems, currentViewletId, height, itemHeight, sideBarVisible } = state
   const sideBarChange = getSideBarChange(sideBarVisible, currentViewletId, viewletId)
-  await applySideBarChange(sideBarChange)
+  await SideBar.toggle(viewletId)
+  if (sideBarChange.type === 'hide') {
+    const newActivityBarItems = markSelected(activityBarItems, -1)
+    const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)
+    return {
+      ...state,
+      activityBarItems: newActivityBarItems,
+      filteredItems,
+      selectedIndex: -1,
+      sideBarVisible: false,
+    }
+  }
   const selectedIndex = findIndex(activityBarItems, viewletId)
   const newActivityBarItems = markSelected(activityBarItems, selectedIndex)
   const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)

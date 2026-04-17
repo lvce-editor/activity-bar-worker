@@ -1,3 +1,2 @@
-export interface SavedState {
-  readonly currentViewletId: string
-}
+/* eslint-disable @typescript-eslint/no-empty-object-type */
+export interface SavedState {}

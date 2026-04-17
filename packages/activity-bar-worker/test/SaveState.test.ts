@@ -24,7 +24,6 @@ test('saveState preserves currentViewletId from state', () => {
 
   const result = saveState(state)
 
-  expect(result.currentViewletId).toBe('search')
   expect(result).toEqual({ currentViewletId: 'search' })
 })
 
@@ -33,5 +32,4 @@ test('saveState returns new object', () => {
   const result = saveState(state)
 
   expect(result).not.toBe(state)
-  expect(result.currentViewletId).toBe(state.currentViewletId)
 })
