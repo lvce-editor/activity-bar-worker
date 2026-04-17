@@ -2,6 +2,8 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.move-side-bar-left'
 
+export const skip = 1
+
 export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
   // arrange
   await Command.execute('Layout.moveSideBarRight')

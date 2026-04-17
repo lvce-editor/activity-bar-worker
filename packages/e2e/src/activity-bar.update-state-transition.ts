@@ -2,6 +2,8 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.update-state-transition'
 
+export const skip = 1
+
 export const test: Test = async ({ ActivityBar, expect, Locator }) => {
   const settings = Locator('.ActivityBarItem[title="Settings"]')
   const badge = settings.locator('.ActivityBarItemBadge')

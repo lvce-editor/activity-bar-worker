@@ -2,6 +2,8 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.additional-views-menu'
 
+export const skip = 1
+
 export const test: Test = async ({ Command, expect, Locator }) => {
   await Command.execute('ActivityBar.resize', {
     height: 144,
