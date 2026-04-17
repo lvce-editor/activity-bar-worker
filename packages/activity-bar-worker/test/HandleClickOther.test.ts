@@ -6,15 +6,6 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { getFilteredActivityBarItems } from '../src/parts/GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { markSelected } from '../src/parts/MarkSelected/MarkSelected.ts'
 
-jest.unstable_mockModule('../src/parts/SideBar/SideBar.ts', async () => {
-  const { RendererWorker } = await import('@lvce-editor/rpc-registry')
-  return {
-    toggle: async (viewletId: string) => {
-      await RendererWorker.invoke('SideBar.toggle', viewletId)
-    },
-  }
-})
-
 const { handleClickOther } = await import('../src/parts/HandleClickOther/HandleClickOther.ts')
 
 test('handleClickOther calls SideBar.hide when sidebar is visible and currentViewletId matches viewletId', async () => {

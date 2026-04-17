@@ -1,4 +1,4 @@
-import { expect, jest, test } from '@jest/globals'
+import { expect, test } from '@jest/globals'
 import { MenuEntryId, MouseEventType } from '@lvce-editor/constants'
 import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
@@ -6,15 +6,6 @@ import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBar
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getFilteredActivityBarItems } from '../src/parts/GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { ACCOUNT_MENU_ID } from '../src/parts/HandleClickAccount/HandleClickAccount.ts'
-
-jest.unstable_mockModule('../src/parts/SideBar/SideBar.ts', async () => {
-  const { RendererWorker } = await import('@lvce-editor/rpc-registry')
-  return {
-    toggle: async (viewletId: string) => {
-      await RendererWorker.invoke('SideBar.toggle', viewletId)
-    },
-  }
-})
 
 const { handleClick } = await import('../src/parts/HandleClick/HandleClick.ts')
 
