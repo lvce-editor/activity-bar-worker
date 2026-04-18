@@ -30,10 +30,10 @@ test('hide calls Layout.hideSideBar', async () => {
   expect(mockRpc.invocations).toEqual([['Layout.hideSideBar']])
 })
 
-test('toggle calls SideBar.toggle', async () => {
+test('toggle calls Layout.toggleSideBarView', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'SideBar.toggle'() {},
+    'Layout.toggleSideBarView'() {},
   })
   await toggle('test-id')
-  expect(mockRpc.invocations).toEqual([['SideBar.toggle', 'test-id']])
+  expect(mockRpc.invocations).toEqual([['Layout.toggleSideBarView', 'test-id']])
 })

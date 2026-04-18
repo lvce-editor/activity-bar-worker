@@ -80,7 +80,7 @@ test('handleClickIndex handles Additional Views viewlet click', async () => {
 
 test('handleClickIndex handles other viewlet click when sidebar is hidden', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'SideBar.toggle'() {},
+    'Layout.toggleSideBarView'() {},
   })
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Explorer', keyShortcuts: '', title: 'Explorer' }]
   const state: ActivityBarState = {
@@ -97,12 +97,12 @@ test('handleClickIndex handles other viewlet click when sidebar is hidden', asyn
   expect(result.currentViewletId).toBe('Explorer')
   expect(result.selectedIndex).toBe(0)
   expect(result.sideBarVisible).toBe(true)
-  expect(mockRpc.invocations).toEqual([['SideBar.toggle', 'Explorer']])
+  expect(mockRpc.invocations).toEqual([['Layout.toggleSideBarView', 'Explorer']])
 })
 
 test('handleClickIndex handles other viewlet click when sidebar is visible and different viewlet selected', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'SideBar.toggle'() {},
+    'Layout.toggleSideBarView'() {},
   })
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Explorer', keyShortcuts: '', title: 'Explorer' }]
   const state: ActivityBarState = {
@@ -125,12 +125,12 @@ test('handleClickIndex handles other viewlet click when sidebar is visible and d
     selectedIndex: 0,
     sideBarVisible: true,
   })
-  expect(mockRpc.invocations).toEqual([['SideBar.toggle', 'Explorer']])
+  expect(mockRpc.invocations).toEqual([['Layout.toggleSideBarView', 'Explorer']])
 })
 
 test('handleClickIndex handles other viewlet click when same viewlet is already selected', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'SideBar.toggle'() {},
+    'Layout.toggleSideBarView'() {},
   })
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Explorer', keyShortcuts: '', title: 'Explorer' }]
   const state: ActivityBarState = {
@@ -153,7 +153,7 @@ test('handleClickIndex handles other viewlet click when same viewlet is already 
     selectedIndex: -1,
     sideBarVisible: false,
   })
-  expect(mockRpc.invocations).toEqual([['SideBar.toggle', 'Explorer']])
+  expect(mockRpc.invocations).toEqual([['Layout.toggleSideBarView', 'Explorer']])
 })
 
 test('handleClickIndex handles different indices in items array', async () => {
