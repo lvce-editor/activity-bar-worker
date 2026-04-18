@@ -15,5 +15,5 @@ export const hide = async (): Promise<void> => {
 }
 
 export const toggle = async (id: string): Promise<void> => {
-  await RendererWorker.invoke('SideBar.toggle', id)
+  await RendererWorker.invoke('Layout.toggleSideBarView', id)
 }
