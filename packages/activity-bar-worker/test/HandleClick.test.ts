@@ -57,7 +57,7 @@ test('handleClick calculates index correctly for second item', async () => {
 
 test('handleClick calculates index correctly for multiple items', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'SideBar.toggle'() {},
+    'Layout.toggleSideBarView'() {},
   })
   const items: readonly ActivityBarItem[] = [
     { flags: 0, icon: 'icon1', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
@@ -82,7 +82,7 @@ test('handleClick calculates index correctly for multiple items', async () => {
   expect(result.currentViewletId).toBe('Explorer')
   expect(result.selectedIndex).toBe(0)
   expect(result.sideBarVisible).toBe(true)
-  expect(mockRpc.invocations).toEqual([['SideBar.toggle', 'Explorer']])
+  expect(mockRpc.invocations).toEqual([['Layout.toggleSideBarView', 'Explorer']])
 })
 
 test('handleClick returns same state when button is not left click', async () => {
@@ -117,7 +117,7 @@ test('handleClick returns same state when index is -1', async () => {
 
 test('handleClick handles Explorer viewlet click', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'SideBar.toggle'() {},
+    'Layout.toggleSideBarView'() {},
   })
   const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'Explorer', keyShortcuts: '', title: 'Explorer' }]
   const state: ActivityBarState = {
@@ -136,7 +136,7 @@ test('handleClick handles Explorer viewlet click', async () => {
   expect(result.currentViewletId).toBe('Explorer')
   expect(result.selectedIndex).toBe(0)
   expect(result.sideBarVisible).toBe(true)
-  expect(mockRpc.invocations).toEqual([['SideBar.toggle', 'Explorer']])
+  expect(mockRpc.invocations).toEqual([['Layout.toggleSideBarView', 'Explorer']])
 })
 
 test('handleClick handles Additional Views viewlet click', async () => {

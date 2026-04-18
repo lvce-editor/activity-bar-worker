@@ -8,9 +8,9 @@ import { markSelected } from '../src/parts/MarkSelected/MarkSelected.ts'
 
 const { handleClickOther } = await import('../src/parts/HandleClickOther/HandleClickOther.ts')
 
-test('handleClickOther calls SideBar.hide when sidebar is visible and currentViewletId matches viewletId', async () => {
+test('handleClickOther toggles sidebar view when sidebar is visible and currentViewletId matches viewletId', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'SideBar.toggle'() {},
+    'Layout.toggleSideBarView'() {},
   })
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -20,7 +20,7 @@ test('handleClickOther calls SideBar.hide when sidebar is visible and currentVie
 
   const result: ActivityBarState = await handleClickOther(state, 'test-viewlet')
 
-  expect(mockRpc.invocations).toEqual([['SideBar.toggle', 'test-viewlet']])
+  expect(mockRpc.invocations).toEqual([['Layout.toggleSideBarView', 'test-viewlet']])
   expect(result).toEqual({
     ...state,
     activityBarItems: [],
@@ -31,9 +31,9 @@ test('handleClickOther calls SideBar.hide when sidebar is visible and currentVie
   })
 })
 
-test('handleClickOther calls SideBar.show when sidebar is visible and currentViewletId differs from viewletId', async () => {
+test('handleClickOther toggles sidebar view when sidebar is visible and currentViewletId differs from viewletId', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'SideBar.toggle'() {},
+    'Layout.toggleSideBarView'() {},
   })
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -43,7 +43,7 @@ test('handleClickOther calls SideBar.show when sidebar is visible and currentVie
 
   const result: ActivityBarState = await handleClickOther(state, 'new-viewlet')
 
-  expect(mockRpc.invocations).toEqual([['SideBar.toggle', 'new-viewlet']])
+  expect(mockRpc.invocations).toEqual([['Layout.toggleSideBarView', 'new-viewlet']])
   expect(result).toEqual({
     ...state,
     activityBarItems: [],
@@ -54,9 +54,9 @@ test('handleClickOther calls SideBar.show when sidebar is visible and currentVie
   })
 })
 
-test('handleClickOther calls Layout.showSideBar when sidebar is not visible', async () => {
+test('handleClickOther toggles sidebar view when sidebar is not visible', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'SideBar.toggle'() {},
+    'Layout.toggleSideBarView'() {},
   })
   const activityBarItems: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'new-viewlet', keyShortcuts: '', title: 'New Viewlet' }]
   const state: ActivityBarState = {
@@ -71,7 +71,7 @@ test('handleClickOther calls Layout.showSideBar when sidebar is not visible', as
   const expectedActivityBarItems = markSelected(activityBarItems, 0)
   const expectedFilteredItems = getFilteredActivityBarItems(expectedActivityBarItems, 400, 48)
 
-  expect(mockRpc.invocations).toEqual([['SideBar.toggle', 'new-viewlet']])
+  expect(mockRpc.invocations).toEqual([['Layout.toggleSideBarView', 'new-viewlet']])
   expect(result).toEqual({
     ...state,
     activityBarItems: expectedActivityBarItems,
@@ -84,7 +84,7 @@ test('handleClickOther calls Layout.showSideBar when sidebar is not visible', as
 
 test('handleClickOther preserves state properties', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'SideBar.toggle'() {},
+    'Layout.toggleSideBarView'() {},
   })
   const activityBarItems: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'new-viewlet', keyShortcuts: '', title: 'New Viewlet' }]
   const state: ActivityBarState = {
@@ -102,7 +102,7 @@ test('handleClickOther preserves state properties', async () => {
   const expectedActivityBarItems = markSelected(activityBarItems, 0)
   const expectedFilteredItems = getFilteredActivityBarItems(expectedActivityBarItems, 400, 48)
 
-  expect(mockRpc.invocations).toEqual([['SideBar.toggle', 'new-viewlet']])
+  expect(mockRpc.invocations).toEqual([['Layout.toggleSideBarView', 'new-viewlet']])
   expect(result).toEqual({
     ...state,
     activityBarItems: expectedActivityBarItems,
@@ -115,7 +115,7 @@ test('handleClickOther preserves state properties', async () => {
 
 test('handleClickOther handles empty currentViewletId', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'SideBar.toggle'() {},
+    'Layout.toggleSideBarView'() {},
   })
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -125,7 +125,7 @@ test('handleClickOther handles empty currentViewletId', async () => {
 
   const result: ActivityBarState = await handleClickOther(state, '')
 
-  expect(mockRpc.invocations).toEqual([['SideBar.toggle', '']])
+  expect(mockRpc.invocations).toEqual([['Layout.toggleSideBarView', '']])
   expect(result).toEqual({
     ...state,
     activityBarItems: [],
