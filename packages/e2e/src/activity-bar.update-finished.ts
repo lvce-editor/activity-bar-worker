@@ -2,13 +2,13 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.update-in-finished'
 
-export const test: Test = async ({ Command, expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, expect, Locator }) => {
   // assert
   const activityBar = Locator('.ActivityBar')
   await expect(activityBar).toBeVisible()
 
   // act
-  await Command.execute('ActivityBar.handleUpdateStateChange', {
+  await ActivityBar.setUpdateState({
     progress: 1,
     state: 4,
   })
