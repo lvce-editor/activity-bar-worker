@@ -126,7 +126,7 @@ test('getMenuEntries returns account menu entries for logging out state', () => 
 test('getMenuEntries returns empty array for unknown menuId', () => {
   const state: ActivityBarState = createDefaultState()
   const options: ContextMenuProps = {
-    menuId: 9999 as any,
+    menuId: 9999,
   }
 
   const result = getMenuEntries(state, options)
