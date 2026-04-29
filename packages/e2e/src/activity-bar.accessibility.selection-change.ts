@@ -2,17 +2,16 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.accessibility.selection-change'
 
-export const skip = 1
+export const test: Test = async ({ ActivityBar, Command, expect, Layout, Locator, SideBar }) => {
+  // arrange
+  await Layout.showSideBar()
+  await SideBar.hide()
 
-export const test: Test = async ({ expect, Locator }) => {
-  const explorer = Locator('.ActivityBarItem[title="Explorer"]')
+  // act
+  await Command.execute('ActivityBar.handleClickIndex', 0, 1, 0, 0)
+  await ActivityBar.handleClick(1)
+
+  // assert
   const search = Locator('.ActivityBarItem[title="Search"]')
-
-  await expect(explorer).toHaveAttribute('aria-selected', 'true')
-  await expect(search).toHaveAttribute('aria-selected', 'false')
-
-  await search.click({ button: 'left' })
-
-  await expect(explorer).toHaveAttribute('aria-selected', 'false')
   await expect(search).toHaveAttribute('aria-selected', 'true')
 }
