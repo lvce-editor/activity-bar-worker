@@ -10,7 +10,9 @@ export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
   await Command.execute('ActivityBar.handleClickAccount', 0, 0)
 
   // assert
-  const signIn = Locator('.ContextMenuItem[title="Sign In"]')
+  const signIn = Locator('.MenuItem', {
+    hasText: 'Sign In',
+  })
   await expect(signIn).toBeVisible()
 
   // TODO check signed out state, maybe separate test
