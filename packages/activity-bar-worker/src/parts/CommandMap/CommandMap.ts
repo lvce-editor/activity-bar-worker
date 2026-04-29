@@ -14,6 +14,7 @@ import { getMenuEntryIds } from '../GetMenuEntryIds/GetMenuEntryIds.ts'
 import { handleBadgeCountChange } from '../handleBadgeCountChange/handleBadgeCountChange.ts'
 import { handleBlur } from '../HandleBlur/HandleBlur.ts'
 import * as HandleClick from '../HandleClick/HandleClick.ts'
+import { handleClickAccount } from '../HandleClickAccount/HandleClickAccount.ts'
 import { handleClickIndex } from '../HandleClickIndex/HandleClickIndex.ts'
 import { handleClickSettings } from '../HandleClickSettings/HandleClickSettings.ts'
 import { handleClickSignIn } from '../HandleClickSignIn/HandleClickSignIn.ts'
@@ -48,6 +49,7 @@ export const commandMap = {
   'ActivityBar.handleBadgeCountChange': WrapCommand.wrapCommand(handleBadgeCountChange),
   'ActivityBar.handleBlur': WrapCommand.wrapCommand(handleBlur),
   'ActivityBar.handleClick': WrapCommand.wrapCommand(HandleClick.handleClick),
+  'ActivityBar.handleClickAccount': WrapCommand.wrapCommand(handleClickAccount),
   'ActivityBar.handleClickIndex': WrapCommand.wrapCommand(handleClickIndex),
   'ActivityBar.handleClickSettings': WrapCommand.wrapCommand(handleClickSettings),
   'ActivityBar.handleClickSignIn': WrapCommand.wrapCommand(handleClickSignIn),
