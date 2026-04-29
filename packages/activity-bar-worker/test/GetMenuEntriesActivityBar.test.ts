@@ -53,6 +53,66 @@ test('getMenuEntriesActivityBar returns menu entries with items, separator, move
   })
 })
 
+test('getMenuEntriesActivityBar inserts a separator before bottom utility items', () => {
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    {
+      flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled | ActivityBarItemFlags.MarginTop,
+      icon: 'icon2',
+      id: 'Account',
+      keyShortcuts: '',
+      title: 'Account',
+    },
+    { flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+  ]
+
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: items,
+    sideBarLocation: SideBarLocationType.Left,
+  }
+
+  const result: readonly MenuEntry[] = getMenuEntriesActivityBar(state)
+
+  expect(result).toEqual([
+    {
+      args: ['item1'],
+      command: 'ActivityBar.toggleActivityBarItem',
+      flags: MenuItemFlags.Checked,
+      id: 'toggle-item1',
+      label: 'item1',
+    },
+    MenuEntrySeparator.menuEntrySeparator,
+    {
+      args: ['Account'],
+      command: 'ActivityBar.toggleActivityBarItem',
+      flags: MenuItemFlags.Checked,
+      id: 'toggle-Account',
+      label: 'Account',
+    },
+    {
+      args: ['Settings'],
+      command: 'ActivityBar.toggleActivityBarItem',
+      flags: MenuItemFlags.Checked,
+      id: 'toggle-Settings',
+      label: 'Settings',
+    },
+    MenuEntrySeparator.menuEntrySeparator,
+    {
+      command: 'Layout.moveSideBarRight',
+      flags: MenuItemFlags.None,
+      id: 'moveSideBarRight',
+      label: ActivityBarStrings.moveSideBarRight(),
+    },
+    {
+      command: 'Layout.hideActivityBar',
+      flags: MenuItemFlags.None,
+      id: 'hideActivityBar',
+      label: ActivityBarStrings.hideActivityBar(),
+    },
+  ])
+})
+
 test('getMenuEntriesActivityBar handles empty items array', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
