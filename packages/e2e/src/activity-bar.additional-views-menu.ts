@@ -12,11 +12,11 @@ export const test: Test = async ({ Command, expect, Locator }) => {
     y: 0,
   })
 
-  const additionalViews = Locator('.ActivityBarItem[title="Additional Views"]')
-  await additionalViews.click({ button: 'left' })
+  // await
+  await Command.execute('ActivityBar.handleClickAdditionalViews', 300, 300)
 
-  const search = Locator('.ContextMenuItem[title="Search"]')
-  const extensions = Locator('.ContextMenuItem[title="Extensions"]')
+  const search = Locator('.MenuItem', { hasText: 'Search' })
+  const extensions = Locator('.MenuItem', { hasText: 'Extensions' })
 
   await expect(search).toBeVisible()
   await expect(extensions).toBeVisible()
