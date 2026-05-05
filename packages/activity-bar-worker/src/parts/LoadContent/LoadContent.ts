@@ -6,20 +6,11 @@ import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetF
 import { getSideBarPosition } from '../GetSideBarPosition/GetSideBarPosition.ts'
 import { getSideBarVisible } from '../GetSideBarVisible/GetSideBarVisible.ts'
 import { getUserInfo } from '../GetUserInfo/GetUserInfo.ts'
+import { getUserState } from '../GetUserState/GetUserState.ts'
 import { markSelected } from '../MarkSelected/MarkSelected.ts'
 import { toUserLoginState } from '../ToUserLoginState/ToUserLoginState.ts'
 import { updateItemsWithBadgeCount } from '../UpdateItemsWithBadgeCount/UpdateItemsWithBadgeCount.ts'
 import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
-
-const getUserState = (userInfo: unknown): unknown => {
-  if (!userInfo || typeof userInfo !== 'object') {
-    return undefined
-  }
-  if (!('userState' in userInfo)) {
-    return undefined
-  }
-  return userInfo.userState
-}
 
 export const loadContent = async (state: ActivityBarState): Promise<ActivityBarState> => {
   const { accountEnabled, height, itemHeight } = state
