@@ -20,13 +20,12 @@ const getItemCount = (items: readonly ActivityBarItem[] | number): number => {
 
 export const getIndexFromPosition = (
   y: number,
-  eventX: number,
+  _eventX: number,
   eventY: number,
   itemHeight: number,
   items: readonly ActivityBarItem[] | number,
   height: number,
 ): number => {
-  void eventX
   const itemCount = getItemCount(items)
   if (itemCount === 0) {
     return -1
