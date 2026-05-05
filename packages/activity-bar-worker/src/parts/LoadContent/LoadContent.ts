@@ -1,4 +1,3 @@
-import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import { getAccountEnabled } from '../GetAccountEnabled/GetAccountEnabled.ts'
 import { getActiveView } from '../GetActiveView/GetActiveView.ts'
