@@ -4,24 +4,13 @@ import { getAccountEnabled } from '../GetAccountEnabled/GetAccountEnabled.ts'
 import { getActiveView } from '../GetActiveView/GetActiveView.ts'
 import { getActivityBarItems } from '../GetActivityBarItems/GetActivityBarItems.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
+import { getUserInfo } from '../GetUserInfo/GetUserInfo.ts'
 import { getSideBarPosition } from '../GetSideBarPosition/GetSideBarPosition.ts'
 import { getSideBarVisible } from '../GetSideBarVisible/GetSideBarVisible.ts'
 import { markSelected } from '../MarkSelected/MarkSelected.ts'
+import { toUserLoginState } from '../ToUserLoginState/ToUserLoginState.ts'
 import { updateItemsWithBadgeCount } from '../UpdateItemsWithBadgeCount/UpdateItemsWithBadgeCount.ts'
 import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
-
-const toUserLoginState = (userState: unknown): ActivityBarState['userLoginState'] => {
-  switch (userState) {
-    case 'loggedIn':
-      return 'logged in'
-    case 'loggingIn':
-      return 'logging in'
-    case 'loggingOut':
-      return 'logging out'
-    default:
-      return 'logged out'
-  }
-}
 
 const getUserState = (userInfo: unknown): unknown => {
   if (!userInfo || typeof userInfo !== 'object') {
@@ -31,14 +20,6 @@ const getUserState = (userInfo: unknown): unknown => {
     return undefined
   }
   return userInfo.userState
-}
-
-const getUserInfo = async (): Promise<unknown> => {
-  try {
-    return await RendererWorker.invoke('Layout.getUserInfo')
-  } catch {
-    return undefined
-  }
 }
 
 export const loadContent = async (state: ActivityBarState): Promise<ActivityBarState> => {
