@@ -86,13 +86,13 @@ test('loadContent includes account button when accountEnabled is true', async ()
 
 test('loadContent gets accountEnabled from preferences', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'Preferences.get'() {
-      return true
-    },
     'Layout.getUserInfo'() {
       return {
         userState: 'loggedIn',
       }
+    },
+    'Preferences.get'() {
+      return true
     },
   })
   const state: ActivityBarState = createDefaultState()
@@ -104,6 +104,20 @@ test('loadContent gets accountEnabled from preferences', async () => {
   expect(result.userLoginState).toBe('logged in')
   const accountItem = result.activityBarItems.find((item) => item.id === 'Account')
   expect(accountItem).toBeDefined()
+})
+
+test('loadContent falls back to logged out for malformed user info', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'Layout.getUserInfo'() {
+      return 'invalid-user-info'
+    },
+  })
+  const state: ActivityBarState = createDefaultState()
+
+  const result: ActivityBarState = await loadContent(state)
+
+  expect(mockRpc.invocations).toEqual(expect.arrayContaining([['Layout.getUserInfo']]))
+  expect(result.userLoginState).toBe('logged out')
 })
 
 test('loadContent does not include account button when accountEnabled is false', async () => {

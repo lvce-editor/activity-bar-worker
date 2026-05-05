@@ -23,6 +23,16 @@ const toUserLoginState = (userState: unknown): ActivityBarState['userLoginState'
   }
 }
 
+const getUserState = (userInfo: unknown): unknown => {
+  if (!userInfo || typeof userInfo !== 'object') {
+    return undefined
+  }
+  if (!('userState' in userInfo)) {
+    return undefined
+  }
+  return userInfo.userState
+}
+
 const getUserInfo = async (): Promise<unknown> => {
   try {
     return await RendererWorker.invoke('Layout.getUserInfo')
@@ -43,7 +53,7 @@ export const loadContent = async (state: ActivityBarState): Promise<ActivityBarS
   const newState = {
     ...state,
     accountEnabled: accountEnabledNew,
-    userLoginState: toUserLoginState(userInfo?.userState),
+    userLoginState: toUserLoginState(getUserState(userInfo)),
   }
   const items = getActivityBarItems(newState)
   const index = items.findIndex((item) => item.id === activeView)
