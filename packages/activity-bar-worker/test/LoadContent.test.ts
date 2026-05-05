@@ -89,13 +89,19 @@ test('loadContent gets accountEnabled from preferences', async () => {
     'Preferences.get'() {
       return true
     },
+    'Layout.getUserInfo'() {
+      return {
+        userState: 'loggedIn',
+      }
+    },
   })
   const state: ActivityBarState = createDefaultState()
 
   const result: ActivityBarState = await loadContent(state)
 
-  expect(mockRpc.invocations).toEqual(expect.arrayContaining([['Preferences.get', 'activityBar.accountEnabled']]))
+  expect(mockRpc.invocations).toEqual(expect.arrayContaining([['Preferences.get', 'activityBar.accountEnabled'], ['Layout.getUserInfo']]))
   expect(result.accountEnabled).toBe(true)
+  expect(result.userLoginState).toBe('logged in')
   const accountItem = result.activityBarItems.find((item) => item.id === 'Account')
   expect(accountItem).toBeDefined()
 })
