@@ -5,7 +5,6 @@ export const name = 'activity-bar.hidden-sidebar.opens-clicked-viewlet.explorer'
 export const skip = 1
 
 export const test: Test = async ({ Command, expect, Locator }) => {
-  const explorer = Locator('.ActivityBarItem[title="Explorer"]')
   const sideBarHeaderTitle = Locator('.SideBarTitleAreaTitle')
   const waitForSideBarVisible = async (expected: boolean): Promise<void> => {
     for (let i = 0; i < 20; i++) {
@@ -22,14 +21,14 @@ export const test: Test = async ({ Command, expect, Locator }) => {
   await Command.execute('Layout.hideSideBar')
   await waitForSideBarVisible(false)
 
-  await explorer.click({ button: 'left' })
+  await Command.execute('ActivityBar.handleClickIndex', 0, 0, 0, 0)
   await waitForSideBarVisible(true)
   await expect(sideBarHeaderTitle).toHaveText('Explorer')
 
   await Command.execute('Layout.hideSideBar')
   await waitForSideBarVisible(false)
 
-  await explorer.click({ button: 'left' })
+  await Command.execute('ActivityBar.handleClickIndex', 0, 0, 0, 0)
   await waitForSideBarVisible(true)
   await expect(sideBarHeaderTitle).toHaveText('Explorer')
 }

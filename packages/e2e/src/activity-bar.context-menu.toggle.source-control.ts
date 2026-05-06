@@ -4,7 +4,7 @@ export const name = 'activity-bar.context-menu.toggle.source-control'
 
 export const skip = 1
 
-export const test: Test = async ({ ActivityBar, expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, ContextMenu, expect, Locator }) => {
   const sourceControl = Locator('.ActivityBarItem[title="Source Control"]')
   await expect(sourceControl).toBeVisible()
 
@@ -12,7 +12,7 @@ export const test: Test = async ({ ActivityBar, expect, Locator }) => {
 
   const menuItem = Locator('.ContextMenuItem[title="Source Control"]')
   await expect(menuItem).toBeVisible()
-  await menuItem.click({ button: 'left' })
+  await ContextMenu.selectItem('Source Control')
 
   await expect(sourceControl).toHaveCount(0)
 }
