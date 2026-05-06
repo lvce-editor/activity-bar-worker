@@ -2,6 +2,7 @@ import { test, expect } from '@jest/globals'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import { getFilteredActivityBarItems } from '../src/parts/GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { toggleActivityBarItem } from '../src/parts/ToggleActivityBarItem/ToggleActivityBarItem.ts'
 
 test('toggleActivityBarItem should disable an enabled item', async () => {
@@ -110,4 +111,21 @@ test('toggleActivityBarItem should accept item id as string', async () => {
 
   expect(result.activityBarItems[0].id).toBe('Explorer')
   expect(result.activityBarItems[0].flags & ActivityBarItemFlags.Enabled).toBe(0)
+})
+
+test('toggleActivityBarItem should update filtered items', async () => {
+  const item1 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'test1', keyShortcuts: '', title: 'Test1' }
+  const item2 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'test2', keyShortcuts: '', title: 'Test2' }
+  const activityBarItems = [item1, item2]
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems,
+    filteredItems: getFilteredActivityBarItems(activityBarItems, 400, 48),
+  }
+
+  const result = await toggleActivityBarItem(state, 'test1')
+
+  expect(result.filteredItems).not.toBe(state.filteredItems)
+  expect(result.filteredItems[0].flags & ActivityBarItemFlags.Enabled).toBe(0)
+  expect(result.filteredItems[1].flags & ActivityBarItemFlags.Enabled).toBe(ActivityBarItemFlags.Enabled)
 })
