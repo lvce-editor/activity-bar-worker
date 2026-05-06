@@ -12,9 +12,7 @@ test('ContextMenu.show2 calls RendererWorker.showContextMenu2 with correct param
     menuId: MenuEntryId.ActivityBar,
   })
 
-  expect(mockRpc.invocations).toEqual([
-    ['ContextMenu.show2', 1, MenuEntryId.ActivityBar, 100, 200, { menuId: MenuEntryId.ActivityBar }],
-  ])
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 1, MenuEntryId.ActivityBar, 100, 200, { menuId: MenuEntryId.ActivityBar }]])
 })
 
 test('ContextMenu.show2 forwards other menu entry ids', async () => {
@@ -26,9 +24,7 @@ test('ContextMenu.show2 forwards other menu entry ids', async () => {
     menuId: MenuEntryId.Settings,
   })
 
-  expect(mockRpc.invocations).toEqual([
-    ['ContextMenu.show2', 0, MenuEntryId.Settings, 50, 75, { menuId: MenuEntryId.Settings }],
-  ])
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, MenuEntryId.Settings, 50, 75, { menuId: MenuEntryId.Settings }]])
 })
 
 test('ContextMenu.show2 forwards context menu props', async () => {
@@ -36,13 +32,20 @@ test('ContextMenu.show2 forwards context menu props', async () => {
     'ContextMenu.show2'() {},
   })
 
-  await ContextMenu.show2(5, MenuEntryId.ActivityBar, 0, 0, {
-    menuId: MenuEntryId.ActivityBar,
-    x: 1,
+  await ContextMenu.show2(5, MenuEntryId.ActivityBarAdditionalViews, 0, 0, {
+    menuId: MenuEntryId.ActivityBarAdditionalViews,
+    viewletId: 'Extensions',
   })
 
   expect(mockRpc.invocations).toEqual([
-    ['ContextMenu.show2', 5, MenuEntryId.ActivityBar, 0, 0, { menuId: MenuEntryId.ActivityBar, x: 1 }],
+    [
+      'ContextMenu.show2',
+      5,
+      MenuEntryId.ActivityBarAdditionalViews,
+      0,
+      0,
+      { menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: 'Extensions' },
+    ],
   ])
 })
 
@@ -55,9 +58,7 @@ test('ContextMenu.show2 handles different coordinates', async () => {
     menuId: MenuEntryId.ActivityBar,
   })
 
-  expect(mockRpc.invocations).toEqual([
-    ['ContextMenu.show2', 3, MenuEntryId.ActivityBar, 500, 1000, { menuId: MenuEntryId.ActivityBar }],
-  ])
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 3, MenuEntryId.ActivityBar, 500, 1000, { menuId: MenuEntryId.ActivityBar }]])
 })
 
 test('ContextMenu.show2 supports additional views menus', async () => {
@@ -67,10 +68,18 @@ test('ContextMenu.show2 supports additional views menus', async () => {
 
   await ContextMenu.show2(8, MenuEntryId.ActivityBarAdditionalViews, 100, 200, {
     menuId: MenuEntryId.ActivityBarAdditionalViews,
+    viewletId: 'Search',
   })
 
   expect(mockRpc.invocations).toEqual([
-    ['ContextMenu.show2', 8, MenuEntryId.ActivityBarAdditionalViews, 100, 200, { menuId: MenuEntryId.ActivityBarAdditionalViews }],
+    [
+      'ContextMenu.show2',
+      8,
+      MenuEntryId.ActivityBarAdditionalViews,
+      100,
+      200,
+      { menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: 'Search' },
+    ],
   ])
 })
 

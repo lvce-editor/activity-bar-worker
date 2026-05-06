@@ -19,7 +19,5 @@ test('handleClickSignIn logs in with backend url and returns the same state', as
 
   expect(result).toBe(state)
   expect(rendererRpc.invocations).toEqual([['Layout.getBackendUrl']])
-  expect(authRpc.invocations).toEqual([
-    ['Auth.login', { backendUrl: 'https://example.com', platform: state.platform }],
-  ])
+  expect(authRpc.invocations).toEqual([['Auth.login', { backendUrl: 'https://example.com', platform: state.platform }]])
 })
