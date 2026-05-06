@@ -4,7 +4,7 @@ export const name = 'activity-bar.context-menu.toggle.run-and-debug'
 
 export const skip = 1
 
-export const test: Test = async ({ ActivityBar, expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, ContextMenu, expect, Locator }) => {
   const runAndDebug = Locator('.ActivityBarItem[title="Run and Debug"]')
   await expect(runAndDebug).toBeVisible()
 
@@ -12,7 +12,7 @@ export const test: Test = async ({ ActivityBar, expect, Locator }) => {
 
   const menuItem = Locator('.ContextMenuItem[title="Run And Debug"]')
   await expect(menuItem).toBeVisible()
-  await menuItem.click({ button: 'left' })
+  await ContextMenu.selectItem('Run And Debug')
 
   await expect(runAndDebug).toHaveCount(0)
 }
