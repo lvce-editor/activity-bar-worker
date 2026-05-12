@@ -29,6 +29,7 @@ export const getMenuEntriesAccountLoggedOut = (state: ActivityBarState): readonl
 }
 
 export const getMenuEntriesAccount = (state: ActivityBarState): readonly MenuEntry[] => {
+  // TODO maybe query it now from layout?
   const { userLoginState } = state
   if (userLoginState === 'logged in' || userLoginState === 'logging out') {
     return getMenuEntriesAccountLoggedIn(state)
