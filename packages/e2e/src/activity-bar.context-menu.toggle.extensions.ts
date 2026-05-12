@@ -4,7 +4,7 @@ export const name = 'activity-bar.context-menu.toggle.extensions'
 
 export const skip = 1
 
-export const test: Test = async ({ ActivityBar, expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, ContextMenu, expect, Locator }) => {
   const extensions = Locator('.ActivityBarItem[title="Extensions"]')
   await expect(extensions).toBeVisible()
 
@@ -12,7 +12,7 @@ export const test: Test = async ({ ActivityBar, expect, Locator }) => {
 
   const menuItem = Locator('.ContextMenuItem[title="Extensions"]')
   await expect(menuItem).toBeVisible()
-  await menuItem.click({ button: 'left' })
+  await ContextMenu.selectItem('Extensions')
 
   await expect(extensions).toHaveCount(0)
 }

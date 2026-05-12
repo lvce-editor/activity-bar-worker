@@ -7,9 +7,7 @@ export const skip = 1
 export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
   await ActivityBar.setAccountEnabled(true)
   await Command.execute('ActivityBar.setUserLoginState', 'logging out')
-
-  const account = Locator('.ActivityBarItem[title="Account"]')
-  await account.click({ button: 'left' })
+  await Command.execute('ActivityBar.handleClickAccount', 0, 0)
 
   const signIn = Locator('.ContextMenuItem[title="Sign In"]')
   const signingOut = Locator('.ContextMenuItem[title="Signing Out..."]')
