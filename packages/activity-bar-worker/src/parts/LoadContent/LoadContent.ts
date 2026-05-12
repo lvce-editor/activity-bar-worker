@@ -5,21 +5,26 @@ import { getActivityBarItems } from '../GetActivityBarItems/GetActivityBarItems.
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { getSideBarPosition } from '../GetSideBarPosition/GetSideBarPosition.ts'
 import { getSideBarVisible } from '../GetSideBarVisible/GetSideBarVisible.ts'
+import { getUserInfo } from '../GetUserInfo/GetUserInfo.ts'
+import { getUserState } from '../GetUserState/GetUserState.ts'
 import { markSelected } from '../MarkSelected/MarkSelected.ts'
+import { toUserLoginState } from '../ToUserLoginState/ToUserLoginState.ts'
 import { updateItemsWithBadgeCount } from '../UpdateItemsWithBadgeCount/UpdateItemsWithBadgeCount.ts'
 import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 
 export const loadContent = async (state: ActivityBarState): Promise<ActivityBarState> => {
   const { accountEnabled, height, itemHeight } = state
-  const [accountEnabledNew, activeView, sideBarVisible, sidebarLocation] = await Promise.all([
+  const [accountEnabledNew, activeView, sideBarVisible, sidebarLocation, userInfo] = await Promise.all([
     getAccountEnabled(accountEnabled),
     getActiveView(),
     getSideBarVisible(),
     getSideBarPosition(),
+    getUserInfo(),
   ])
   const newState = {
     ...state,
     accountEnabled: accountEnabledNew,
+    userLoginState: toUserLoginState(getUserState(userInfo)),
   }
   const items = getActivityBarItems(newState)
   const index = items.findIndex((item) => item.id === activeView)
