@@ -14,9 +14,11 @@ export const test: Test = async ({ Command, expect, Locator }) => {
   })
 
   // assert
+  const itemAccount = Locator('.ActivityBarItem[title="Account"]')
   const itemSettings = Locator('.ActivityBarItem[title="Settings"]')
+  await expect(itemAccount).toBeVisible()
+  await expect(itemAccount).toHaveClass('MarginTopAuto')
   await expect(itemSettings).toBeVisible()
-  await expect(itemSettings).toHaveClass('MarginTopAuto')
   await expect(itemSettings).toHaveClass('ActivityBarItemNested')
   const badge = itemSettings.locator('.ActivityBarItemBadge')
   await expect(badge).toBeVisible()

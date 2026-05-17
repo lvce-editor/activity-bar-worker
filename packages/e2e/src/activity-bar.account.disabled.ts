@@ -2,7 +2,9 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.account.disabled'
 
-export const test: Test = async ({ expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, expect, Locator }) => {
+  await ActivityBar.setAccountEnabled(false)
+
   const account = Locator('.ActivityBarItem[title="Account"]')
   const settings = Locator('.ActivityBarItem[title="Settings"]')
 
