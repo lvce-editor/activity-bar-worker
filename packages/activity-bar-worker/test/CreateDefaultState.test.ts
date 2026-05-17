@@ -4,4 +4,5 @@ import * as CreateDefaultState from '../src/parts/CreateDefaultState/CreateDefau
 test('createDefaultState should return default state', () => {
   const result = CreateDefaultState.createDefaultState()
   expect(result).toBeDefined()
+  expect(result.accountEnabled).toBe(true)
 })

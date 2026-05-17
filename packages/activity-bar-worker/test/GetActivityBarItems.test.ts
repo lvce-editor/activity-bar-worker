@@ -39,7 +39,7 @@ test('GetActivityBarItems.getActivityBarItems should return items with correct s
 })
 
 test('GetActivityBarItems.getActivityBarItems should return expected number of items when accountEnabled is false', () => {
-  const state = CreateDefaultState.createDefaultState()
+  const state = { ...CreateDefaultState.createDefaultState(), accountEnabled: false }
   const result = GetActivityBarItems.getActivityBarItems(state)
 
   // Based on the source code, there should be 6 items (5 tabs + 1 settings button)
@@ -98,7 +98,7 @@ test('GetActivityBarItems.getActivityBarItems should only apply MarginTop to the
 })
 
 test('GetActivityBarItems.getActivityBarItems should not include account button when accountEnabled is false', () => {
-  const state = CreateDefaultState.createDefaultState()
+  const state = { ...CreateDefaultState.createDefaultState(), accountEnabled: false }
   const result = GetActivityBarItems.getActivityBarItems(state)
 
   const accountItem = result.find((item) => item.id === 'Account')

@@ -27,7 +27,7 @@ test('handleSettingsChanged updates activityBarItems and sidebar location', asyn
 
   const result: ActivityBarState = await handleSettingsChanged(state)
 
-  expect(result.activityBarItems.length).toBe(6)
+  expect(result.activityBarItems.length).toBe(7)
   expect(result.sideBarLocation).toBe(1)
   expect(result).not.toBe(state)
 })
