@@ -54,6 +54,6 @@
     "@lvce-editor/virtual-dom-worker": "^9.11.0",
     "@types/node": "^25.5.2",
     "jest": "^30.4.2",
-    "ts-jest": "^29.4.9"
+    "ts-jest": "^29.4.10"
   }
 }
