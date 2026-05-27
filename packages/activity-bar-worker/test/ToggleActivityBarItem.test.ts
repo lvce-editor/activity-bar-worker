@@ -1,4 +1,5 @@
 import { test, expect } from '@jest/globals'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
@@ -128,4 +129,32 @@ test('toggleActivityBarItem should update filtered items', async () => {
   expect(result.filteredItems).not.toBe(state.filteredItems)
   expect(result.filteredItems[0].flags & ActivityBarItemFlags.Enabled).toBe(0)
   expect(result.filteredItems[1].flags & ActivityBarItemFlags.Enabled).toBe(ActivityBarItemFlags.Enabled)
+})
+
+test('toggleActivityBarItem hides the sidebar when disabling the active view', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'Layout.hideSideBar'() {},
+  })
+  const item1 = {
+    flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Selected,
+    icon: 'explorer',
+    id: 'Explorer',
+    keyShortcuts: '',
+    title: 'Explorer',
+  }
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: [item1],
+    currentViewletId: 'Explorer',
+    sideBarVisible: true,
+    selectedIndex: 0,
+  }
+
+  const result = await toggleActivityBarItem(state, 'Explorer')
+
+  expect(mockRpc.invocations).toEqual([['Layout.hideSideBar']])
+  expect(result.activityBarItems[0].flags & ActivityBarItemFlags.Enabled).toBe(0)
+  expect(result.activityBarItems[0].flags & ActivityBarItemFlags.Selected).toBe(0)
+  expect(result.selectedIndex).toBe(-1)
+  expect(result.sideBarVisible).toBe(false)
 })
