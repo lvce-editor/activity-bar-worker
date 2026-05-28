@@ -12,7 +12,7 @@
     "format": "prettier --write .",
     "postinstall": "lerna bootstrap --ci",
     "lint": "eslint . && prettier --check .",
-    "measure": "cd packages/memory && npm run measure",
+    "measure": "node --experimental-strip-types packages/build/src/measureMemory.ts",
     "test": "lerna run test",
     "type-check": "tsc -b"
   },
