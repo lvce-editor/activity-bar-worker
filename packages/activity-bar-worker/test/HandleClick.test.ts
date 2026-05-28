@@ -13,7 +13,9 @@ test('handleClick calculates index correctly for first item', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
-  const items: readonly ActivityBarItem[] = [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' }]
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+  ]
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
@@ -86,7 +88,9 @@ test('handleClick calculates index correctly for multiple items', async () => {
 })
 
 test('handleClick returns same state when button is not left click', async () => {
-  const items: readonly ActivityBarItem[] = [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' }]
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+  ]
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
@@ -101,7 +105,9 @@ test('handleClick returns same state when button is not left click', async () =>
 })
 
 test('handleClick returns same state when index is -1', async () => {
-  const items: readonly ActivityBarItem[] = [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' }]
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+  ]
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
@@ -119,7 +125,9 @@ test('handleClick handles Explorer viewlet click', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'Layout.toggleSideBarView'() {},
   })
-  const items: readonly ActivityBarItem[] = [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Explorer', keyShortcuts: '', title: 'Explorer' }]
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+  ]
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
@@ -143,7 +151,9 @@ test('handleClick handles Additional Views viewlet click', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
-  const items: readonly ActivityBarItem[] = [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Additional Views', keyShortcuts: '', title: 'Additional Views' }]
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Additional Views', keyShortcuts: '', title: 'Additional Views' },
+  ]
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
@@ -171,7 +181,9 @@ test('handleClick handles different y and itemHeight values', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
-  const items: readonly ActivityBarItem[] = [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' }]
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+  ]
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
@@ -190,7 +202,9 @@ test('handleClick handles Account button click', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
   })
-  const items: readonly ActivityBarItem[] = [{ flags: ActivityBarItemFlags.Enabled, icon: 'Account', id: 'Account', keyShortcuts: '', title: 'Account' }]
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'Account', id: 'Account', keyShortcuts: '', title: 'Account' },
+  ]
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
