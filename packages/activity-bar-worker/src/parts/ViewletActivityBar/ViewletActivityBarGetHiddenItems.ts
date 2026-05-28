@@ -1,3 +1,4 @@
+import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 
@@ -9,9 +10,9 @@ export const getNumberOfVisibleItems = (state: { height: number; itemHeight: num
 
 export const getHiddenItems = (state: ActivityBarState): readonly ActivityBarItem[] => {
   const numberOfVisibleItems = getNumberOfVisibleItems(state)
-  const items = state.activityBarItems
+  const items = state.activityBarItems.filter((item) => item.flags & ActivityBarItemFlags.Enabled)
   if (numberOfVisibleItems >= items.length) {
     return []
   }
-  return state.activityBarItems.slice(numberOfVisibleItems - 2, -1)
+  return items.slice(numberOfVisibleItems - 2, -1)
 }
