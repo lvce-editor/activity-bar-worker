@@ -5,9 +5,8 @@ import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarIt
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getFilteredActivityBarItems } from '../src/parts/GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
+import { handleClick } from '../src/parts/HandleClick/HandleClick.ts'
 import { ACCOUNT_MENU_ID } from '../src/parts/HandleClickAccount/HandleClickAccount.ts'
-
-const { handleClick } = await import('../src/parts/HandleClick/HandleClick.ts')
 
 test('handleClick calculates index correctly for first item', async () => {
   using mockRpc = RendererWorker.registerMockRpc({

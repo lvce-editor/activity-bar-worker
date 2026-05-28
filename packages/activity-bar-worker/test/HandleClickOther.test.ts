@@ -4,9 +4,8 @@ import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarIt
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getFilteredActivityBarItems } from '../src/parts/GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
+import { handleClickOther } from '../src/parts/HandleClickOther/HandleClickOther.ts'
 import { markSelected } from '../src/parts/MarkSelected/MarkSelected.ts'
-
-const { handleClickOther } = await import('../src/parts/HandleClickOther/HandleClickOther.ts')
 
 test('handleClickOther toggles sidebar view when sidebar is visible and currentViewletId matches viewletId', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
