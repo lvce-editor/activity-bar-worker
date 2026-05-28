@@ -1,6 +1,6 @@
-import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
+import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 
 export const getNumberOfVisibleItems = (state: { height: number; itemHeight: number }): number => {
   const { height, itemHeight } = state
