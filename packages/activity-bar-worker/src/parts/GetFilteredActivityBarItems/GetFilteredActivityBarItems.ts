@@ -5,9 +5,10 @@ import * as Icon from '../Icon/Icon.ts'
 import { getNumberOfVisibleItems } from '../ViewletActivityBar/ViewletActivityBarGetHiddenItems.ts'
 
 export const getFilteredActivityBarItems = (items: readonly ActivityBarItem[], height: number, itemHeight: number): readonly ActivityBarItem[] => {
+  const enabledItems = items.filter((item) => item.flags & ActivityBarItemFlags.Enabled)
   const numberOfVisibleItems = getNumberOfVisibleItems({ height, itemHeight })
-  if (numberOfVisibleItems >= items.length) {
-    return items
+  if (numberOfVisibleItems >= enabledItems.length) {
+    return enabledItems
   }
   const showMoreItem: ActivityBarItem = {
     flags: ActivityBarItemFlags.Button,
@@ -16,5 +17,5 @@ export const getFilteredActivityBarItems = (items: readonly ActivityBarItem[], h
     keyShortcuts: '',
     title: ViewletActivityBarStrings.additionalViews(),
   }
-  return [...items.slice(0, numberOfVisibleItems - 2), showMoreItem, items.at(-1)!]
+  return [...enabledItems.slice(0, numberOfVisibleItems - 2), showMoreItem, enabledItems.at(-1)!]
 }
