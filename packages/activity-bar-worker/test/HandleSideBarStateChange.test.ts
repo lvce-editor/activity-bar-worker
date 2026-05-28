@@ -13,8 +13,14 @@ test('handleSideBarStateChange clears selected and focused state when sidebar is
     },
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Selected, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Selected | ActivityBarItemFlags.Focused, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Selected, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    {
+      flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Selected | ActivityBarItemFlags.Focused,
+      icon: 'icon2',
+      id: 'item2',
+      keyShortcuts: '',
+      title: 'Item 2',
+    },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -31,12 +37,12 @@ test('handleSideBarStateChange clears selected and focused state when sidebar is
   expect(result).toEqual({
     ...state,
     activityBarItems: [
-      { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-      { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+      { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+      { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
     ],
     filteredItems: [
-      { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-      { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+      { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+      { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
     ],
     focusedIndex: -1,
     selectedIndex: -1,
@@ -86,7 +92,7 @@ test('handleSideBarStateChange sets selectedIndex to -1 when requested viewlet i
   })
   const state: ActivityBarState = {
     ...createDefaultState(),
-    activityBarItems: [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }],
+    activityBarItems: [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }],
     selectedIndex: 0,
   }
 
@@ -100,7 +106,13 @@ test('handleSideBarStateChange sets selectedIndex to -1 when requested viewlet i
 test('handleSideBarStateChange uses explicit hidden visibility without querying layout', async () => {
   using mockRpc = RendererWorker.registerMockRpc({})
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Selected | ActivityBarItemFlags.Focused, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    {
+      flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Selected | ActivityBarItemFlags.Focused,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      title: 'Item 1',
+    },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -116,8 +128,8 @@ test('handleSideBarStateChange uses explicit hidden visibility without querying 
   expect(mockRpc.invocations).toEqual([])
   expect(result).toEqual({
     ...state,
-    activityBarItems: [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }],
-    filteredItems: [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }],
+    activityBarItems: [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }],
+    filteredItems: [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }],
     focusedIndex: -1,
     selectedIndex: -1,
     sideBarVisible: false,
