@@ -2,13 +2,14 @@ import { expect, test } from '@jest/globals'
 import { MenuItemFlags } from '@lvce-editor/constants'
 import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
+import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getMenuEntriesAdditionalViews } from '../src/parts/GetMenuEntriesAdditionalViews/GetMenuEntriesAdditionalViews.ts'
 
 test('getMenuEntriesAdditionalViews returns empty array when no items are hidden', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
   ]
 
   const state: ActivityBarState = {
@@ -25,14 +26,14 @@ test('getMenuEntriesAdditionalViews returns empty array when no items are hidden
 
 test('getMenuEntriesAdditionalViews returns empty array when all items fit in visible area', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: 0, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
-    { flags: 0, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
-    { flags: 0, icon: 'icon6', id: 'item6', keyShortcuts: '', title: 'Item 6' },
-    { flags: 0, icon: 'icon7', id: 'item7', keyShortcuts: '', title: 'Item 7' },
-    { flags: 0, icon: 'icon8', id: 'item8', keyShortcuts: '', title: 'Item 8' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon6', id: 'item6', keyShortcuts: '', title: 'Item 6' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon7', id: 'item7', keyShortcuts: '', title: 'Item 7' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon8', id: 'item8', keyShortcuts: '', title: 'Item 8' },
   ]
 
   const state: ActivityBarState = {
@@ -49,16 +50,16 @@ test('getMenuEntriesAdditionalViews returns empty array when all items fit in vi
 
 test('getMenuEntriesAdditionalViews returns menu entries for hidden items', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: 0, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
-    { flags: 0, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
-    { flags: 0, icon: 'icon6', id: 'item6', keyShortcuts: '', title: 'Item 6' },
-    { flags: 0, icon: 'icon7', id: 'item7', keyShortcuts: '', title: 'Item 7' },
-    { flags: 0, icon: 'icon8', id: 'item8', keyShortcuts: '', title: 'Item 8' },
-    { flags: 0, icon: 'icon9', id: 'item9', keyShortcuts: '', title: 'Item 9' },
-    { flags: 0, icon: 'icon10', id: 'item10', keyShortcuts: '', title: 'Item 10' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon6', id: 'item6', keyShortcuts: '', title: 'Item 6' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon7', id: 'item7', keyShortcuts: '', title: 'Item 7' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon8', id: 'item8', keyShortcuts: '', title: 'Item 8' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon9', id: 'item9', keyShortcuts: '', title: 'Item 9' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon10', id: 'item10', keyShortcuts: '', title: 'Item 10' },
   ]
 
   const state: ActivityBarState = {
@@ -79,17 +80,17 @@ test('getMenuEntriesAdditionalViews returns menu entries for hidden items', () =
 
 test('getMenuEntriesAdditionalViews maps hidden items to menu entries with correct structure', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: 0, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
-    { flags: 0, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
-    { flags: 0, icon: 'icon6', id: 'item6', keyShortcuts: '', title: 'Item 6' },
-    { flags: 0, icon: 'icon7', id: 'item7', keyShortcuts: '', title: 'Item 7' },
-    { flags: 0, icon: 'icon8', id: 'item8', keyShortcuts: '', title: 'Item 8' },
-    { flags: 0, icon: 'icon9', id: 'item9', keyShortcuts: '', title: 'Item 9' },
-    { flags: 0, icon: 'icon10', id: 'item10', keyShortcuts: '', title: 'Item 10' },
-    { flags: 0, icon: 'icon11', id: 'item11', keyShortcuts: '', title: 'Item 11' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon6', id: 'item6', keyShortcuts: '', title: 'Item 6' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon7', id: 'item7', keyShortcuts: '', title: 'Item 7' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon8', id: 'item8', keyShortcuts: '', title: 'Item 8' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon9', id: 'item9', keyShortcuts: '', title: 'Item 9' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon10', id: 'item10', keyShortcuts: '', title: 'Item 10' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon11', id: 'item11', keyShortcuts: '', title: 'Item 11' },
   ]
 
   const state: ActivityBarState = {
@@ -111,15 +112,15 @@ test('getMenuEntriesAdditionalViews maps hidden items to menu entries with corre
 
 test('getMenuEntriesAdditionalViews uses item id as label', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'custom-id-1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'custom-id-2', keyShortcuts: '', title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'custom-id-3', keyShortcuts: '', title: 'Item 3' },
-    { flags: 0, icon: 'icon4', id: 'custom-id-4', keyShortcuts: '', title: 'Item 4' },
-    { flags: 0, icon: 'icon5', id: 'custom-id-5', keyShortcuts: '', title: 'Item 5' },
-    { flags: 0, icon: 'icon6', id: 'custom-id-6', keyShortcuts: '', title: 'Item 6' },
-    { flags: 0, icon: 'icon7', id: 'custom-id-7', keyShortcuts: '', title: 'Item 7' },
-    { flags: 0, icon: 'icon8', id: 'custom-id-8', keyShortcuts: '', title: 'Item 8' },
-    { flags: 0, icon: 'icon9', id: 'custom-id-9', keyShortcuts: '', title: 'Item 9' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'custom-id-1', keyShortcuts: '', title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'custom-id-2', keyShortcuts: '', title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'custom-id-3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'custom-id-4', keyShortcuts: '', title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'custom-id-5', keyShortcuts: '', title: 'Item 5' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon6', id: 'custom-id-6', keyShortcuts: '', title: 'Item 6' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon7', id: 'custom-id-7', keyShortcuts: '', title: 'Item 7' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon8', id: 'custom-id-8', keyShortcuts: '', title: 'Item 8' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon9', id: 'custom-id-9', keyShortcuts: '', title: 'Item 9' },
   ]
 
   const state: ActivityBarState = {
@@ -137,11 +138,11 @@ test('getMenuEntriesAdditionalViews uses item id as label', () => {
 
 test('getMenuEntriesAdditionalViews handles different height and itemHeight values', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: 0, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
-    { flags: 0, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
   ]
 
   const state: ActivityBarState = {
@@ -162,7 +163,7 @@ test('getMenuEntriesAdditionalViews handles different height and itemHeight valu
 
 test('getMenuEntriesAdditionalViews handles many items', () => {
   const items: readonly ActivityBarItem[] = Array.from({ length: 20 }, (_, i) => ({
-    flags: 0,
+    flags: ActivityBarItemFlags.Enabled,
     icon: `icon${i + 1}`,
     id: `item${i + 1}`,
     keyShortcuts: '',
