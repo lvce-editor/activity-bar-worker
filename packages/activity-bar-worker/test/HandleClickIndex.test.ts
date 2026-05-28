@@ -6,9 +6,8 @@ import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBar
 import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getFilteredActivityBarItems } from '../src/parts/GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
+import { handleClickIndex } from '../src/parts/HandleClickIndex/HandleClickIndex.ts'
 import { markSelected } from '../src/parts/MarkSelected/MarkSelected.ts'
-
-const { handleClickIndex } = await import('../src/parts/HandleClickIndex/HandleClickIndex.ts')
 
 test('handleClickIndex returns same state for non-left click', async () => {
   const items: readonly ActivityBarItem[] = [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' }]
