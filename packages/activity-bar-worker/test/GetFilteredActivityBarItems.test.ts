@@ -7,26 +7,26 @@ import * as Icon from '../src/parts/Icon/Icon.ts'
 
 test('getFilteredActivityBarItems returns all items when they all fit', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
   ]
   const height = 300
   const itemHeight = 50
 
   const result: readonly ActivityBarItem[] = getFilteredActivityBarItems(items, height, itemHeight)
 
-  expect(result).toBe(items)
+  expect(result).toStrictEqual(items)
   expect(result.length).toBe(3)
 })
 
 test('getFilteredActivityBarItems filters items when they do not all fit', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: 0, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
-    { flags: 0, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
   ]
   const height = 150
   const itemHeight = 50
@@ -42,10 +42,10 @@ test('getFilteredActivityBarItems filters items when they do not all fit', () =>
 
 test('getFilteredActivityBarItems creates show more item with correct properties', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: 0, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
   ]
   const height = 100
   const itemHeight = 50
@@ -67,24 +67,24 @@ test('getFilteredActivityBarItems handles empty items array', () => {
 
   const result: readonly ActivityBarItem[] = getFilteredActivityBarItems(items, height, itemHeight)
 
-  expect(result).toBe(items)
+  expect(result).toStrictEqual(items)
   expect(result.length).toBe(0)
 })
 
 test('getFilteredActivityBarItems handles single item that fits', () => {
-  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }]
+  const items: readonly ActivityBarItem[] = [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }]
   const height = 100
   const itemHeight = 50
 
   const result: readonly ActivityBarItem[] = getFilteredActivityBarItems(items, height, itemHeight)
 
-  expect(result).toBe(items)
+  expect(result).toStrictEqual(items)
   expect(result.length).toBe(1)
   expect(result[0].id).toBe('item1')
 })
 
 test('getFilteredActivityBarItems handles single item that does not fit', () => {
-  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }]
+  const items: readonly ActivityBarItem[] = [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }]
   const height = 30
   const itemHeight = 50
 
@@ -97,25 +97,25 @@ test('getFilteredActivityBarItems handles single item that does not fit', () => 
 
 test('getFilteredActivityBarItems handles exactly numberOfVisibleItems items', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
   ]
   const height = 150
   const itemHeight = 50
 
   const result: readonly ActivityBarItem[] = getFilteredActivityBarItems(items, height, itemHeight)
 
-  expect(result).toBe(items)
+  expect(result).toStrictEqual(items)
   expect(result.length).toBe(3)
 })
 
 test('getFilteredActivityBarItems handles numberOfVisibleItems + 1 items', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: 0, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
   ]
   const height = 150
   const itemHeight = 50
@@ -133,22 +133,22 @@ test('getFilteredActivityBarItems preserves item properties', () => {
     {
       badgeIcon: 'badge-icon',
       badgeText: '5',
-      flags: 1,
+      flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Tab,
       icon: 'test-icon',
       id: 'item1',
       keyShortcuts: 'Ctrl+K',
       title: 'Test Item',
     },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: 0, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
   ]
   const height = 200
   const itemHeight = 50
 
   const result: readonly ActivityBarItem[] = getFilteredActivityBarItems(items, height, itemHeight)
 
-  expect(result[0].flags).toBe(1)
+  expect(result[0].flags).toBe(ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Tab)
   expect(result[0].icon).toBe('test-icon')
   expect(result[0].id).toBe('item1')
   expect(result[0].keyShortcuts).toBe('Ctrl+K')
@@ -157,9 +157,24 @@ test('getFilteredActivityBarItems preserves item properties', () => {
   expect(result[0].badgeText).toBe('5')
 })
 
+test('getFilteredActivityBarItems excludes disabled items', () => {
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+  ]
+
+  const result = getFilteredActivityBarItems(items, 300, 50)
+
+  expect(result).toEqual([
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+  ])
+})
+
 test('getFilteredActivityBarItems handles many items', () => {
   const items: readonly ActivityBarItem[] = Array.from({ length: 20 }, (_, i) => ({
-    flags: 0,
+    flags: ActivityBarItemFlags.Enabled,
     icon: `icon${i}`,
     id: `item${i}`,
     keyShortcuts: '',
@@ -179,10 +194,10 @@ test('getFilteredActivityBarItems handles many items', () => {
 
 test('getFilteredActivityBarItems handles fractional height calculations', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: 0, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
   ]
   const height = 120
   const itemHeight = 50
