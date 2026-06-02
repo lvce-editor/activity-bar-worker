@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { ExtensionManagementWorker, RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { handleSettingsChanged } from '../src/parts/HandleSettingsChanged/HandleSettingsChanged.ts'
@@ -143,4 +143,33 @@ test('handleSettingsChanged gets accountEnabled from preferences', async () => {
   )
   expect(result.accountEnabled).toBe(true)
   expect(result.activityBarItems.some((item) => item.id === 'Account')).toBe(true)
+})
+
+test('handleSettingsChanged includes contributed views from extension management worker', async () => {
+  using rendererMockRpc = RendererWorker.registerMockRpc({
+    'Layout.getBadgeCounts'() {
+      return {}
+    },
+    'Layout.getSideBarPosition'() {
+      return 0
+    },
+  })
+  using extensionManagementMockRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.getViews'() {
+      return [
+        {
+          icon: 'symbol-beaker',
+          id: 'sample.views.testing',
+          title: 'Testing',
+        },
+      ]
+    },
+  })
+
+  const state: ActivityBarState = createDefaultState()
+  const result: ActivityBarState = await handleSettingsChanged(state)
+
+  expect(rendererMockRpc.invocations).toEqual(expect.arrayContaining([['Layout.getBadgeCounts'], ['Layout.getSideBarPosition']]))
+  expect(extensionManagementMockRpc.invocations).toEqual([['Extensions.getViews', '', 0]])
+  expect(result.activityBarItems.some((item) => item.id === 'sample.views.testing' && item.title === 'Testing')).toBe(true)
 })
