@@ -1,11 +1,22 @@
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
+import type { ContributedView } from '../GetContributedViews/GetContributedViews.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ViewletActivityBarStrings from '../ActivityBarStrings/ActivityBarStrings.ts'
 import * as Icon from '../Icon/Icon.ts'
 import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 
-export const getActivityBarItems = (state: ActivityBarState): readonly ActivityBarItem[] => {
+const toActivityBarItem = (view: ContributedView): ActivityBarItem => {
+  return {
+    flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
+    icon: view.icon || Icon.Extensions,
+    id: view.id,
+    keyShortcuts: '',
+    title: view.title || view.id,
+  }
+}
+
+export const getActivityBarItems = (state: ActivityBarState, contributedViews: readonly ContributedView[] = []): readonly ActivityBarItem[] => {
   const { accountEnabled } = state
   const settingsFlags = ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled | (accountEnabled ? 0 : ActivityBarItemFlags.MarginTop)
   const items = [
@@ -45,6 +56,7 @@ export const getActivityBarItems = (state: ActivityBarState): readonly ActivityB
       keyShortcuts: 'Control+Shift+X',
       title: ViewletActivityBarStrings.extensions(),
     },
+    ...contributedViews.map(toActivityBarItem),
     // Bottom
   ]
 
