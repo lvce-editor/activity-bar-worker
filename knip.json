@@ -1,12 +1,6 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "exclude": ["exports", "types"],
-  "ignore": [
-    "packages/activity-bar-worker/src/parts/ContextMenuOptions/ContextMenuOptions.ts",
-    "packages/activity-bar-worker/src/parts/GetHiddenItems/GetHiddenItems.ts",
-    "packages/activity-bar-worker/src/parts/GetVisibleActivityBarItems/GetVisibleActivityBarItems.ts",
-    "packages/activity-bar-worker/src/parts/VisibleItem/VisibleItem.ts"
-  ],
   "workspaces": {
     ".": {
       "project": ["*.js"],
