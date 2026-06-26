@@ -1,0 +1,20 @@
+import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
+import { getActivityBarItems } from '../GetActivityBarItems/GetActivityBarItems.ts'
+import { getContributedViews } from '../GetContributedViews/GetContributedViews.ts'
+import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
+import { markSelected } from '../MarkSelected/MarkSelected.ts'
+import { updateItemsWithBadgeCount } from '../UpdateItemsWithBadgeCount/UpdateItemsWithBadgeCount.ts'
+
+export const handleExtensionsChanged = async (state: ActivityBarState): Promise<ActivityBarState> => {
+  const { height, itemHeight, selectedIndex } = state
+  const contributedViews = await getContributedViews(state.platform)
+  const items = getActivityBarItems(state, contributedViews)
+  const itemsWithSelected = markSelected(items, selectedIndex)
+  const filteredItems = getFilteredActivityBarItems(itemsWithSelected, height, itemHeight)
+  const newItems = await updateItemsWithBadgeCount(filteredItems)
+  return {
+    ...state,
+    activityBarItems: itemsWithSelected,
+    filteredItems: newItems,
+  }
+}

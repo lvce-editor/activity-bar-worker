@@ -22,6 +22,7 @@ import { handleClickSignIn } from '../HandleClickSignIn/HandleClickSignIn.ts'
 import { handleClickSignOut } from '../HandleClickSignOut/HandleClickSignOut.ts'
 import { handleContextMenu } from '../HandleContextMenu/HandleContextMenu.ts'
 import { handleExtensionManagementMessagePort } from '../HandleExtensionManagementMessagePort/HandleExtensionManagementMessagePort.ts'
+import { handleExtensionsChanged } from '../HandleExtensionsChanged/HandleExtensionsChanged.ts'
 import { handleFocus } from '../HandleFocus/HandleFocus.ts'
 import { handleResize } from '../HandleResize/HandleResize.ts'
 import { handleSettingsChanged } from '../HandleSettingsChanged/HandleSettingsChanged.ts'
@@ -59,6 +60,7 @@ export const commandMap = {
   'ActivityBar.handleClickSignOut': WrapCommand.wrapCommand(handleClickSignOut),
   'ActivityBar.handleContextMenu': WrapCommand.wrapCommand(handleContextMenu),
   'ActivityBar.handleExtensionManagementMessagePort': handleExtensionManagementMessagePort,
+  'ActivityBar.handleExtensionsChanged': WrapCommand.wrapCommand(handleExtensionsChanged),
   'ActivityBar.handleFocus': WrapCommand.wrapCommand(handleFocus),
   'ActivityBar.handleSettingsChanged': WrapCommand.wrapCommand(handleSettingsChanged),
   'ActivityBar.handleSideBarStateChange': WrapCommand.wrapCommand(handleSideBarStateChange),
