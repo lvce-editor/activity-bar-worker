@@ -1,11 +1,11 @@
-import type { Test } from '@lvce-editor/test-with-playwright'
+import type { TestApi } from '@lvce-editor/test-with-playwright'
 
-export const name = 'activity-bar.custom-view-icon.tiny-png'
-
-const extensionId = 'test.custom-view-icon-tiny-png'
-const viewId = 'test.views.customIconTinyPng'
-const title = 'Custom Tiny PNG Icon'
-const iconPath = 'icon.png'
+interface CustomViewIconOptions {
+  readonly extensionUri: string
+  readonly iconPath: string
+  readonly title: string
+  readonly viewId: string
+}
 
 const hashString = (value: string): string => {
   let hash = 0x811c9dc5
@@ -20,14 +20,17 @@ const getCustomIconClass = (id: string, iconUrl: string): string => {
   return `MaskIconCustomView${hashString(`${id}\n${iconUrl}`)}`
 }
 
-const toRemoteUrl = (path: string): string => {
-  return `${location.origin}/remote/${new URL(`file://${path}`).href.slice(8)}`
+const toExtensionBaseUrl = (uri: string): string => {
+  const url = new URL(uri, import.meta.url)
+  if (url.protocol === 'file:') {
+    return `${location.origin}/remote/${url.href.slice('file://'.length)}/`
+  }
+  return url.href.endsWith('/') ? url.href : `${url.href}/`
 }
 
-export const test: Test = async ({ Command, expect, Locator }) => {
-  const extensions = await Command.execute('WebView.compatSharedProcessInvoke', 'ExtensionManagement.getAllExtensions')
-  const extension = extensions.find((extension) => extension.id === extensionId)
-  const iconUrl = `${toRemoteUrl(extension.path)}/src/${iconPath}`
+export const assertCustomViewIcon = async ({ expect, Locator }: Pick<TestApi, 'expect' | 'Locator'>, options: CustomViewIconOptions): Promise<void> => {
+  const { extensionUri, iconPath, title, viewId } = options
+  const iconUrl = new URL(`src/${iconPath}`, toExtensionBaseUrl(extensionUri)).href
   const customIconClass = getCustomIconClass(viewId, iconUrl)
   const item = Locator(`.ActivityBarItem[title="${title}"]`)
 
@@ -37,7 +40,7 @@ export const test: Test = async ({ Command, expect, Locator }) => {
   await expect(item).toHaveCSS('width', '48px')
   await expect(item).toHaveCSS('height', '48px')
   await expect(item).toHaveCSS('mask-image', `url("${iconUrl}")`)
-  await expect(item).toHaveCSS('mask-size', /^24px(?: auto)?$/)
+  await expect(item).toHaveCSS('mask-size', /^24px(?: auto)?$/ as unknown as string)
   await expect(item).toHaveCSS('mask-repeat', 'no-repeat')
   await expect(item).toHaveCSS('mask-position', '50% 50%')
 }
