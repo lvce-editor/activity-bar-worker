@@ -2,10 +2,10 @@ import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { AriaRoles } from '@lvce-editor/constants'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 
-export const getIconVirtualDom = (icon: string, type = VirtualDomElements.Div): VirtualDomNode => {
+export const getIconVirtualDom = (icon: string, type = VirtualDomElements.Div, customIconClass = ''): VirtualDomNode => {
   return {
     childCount: 0,
-    className: `MaskIcon MaskIcon${icon}`,
+    className: customIconClass ? `MaskIcon ${customIconClass}` : `MaskIcon MaskIcon${icon}`,
     role: AriaRoles.None,
     type,
   }

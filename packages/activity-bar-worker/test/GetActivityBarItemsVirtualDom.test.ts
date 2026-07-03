@@ -22,11 +22,28 @@ test('getVirtualDom creates basic item without flags', () => {
 
   const result = GetActivityBarItemsVirtualDom.getVirtualDom(items)
 
-  expect(result.length).toBe(1)
+  expect(result).toHaveLength(1)
   expect(result[0].type).toBe(VirtualDomElements.Div)
   expect(result[0].className).toBe('ActivityBarItem IconExplorer')
   expect(result[0].role).toBe(AriaRoles.Button)
   expect(result[0].childCount).toBe(0)
+})
+
+test('getVirtualDom applies custom icon class to basic item', () => {
+  const items: readonly any[] = [
+    {
+      customIconClass: 'MaskIconCustomViewabc',
+      customIconUrl: 'https://example.com/icon.svg',
+      flags: 0,
+      icon: 'https://example.com/icon.svg',
+      title: 'Custom Icon',
+    },
+  ]
+
+  const result = GetActivityBarItemsVirtualDom.getVirtualDom(items)
+
+  expect(result).toHaveLength(1)
+  expect(result[0].className).toBe('ActivityBarItem MaskIconCustomViewabc')
 })
 
 test('getVirtualDom creates item with Tab flag', () => {
@@ -40,7 +57,7 @@ test('getVirtualDom creates item with Tab flag', () => {
 
   const result = GetActivityBarItemsVirtualDom.getVirtualDom(items)
 
-  expect(result.length).toBe(1)
+  expect(result).toHaveLength(1)
   expect(result[0].role).toBe(AriaRoles.Tab)
 })
 
@@ -55,10 +72,29 @@ test('getVirtualDom creates selected item with icon', () => {
 
   const result = GetActivityBarItemsVirtualDom.getVirtualDom(items)
 
-  expect(result.length).toBe(2)
+  expect(result).toHaveLength(2)
   expect(result[0].className).toContain(ClassNames.ActivityBarItemSelected)
   expect(result[0].childCount).toBe(1)
   expect(result[1].className).toBe('MaskIcon MaskIconExplorer')
+})
+
+test('getVirtualDom applies custom icon class to selected item child', () => {
+  const items: readonly any[] = [
+    {
+      customIconClass: 'MaskIconCustomViewabc',
+      customIconUrl: 'https://example.com/icon.svg',
+      flags: ActivityBarItemFlags.Selected,
+      icon: 'https://example.com/icon.svg',
+      title: 'Custom Icon',
+    },
+  ]
+
+  const result = GetActivityBarItemsVirtualDom.getVirtualDom(items)
+
+  expect(result).toHaveLength(2)
+  expect(result[0].className).toContain(ClassNames.ActivityBarItemSelected)
+  expect(result[0].className).not.toContain('MaskIconCustomViewabc')
+  expect(result[1].className).toBe('MaskIcon MaskIconCustomViewabc')
 })
 
 test('getVirtualDom creates selected tab with icon', () => {
@@ -72,7 +108,7 @@ test('getVirtualDom creates selected tab with icon', () => {
 
   const result = GetActivityBarItemsVirtualDom.getVirtualDom(items)
 
-  expect(result.length).toBe(2)
+  expect(result).toHaveLength(2)
   expect(result[0].role).toBe(AriaRoles.Tab)
   expect(result[0].ariaSelected).toBe(true)
 })
@@ -116,7 +152,7 @@ test('getVirtualDom creates item with Progress flag', () => {
 
   const result = GetActivityBarItemsVirtualDom.getVirtualDom(items)
 
-  expect(result.length).toBe(5)
+  expect(result).toHaveLength(5)
   expect(result[0].className).toContain(ClassNames.ActivityBarItemNested)
   expect(result[0].childCount).toBe(2)
 })
@@ -153,7 +189,7 @@ test('getVirtualDom creates multiple items', () => {
 
   const result = GetActivityBarItemsVirtualDom.getVirtualDom(items)
 
-  expect(result.length).toBe(3)
+  expect(result).toHaveLength(3)
 })
 
 test('getVirtualDom handles item with all flags', () => {
@@ -202,5 +238,5 @@ test('getVirtualDom does not add ariaHasPopup for regular activity bar item', ()
 
   const result = GetActivityBarItemsVirtualDom.getVirtualDom(items)
 
-  expect(result[0].ariaHasPopup).toBe(undefined)
+  expect(result[0].ariaHasPopup).toBeUndefined()
 })

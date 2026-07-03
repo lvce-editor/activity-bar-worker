@@ -1,0 +1,15 @@
+{
+  "id": "test.custom-view-icon-missing-image",
+  "name": "custom-view-icon-missing-image",
+  "description": "Custom view icon missing image fixture",
+  "version": "0.0.0",
+  "isolated": true,
+  "browser": "src/extensionMain.js",
+  "views": [
+    {
+      "id": "test.views.customIconMissingImage",
+      "title": "Custom Missing Image Icon",
+      "icon": "src/missing.png"
+    }
+  ]
+}

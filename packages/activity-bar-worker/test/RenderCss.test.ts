@@ -54,3 +54,39 @@ test('renderCss returns empty array with custom properties', () => {
 
   expect(result).toBeDefined()
 })
+
+test('renderCss includes custom icon rules', () => {
+  const items: readonly ActivityBarItem[] = [
+    {
+      customIconClass: 'MaskIconCustomViewabc',
+      customIconUrl: 'https://example.com/icon.svg',
+      flags: 0,
+      icon: 'https://example.com/icon.svg',
+      id: 'test',
+      keyShortcuts: '',
+      title: 'Test',
+    },
+    {
+      customIconClass: 'MaskIconCustomViewfile',
+      customIconUrl: 'file:///tmp/icon.png',
+      flags: 0,
+      icon: 'file:///tmp/icon.png',
+      id: 'test2',
+      keyShortcuts: '',
+      title: 'Test 2',
+    },
+  ]
+
+  const oldState: ActivityBarState = createDefaultState()
+  const newState: ActivityBarState = {
+    ...createDefaultState(),
+    filteredItems: items,
+  }
+
+  const result: readonly any[] = renderCss(oldState, newState)
+
+  expect(result[2]).toContain('.MaskIconCustomViewabc')
+  expect(result[2]).toContain('mask-image: url("https://example.com/icon.svg");')
+  expect(result[2]).toContain('.MaskIconCustomViewfile')
+  expect(result[2]).toContain('mask-image: url("file:///tmp/icon.png");')
+})

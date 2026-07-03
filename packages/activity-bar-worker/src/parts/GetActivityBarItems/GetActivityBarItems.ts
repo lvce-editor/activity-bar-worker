@@ -3,17 +3,29 @@ import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import type { ContributedView } from '../GetContributedViews/GetContributedViews.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ViewletActivityBarStrings from '../ActivityBarStrings/ActivityBarStrings.ts'
+import * as CustomIcon from '../CustomIcon/CustomIcon.ts'
 import * as Icon from '../Icon/Icon.ts'
 import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 
 const toActivityBarItem = (view: ContributedView): ActivityBarItem => {
-  return {
+  const icon = view.icon || Icon.Extensions
+  const customIconUrl = CustomIcon.isCustomIconUrl(icon) ? icon : undefined
+  const customIconClass = customIconUrl ? CustomIcon.getCustomIconClass(view.id, customIconUrl) : undefined
+  const item: ActivityBarItem = {
     flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
-    icon: view.icon || Icon.Extensions,
+    icon,
     id: view.id,
     keyShortcuts: '',
     title: view.title || view.id,
   }
+  if (customIconClass && customIconUrl) {
+    return {
+      ...item,
+      customIconClass,
+      customIconUrl,
+    }
+  }
+  return item
 }
 
 export const getActivityBarItems = (state: ActivityBarState, contributedViews: readonly ContributedView[] = []): readonly ActivityBarItem[] => {

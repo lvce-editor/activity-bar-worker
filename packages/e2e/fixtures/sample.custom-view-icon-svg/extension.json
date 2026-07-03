@@ -1,0 +1,15 @@
+{
+  "id": "test.custom-view-icon-svg",
+  "name": "custom-view-icon-svg",
+  "description": "Custom view icon SVG fixture",
+  "version": "0.0.0",
+  "isolated": true,
+  "browser": "src/extensionMain.js",
+  "views": [
+    {
+      "id": "test.views.customIconSvg",
+      "title": "Custom SVG Icon",
+      "icon": "src/icon.svg"
+    }
+  ]
+}
