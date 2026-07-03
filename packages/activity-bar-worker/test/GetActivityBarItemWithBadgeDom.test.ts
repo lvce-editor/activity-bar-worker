@@ -41,7 +41,7 @@ test('getActivityBarItemWithBadgeDom creates correct DOM structure with badgeTex
 
   const result = getActivityBarItemWithBadgeDom(item)
 
-  expect(result.length).toBe(4)
+  expect(result).toHaveLength(4)
   expect(result[0].type).toBe(VirtualDomElements.Div)
   expect(result[0].role).toBe(AriaRoles.Button)
   expect(result[0].childCount).toBe(2)
