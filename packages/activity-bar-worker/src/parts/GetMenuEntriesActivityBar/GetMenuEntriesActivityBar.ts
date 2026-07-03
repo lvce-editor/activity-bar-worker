@@ -11,7 +11,7 @@ export const getMenuEntriesActivityBar = (state: ActivityBarState): readonly Men
   const { activityBarItems, sideBarLocation } = state
   const topItems = activityBarItems.filter((item) => !(item.flags & ActivityBarItemFlags.Button))
   const bottomItems = activityBarItems.filter((item) => item.flags & ActivityBarItemFlags.Button)
-  const entries = [...topItems.map(toContextMenuItem)]
+  const entries = topItems.map(toContextMenuItem)
 
   if (bottomItems.length > 0) {
     entries.push(MenuEntrySeparator.menuEntrySeparator, ...bottomItems.map(toContextMenuItem))

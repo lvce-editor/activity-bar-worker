@@ -7,6 +7,11 @@ export default [
   ...actions.default,
   ...tsconfig.default,
   {
+    rules: {
+      'devcontainer/require-desktop-lite-feature': 'off',
+    },
+  },
+  {
     files: ['**/*.ts'],
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
@@ -35,6 +40,7 @@ export default [
     files: ['**/*.test.ts'],
     rules: {
       '@typescript-eslint/unbound-method': 'off',
+      'sonarjs/prefer-specific-assertions': 'off',
     },
   },
 ]

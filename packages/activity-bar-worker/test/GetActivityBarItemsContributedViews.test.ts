@@ -41,11 +41,7 @@ test('getActivityBarItems stores custom icon metadata for url-like contributed v
     },
   ])
 
-  expect(items).toEqual(
-    expect.arrayContaining([
-      expectedItem,
-    ]),
-  )
+  expect(items).toEqual(expect.arrayContaining([expectedItem]))
 })
 
 test('getActivityBarItems preserves builtin symbolic contributed view icon behavior', () => {
