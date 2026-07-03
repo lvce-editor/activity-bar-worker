@@ -37,7 +37,7 @@ export const test: Test = async ({ Command, expect, Locator }) => {
   await expect(item).toHaveCSS('width', '48px')
   await expect(item).toHaveCSS('height', '48px')
   await expect(item).toHaveCSS('mask-image', `url("${iconUrl}")`)
-  await expect(item).toHaveCSS('mask-size', '24px')
+  await expect(item).toHaveCSS('mask-size', /^24px(?: auto)?$/)
   await expect(item).toHaveCSS('mask-repeat', 'no-repeat')
   await expect(item).toHaveCSS('mask-position', '50% 50%')
 }
