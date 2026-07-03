@@ -8,16 +8,17 @@ interface CustomViewIconOptions {
 }
 
 const hashString = (value: string): string => {
-  let hash = 0x811c9dc5
-  for (let i = 0; i < value.length; i++) {
-    hash ^= value.charCodeAt(i)
-    hash = Math.imul(hash, 0x01000193)
+  let hash = 2_166_136_261
+  for (const character of value) {
+    hash ^= character.codePointAt(0) || 0
+    hash = Math.imul(hash, 16_777_619)
   }
   return (hash >>> 0).toString(36)
 }
 
 const getCustomIconClass = (id: string, iconUrl: string): string => {
-  return `MaskIconCustomView${hashString(`${id}\n${iconUrl}`)}`
+  const hashInput = id + '\n' + iconUrl
+  return `MaskIconCustomView${hashString(hashInput)}`
 }
 
 const toExtensionBaseUrl = (uri: string): string => {
@@ -28,8 +29,10 @@ const toExtensionBaseUrl = (uri: string): string => {
   return url.href.endsWith('/') ? url.href : `${url.href}/`
 }
 
-export const assertCustomViewIcon = async ({ expect, Locator }: Pick<TestApi, 'expect' | 'Locator'>, options: CustomViewIconOptions): Promise<void> => {
-  const { extensionUri, iconPath, title, viewId } = options
+export const assertCustomViewIcon = async (
+  { expect, Locator }: Pick<TestApi, 'expect' | 'Locator'>,
+  { extensionUri, iconPath, title, viewId }: CustomViewIconOptions,
+): Promise<void> => {
   const iconUrl = new URL(`src/${iconPath}`, toExtensionBaseUrl(extensionUri)).href
   const customIconClass = getCustomIconClass(viewId, iconUrl)
   const item = Locator(`.ActivityBarItem[title="${title}"]`)

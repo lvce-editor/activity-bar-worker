@@ -7,6 +7,9 @@ const view = {
 }
 
 const commandMap = {
+  'ExtensionApi.getStatusBarItems'() {
+    return []
+  },
   'ExtensionApi.getViewRegistrySnapshot'() {
     return {
       views: [view],
