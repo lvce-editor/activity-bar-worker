@@ -35,6 +35,7 @@ export default [
     files: ['**/*.test.ts'],
     rules: {
       '@typescript-eslint/unbound-method': 'off',
+      'sonarjs/prefer-specific-assertions': 'off',
     },
   },
 ]

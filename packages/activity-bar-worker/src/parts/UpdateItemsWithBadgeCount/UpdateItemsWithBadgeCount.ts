@@ -6,7 +6,7 @@ export const updateItemsWithBadgeCount = async (items: readonly ActivityBarItem[
     const badgeCounts = await RendererWorker.invoke('Layout.getBadgeCounts')
     const newItems = items.map((item) => {
       const badgeCount = badgeCounts[item.id] || 0
-      const badgeText = badgeCount ? `${badgeCount}` : ''
+      const badgeText = badgeCount ? String(badgeCount) : ''
       return {
         ...item,
         badgeText,

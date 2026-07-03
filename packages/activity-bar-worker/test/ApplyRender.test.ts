@@ -60,8 +60,8 @@ test('applyRender returns commands when diffResult contains RenderFocusContext w
 
   const result: readonly any[] = applyRender(oldState, newState, diffResult)
 
-  expect(result.length).toBe(1)
-  expect(result[0].length).toBe(3)
+  expect(result).toHaveLength(1)
+  expect(result[0]).toHaveLength(3)
   expect(result[0][0]).toBe(ViewletCommand.SetFocusContext)
   expect(result[0][1]).toBe(456)
 })
@@ -77,8 +77,8 @@ test('applyRender returns commands when diffResult contains RenderItems', () => 
 
   const result: readonly any[] = applyRender(oldState, newState, diffResult)
 
-  expect(result.length).toBe(1)
-  expect(result[0].length).toBe(3)
+  expect(result).toHaveLength(1)
+  expect(result[0]).toHaveLength(3)
   expect(result[0][0]).toBe(ViewletCommand.SetDom2)
   expect(result[0][1]).toBe(789)
 })
@@ -127,7 +127,7 @@ test('applyRender collects multiple non-empty results', () => {
 
   const result: readonly any[] = applyRender(oldState, newState, diffResult)
 
-  expect(result.length).toBe(2)
+  expect(result).toHaveLength(2)
   expect(result[0][0]).toBe(ViewletCommand.SetDom2)
   expect(result[1][0]).toBe(ViewletCommand.SetFocusContext)
 })
@@ -165,6 +165,6 @@ test('applyRender handles RenderFocus with focus List', () => {
 
   const result: readonly any[] = applyRender(oldState, newState, diffResult)
 
-  expect(result.length).toBe(1)
+  expect(result).toHaveLength(1)
   expect(result[0][0]).toBe(ViewletCommand.SetFocusContext)
 })
