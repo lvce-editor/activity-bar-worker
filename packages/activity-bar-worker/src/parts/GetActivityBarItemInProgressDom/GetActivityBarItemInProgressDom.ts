@@ -3,13 +3,14 @@ import { type VirtualDomNode, mergeClassNames, VirtualDomElements } from '@lvce-
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as CustomIcon from '../CustomIcon/CustomIcon.ts'
 import { getActivityBarItemHasPopup } from '../GetActivityBarItemHasPopup/GetActivityBarItemHasPopup.ts'
 import { getAriaSelected } from '../GetAriaSelected/GetAriaSelected.ts'
 import { getBadgeVirtualDom } from '../GetBadgeVirtualDom/GetBadgeVirtualDom.ts'
 import { getClassName } from '../GetClassName/GetClassName.ts'
 
 export const getActivityBarItemInProgressDom = (item: ActivityBarItem): readonly VirtualDomNode[] => {
-  const { flags, icon, title } = item
+  const { flags, title } = item
   const isTab = flags & ActivityBarItemFlags.Tab
   const isSelected = flags & ActivityBarItemFlags.Selected
   const isFocused = flags & ActivityBarItemFlags.Focused
@@ -32,7 +33,7 @@ export const getActivityBarItemInProgressDom = (item: ActivityBarItem): readonly
     },
     {
       childCount: 0,
-      className: mergeClassNames(ClassNames.Icon, `MaskIcon${icon}`),
+      className: mergeClassNames(ClassNames.Icon, CustomIcon.getIconClass(item, 'MaskIcon')),
       role: AriaRoles.None,
       type: VirtualDomElements.Div,
     },

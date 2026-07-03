@@ -69,3 +69,56 @@ test('DiffCss.isEqual should return false when currentViewletId changes', () => 
   const result = DiffCss.isEqual(state1, state2)
   expect(result).toBe(true)
 })
+
+test('DiffCss.isEqual should return false when custom icon is added', () => {
+  const state1 = createDefaultState()
+  const state2: ActivityBarState = {
+    ...createDefaultState(),
+    filteredItems: [
+      {
+        customIconClass: 'MaskIconCustomViewabc',
+        customIconUrl: 'https://example.com/icon.svg',
+        flags: 0,
+        icon: 'https://example.com/icon.svg',
+        id: 'test',
+        keyShortcuts: '',
+        title: 'Test',
+      },
+    ],
+  }
+  const result = DiffCss.isEqual(state1, state2)
+  expect(result).toBe(false)
+})
+
+test('DiffCss.isEqual should return false when custom icon url changes', () => {
+  const state1: ActivityBarState = {
+    ...createDefaultState(),
+    filteredItems: [
+      {
+        customIconClass: 'MaskIconCustomViewabc',
+        customIconUrl: 'https://example.com/icon.svg',
+        flags: 0,
+        icon: 'https://example.com/icon.svg',
+        id: 'test',
+        keyShortcuts: '',
+        title: 'Test',
+      },
+    ],
+  }
+  const state2: ActivityBarState = {
+    ...state1,
+    filteredItems: [
+      {
+        customIconClass: 'MaskIconCustomViewabc',
+        customIconUrl: 'https://example.com/other.svg',
+        flags: 0,
+        icon: 'https://example.com/other.svg',
+        id: 'test',
+        keyShortcuts: '',
+        title: 'Test',
+      },
+    ],
+  }
+  const result = DiffCss.isEqual(state1, state2)
+  expect(result).toBe(false)
+})

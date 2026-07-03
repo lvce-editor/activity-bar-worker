@@ -2,6 +2,7 @@ import { AriaRoles } from '@lvce-editor/constants'
 import { type VirtualDomNode, mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
+import * as CustomIcon from '../CustomIcon/CustomIcon.ts'
 import { getActivityBarItemHasPopup } from '../GetActivityBarItemHasPopup/GetActivityBarItemHasPopup.ts'
 import { getActivityBarItemInProgressDom } from '../GetActivityBarItemInProgressDom/GetActivityBarItemInProgressDom.ts'
 import { getActivityBarItemWithBadgeDom } from '../GetActivityBarItemWithBadgeDom/GetActivityBarItemWithBadgeDom.ts'
@@ -32,7 +33,7 @@ export const getActivityBarItemVirtualDom = (item: ActivityBarItem): readonly Vi
         title,
         type: VirtualDomElements.Div,
       },
-      GetIconVirtualDom.getIconVirtualDom(icon),
+      GetIconVirtualDom.getIconVirtualDom(icon, VirtualDomElements.Div, item.customIconClass),
     ]
   }
 
@@ -50,7 +51,7 @@ export const getActivityBarItemVirtualDom = (item: ActivityBarItem): readonly Vi
       ariaLabel: '',
       ariaSelected,
       childCount: 0,
-      className: mergeClassNames(className, `Icon${icon}`),
+      className: mergeClassNames(className, CustomIcon.getIconClass(item, 'Icon')),
       role,
       title,
       type: VirtualDomElements.Div,

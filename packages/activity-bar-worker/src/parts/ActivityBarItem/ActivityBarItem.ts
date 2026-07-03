@@ -1,6 +1,8 @@
 export interface ActivityBarItem {
   readonly badgeIcon?: string
   readonly badgeText?: string
+  readonly customIconClass?: string
+  readonly customIconUrl?: string
   readonly enabled?: boolean
   readonly flags: number
   readonly icon: string

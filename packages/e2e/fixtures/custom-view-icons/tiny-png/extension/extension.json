@@ -1,0 +1,15 @@
+{
+  "id": "test.custom-view-icon-tiny-png",
+  "name": "custom-view-icon-tiny-png",
+  "description": "Custom view icon tiny PNG fixture",
+  "version": "0.0.0",
+  "isolated": true,
+  "browser": "src/extensionMain.js",
+  "views": [
+    {
+      "id": "test.views.customIconTinyPng",
+      "title": "Custom Tiny PNG Icon",
+      "icon": "src/icon.png"
+    }
+  ]
+}

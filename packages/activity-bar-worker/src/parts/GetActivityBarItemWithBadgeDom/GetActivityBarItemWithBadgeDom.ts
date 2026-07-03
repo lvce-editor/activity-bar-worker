@@ -3,12 +3,13 @@ import { type VirtualDomNode, mergeClassNames, text, VirtualDomElements } from '
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as CustomIcon from '../CustomIcon/CustomIcon.ts'
 import { getActivityBarItemHasPopup } from '../GetActivityBarItemHasPopup/GetActivityBarItemHasPopup.ts'
 import { getAriaSelected } from '../GetAriaSelected/GetAriaSelected.ts'
 import { getClassName } from '../GetClassName/GetClassName.ts'
 
 export const getActivityBarItemWithBadgeDom = (item: ActivityBarItem): readonly VirtualDomNode[] => {
-  const { badgeText, flags, icon, title } = item
+  const { badgeText, flags, title } = item
   if (!badgeText) {
     // TODO should not happen
     return []
@@ -35,7 +36,7 @@ export const getActivityBarItemWithBadgeDom = (item: ActivityBarItem): readonly 
     },
     {
       childCount: 0,
-      className: mergeClassNames(ClassNames.Icon, `MaskIcon${icon}`),
+      className: mergeClassNames(ClassNames.Icon, CustomIcon.getIconClass(item, 'MaskIcon')),
       role: AriaRoles.None,
       type: VirtualDomElements.Div,
     },

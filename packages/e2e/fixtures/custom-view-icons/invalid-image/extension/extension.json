@@ -1,0 +1,15 @@
+{
+  "id": "test.custom-view-icon-invalid-image",
+  "name": "custom-view-icon-invalid-image",
+  "description": "Custom view icon invalid image fixture",
+  "version": "0.0.0",
+  "isolated": true,
+  "browser": "src/extensionMain.js",
+  "views": [
+    {
+      "id": "test.views.customIconInvalidImage",
+      "title": "Custom Invalid Image Icon",
+      "icon": "src/invalid.png"
+    }
+  ]
+}

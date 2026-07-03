@@ -53,3 +53,11 @@ test('getIconVirtualDom handles empty string icon', () => {
   expect(result.role).toBe(AriaRoles.None)
   expect(result.childCount).toBe(0)
 })
+
+test('getIconVirtualDom uses custom icon class when provided', () => {
+  const result = GetIconVirtualDom.getIconVirtualDom('https://example.com/icon.svg', undefined, 'MaskIconCustomViewabc')
+
+  expect(result.className).toBe('MaskIcon MaskIconCustomViewabc')
+  expect(result.role).toBe(AriaRoles.None)
+  expect(result.childCount).toBe(0)
+})
