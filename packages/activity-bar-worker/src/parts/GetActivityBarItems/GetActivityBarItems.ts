@@ -4,8 +4,8 @@ import type { ContributedView } from '../GetContributedViews/GetContributedViews
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ViewletActivityBarStrings from '../ActivityBarStrings/ActivityBarStrings.ts'
 import { getCustomIconClass } from '../GetCustomIconClass/GetCustomIconClass.ts'
-import { isCustomIconUrl } from '../IsCustomIconUrl/IsCustomIconUrl.ts'
 import * as Icon from '../Icon/Icon.ts'
+import { isCustomIconUrl } from '../IsCustomIconUrl/IsCustomIconUrl.ts'
 import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 
 const toActivityBarItem = (view: ContributedView): ActivityBarItem => {

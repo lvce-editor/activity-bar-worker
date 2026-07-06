@@ -3,7 +3,6 @@ import { getCustomIconSignature } from '../GetCustomIconSignature/GetCustomIconS
 
 export const isEqual = (oldState: ActivityBarState, newState: ActivityBarState): boolean => {
   return (
-    oldState.itemHeight === newState.itemHeight &&
-    getCustomIconSignature(oldState.filteredItems) === getCustomIconSignature(newState.filteredItems)
+    oldState.itemHeight === newState.itemHeight && getCustomIconSignature(oldState.filteredItems) === getCustomIconSignature(newState.filteredItems)
   )
 }
