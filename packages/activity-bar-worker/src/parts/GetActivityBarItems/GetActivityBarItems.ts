@@ -3,14 +3,15 @@ import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import type { ContributedView } from '../GetContributedViews/GetContributedViews.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ViewletActivityBarStrings from '../ActivityBarStrings/ActivityBarStrings.ts'
-import * as CustomIcon from '../CustomIcon/CustomIcon.ts'
+import { getCustomIconClass } from '../GetCustomIconClass/GetCustomIconClass.ts'
+import { isCustomIconUrl } from '../IsCustomIconUrl/IsCustomIconUrl.ts'
 import * as Icon from '../Icon/Icon.ts'
 import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 
 const toActivityBarItem = (view: ContributedView): ActivityBarItem => {
   const icon = view.icon || Icon.Extensions
-  const customIconUrl = CustomIcon.isCustomIconUrl(icon) ? icon : undefined
-  const customIconClass = customIconUrl ? CustomIcon.getCustomIconClass(view.id, customIconUrl) : undefined
+  const customIconUrl = isCustomIconUrl(icon) ? icon : undefined
+  const customIconClass = customIconUrl ? getCustomIconClass(view.id, customIconUrl) : undefined
   const item: ActivityBarItem = {
     flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
     icon,
