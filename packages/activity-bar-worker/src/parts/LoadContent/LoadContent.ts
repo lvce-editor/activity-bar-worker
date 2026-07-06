@@ -10,7 +10,14 @@ import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 
 export const loadContent = async (state: ActivityBarState): Promise<ActivityBarState> => {
   const { accountEnabled, height, itemHeight, platform } = state
-  const { accountEnabled: accountEnabledNew, activeView, contributedViews, sideBarVisible, sidebarLocation, userInfo } = await loadPreferences(accountEnabled, platform)
+  const {
+    accountEnabled: accountEnabledNew,
+    activeView,
+    contributedViews,
+    sidebarLocation,
+    sideBarVisible,
+    userInfo,
+  } = await loadPreferences(accountEnabled, platform)
   const newState = {
     ...state,
     accountEnabled: accountEnabledNew,
