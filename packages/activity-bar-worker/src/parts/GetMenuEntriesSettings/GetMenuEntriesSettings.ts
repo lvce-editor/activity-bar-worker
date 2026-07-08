@@ -36,7 +36,7 @@ export const getMenuEntriesSettings = (state: ActivityBarState): readonly MenuEn
       label: ActivityBarStrings.colorTheme(),
     },
   ]
-  if (platform !== PlatformType.Web) {
+  if (platform === PlatformType.Electron) {
     items.push(MenuEntrySeparator.menuEntrySeparator, {
       command: 'AutoUpdater.checkForUpdates',
       flags: MenuItemFlags.None,

@@ -44,10 +44,10 @@ test('getMenuEntriesSettings returns correct menu entries for Web platform', () 
   })
 })
 
-test('getMenuEntriesSettings includes checkForUpdates for non-Web platform', () => {
+test('getMenuEntriesSettings includes checkForUpdates for Electron platform', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
-    platform: 0,
+    platform: PlatformType.Electron,
   }
 
   const result: readonly MenuEntry[] = getMenuEntriesSettings(state)
@@ -88,7 +88,7 @@ test('getMenuEntriesSettings includes checkForUpdates for non-Web platform', () 
   })
 })
 
-test('getMenuEntriesSettings includes checkForUpdates for platform 0', () => {
+test('getMenuEntriesSettings does not include checkForUpdates for platform 0', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     platform: 0,
@@ -96,13 +96,7 @@ test('getMenuEntriesSettings includes checkForUpdates for platform 0', () => {
 
   const result: readonly MenuEntry[] = getMenuEntriesSettings(state)
 
-  expect(result.length).toBe(7)
-  expect(result[6]).toEqual({
-    command: 'AutoUpdater.checkForUpdates',
-    flags: MenuItemFlags.None,
-    id: 'checkForUpdates',
-    label: ActivityBarStrings.checkForUpdates(),
-  })
+  expect(result.some((entry) => entry.id === 'checkForUpdates')).toBe(false)
 })
 
 test('getMenuEntriesSettings keyboardShortcuts has correct args', () => {
