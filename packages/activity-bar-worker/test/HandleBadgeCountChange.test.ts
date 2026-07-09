@@ -44,6 +44,30 @@ test('handleBadgeCountChange updates filteredItems with badge counts', async () 
   expect(result).not.toBe(state)
 })
 
+test('handleBadgeCountChange applies partial badge count changes without querying the layout', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({})
+  const items: readonly ActivityBarItem[] = [
+    { badgeText: '2', flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    { badgeText: '3', flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { badgeText: '4', flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+  ]
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: items,
+    filteredItems: items,
+  }
+
+  const result = await handleBadgeCountChange(state, { item1: 5, item2: 0 })
+
+  expect(mockRpc.invocations).toEqual([])
+  expect(result.activityBarItems[0].badgeText).toBe('5')
+  expect(result.activityBarItems[1].badgeText).toBe('')
+  expect(result.activityBarItems[2].badgeText).toBe('4')
+  expect(result.filteredItems[0].badgeText).toBe('5')
+  expect(result.filteredItems[1].badgeText).toBe('')
+  expect(result.filteredItems[2].badgeText).toBe('4')
+})
+
 test('handleBadgeCountChange preserves other state properties', async () => {
   RendererWorker.registerMockRpc({
     'Layout.getBadgeCounts'() {
