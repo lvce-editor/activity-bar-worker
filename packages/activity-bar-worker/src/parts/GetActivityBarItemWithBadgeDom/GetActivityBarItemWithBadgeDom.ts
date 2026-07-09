@@ -9,7 +9,7 @@ import { getClassName } from '../GetClassName/GetClassName.ts'
 import { getIconClass } from '../GetIconClass/GetIconClass.ts'
 
 export const getActivityBarItemWithBadgeDom = (item: ActivityBarItem): readonly VirtualDomNode[] => {
-  const { badgeText, flags, title } = item
+  const { badgeText, flags, id, title } = item
   if (!badgeText) {
     // TODO should not happen
     return []
@@ -30,6 +30,7 @@ export const getActivityBarItemWithBadgeDom = (item: ActivityBarItem): readonly 
       ariaSelected,
       childCount: 2,
       className,
+      name: id,
       role,
       title,
       type: VirtualDomElements.Div,
@@ -37,12 +38,14 @@ export const getActivityBarItemWithBadgeDom = (item: ActivityBarItem): readonly 
     {
       childCount: 0,
       className: mergeClassNames(ClassNames.Icon, getIconClass(item, 'MaskIcon')),
+      name: id,
       role: AriaRoles.None,
       type: VirtualDomElements.Div,
     },
     {
       childCount: 1,
       className: ClassNames.ActivityBarItemBadge,
+      name: id,
       type: VirtualDomElements.Div,
     },
     text(badgeText),

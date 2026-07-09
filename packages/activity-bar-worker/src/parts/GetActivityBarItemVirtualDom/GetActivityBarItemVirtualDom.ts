@@ -11,7 +11,7 @@ import { getIconClass } from '../GetIconClass/GetIconClass.ts'
 import * as GetIconVirtualDom from '../GetIconVirtualDom/GetIconVirtualDom.ts'
 
 export const getActivityBarItemVirtualDom = (item: ActivityBarItem): readonly VirtualDomNode[] => {
-  const { badgeText, flags, icon, title } = item
+  const { badgeText, flags, icon, id, title } = item
   const ariaHasPopup = getActivityBarItemHasPopup(item) || undefined
   const isTab = flags & ActivityBarItemFlags.Tab
   const isSelected = flags & ActivityBarItemFlags.Selected
@@ -29,11 +29,15 @@ export const getActivityBarItemVirtualDom = (item: ActivityBarItem): readonly Vi
         ariaSelected,
         childCount: 1,
         className,
+        name: id,
         role,
         title,
         type: VirtualDomElements.Div,
       },
-      GetIconVirtualDom.getIconVirtualDom(icon, VirtualDomElements.Div, item.customIconClass),
+      {
+        ...GetIconVirtualDom.getIconVirtualDom(icon, VirtualDomElements.Div, item.customIconClass),
+        name: id,
+      },
     ]
   }
 
@@ -52,6 +56,7 @@ export const getActivityBarItemVirtualDom = (item: ActivityBarItem): readonly Vi
       ariaSelected,
       childCount: 0,
       className: mergeClassNames(className, getIconClass(item, 'Icon')),
+      name: id,
       role,
       title,
       type: VirtualDomElements.Div,

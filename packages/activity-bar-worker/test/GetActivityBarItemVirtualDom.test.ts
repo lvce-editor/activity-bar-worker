@@ -15,3 +15,20 @@ test('getActivityBarItemVirtualDom uses badge dom when badgeText is present', ()
 
   expect(result).toEqual(getActivityBarItemWithBadgeDom(item))
 })
+
+test('getActivityBarItemVirtualDom adds item id as name', () => {
+  const item: ActivityBarItem = {
+    flags: 0,
+    icon: 'SettingsGear',
+    id: 'Settings',
+    keyShortcuts: '',
+    title: 'Settings',
+  }
+
+  const result = getActivityBarItemVirtualDom(item)
+
+  expect(result[0]).toMatchObject({
+    name: 'Settings',
+    title: 'Settings',
+  })
+})
