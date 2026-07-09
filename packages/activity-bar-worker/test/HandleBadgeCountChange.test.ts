@@ -24,6 +24,7 @@ test('handleBadgeCountChange updates filteredItems with badge counts', async () 
 
   const state: ActivityBarState = {
     ...createDefaultState(),
+    activityBarItems: items,
     filteredItems: items,
   }
 
@@ -34,6 +35,9 @@ test('handleBadgeCountChange updates filteredItems with badge counts', async () 
   expect(result.filteredItems[0].badgeText).toBe('5')
   expect(result.filteredItems[1].badgeText).toBe('')
   expect(result.filteredItems[2].badgeText).toBe('12')
+  expect(result.activityBarItems[0].badgeText).toBe('5')
+  expect(result.activityBarItems[1].badgeText).toBe('')
+  expect(result.activityBarItems[2].badgeText).toBe('12')
   expect(result.filteredItems[0].id).toBe('item1')
   expect(result.filteredItems[1].id).toBe('item2')
   expect(result.filteredItems[2].id).toBe('item3')
@@ -53,6 +57,7 @@ test('handleBadgeCountChange preserves other state properties', async () => {
 
   const state: ActivityBarState = {
     ...createDefaultState(),
+    activityBarItems: items,
     filteredItems: items,
     focus: 1,
     focused: true,
@@ -104,6 +109,7 @@ test('handleBadgeCountChange handles items with no badge counts', async () => {
 
   const state: ActivityBarState = {
     ...createDefaultState(),
+    activityBarItems: items,
     filteredItems: items,
   }
 
@@ -131,6 +137,7 @@ test('handleBadgeCountChange handles items with existing badgeText', async () =>
 
   const state: ActivityBarState = {
     ...createDefaultState(),
+    activityBarItems: items,
     filteredItems: items,
   }
 
@@ -154,6 +161,7 @@ test('handleBadgeCountChange handles RPC error gracefully', async () => {
 
   const state: ActivityBarState = {
     ...createDefaultState(),
+    activityBarItems: items,
     filteredItems: items,
   }
 
@@ -180,6 +188,7 @@ test('handleBadgeCountChange handles large badge counts', async () => {
 
   const state: ActivityBarState = {
     ...createDefaultState(),
+    activityBarItems: items,
     filteredItems: items,
   }
 
@@ -211,6 +220,7 @@ test('handleBadgeCountChange preserves item properties other than badgeText', as
 
   const state: ActivityBarState = {
     ...createDefaultState(),
+    activityBarItems: items,
     filteredItems: items,
   }
 

@@ -20,12 +20,12 @@ export const handleSettingsChanged = async (state: ActivityBarState): Promise<Ac
   }
   const items = getActivityBarItems(newState, contributedViews)
   const itemsWithSelected = markSelected(items, selectedIndex)
-  const filteredItems = getFilteredActivityBarItems(itemsWithSelected, height, itemHeight)
-  const newItems = await updateItemsWithBadgeCount(filteredItems)
+  const activityBarItems = await updateItemsWithBadgeCount(itemsWithSelected)
+  const filteredItems = getFilteredActivityBarItems(activityBarItems, height, itemHeight)
   return {
     ...newState,
-    activityBarItems: itemsWithSelected,
-    filteredItems: newItems,
+    activityBarItems,
+    filteredItems,
     sideBarLocation: sidebarLocation,
   }
 }
