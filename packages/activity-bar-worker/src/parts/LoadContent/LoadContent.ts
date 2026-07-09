@@ -1,6 +1,8 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import { getActivityBarItems } from '../GetActivityBarItems/GetActivityBarItems.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
+import { getUserLoginProvider } from '../GetUserLoginProvider/GetUserLoginProvider.ts'
+import { getUserName } from '../GetUserName/GetUserName.ts'
 import { getUserState } from '../GetUserState/GetUserState.ts'
 import { loadPreferences } from '../LoadPreferences/LoadPreferences.ts'
 import { markSelected } from '../MarkSelected/MarkSelected.ts'
@@ -21,7 +23,9 @@ export const loadContent = async (state: ActivityBarState): Promise<ActivityBarS
   const newState = {
     ...state,
     accountEnabled: accountEnabledNew,
+    userLoginProvider: getUserLoginProvider(userInfo),
     userLoginState: toUserLoginState(getUserState(userInfo)),
+    userName: getUserName(userInfo),
   }
   const items = getActivityBarItems(newState, contributedViews)
   const index = items.findIndex((item) => item.id === activeView)

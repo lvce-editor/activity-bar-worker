@@ -89,6 +89,7 @@ test('loadContent gets accountEnabled from preferences', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'Layout.getUserInfo'() {
       return {
+        userName: 'SimonSiefke',
         userState: 'loggedIn',
       }
     },
@@ -103,6 +104,8 @@ test('loadContent gets accountEnabled from preferences', async () => {
   expect(mockRpc.invocations).toEqual(expect.arrayContaining([['Preferences.get', 'activityBar.accountEnabled'], ['Layout.getUserInfo']]))
   expect(result.accountEnabled).toBe(true)
   expect(result.userLoginState).toBe('logged in')
+  expect(result.userName).toBe('SimonSiefke')
+  expect(result.userLoginProvider).toBe('GitHub')
   const accountItem = result.activityBarItems.find((item) => item.id === 'Account')
   expect(accountItem).toBeDefined()
 })

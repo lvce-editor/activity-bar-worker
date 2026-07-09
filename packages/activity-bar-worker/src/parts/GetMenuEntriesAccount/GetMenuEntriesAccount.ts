@@ -2,7 +2,31 @@ import { MenuItemFlags } from '@lvce-editor/constants'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
 
+export const ACCOUNT_SUBMENU_ID = 32_123
+
+const getAccountLabel = (state: ActivityBarState): string => {
+  const name = state.userName || 'Account'
+  const provider = state.userLoginProvider || 'GitHub'
+  return `${name} (${provider})`
+}
+
 export const getMenuEntriesAccountLoggedIn = (state: ActivityBarState): readonly MenuEntry[] => {
+  return [
+    {
+      args: [
+        {
+          menuId: ACCOUNT_SUBMENU_ID,
+        },
+      ],
+      command: '',
+      flags: MenuItemFlags.SubMenu,
+      id: ACCOUNT_SUBMENU_ID,
+      label: getAccountLabel(state),
+    },
+  ]
+}
+
+export const getMenuEntriesAccountSubMenu = (state: ActivityBarState): readonly MenuEntry[] => {
   const { userLoginState } = state
   const signOutLabel = userLoginState === 'logging out' ? 'Signing Out...' : 'Sign Out'
   return [

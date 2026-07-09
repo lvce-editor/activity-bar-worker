@@ -15,5 +15,5 @@ export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
 
   await expect(signingIn).toBeVisible()
   await expect(signIn).toHaveCount(0)
-  await expect(signOut).toBeVisible()
+  await expect(signOut).toHaveCount(0)
 }

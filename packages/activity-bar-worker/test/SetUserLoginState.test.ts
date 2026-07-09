@@ -2,13 +2,18 @@ import { expect, test } from '@jest/globals'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { setUserLoginState } from '../src/parts/SetUserLoginState/SetUserLoginState.ts'
 
-test('setUserLoginState updates the user login state', () => {
+test('setUserLoginState updates the user login state and account info', () => {
   const state = createDefaultState()
 
-  const result = setUserLoginState(state, 'logged in')
+  const result = setUserLoginState(state, 'logged in', {
+    provider: 'GitHub',
+    userName: 'SimonSiefke',
+  })
 
   expect(result).not.toBe(state)
   expect(result.userLoginState).toBe('logged in')
+  expect(result.userName).toBe('SimonSiefke')
+  expect(result.userLoginProvider).toBe('GitHub')
 })
 
 test('setUserLoginState preserves other activity bar state properties', () => {
@@ -23,6 +28,8 @@ test('setUserLoginState preserves other activity bar state properties', () => {
 
   expect(result).toEqual({
     ...state,
+    userLoginProvider: 'GitHub',
     userLoginState: 'logging out',
+    userName: '',
   })
 })
