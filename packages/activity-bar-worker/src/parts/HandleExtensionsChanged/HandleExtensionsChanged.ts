@@ -10,11 +10,11 @@ export const handleExtensionsChanged = async (state: ActivityBarState): Promise<
   const contributedViews = await getContributedViews(state.platform)
   const items = getActivityBarItems(state, contributedViews)
   const itemsWithSelected = markSelected(items, selectedIndex)
-  const filteredItems = getFilteredActivityBarItems(itemsWithSelected, height, itemHeight)
-  const newItems = await updateItemsWithBadgeCount(filteredItems)
+  const activityBarItems = await updateItemsWithBadgeCount(itemsWithSelected)
+  const filteredItems = getFilteredActivityBarItems(activityBarItems, height, itemHeight)
   return {
     ...state,
-    activityBarItems: itemsWithSelected,
-    filteredItems: newItems,
+    activityBarItems,
+    filteredItems,
   }
 }

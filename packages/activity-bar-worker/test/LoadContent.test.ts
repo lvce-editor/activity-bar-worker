@@ -3,6 +3,7 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import { handleClickOther } from '../src/parts/HandleClickOther/HandleClickOther.ts'
 import { loadContent } from '../src/parts/LoadContent/LoadContent.ts'
 
 test('loadContent returns state with activityBarItems', async () => {
@@ -149,4 +150,27 @@ test('loadContent does not mark any item as selected when side bar is hidden', a
   for (const item of result.activityBarItems) {
     expect(item.flags & ActivityBarItemFlags.Selected).toBeFalsy()
   }
+})
+
+test('loadContent stores badge counts on activity bar items and preserves them when selecting an item', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'Layout.getBadgeCounts'() {
+      return {
+        'Source Control': 9,
+      }
+    },
+    'Layout.toggleSideBarView'() {},
+  })
+  const state: ActivityBarState = createDefaultState()
+
+  const loadedState = await loadContent(state)
+  const result = await handleClickOther(loadedState, 'Source Control')
+
+  const sourceControlItem = result.activityBarItems.find((item) => item.id === 'Source Control')
+  const filteredSourceControlItem = result.filteredItems.find((item) => item.id === 'Source Control')
+  expect(sourceControlItem?.badgeText).toBe('9')
+  expect(sourceControlItem).toBeDefined()
+  expect(sourceControlItem!.flags & ActivityBarItemFlags.Selected).toBeTruthy()
+  expect(filteredSourceControlItem?.badgeText).toBe('9')
+  expect(mockRpc.invocations).toEqual(expect.arrayContaining([['Layout.getBadgeCounts'], ['Layout.toggleSideBarView', 'Source Control']]))
 })

@@ -31,13 +31,13 @@ export const loadContent = async (state: ActivityBarState): Promise<ActivityBarS
   const index = items.findIndex((item) => item.id === activeView)
   const selectedIndex = sideBarVisible ? index : -1
   const itemsWithSelected = markSelected(items, selectedIndex)
-  const filteredItems = getFilteredActivityBarItems(itemsWithSelected, height, itemHeight)
-  const newItems = await updateItemsWithBadgeCount(filteredItems)
+  const activityBarItems = await updateItemsWithBadgeCount(itemsWithSelected)
+  const filteredItems = getFilteredActivityBarItems(activityBarItems, height, itemHeight)
   return {
     ...newState,
-    activityBarItems: itemsWithSelected,
+    activityBarItems,
     currentViewletId: ViewletModuleId.Explorer,
-    filteredItems: newItems,
+    filteredItems,
     initial: false,
     selectedIndex,
     sideBarLocation: sidebarLocation,
