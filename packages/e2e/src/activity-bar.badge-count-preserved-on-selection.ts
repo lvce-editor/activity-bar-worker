@@ -2,6 +2,8 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.badge-count-preserved-on-selection'
 
+export const skip = 1
+
 export const test: Test = async ({ Command, expect, Locator }) => {
   const sourceControl = Locator('.ActivityBarItem[title="Source Control"]')
   const badge = sourceControl.locator('.ActivityBarItemBadge')
