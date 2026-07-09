@@ -1,9 +1,10 @@
 import { expect, test } from '@jest/globals'
-import { MenuEntryId, SideBarLocationType } from '@lvce-editor/constants'
+import { MenuEntryId, MenuItemFlags, SideBarLocationType } from '@lvce-editor/constants'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import type { ContextMenuProps } from '../src/parts/ContextMenuProps/ContextMenuProps.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getMenuEntries } from '../src/parts/GetMenuEntries/GetMenuEntries.ts'
+import { ACCOUNT_SUBMENU_ID } from '../src/parts/GetMenuEntriesAccount/GetMenuEntriesAccount.ts'
 import { ACCOUNT_MENU_ID } from '../src/parts/HandleClickAccount/HandleClickAccount.ts'
 
 test('getMenuEntries returns menu entries for ActivityBar menuId', () => {
@@ -85,6 +86,7 @@ test('getMenuEntries returns account menu entries for logged in state', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     userLoginState: 'logged in',
+    userName: 'SimonSiefke',
   }
   const options: ContextMenuProps = {
     menuId: ACCOUNT_MENU_ID,
@@ -94,21 +96,26 @@ test('getMenuEntries returns account menu entries for logged in state', () => {
 
   expect(result).toEqual([
     {
-      command: 'ActivityBar.handleClickSignOut',
-      flags: 0,
-      id: 'signOut',
-      label: 'Sign Out',
+      args: [
+        {
+          menuId: ACCOUNT_SUBMENU_ID,
+        },
+      ],
+      command: '',
+      flags: MenuItemFlags.SubMenu,
+      id: ACCOUNT_SUBMENU_ID,
+      label: 'SimonSiefke (GitHub)',
     },
   ])
 })
 
-test('getMenuEntries returns account menu entries for logging out state', () => {
+test('getMenuEntries returns account submenu entries', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     userLoginState: 'logging out',
   }
   const options: ContextMenuProps = {
-    menuId: ACCOUNT_MENU_ID,
+    menuId: ACCOUNT_SUBMENU_ID,
   }
 
   const result = getMenuEntries(state, options)

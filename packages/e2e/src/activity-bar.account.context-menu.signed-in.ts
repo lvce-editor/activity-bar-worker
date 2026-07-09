@@ -6,16 +6,16 @@ export const skip = 1
 
 export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
   const activityBar = ActivityBar as typeof ActivityBar & {
-    setUserLoginState(state: 'logged in'): Promise<void>
+    setUserLoginState(state: 'logged in', userInfo?: unknown): Promise<void>
   }
 
   await ActivityBar.setAccountEnabled(true)
-  await activityBar.setUserLoginState('logged in')
+  await activityBar.setUserLoginState('logged in', { provider: 'GitHub', userName: 'SimonSiefke' })
   await Command.execute('ActivityBar.handleClickAccount', 0, 0)
 
   const signIn = Locator('.ContextMenuItem[title="Sign In"]')
   await expect(signIn).toHaveCount(0)
 
-  const signOut = Locator('.ContextMenuItem[title="Sign Out"]')
-  await expect(signOut).toBeVisible()
+  const account = Locator('.ContextMenuItem[title="SimonSiefke (GitHub)"]')
+  await expect(account).toBeVisible()
 }

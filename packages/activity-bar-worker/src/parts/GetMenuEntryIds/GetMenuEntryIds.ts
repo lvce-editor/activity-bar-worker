@@ -1,6 +1,7 @@
 import { MenuEntryId } from '@lvce-editor/constants'
+import { ACCOUNT_SUBMENU_ID } from '../GetMenuEntriesAccount/GetMenuEntriesAccount.ts'
 import { ACCOUNT_MENU_ID } from '../HandleClickAccount/HandleClickAccount.ts'
 
 export const getMenuEntryIds = (): readonly number[] => {
-  return [MenuEntryId.ActivityBar, MenuEntryId.ActivityBarAdditionalViews, MenuEntryId.Settings, ACCOUNT_MENU_ID]
+  return [MenuEntryId.ActivityBar, MenuEntryId.ActivityBarAdditionalViews, MenuEntryId.Settings, ACCOUNT_MENU_ID, ACCOUNT_SUBMENU_ID]
 }

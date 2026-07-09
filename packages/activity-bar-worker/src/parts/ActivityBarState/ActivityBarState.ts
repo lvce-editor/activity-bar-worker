@@ -21,7 +21,9 @@ export interface ActivityBarState {
   readonly uid: number
   readonly updateProgress: number
   readonly updateState: any
+  readonly userLoginProvider: string
   readonly userLoginState: UserLoginState
+  readonly userName: string
   readonly width: number
   readonly x: number
   readonly y: number

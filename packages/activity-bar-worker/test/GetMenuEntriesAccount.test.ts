@@ -1,7 +1,13 @@
 import { expect, test } from '@jest/globals'
+import { MenuItemFlags } from '@lvce-editor/constants'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
-import { getMenuEntriesAccountLoggedIn, getMenuEntriesAccountLoggedOut } from '../src/parts/GetMenuEntriesAccount/GetMenuEntriesAccount.ts'
+import {
+  ACCOUNT_SUBMENU_ID,
+  getMenuEntriesAccountLoggedIn,
+  getMenuEntriesAccountLoggedOut,
+  getMenuEntriesAccountSubMenu,
+} from '../src/parts/GetMenuEntriesAccount/GetMenuEntriesAccount.ts'
 
 test('getMenuEntriesAccountLoggedOut returns sign in entry for logged out state', () => {
   const state: ActivityBarState = createDefaultState()
@@ -36,13 +42,37 @@ test('getMenuEntriesAccountLoggedOut returns signing in entry for logging in sta
   ])
 })
 
-test('getMenuEntriesAccountLoggedIn returns sign out entry for logged in state', () => {
+test('getMenuEntriesAccountLoggedIn returns account submenu entry for logged in state', () => {
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    userLoginState: 'logged in',
+    userName: 'SimonSiefke',
+  }
+
+  const result = getMenuEntriesAccountLoggedIn(state)
+
+  expect(result).toEqual([
+    {
+      args: [
+        {
+          menuId: ACCOUNT_SUBMENU_ID,
+        },
+      ],
+      command: '',
+      flags: MenuItemFlags.SubMenu,
+      id: ACCOUNT_SUBMENU_ID,
+      label: 'SimonSiefke (GitHub)',
+    },
+  ])
+})
+
+test('getMenuEntriesAccountSubMenu returns sign out entry for logged in state', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     userLoginState: 'logged in',
   }
 
-  const result = getMenuEntriesAccountLoggedIn(state)
+  const result = getMenuEntriesAccountSubMenu(state)
 
   expect(result).toEqual([
     {
@@ -54,13 +84,13 @@ test('getMenuEntriesAccountLoggedIn returns sign out entry for logged in state',
   ])
 })
 
-test('getMenuEntriesAccountLoggedIn returns signing out entry for logging out state', () => {
+test('getMenuEntriesAccountSubMenu returns signing out entry for logging out state', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     userLoginState: 'logging out',
   }
 
-  const result = getMenuEntriesAccountLoggedIn(state)
+  const result = getMenuEntriesAccountSubMenu(state)
 
   expect(result).toEqual([
     {
