@@ -113,6 +113,25 @@ test('getVirtualDom creates selected tab with icon', () => {
   expect(result[0].ariaSelected).toBe(true)
 })
 
+test('getVirtualDom preserves badge on selected item', () => {
+  const items: readonly any[] = [
+    {
+      badgeText: '1',
+      flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Selected,
+      icon: 'SourceControl',
+      id: 'Source Control',
+      title: 'Source Control',
+    },
+  ]
+
+  const result = GetActivityBarItemsVirtualDom.getVirtualDom(items)
+
+  expect(result).toHaveLength(4)
+  expect(result[0].className).toContain(ClassNames.ActivityBarItemSelected)
+  expect(result[0].ariaSelected).toBe(true)
+  expect(result[2].className).toBe(ClassNames.ActivityBarItemBadge)
+})
+
 test('getVirtualDom creates item with Focused flag', () => {
   const items: readonly any[] = [
     {
