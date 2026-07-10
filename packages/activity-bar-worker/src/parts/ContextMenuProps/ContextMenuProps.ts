@@ -19,6 +19,7 @@ export interface ContextMenuPropsActivityBar extends ContextMenuPropsBase {
 
 export interface ContextMenuPropsAccount extends ContextMenuPropsBase {
   readonly menuId: number
+  readonly openSubMenuToLeft?: boolean
 }
 
 export type ContextMenuProps = ContextMenuPropsAdditionalViews | ContextMenuPropsSettings | ContextMenuPropsActivityBar | ContextMenuPropsAccount

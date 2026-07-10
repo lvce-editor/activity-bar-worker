@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals'
-import { MenuEntryId, MouseEventType } from '@lvce-editor/constants'
+import { MenuEntryId, MouseEventType, SideBarLocationType } from '@lvce-editor/constants'
 import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
@@ -216,7 +216,29 @@ test('handleClick handles Account button click', async () => {
   const result = await handleClick(state, MouseEventType.LeftClick, 0, 100)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, ACCOUNT_MENU_ID, 0, 100, { menuId: ACCOUNT_MENU_ID }]])
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, ACCOUNT_MENU_ID, 0, 100, { menuId: ACCOUNT_MENU_ID, openSubMenuToLeft: false }]])
+})
+
+test('handleClick opens the Account submenu to the left when the side bar is on the right', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'ContextMenu.show2'() {},
+  })
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'Account', id: 'Account', keyShortcuts: '', title: 'Account' },
+  ]
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: items,
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    itemHeight: 48,
+    sideBarLocation: SideBarLocationType.Right,
+    y: 100,
+  }
+
+  const result = await handleClick(state, MouseEventType.LeftClick, 500, 100)
+
+  expect(result).toBe(state)
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, ACCOUNT_MENU_ID, 500, 100, { menuId: ACCOUNT_MENU_ID, openSubMenuToLeft: true }]])
 })
 
 test('handleClick resolves account button from bottom stack when settings is also visible', async () => {
@@ -242,7 +264,9 @@ test('handleClick resolves account button from bottom stack when settings is als
   const result = await handleClick(state, MouseEventType.LeftClick, 12, accountY)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, ACCOUNT_MENU_ID, 12, accountY, { menuId: ACCOUNT_MENU_ID }]])
+  expect(mockRpc.invocations).toEqual([
+    ['ContextMenu.show2', 0, ACCOUNT_MENU_ID, 12, accountY, { menuId: ACCOUNT_MENU_ID, openSubMenuToLeft: false }],
+  ])
 })
 
 test('handleClick resolves settings from target name when geometry is stale', async () => {
