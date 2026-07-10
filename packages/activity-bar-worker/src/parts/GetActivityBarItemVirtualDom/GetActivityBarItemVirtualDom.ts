@@ -21,7 +21,7 @@ export const getActivityBarItemVirtualDom = (item: ActivityBarItem): readonly Vi
   const ariaSelected = getAriaSelected(isTab, isSelected)
   const marginTop = flags & ActivityBarItemFlags.MarginTop
   const className = getClassName(isFocused, marginTop, isSelected)
-  if (isSelected) {
+  if (isSelected && !badgeText) {
     return [
       {
         ariaHasPopup,
