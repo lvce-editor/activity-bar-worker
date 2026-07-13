@@ -44,6 +44,29 @@ test('getActivityBarItems stores custom icon metadata for url-like contributed v
   expect(items).toEqual(expect.arrayContaining([expectedItem]))
 })
 
+test('getActivityBarItems stores custom icon metadata for lvce contributed view icon', () => {
+  const icon = 'lvce://-/remote/home/test/.local/share/lvce/extensions/hetzner/hetzner.svg'
+  const items = getActivityBarItems(createDefaultState(), [
+    {
+      icon,
+      id: 'hetzner.views.cloud',
+      title: 'Hetzner Cloud',
+    },
+  ])
+  const item = items.find((item) => item.id === 'hetzner.views.cloud')
+
+  expect(item).toEqual({
+    customIconClass: expect.stringMatching(/^MaskIconCustomView[a-z0-9]+$/),
+    customIconUrl: icon,
+    flags: 9,
+    icon,
+    id: 'hetzner.views.cloud',
+    keyShortcuts: '',
+    title: 'Hetzner Cloud',
+  })
+  expect(item?.customIconClass).not.toContain(icon)
+})
+
 test('getActivityBarItems preserves builtin symbolic contributed view icon behavior', () => {
   const items = getActivityBarItems(createDefaultState(), [
     {

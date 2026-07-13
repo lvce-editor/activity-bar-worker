@@ -90,3 +90,28 @@ test('renderCss includes custom icon rules', () => {
   expect(result[2]).toContain('.MaskIconCustomViewfile')
   expect(result[2]).toContain('mask-image: url("file:///tmp/icon.png");')
 })
+
+test('renderCss includes lvce custom icon rule', () => {
+  const icon = 'lvce://-/remote/home/test/.local/share/lvce/extensions/hetzner/hetzner.svg'
+  const items: readonly ActivityBarItem[] = [
+    {
+      customIconClass: 'MaskIconCustomViewhetzner',
+      customIconUrl: icon,
+      flags: 0,
+      icon,
+      id: 'hetzner.views.cloud',
+      keyShortcuts: '',
+      title: 'Hetzner Cloud',
+    },
+  ]
+  const oldState: ActivityBarState = createDefaultState()
+  const newState: ActivityBarState = {
+    ...createDefaultState(),
+    filteredItems: items,
+  }
+
+  const result: readonly any[] = renderCss(oldState, newState)
+
+  expect(result[2]).toContain('.MaskIconCustomViewhetzner')
+  expect(result[2]).toContain(`mask-image: url("${icon}");`)
+})
