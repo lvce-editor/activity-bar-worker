@@ -13,7 +13,7 @@ export const test: Test = async ({ expect, Locator }) => {
 
   // Test activity bar items (tabs) accessibility attributes
   const activityBarItems = Locator('.ActivityBarItem')
-  await expect(activityBarItems).toHaveCount(7)
+  await expect(activityBarItems).toHaveCount(8)
 
   // Check first item (Explorer)
   const explorerItem = Locator('.ActivityBarItem[title="Explorer"]')
@@ -45,14 +45,20 @@ export const test: Test = async ({ expect, Locator }) => {
   await expect(extensionsItem).toHaveAttribute('role', 'tab')
   await expect(extensionsItem).toHaveAttribute('aria-selected', 'false')
 
-  // Check sixth item (Account)
+  // Check sixth item (Running Extensions)
+  const runningExtensionsItem = Locator('.ActivityBarItem[title="Running Extensions"]')
+  await expect(runningExtensionsItem).toBeVisible()
+  await expect(runningExtensionsItem).toHaveAttribute('role', 'tab')
+  await expect(runningExtensionsItem).toHaveAttribute('aria-selected', 'false')
+
+  // Check seventh item (Account)
   const accountItem = Locator('.ActivityBarItem[title="Account"]')
   await expect(accountItem).toBeVisible()
   await expect(accountItem).toHaveAttribute('role', 'button')
   await expect(accountItem).toHaveAttribute('aria-haspopup', 'true')
   await expect(accountItem).toHaveAttribute('aria-selected', null)
 
-  // Check seventh item (Settings)
+  // Check eighth item (Settings)
   const settingsItem = Locator('.ActivityBarItem[title="Settings"]')
   await expect(settingsItem).toBeVisible()
   await expect(settingsItem).toHaveAttribute('role', 'button')

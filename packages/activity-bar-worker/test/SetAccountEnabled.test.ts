@@ -17,8 +17,8 @@ test('setAccountEnabled enables account and rebuilds item lists', () => {
 
   expect(result).not.toBe(state)
   expect(result.accountEnabled).toBe(true)
-  expect(result.activityBarItems.length).toBe(7)
-  expect(result.filteredItems.length).toBe(7)
+  expect(result.activityBarItems.length).toBe(8)
+  expect(result.filteredItems.length).toBe(8)
   expect(result.activityBarItems.some((item) => item.id === 'Account')).toBe(true)
   expect(result.filteredItems.some((item) => item.id === 'Account')).toBe(true)
 })
@@ -37,8 +37,8 @@ test('setAccountEnabled disables account and removes account item', () => {
   const result = setAccountEnabled(stateWithAccount, false)
 
   expect(result.accountEnabled).toBe(false)
-  expect(result.activityBarItems.length).toBe(6)
-  expect(result.filteredItems.length).toBe(6)
+  expect(result.activityBarItems.length).toBe(7)
+  expect(result.filteredItems.length).toBe(7)
   expect(result.activityBarItems.some((item) => item.id === 'Account')).toBe(false)
   expect(result.filteredItems.some((item) => item.id === 'Account')).toBe(false)
 })
