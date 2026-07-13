@@ -38,7 +38,7 @@ test('loadContent adds activityBarItems to state', async () => {
 
   const result: ActivityBarState = await loadContent(state)
 
-  expect(result.activityBarItems.length).toBe(7)
+  expect(result.activityBarItems.length).toBe(8)
   expect(result.activityBarItems[0].id).toBeDefined()
   expect(result.activityBarItems[0].title).toBeDefined()
   expect(result.activityBarItems[0].icon).toBeDefined()
@@ -73,6 +73,7 @@ test('loadContent marks only explorer item as selected', async () => {
   expect(result.activityBarItems[4].flags & ActivityBarItemFlags.Selected).toBeFalsy()
   expect(result.activityBarItems[5].flags & ActivityBarItemFlags.Selected).toBeFalsy()
   expect(result.activityBarItems[6].flags & ActivityBarItemFlags.Selected).toBeFalsy()
+  expect(result.activityBarItems[7].flags & ActivityBarItemFlags.Selected).toBeFalsy()
 })
 
 test('loadContent includes account button when accountEnabled is true', async () => {
@@ -80,7 +81,7 @@ test('loadContent includes account button when accountEnabled is true', async ()
 
   const result: ActivityBarState = await loadContent(state)
 
-  expect(result.activityBarItems.length).toBe(7)
+  expect(result.activityBarItems.length).toBe(8)
   const accountItem = result.activityBarItems.find((item) => item.id === 'Account')
   expect(accountItem).toBeDefined()
   expect(accountItem?.icon).toBe('Account')
@@ -130,7 +131,7 @@ test('loadContent does not include account button when accountEnabled is false',
 
   const result: ActivityBarState = await loadContent(state)
 
-  expect(result.activityBarItems.length).toBe(6)
+  expect(result.activityBarItems.length).toBe(7)
   const accountItem = result.activityBarItems.find((item) => item.id === 'Account')
   expect(accountItem).toBeUndefined()
 })
