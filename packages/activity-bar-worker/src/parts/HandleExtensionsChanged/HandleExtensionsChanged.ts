@@ -6,7 +6,7 @@ import { markSelected } from '../MarkSelected/MarkSelected.ts'
 import { updateItemsWithBadgeCount } from '../UpdateItemsWithBadgeCount/UpdateItemsWithBadgeCount.ts'
 
 export const handleExtensionsChanged = async (state: ActivityBarState): Promise<ActivityBarState> => {
-  const { height, itemHeight, selectedIndex, platform } = state
+  const { height, itemHeight, platform, selectedIndex } = state
   const contributedViews = await getContributedViews(platform)
 
   const items = getActivityBarItems(state, contributedViews)
