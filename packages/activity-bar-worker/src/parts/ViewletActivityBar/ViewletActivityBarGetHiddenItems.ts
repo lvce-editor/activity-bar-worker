@@ -9,8 +9,9 @@ export const getNumberOfVisibleItems = (state: { height: number; itemHeight: num
 }
 
 export const getHiddenItems = (state: ActivityBarState): readonly ActivityBarItem[] => {
+  const { activityBarItems } = state
   const numberOfVisibleItems = getNumberOfVisibleItems(state)
-  const items = state.activityBarItems.filter((item) => item.flags & ActivityBarItemFlags.Enabled)
+  const items = activityBarItems.filter((item) => item.flags & ActivityBarItemFlags.Enabled)
   if (numberOfVisibleItems >= items.length) {
     return []
   }

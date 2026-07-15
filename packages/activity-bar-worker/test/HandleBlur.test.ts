@@ -42,12 +42,13 @@ test('handleBlur preserves other state properties', () => {
     focusedIndex: 2,
   }
 
+  const { activityBarItems, currentViewletId, focusedIndex } = state
   const result: ActivityBarState = handleBlur(state)
 
   expect(result.focused).toBe(false)
-  expect(result.focusedIndex).toBe(state.focusedIndex)
-  expect(result.activityBarItems).toBe(state.activityBarItems)
-  expect(result.currentViewletId).toBe(state.currentViewletId)
+  expect(result.focusedIndex).toBe(focusedIndex)
+  expect(result.activityBarItems).toBe(activityBarItems)
+  expect(result.currentViewletId).toBe(currentViewletId)
 })
 
 test('handleBlur works when focused is already false', () => {

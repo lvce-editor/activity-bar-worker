@@ -53,10 +53,11 @@ test('focusFirst works with custom state', () => {
     focusedIndex: 5,
   }
 
+  const { activityBarItems, currentViewletId } = state
   const result: ActivityBarState = focusFirst(state)
 
   expect(result.focusedIndex).toBe(-1)
   expect(result.focused).toBe(true)
-  expect(result.activityBarItems).toBe(state.activityBarItems)
-  expect(result.currentViewletId).toBe(state.currentViewletId)
+  expect(result.activityBarItems).toBe(activityBarItems)
+  expect(result.currentViewletId).toBe(currentViewletId)
 })

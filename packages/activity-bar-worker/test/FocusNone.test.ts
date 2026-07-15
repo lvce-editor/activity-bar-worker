@@ -53,12 +53,13 @@ test('focusNone preserves other state properties', () => {
     focusedIndex: 3,
   }
 
+  const { activityBarItems, currentViewletId, focused } = state
   const result: ActivityBarState = focusNone(state)
 
   expect(result.focusedIndex).toBe(-1)
-  expect(result.focused).toBe(state.focused)
-  expect(result.activityBarItems).toBe(state.activityBarItems)
-  expect(result.currentViewletId).toBe(state.currentViewletId)
+  expect(result.focused).toBe(focused)
+  expect(result.activityBarItems).toBe(activityBarItems)
+  expect(result.currentViewletId).toBe(currentViewletId)
 })
 
 test('focusNone handles focusedIndex of 0', () => {

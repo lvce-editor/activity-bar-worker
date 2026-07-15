@@ -6,7 +6,8 @@ const getIndexFromTarget = (state: ActivityBarState, targetName: string): number
   if (!targetName) {
     return -1
   }
-  return state.filteredItems.findIndex((item) => item.id === targetName)
+  const { filteredItems } = state
+  return filteredItems.findIndex((item) => item.id === targetName)
 }
 
 export const handleClick = async (

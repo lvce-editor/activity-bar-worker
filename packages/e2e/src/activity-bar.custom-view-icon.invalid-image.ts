@@ -1,5 +1,7 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
+const maskSizeRegex = /^24px(?: auto)?$/
+
 const hashString = (value: string): string => {
   let hash = 2_166_136_261
   for (const character of value) {
@@ -35,7 +37,7 @@ export const test: Test = async ({ Command, expect, Extension, Locator }) => {
   await expect(item).toHaveCSS('width', '48px')
   await expect(item).toHaveCSS('height', '48px')
   await expect(item).toHaveCSS('mask-image', `url("${iconUrl}")`)
-  await expect(item).toHaveCSS('mask-size', /^24px(?: auto)?$/ as unknown as string)
+  await expect(item).toHaveCSS('mask-size', maskSizeRegex as unknown as string)
   await expect(item).toHaveCSS('mask-repeat', 'no-repeat')
   await expect(item).toHaveCSS('mask-position', '50% 50%')
 }

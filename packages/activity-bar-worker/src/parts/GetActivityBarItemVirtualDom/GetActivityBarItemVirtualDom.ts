@@ -25,7 +25,6 @@ export const getActivityBarItemVirtualDom = (item: ActivityBarItem): readonly Vi
     return [
       {
         ariaHasPopup,
-        ariaLabel: '',
         ariaSelected,
         childCount: 1,
         className,
@@ -52,7 +51,6 @@ export const getActivityBarItemVirtualDom = (item: ActivityBarItem): readonly Vi
   return [
     {
       ariaHasPopup,
-      ariaLabel: '',
       ariaSelected,
       childCount: 0,
       className: mergeClassNames(className, getIconClass(item, 'Icon')),

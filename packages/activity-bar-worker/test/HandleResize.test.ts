@@ -186,8 +186,9 @@ test('handleResize uses correct itemHeight from state', () => {
 test('handleResize returns new state object', () => {
   const state: ActivityBarState = createDefaultState()
   const dimensions = { height: 200, width: 48, x: 0, y: 0 }
+  const { filteredItems } = state
   const result: ActivityBarState = handleResize(state, dimensions)
 
   expect(result).not.toBe(state)
-  expect(result.filteredItems).not.toBe(state.filteredItems)
+  expect(result.filteredItems).not.toBe(filteredItems)
 })

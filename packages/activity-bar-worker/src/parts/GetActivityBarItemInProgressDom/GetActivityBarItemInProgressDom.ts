@@ -23,7 +23,6 @@ export const getActivityBarItemInProgressDom = (item: ActivityBarItem): readonly
   return [
     {
       ariaHasPopup,
-      ariaLabel: '',
       ariaSelected,
       childCount: 2,
       className,

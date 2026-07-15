@@ -2,6 +2,8 @@ import { expect, test } from '@jest/globals'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getActivityBarItems } from '../src/parts/GetActivityBarItems/GetActivityBarItems.ts'
 
+const customIconClassRegex = /^MaskIconCustomView[a-z0-9]+$/
+
 test('getActivityBarItems includes contributed views', () => {
   const items = getActivityBarItems(createDefaultState(), [
     {
@@ -27,7 +29,7 @@ test('getActivityBarItems includes contributed views', () => {
 test('getActivityBarItems stores custom icon metadata for url-like contributed view icon', () => {
   const icon = 'https://example.com/icon.svg'
   const expectedItem = expect.objectContaining({
-    customIconClass: expect.stringMatching(/^MaskIconCustomView[a-z0-9]+$/),
+    customIconClass: expect.stringMatching(customIconClassRegex),
     customIconUrl: icon,
     icon,
     id: 'sample.views.customIcon',
@@ -56,7 +58,7 @@ test('getActivityBarItems stores custom icon metadata for lvce contributed view 
   const item = items.find((item) => item.id === 'hetzner.views.cloud')
 
   expect(item).toEqual({
-    customIconClass: expect.stringMatching(/^MaskIconCustomView[a-z0-9]+$/),
+    customIconClass: expect.stringMatching(customIconClassRegex),
     customIconUrl: icon,
     flags: 9,
     icon,

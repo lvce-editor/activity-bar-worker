@@ -8,6 +8,7 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as DomId from '../DomId/DomId.ts'
 import * as GetActivityBarItemsVirtualDom from '../GetActivityBarItemsVirtualDom/GetActivityBarItemsVirtualDom.ts'
+import * as TabIndex from '../TabIndex/TabIndex.ts'
 
 const className = mergeClassNames(ClassNames.Viewlet, ClassNames.ActivityBar)
 
@@ -24,7 +25,7 @@ export const getActivityBarVirtualDom = (visibleItems: readonly ActivityBarItem[
       onFocus: DomEventListenerFunctions.HandleFocus,
       onMouseDown: DomEventListenerFunctions.HandleMouseDown,
       role: AriaRoles.ToolBar,
-      tabIndex: 0,
+      tabIndex: TabIndex.Focusable,
       type: VirtualDomElements.Div,
     },
     ...GetActivityBarItemsVirtualDom.getVirtualDom(visibleItems),

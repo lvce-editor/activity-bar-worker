@@ -49,7 +49,8 @@ test('handleClick calculates index correctly for second item', async () => {
     y: 0,
   }
   // Settings is at the bottom: y + height - itemHeight = 0 + 400 - 48 = 352
-  const settingsY = state.y + state.height - state.itemHeight
+  const { height, itemHeight, y } = state
+  const settingsY = y + height - itemHeight
 
   const result = await handleClick(state, MouseEventType.LeftClick, 0, settingsY)
 
@@ -76,7 +77,8 @@ test('handleClick calculates index correctly for multiple items', async () => {
     y: 50,
   }
   // Click on Explorer (index 0) at the top: y + 0 * itemHeight = 50
-  const explorerY = state.y
+  const { y } = state
+  const explorerY = y
 
   const result = await handleClick(state, MouseEventType.LeftClick, 0, explorerY)
 
@@ -259,7 +261,8 @@ test('handleClick resolves account button from bottom stack when settings is als
     itemHeight: 48,
     y: 100,
   }
-  const accountY = state.y + state.height - state.itemHeight * 2
+  const { height, itemHeight, y } = state
+  const accountY = y + height - itemHeight * 2
 
   const result = await handleClick(state, MouseEventType.LeftClick, 12, accountY)
 
