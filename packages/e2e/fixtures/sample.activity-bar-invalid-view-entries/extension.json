@@ -1,0 +1,14 @@
+{
+  "id": "test.activity-bar-invalid-view-entries",
+  "name": "activity-bar-invalid-view-entries",
+  "description": "Activity bar fixture with invalid view registry entries",
+  "version": "0.0.0",
+  "isolated": true,
+  "browser": "src/extensionMain.js",
+  "views": [
+    {
+      "id": "test.activityBar.validAfterInvalid",
+      "title": "Valid After Invalid"
+    }
+  ]
+}

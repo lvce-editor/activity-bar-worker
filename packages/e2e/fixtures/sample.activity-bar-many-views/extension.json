@@ -1,0 +1,15 @@
+{
+  "id": "test.activity-bar-many-views",
+  "name": "activity-bar-many-views",
+  "description": "Activity bar fixture with 500 registered views",
+  "version": "0.0.0",
+  "isolated": true,
+  "browser": "src/extensionMain.js",
+  "views": [
+    {
+      "id": "test.activityBar.manyViews.0",
+      "title": "Stress View 0",
+      "icon": "symbol-beaker"
+    }
+  ]
+}
