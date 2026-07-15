@@ -104,13 +104,14 @@ test('handleBadgeCountChange preserves other state properties', async () => {
     uid: 123,
   }
 
+  const { focus, focused, focusedIndex, selectedIndex, uid } = state
   const result: ActivityBarState = await handleBadgeCountChange(state)
 
-  expect(result.focus).toBe(state.focus)
-  expect(result.focused).toBe(state.focused)
-  expect(result.focusedIndex).toBe(state.focusedIndex)
-  expect(result.selectedIndex).toBe(state.selectedIndex)
-  expect(result.uid).toBe(state.uid)
+  expect(result.focus).toBe(focus)
+  expect(result.focused).toBe(focused)
+  expect(result.focusedIndex).toBe(focusedIndex)
+  expect(result.selectedIndex).toBe(selectedIndex)
+  expect(result.uid).toBe(uid)
   expect(result.filteredItems[0].badgeText).toBe('3')
 })
 

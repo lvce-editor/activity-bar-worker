@@ -26,7 +26,6 @@ export const getActivityBarItemWithBadgeDom = (item: ActivityBarItem): readonly 
   return [
     {
       ariaHasPopup,
-      ariaLabel: '',
       ariaSelected,
       childCount: 2,
       className,

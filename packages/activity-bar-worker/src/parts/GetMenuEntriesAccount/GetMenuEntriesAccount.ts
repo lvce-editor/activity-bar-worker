@@ -5,8 +5,9 @@ import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
 export const ACCOUNT_SUBMENU_ID = 32_123
 
 const getAccountLabel = (state: ActivityBarState): string => {
-  const name = state.userName || 'Account'
-  const provider = state.userLoginProvider || 'GitHub'
+  const { userLoginProvider, userName } = state
+  const name = userName || 'Account'
+  const provider = userLoginProvider || 'GitHub'
   return `${name} (${provider})`
 }
 

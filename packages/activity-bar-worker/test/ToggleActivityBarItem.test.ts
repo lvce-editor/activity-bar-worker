@@ -123,9 +123,10 @@ test('toggleActivityBarItem should update filtered items', async () => {
     filteredItems: getFilteredActivityBarItems(activityBarItems, 400, 48),
   }
 
+  const { filteredItems } = state
   const result = await toggleActivityBarItem(state, 'test1')
 
-  expect(result.filteredItems).not.toBe(state.filteredItems)
+  expect(result.filteredItems).not.toBe(filteredItems)
   expect(result.filteredItems).toHaveLength(1)
   expect(result.filteredItems[0].id).toBe('test2')
   expect(result.filteredItems[0].flags & ActivityBarItemFlags.Enabled).toBe(ActivityBarItemFlags.Enabled)

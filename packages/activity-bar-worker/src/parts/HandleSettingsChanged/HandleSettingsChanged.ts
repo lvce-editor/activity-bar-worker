@@ -8,10 +8,10 @@ import { markSelected } from '../MarkSelected/MarkSelected.ts'
 import { updateItemsWithBadgeCount } from '../UpdateItemsWithBadgeCount/UpdateItemsWithBadgeCount.ts'
 
 export const handleSettingsChanged = async (state: ActivityBarState): Promise<ActivityBarState> => {
-  const { height, itemHeight, selectedIndex } = state
+  const { accountEnabled: currentAccountEnabled, height, itemHeight, platform, selectedIndex } = state
   const [accountEnabled, contributedViews, sidebarLocation] = await Promise.all([
-    getAccountEnabled(state.accountEnabled),
-    getContributedViews(state.platform),
+    getAccountEnabled(currentAccountEnabled),
+    getContributedViews(platform),
     getSideBarPosition(),
   ])
   const newState = {

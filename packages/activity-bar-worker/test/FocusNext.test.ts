@@ -38,12 +38,13 @@ test('focusNext preserves other state properties', () => {
     focusedIndex: 2,
   }
 
+  const { activityBarItems, currentViewletId } = state
   const result: ActivityBarState = focusNext(state)
 
   expect(result.focusedIndex).toBe(-1)
   expect(result.focused).toBe(true)
-  expect(result.activityBarItems).toBe(state.activityBarItems)
-  expect(result.currentViewletId).toBe(state.currentViewletId)
+  expect(result.activityBarItems).toBe(activityBarItems)
+  expect(result.currentViewletId).toBe(currentViewletId)
 })
 
 test('focusNext returns new state object', () => {

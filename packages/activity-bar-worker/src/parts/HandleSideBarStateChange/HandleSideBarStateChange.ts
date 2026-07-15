@@ -12,12 +12,9 @@ const clearItem = (item: ActivityBarItem): ActivityBarItem => {
   return setFlag(withoutSelected, ActivityBarItemFlags.Focused, false)
 }
 
-export const handleSideBarStateChange = async (
-  state: ActivityBarState,
-  id = state.currentViewletId,
-  sideBarVisibleOverride?: boolean,
-): Promise<ActivityBarState> => {
-  const { activityBarItems, height, itemHeight } = state
+export const handleSideBarStateChange = async (state: ActivityBarState, id?: string, sideBarVisibleOverride?: boolean): Promise<ActivityBarState> => {
+  const { activityBarItems, currentViewletId, height, itemHeight } = state
+  const resolvedId = id === undefined ? currentViewletId : id
   const sideBarVisible = typeof sideBarVisibleOverride === 'boolean' ? sideBarVisibleOverride : await getSideBarVisible()
   if (!sideBarVisible) {
     const itemsCleared = activityBarItems.map(clearItem)
@@ -31,13 +28,13 @@ export const handleSideBarStateChange = async (
       sideBarVisible: false,
     }
   }
-  const selectedIndex = findIndex(activityBarItems, id)
+  const selectedIndex = findIndex(activityBarItems, resolvedId)
   const newActivityBarItems = markSelected(activityBarItems, selectedIndex)
   const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)
   return {
     ...state,
     activityBarItems: newActivityBarItems,
-    currentViewletId: id,
+    currentViewletId: resolvedId,
     filteredItems,
     selectedIndex,
     sideBarVisible,

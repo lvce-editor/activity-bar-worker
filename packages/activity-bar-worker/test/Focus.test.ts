@@ -55,12 +55,13 @@ test('focus preserves other state properties when setting focus', () => {
     focusedIndex: 2,
   }
 
+  const { activityBarItems, focused, focusedIndex } = state
   const result: ActivityBarState = focus(state)
 
   expect(result.focus).toBe(FocusId.List)
-  expect(result.focusedIndex).toBe(state.focusedIndex)
-  expect(result.focused).toBe(state.focused)
-  expect(result.activityBarItems).toBe(state.activityBarItems)
+  expect(result.focusedIndex).toBe(focusedIndex)
+  expect(result.focused).toBe(focused)
+  expect(result.activityBarItems).toBe(activityBarItems)
 })
 
 test('focus returns same state when focus is negative', () => {
