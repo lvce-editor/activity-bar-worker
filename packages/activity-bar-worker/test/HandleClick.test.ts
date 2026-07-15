@@ -203,6 +203,7 @@ test('handleClick handles different y and itemHeight values', async () => {
 test('handleClick handles Account button click', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
+    'Layout.refreshAuthState'() {},
   })
   const items: readonly ActivityBarItem[] = [
     { flags: ActivityBarItemFlags.Enabled, icon: 'Account', id: 'Account', keyShortcuts: '', title: 'Account' },
@@ -218,12 +219,16 @@ test('handleClick handles Account button click', async () => {
   const result = await handleClick(state, MouseEventType.LeftClick, 0, 100)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, ACCOUNT_MENU_ID, 0, 100, { menuId: ACCOUNT_MENU_ID, openSubMenuToLeft: false }]])
+  expect(mockRpc.invocations).toEqual([
+    ['Layout.refreshAuthState'],
+    ['ContextMenu.show2', 0, ACCOUNT_MENU_ID, 0, 100, { menuId: ACCOUNT_MENU_ID, openSubMenuToLeft: false }],
+  ])
 })
 
 test('handleClick opens the Account submenu to the left when the side bar is on the right', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
+    'Layout.refreshAuthState'() {},
   })
   const items: readonly ActivityBarItem[] = [
     { flags: ActivityBarItemFlags.Enabled, icon: 'Account', id: 'Account', keyShortcuts: '', title: 'Account' },
@@ -240,12 +245,16 @@ test('handleClick opens the Account submenu to the left when the side bar is on 
   const result = await handleClick(state, MouseEventType.LeftClick, 500, 100)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, ACCOUNT_MENU_ID, 500, 100, { menuId: ACCOUNT_MENU_ID, openSubMenuToLeft: true }]])
+  expect(mockRpc.invocations).toEqual([
+    ['Layout.refreshAuthState'],
+    ['ContextMenu.show2', 0, ACCOUNT_MENU_ID, 500, 100, { menuId: ACCOUNT_MENU_ID, openSubMenuToLeft: true }],
+  ])
 })
 
 test('handleClick resolves account button from bottom stack when settings is also visible', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
+    'Layout.refreshAuthState'() {},
   })
   const items: readonly ActivityBarItem[] = [
     { flags: ActivityBarItemFlags.Enabled, icon: 'Explorer', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
@@ -268,6 +277,7 @@ test('handleClick resolves account button from bottom stack when settings is als
 
   expect(result).toBe(state)
   expect(mockRpc.invocations).toEqual([
+    ['Layout.refreshAuthState'],
     ['ContextMenu.show2', 0, ACCOUNT_MENU_ID, 12, accountY, { menuId: ACCOUNT_MENU_ID, openSubMenuToLeft: false }],
   ])
 })

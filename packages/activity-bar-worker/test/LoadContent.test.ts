@@ -86,14 +86,8 @@ test('loadContent includes account button when accountEnabled is true', async ()
   expect(accountItem?.icon).toBe('Account')
 })
 
-test('loadContent gets accountEnabled from preferences', async () => {
+test('loadContent gets accountEnabled from preferences without requesting user info', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'Layout.getUserInfo'() {
-      return {
-        userName: 'SimonSiefke',
-        userState: 'loggedIn',
-      }
-    },
     'Preferences.get'() {
       return true
     },
@@ -102,27 +96,28 @@ test('loadContent gets accountEnabled from preferences', async () => {
 
   const result: ActivityBarState = await loadContent(state)
 
-  expect(mockRpc.invocations).toEqual(expect.arrayContaining([['Preferences.get', 'activityBar.accountEnabled'], ['Layout.getUserInfo']]))
+  expect(mockRpc.invocations).toContainEqual(['Preferences.get', 'activityBar.accountEnabled'])
+  expect(mockRpc.invocations).not.toContainEqual(['Layout.getUserInfo'])
   expect(result.accountEnabled).toBe(true)
-  expect(result.userLoginState).toBe('logged in')
-  expect(result.userName).toBe('SimonSiefke')
-  expect(result.userLoginProvider).toBe('GitHub')
   const accountItem = result.activityBarItems.find((item) => item.id === 'Account')
   expect(accountItem).toBeDefined()
 })
 
-test('loadContent falls back to logged out for malformed user info', async () => {
-  using mockRpc = RendererWorker.registerMockRpc({
-    'Layout.getUserInfo'() {
-      return 'invalid-user-info'
-    },
-  })
-  const state: ActivityBarState = createDefaultState()
+test('loadContent preserves user info until it is refreshed on account click', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({})
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    userLoginProvider: 'GitHub',
+    userLoginState: 'logged in',
+    userName: 'SimonSiefke',
+  }
 
   const result: ActivityBarState = await loadContent(state)
 
-  expect(mockRpc.invocations).toEqual(expect.arrayContaining([['Layout.getUserInfo']]))
-  expect(result.userLoginState).toBe('logged out')
+  expect(mockRpc.invocations).not.toContainEqual(['Layout.getUserInfo'])
+  expect(result.userLoginProvider).toBe('GitHub')
+  expect(result.userLoginState).toBe('logged in')
+  expect(result.userName).toBe('SimonSiefke')
 })
 
 test('loadContent does not include account button when accountEnabled is false', async () => {
