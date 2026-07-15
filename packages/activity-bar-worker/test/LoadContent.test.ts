@@ -109,7 +109,7 @@ test('loadContent preserves user info until it is refreshed on account click', a
     ...createDefaultState(),
     userLoginProvider: 'GitHub',
     userLoginState: 'logged in',
-    userName: 'SimonSiefke',
+    userName: 'test-user',
   }
 
   const result: ActivityBarState = await loadContent(state)
@@ -117,7 +117,7 @@ test('loadContent preserves user info until it is refreshed on account click', a
   expect(mockRpc.invocations).not.toContainEqual(['Layout.getUserInfo'])
   expect(result.userLoginProvider).toBe('GitHub')
   expect(result.userLoginState).toBe('logged in')
-  expect(result.userName).toBe('SimonSiefke')
+  expect(result.userName).toBe('test-user')
 })
 
 test('loadContent does not include account button when accountEnabled is false', async () => {

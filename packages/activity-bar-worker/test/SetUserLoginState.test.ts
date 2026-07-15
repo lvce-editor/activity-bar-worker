@@ -7,12 +7,12 @@ test('setUserLoginState updates the user login state and account info', () => {
 
   const result = setUserLoginState(state, 'logged in', {
     provider: 'GitHub',
-    userName: 'SimonSiefke',
+    userName: 'test-user',
   })
 
   expect(result).not.toBe(state)
   expect(result.userLoginState).toBe('logged in')
-  expect(result.userName).toBe('SimonSiefke')
+  expect(result.userName).toBe('test-user')
   expect(result.userLoginProvider).toBe('GitHub')
 })
 
