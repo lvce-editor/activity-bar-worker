@@ -225,6 +225,33 @@ test('handleClick handles Account button click', async () => {
   ])
 })
 
+test('handleClick opens the Account menu when refreshing auth state fails', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'ContextMenu.show2'() {},
+    'Layout.refreshAuthState'() {
+      throw new Error('failed to refresh auth state')
+    },
+  })
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'Account', id: 'Account', keyShortcuts: '', title: 'Account' },
+  ]
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: items,
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    itemHeight: 48,
+    y: 100,
+  }
+
+  const result = await handleClick(state, MouseEventType.LeftClick, 0, 100)
+
+  expect(result).toBe(state)
+  expect(mockRpc.invocations).toEqual([
+    ['Layout.refreshAuthState'],
+    ['ContextMenu.show2', 0, ACCOUNT_MENU_ID, 0, 100, { menuId: ACCOUNT_MENU_ID, openSubMenuToLeft: false }],
+  ])
+})
+
 test('handleClick opens the Account submenu to the left when the side bar is on the right', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},
