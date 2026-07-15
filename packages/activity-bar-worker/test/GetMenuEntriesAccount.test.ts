@@ -66,6 +66,19 @@ test('getMenuEntriesAccountLoggedIn returns account submenu entry for logged in 
   ])
 })
 
+test('getMenuEntriesAccountLoggedIn uses fallback account metadata', () => {
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    userLoginProvider: '',
+    userLoginState: 'logged in',
+    userName: '',
+  }
+
+  const result = getMenuEntriesAccountLoggedIn(state)
+
+  expect(result[0].label).toBe('Account (GitHub)')
+})
+
 test('getMenuEntriesAccountSubMenu returns sign out entry for logged in state', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
