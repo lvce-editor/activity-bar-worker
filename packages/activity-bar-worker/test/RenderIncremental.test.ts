@@ -15,7 +15,7 @@ test('renderIncremental returns no commands when the rendered items are unchange
   expect(renderIncremental(state, state)).toEqual([])
 })
 
-test('renderIncremental returns patches when the rendered items change', () => {
+test('renderIncremental returns full DOM when the rendered item ids change', () => {
   const item: ActivityBarItem = {
     flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
     icon: 'Files',
@@ -31,6 +31,36 @@ test('renderIncremental returns patches when the rendered items change', () => {
   const newState: ActivityBarState = {
     ...oldState,
     filteredItems: [item],
+  }
+
+  const result = renderIncremental(oldState, newState)
+
+  expect(result[0]).toBe(ViewletCommand.SetDom2)
+  expect(result[1]).toBe(123)
+  expect(result[2]).not.toEqual([])
+})
+
+test('renderIncremental returns patches when item properties change', () => {
+  const oldItem: ActivityBarItem = {
+    flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
+    icon: 'Files',
+    id: 'Explorer',
+    keyShortcuts: '',
+    title: 'Explorer',
+  }
+  const newItem: ActivityBarItem = {
+    ...oldItem,
+    flags: oldItem.flags | ActivityBarItemFlags.Selected,
+  }
+  const oldState: ActivityBarState = {
+    ...createDefaultState(),
+    filteredItems: [oldItem],
+    initial: false,
+    uid: 123,
+  }
+  const newState: ActivityBarState = {
+    ...oldState,
+    filteredItems: [newItem],
   }
 
   const result = renderIncremental(oldState, newState)
