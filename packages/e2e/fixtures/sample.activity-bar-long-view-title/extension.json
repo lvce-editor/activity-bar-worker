@@ -1,0 +1,14 @@
+{
+  "id": "test.activity-bar-long-view-title",
+  "name": "activity-bar-long-view-title",
+  "description": "Activity bar fixture with a very long view title",
+  "version": "0.0.0",
+  "isolated": true,
+  "browser": "src/extensionMain.js",
+  "views": [
+    {
+      "id": "test.activityBar.longTitle",
+      "title": "Long View Title"
+    }
+  ]
+}

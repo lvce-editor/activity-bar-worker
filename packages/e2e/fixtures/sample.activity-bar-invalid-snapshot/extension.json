@@ -1,0 +1,14 @@
+{
+  "id": "test.activity-bar-invalid-snapshot",
+  "name": "activity-bar-invalid-snapshot",
+  "description": "Activity bar fixture with an invalid view registry snapshot",
+  "version": "0.0.0",
+  "isolated": true,
+  "browser": "src/extensionMain.js",
+  "views": [
+    {
+      "id": "test.activityBar.invalidSnapshot",
+      "title": "Invalid Snapshot"
+    }
+  ]
+}

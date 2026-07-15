@@ -1,0 +1,14 @@
+{
+  "id": "test.activity-bar-duplicate-view-ids",
+  "name": "activity-bar-duplicate-view-ids",
+  "description": "Activity bar fixture with duplicate contributed view ids",
+  "version": "0.0.0",
+  "isolated": true,
+  "browser": "src/extensionMain.js",
+  "views": [
+    {
+      "id": "test.activityBar.duplicate",
+      "title": "Duplicate View One"
+    }
+  ]
+}
