@@ -42,29 +42,23 @@ test('GetActivityBarItems.getActivityBarItems should return expected number of i
   const state = { ...CreateDefaultState.createDefaultState(), accountEnabled: false }
   const result = GetActivityBarItems.getActivityBarItems(state)
 
-  // Based on the source code, there should be 7 items (6 tabs + 1 settings button)
-  expect(result.length).toBe(7)
+  // Based on the source code, there should be 6 items (5 tabs + 1 settings button)
+  expect(result.length).toBe(6)
 })
 
 test('GetActivityBarItems.getActivityBarItems should return expected number of items when accountEnabled is true', () => {
   const state = { ...CreateDefaultState.createDefaultState(), accountEnabled: true }
   const result = GetActivityBarItems.getActivityBarItems(state)
 
-  // Based on the source code, there should be 8 items (6 tabs + 1 account button + 1 settings button)
-  expect(result.length).toBe(8)
+  // Based on the source code, there should be 7 items (5 tabs + 1 account button + 1 settings button)
+  expect(result.length).toBe(7)
 })
 
-test('GetActivityBarItems.getActivityBarItems should include running extensions', () => {
+test('GetActivityBarItems.getActivityBarItems should not include running extensions', () => {
   const state = CreateDefaultState.createDefaultState()
   const result = GetActivityBarItems.getActivityBarItems(state)
 
-  expect(result).toContainEqual({
-    flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
-    icon: 'Extensions',
-    id: 'RunningExtensions',
-    keyShortcuts: '',
-    title: 'Running Extensions',
-  })
+  expect(result.some((item) => item.id === 'RunningExtensions')).toBe(false)
 })
 
 test('GetActivityBarItems.getActivityBarItems should have unique IDs', () => {

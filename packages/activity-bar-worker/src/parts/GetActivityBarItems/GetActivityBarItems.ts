@@ -69,13 +69,6 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
       keyShortcuts: 'Control+Shift+X',
       title: ViewletActivityBarStrings.extensions(),
     },
-    {
-      flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
-      icon: Icon.Extensions,
-      id: ViewletModuleId.RunningExtensions,
-      keyShortcuts: '',
-      title: ViewletActivityBarStrings.runningExtensions(),
-    },
     ...contributedViews.map(toActivityBarItem),
     // Bottom
   ]

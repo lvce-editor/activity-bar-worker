@@ -25,10 +25,6 @@ export const extensions = (): string => {
   return I18nString.i18nString(UiStrings.Extensions)
 }
 
-export const runningExtensions = (): string => {
-  return I18nString.i18nString(UiStrings.RunningExtensions)
-}
-
 export const settings = (): string => {
   return I18nString.i18nString(UiStrings.Settings)
 }

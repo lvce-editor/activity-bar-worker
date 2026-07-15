@@ -6,7 +6,7 @@ export const test: Test = async ({ ActivityBar, expect, Locator }) => {
   await ActivityBar.setAccountEnabled(true)
 
   const activityBarItems = Locator('.ActivityBarItem')
-  await expect(activityBarItems).toHaveCount(8)
+  await expect(activityBarItems).toHaveCount(7)
 
   const accountItem = Locator('.ActivityBarItem[title="Account"]')
   await expect(accountItem).toBeVisible()

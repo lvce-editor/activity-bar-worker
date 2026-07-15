@@ -4,8 +4,6 @@ export const Extensions = 'Extensions'
 
 export const RunAndDebug = 'Run And Debug'
 
-export const RunningExtensions = 'RunningExtensions'
-
 export const Search = 'Search'
 
 export const SourceControl = 'Source Control'
