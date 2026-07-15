@@ -86,7 +86,7 @@ test('getMenuEntries returns account menu entries for logged in state', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
     userLoginState: 'logged in',
-    userName: 'SimonSiefke',
+    userName: 'test-user',
   }
   const options: ContextMenuProps = {
     menuId: ACCOUNT_MENU_ID,
@@ -104,7 +104,7 @@ test('getMenuEntries returns account menu entries for logged in state', () => {
       command: '',
       flags: MenuItemFlags.SubMenu,
       id: ACCOUNT_SUBMENU_ID,
-      label: 'SimonSiefke (GitHub)',
+      label: 'test-user (GitHub)',
     },
   ])
 })
