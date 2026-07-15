@@ -82,3 +82,23 @@ test('getActivityBarItems preserves builtin symbolic contributed view icon behav
   expect(item?.customIconUrl).toBeUndefined()
   expect(item?.icon).toBe('symbol-beaker')
 })
+
+test('getActivityBarItems uses fallback values for missing contributed view metadata', () => {
+  const items = getActivityBarItems(createDefaultState(), [
+    {
+      icon: '',
+      id: 'sample.views.fallback',
+      title: '',
+    },
+  ])
+
+  const item = items.find((item) => item.id === 'sample.views.fallback')
+
+  expect(item).toEqual({
+    flags: 9,
+    icon: 'Extensions',
+    id: 'sample.views.fallback',
+    keyShortcuts: '',
+    title: 'sample.views.fallback',
+  })
+})

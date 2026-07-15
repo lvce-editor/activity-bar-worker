@@ -68,6 +68,20 @@ test('handleBadgeCountChange applies partial badge count changes without queryin
   expect(result.filteredItems[2].badgeText).toBe('4')
 })
 
+test('handleBadgeCountChange preserves filtered items that are not in the activity bar', async () => {
+  const activityBarItem: ActivityBarItem = { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }
+  const filteredItem: ActivityBarItem = { flags: 0, icon: 'icon2', id: 'filtered', keyShortcuts: '', title: 'Filtered Item' }
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: [activityBarItem],
+    filteredItems: [filteredItem],
+  }
+
+  const result = await handleBadgeCountChange(state, { item1: 5 })
+
+  expect(result.filteredItems[0]).toBe(filteredItem)
+})
+
 test('handleBadgeCountChange preserves other state properties', async () => {
   RendererWorker.registerMockRpc({
     'Layout.getBadgeCounts'() {
