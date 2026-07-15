@@ -1,7 +1,6 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.toggle-activity-bar-item'
-export const skip = 1
 
 export const test: Test = async ({ ActivityBar, expect, Locator }) => {
   // assert - initial state
@@ -13,7 +12,7 @@ export const test: Test = async ({ ActivityBar, expect, Locator }) => {
   await ActivityBar.toggleActivityBarItem('Search')
 
   // assert - search is hidden
-  await expect(search).not.toBeVisible()
+  await expect(search).toBeHidden()
 
   // act - toggle search on
   await ActivityBar.toggleActivityBarItem('Search')

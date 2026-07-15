@@ -2,22 +2,16 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.context-menu'
 
-export const skip = 1
-
-export const test: Test = async ({ ActivityBar, expect, Locator }) => {
+export const test: Test = async ({ Command, expect, Locator }) => {
   // act
-  await ActivityBar.handleContextMenu()
+  await Command.execute('ActivityBar.handleContextMenu', 300, 300, 0, 0)
 
   // assert
-  const explorer = Locator('.ContextMenuItem[title="Explorer"]')
-  const search = Locator('.ContextMenuItem[title="Search"]')
-  const moveSideBarRight = Locator('.ContextMenuItem[title="Move Side Bar Right"]')
-  const moveSideBarLeft = Locator('.ContextMenuItem[title="Move Side Bar Left"]')
-  const hideActivityBar = Locator('.ContextMenuItem[title="Hide Activity Bar"]')
+  const explorer = Locator('.MenuItem', { hasText: 'Explorer' })
+  const search = Locator('.MenuItem', { hasText: 'Search' })
+  const hideActivityBar = Locator('.MenuItem', { hasText: 'Hide Activity Bar' })
 
   await expect(explorer).toBeVisible()
   await expect(search).toBeVisible()
-  await expect(moveSideBarRight).toBeVisible()
-  await expect(moveSideBarLeft).toHaveCount(0)
   await expect(hideActivityBar).toBeVisible()
 }

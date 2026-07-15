@@ -2,15 +2,13 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.context-menu.toggle.run-and-debug'
 
-export const skip = 1
-
-export const test: Test = async ({ ActivityBar, ContextMenu, expect, Locator }) => {
+export const test: Test = async ({ Command, ContextMenu, expect, Locator }) => {
   const runAndDebug = Locator('.ActivityBarItem[title="Run and Debug"]')
   await expect(runAndDebug).toBeVisible()
 
-  await ActivityBar.handleContextMenu()
+  await Command.execute('ActivityBar.handleContextMenu', 300, 300, 0, 0)
 
-  const menuItem = Locator('.ContextMenuItem[title="Run And Debug"]')
+  const menuItem = Locator('.MenuItem', { hasText: 'Run And Debug' })
   await expect(menuItem).toBeVisible()
   await ContextMenu.selectItem('Run And Debug')
 
