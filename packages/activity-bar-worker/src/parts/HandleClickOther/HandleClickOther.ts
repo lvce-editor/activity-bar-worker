@@ -1,32 +1,9 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import { findIndex } from '../FindIndex/FindIndex.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
+import { getSideBarChange } from '../GetSideBarChange/GetSideBarChange.ts'
 import { markSelected } from '../MarkSelected/MarkSelected.ts'
 import * as SideBar from '../SideBar/SideBar.ts'
-
-interface SideBarChangeResult {
-  readonly type: 'show' | 'hide' | 'switch'
-  readonly viewletId: string
-}
-
-const getSideBarChange = (sideBarVisible: boolean, currentViewletId: string, viewletId: string): SideBarChangeResult => {
-  if (sideBarVisible) {
-    if (currentViewletId === viewletId) {
-      return {
-        type: 'hide',
-        viewletId,
-      }
-    }
-    return {
-      type: 'switch',
-      viewletId,
-    }
-  }
-  return {
-    type: 'show',
-    viewletId,
-  }
-}
 
 export const handleClickOther = async (state: ActivityBarState, viewletId: string): Promise<ActivityBarState> => {
   const { activityBarItems, currentViewletId, height, itemHeight, sideBarVisible } = state
