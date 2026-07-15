@@ -15,7 +15,7 @@ test('renderIncremental returns no commands when the rendered items are unchange
   expect(renderIncremental(state, state)).toEqual([])
 })
 
-test('renderIncremental returns full DOM when the rendered item ids change', () => {
+test('renderIncremental returns patches when the rendered item ids change', () => {
   const item: ActivityBarItem = {
     flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
     icon: 'Files',
@@ -35,7 +35,7 @@ test('renderIncremental returns full DOM when the rendered item ids change', () 
 
   const result = renderIncremental(oldState, newState)
 
-  expect(result[0]).toBe(ViewletCommand.SetDom2)
+  expect(result[0]).toBe(ViewletCommand.SetPatches)
   expect(result[1]).toBe(123)
   expect(result[2]).not.toEqual([])
 })
