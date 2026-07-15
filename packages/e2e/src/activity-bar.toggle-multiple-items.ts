@@ -1,7 +1,6 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.toggle-multiple-items'
-export const skip = 1
 
 export const test: Test = async ({ ActivityBar, expect, Locator }) => {
   // assert - initial state
@@ -17,7 +16,7 @@ export const test: Test = async ({ ActivityBar, expect, Locator }) => {
   await ActivityBar.toggleActivityBarItem('Explorer')
 
   // assert
-  await expect(explorer).not.toBeVisible()
+  await expect(explorer).toBeHidden()
   await expect(search).toBeVisible()
   await expect(sourceControl).toBeVisible()
 
@@ -25,8 +24,8 @@ export const test: Test = async ({ ActivityBar, expect, Locator }) => {
   await ActivityBar.toggleActivityBarItem('Search')
 
   // assert
-  await expect(explorer).not.toBeVisible()
-  await expect(search).not.toBeVisible()
+  await expect(explorer).toBeHidden()
+  await expect(search).toBeHidden()
   await expect(sourceControl).toBeVisible()
 
   // act - toggle explorer back on
@@ -34,7 +33,7 @@ export const test: Test = async ({ ActivityBar, expect, Locator }) => {
 
   // assert
   await expect(explorer).toBeVisible()
-  await expect(search).not.toBeVisible()
+  await expect(search).toBeHidden()
   await expect(sourceControl).toBeVisible()
 
   // act - toggle search back on

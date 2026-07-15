@@ -2,8 +2,6 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.hidden-sidebar.opens-clicked-viewlet.explorer'
 
-export const skip = 1
-
 export const test: Test = async ({ Command, expect, Locator }) => {
   const sideBarHeaderTitle = Locator('.SideBarTitleAreaTitle')
   const waitForSideBarVisible = async (expected: boolean): Promise<void> => {
