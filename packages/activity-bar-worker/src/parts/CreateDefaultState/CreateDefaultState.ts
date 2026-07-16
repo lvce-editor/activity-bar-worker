@@ -20,7 +20,7 @@ export const createDefaultState = (): ActivityBarState => ({
   uid: 0,
   updateProgress: 0,
   updateState: '',
-  userLoginProvider: 'GitHub',
+  userLoginProvider: 'Lvce Editor',
   userLoginState: 'logged out',
   userName: '',
   width: 48,

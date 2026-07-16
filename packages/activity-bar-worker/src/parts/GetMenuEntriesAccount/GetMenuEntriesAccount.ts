@@ -7,7 +7,7 @@ export const ACCOUNT_SUBMENU_ID = 32_123
 const getAccountLabel = (state: ActivityBarState): string => {
   const { userLoginProvider, userName } = state
   const name = userName || 'Account'
-  const provider = userLoginProvider || 'GitHub'
+  const provider = userLoginProvider || 'Lvce Editor'
   return `${name} (${provider})`
 }
 
