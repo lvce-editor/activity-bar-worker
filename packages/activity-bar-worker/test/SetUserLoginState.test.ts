@@ -6,14 +6,14 @@ test('setUserLoginState updates the user login state and account info', () => {
   const state = createDefaultState()
 
   const result = setUserLoginState(state, 'logged in', {
-    provider: 'GitHub',
+    provider: 'Google',
     userName: 'test-user',
   })
 
   expect(result).not.toBe(state)
   expect(result.userLoginState).toBe('logged in')
   expect(result.userName).toBe('test-user')
-  expect(result.userLoginProvider).toBe('GitHub')
+  expect(result.userLoginProvider).toBe('Google')
 })
 
 test('setUserLoginState preserves other activity bar state properties', () => {
@@ -28,7 +28,7 @@ test('setUserLoginState preserves other activity bar state properties', () => {
 
   expect(result).toEqual({
     ...state,
-    userLoginProvider: 'GitHub',
+    userLoginProvider: 'Lvce Editor',
     userLoginState: 'logging out',
     userName: '',
   })

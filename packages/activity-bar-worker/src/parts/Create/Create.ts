@@ -33,7 +33,7 @@ export const create = (
     uid: id,
     updateProgress: 0,
     updateState: '',
-    userLoginProvider: 'GitHub',
+    userLoginProvider: 'Lvce Editor',
     userLoginState: 'logged out',
     userName: '',
     width,

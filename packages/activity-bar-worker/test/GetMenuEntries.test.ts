@@ -104,7 +104,7 @@ test('getMenuEntries returns account menu entries for logged in state', () => {
       command: '',
       flags: MenuItemFlags.SubMenu,
       id: ACCOUNT_SUBMENU_ID,
-      label: 'test-user (GitHub)',
+      label: 'test-user (Lvce Editor)',
     },
   ])
 })

@@ -61,7 +61,7 @@ test('getMenuEntriesAccountLoggedIn returns account submenu entry for logged in 
       command: '',
       flags: MenuItemFlags.SubMenu,
       id: ACCOUNT_SUBMENU_ID,
-      label: 'test-user (GitHub)',
+      label: 'test-user (Lvce Editor)',
     },
   ])
 })
@@ -76,7 +76,7 @@ test('getMenuEntriesAccountLoggedIn uses fallback account metadata', () => {
 
   const result = getMenuEntriesAccountLoggedIn(state)
 
-  expect(result[0].label).toBe('Account (GitHub)')
+  expect(result[0].label).toBe('Account (Lvce Editor)')
 })
 
 test('getMenuEntriesAccountSubMenu returns sign out entry for logged in state', () => {
