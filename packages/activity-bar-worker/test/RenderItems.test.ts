@@ -1,6 +1,7 @@
 import { expect, test } from '@jest/globals'
 import { ViewletCommand } from '@lvce-editor/constants'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
+import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getFilteredActivityBarItems } from '../src/parts/GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { renderItems } from '../src/parts/RenderItems/RenderItems.ts'
@@ -144,4 +145,22 @@ test('renderItems returns empty DOM when initial is true', () => {
   expect(result[0]).toBe(ViewletCommand.SetDom2)
   expect(result[1]).toBe(666)
   expect(result[2]).toEqual([])
+})
+
+test('renderItems applies the focus outline to the focused item', () => {
+  const items: readonly any[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'explorer', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'search', id: 'Search', keyShortcuts: '', title: 'Search' },
+  ]
+  const newState: ActivityBarState = {
+    ...createDefaultState(),
+    filteredItems: items,
+    focusedIndex: 1,
+    initial: false,
+  }
+
+  const result: any = renderItems(createDefaultState(), newState)
+  const searchNode = result[2].find((node: any) => node.title === 'Search')
+
+  expect(searchNode.className).toContain('FocusOutline')
 })

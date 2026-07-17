@@ -1,55 +1,35 @@
 import { expect, test } from '@jest/globals'
 import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
-import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { focusNext } from '../src/parts/FocusNext/FocusNext.ts'
 
-test('focusNext calls focusIndex with -1', () => {
-  const state: ActivityBarState = createDefaultState()
-  const result: ActivityBarState = focusNext(state)
+const items: readonly ActivityBarItem[] = [
+  { flags: 0, icon: 'explorer', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+  { flags: 0, icon: 'search', id: 'Search', keyShortcuts: '', title: 'Search' },
+]
 
-  expect(result.focusedIndex).toBe(-1)
-  expect(result).not.toBe(state)
-})
+test('focusNext focuses the next visible item', () => {
+  const state = { ...createDefaultState(), filteredItems: items, focused: false, focusedIndex: 0 }
+  const result = focusNext(state)
 
-test('focusNext preserves other state properties', () => {
-  const items: readonly ActivityBarItem[] = [
-    {
-      flags: 0,
-      icon: 'icon1',
-      id: 'item1',
-      keyShortcuts: '',
-      title: 'Item 1',
-    },
-    {
-      flags: 0,
-      icon: 'icon2',
-      id: 'item2',
-      keyShortcuts: '',
-      title: 'Item 2',
-    },
-  ]
-
-  const state: ActivityBarState = {
-    ...createDefaultState(),
-    activityBarItems: items,
-    currentViewletId: 'test-viewlet',
-    focused: false,
-    focusedIndex: 2,
-  }
-
-  const { activityBarItems, currentViewletId } = state
-  const result: ActivityBarState = focusNext(state)
-
-  expect(result.focusedIndex).toBe(-1)
+  expect(result.focusedIndex).toBe(1)
   expect(result.focused).toBe(true)
-  expect(result.activityBarItems).toBe(activityBarItems)
-  expect(result.currentViewletId).toBe(currentViewletId)
 })
 
-test('focusNext returns new state object', () => {
-  const state: ActivityBarState = createDefaultState()
-  const result: ActivityBarState = focusNext(state)
+test('focusNext focuses the first item when no item is focused', () => {
+  const state = { ...createDefaultState(), filteredItems: items, focusedIndex: -1 }
 
-  expect(result).not.toBe(state)
+  expect(focusNext(state).focusedIndex).toBe(0)
+})
+
+test('focusNext stops at the last visible item', () => {
+  const state = { ...createDefaultState(), filteredItems: items, focusedIndex: 1 }
+
+  expect(focusNext(state)).toBe(state)
+})
+
+test('focusNext does nothing when there are no visible items', () => {
+  const state = { ...createDefaultState(), filteredItems: [], focusedIndex: -1 }
+
+  expect(focusNext(state)).toBe(state)
 })

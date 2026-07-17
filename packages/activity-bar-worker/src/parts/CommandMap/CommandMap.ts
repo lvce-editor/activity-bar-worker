@@ -8,6 +8,7 @@ import * as FocusIndex from '../FocusIndex/FocusIndex.ts'
 import * as FocusLast from '../FocusLast/FocusLast.ts'
 import * as FocusNext from '../FocusNext/FocusNext.ts'
 import * as FocusNone from '../FocusNone/FocusNone.ts'
+import * as FocusPrevious from '../FocusPrevious/FocusPrevious.ts'
 import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
 import { getMenuEntries } from '../GetMenuEntries/GetMenuEntries.ts'
 import { getMenuEntryIds } from '../GetMenuEntryIds/GetMenuEntryIds.ts'
@@ -32,6 +33,7 @@ import { loadContent } from '../LoadContent/LoadContent.ts'
 import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
+import * as SelectCurrent from '../SelectCurrent/SelectCurrent.ts'
 import { setAccountEnabled } from '../SetAccountEnabled/SetAccountEnabled.ts'
 import { setUserLoginState } from '../SetUserLoginState/SetUserLoginState.ts'
 import { toggleActivityBarItem } from '../ToggleActivityBarItem/ToggleActivityBarItem.ts'
@@ -45,6 +47,7 @@ export const commandMap = {
   'ActivityBar.focusLast': WrapCommand.wrapCommand(FocusLast.focusLast),
   'ActivityBar.focusNext': WrapCommand.wrapCommand(FocusNext.focusNext),
   'ActivityBar.focusNone': WrapCommand.wrapCommand(FocusNone.focusNone),
+  'ActivityBar.focusPrevious': WrapCommand.wrapCommand(FocusPrevious.focusPrevious),
   'ActivityBar.getCommandIds': WrapCommand.getCommandIds,
   'ActivityBar.getKeyBindings': getKeyBindings,
   'ActivityBar.getMenuEntries': WrapCommand.wrapGetter(getMenuEntries),
@@ -70,6 +73,7 @@ export const commandMap = {
   'ActivityBar.renderEventListeners': RenderEventListeners.renderEventListeners,
   'ActivityBar.resize': WrapCommand.wrapCommand(handleResize),
   'ActivityBar.saveState': WrapCommand.wrapGetter(SaveState.saveState),
+  'ActivityBar.selectCurrent': WrapCommand.wrapCommand(SelectCurrent.selectCurrent),
   'ActivityBar.setAccountEnabled': WrapCommand.wrapCommand(setAccountEnabled),
   'ActivityBar.setUserLoginState': WrapCommand.wrapCommand(setUserLoginState),
   'ActivityBar.terminate': terminate,

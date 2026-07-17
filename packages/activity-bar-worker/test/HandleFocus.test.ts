@@ -1,71 +1,41 @@
 import { expect, test } from '@jest/globals'
 import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
+import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { handleFocus } from '../src/parts/HandleFocus/HandleFocus.ts'
 
-test('handleFocus sets focused to true', () => {
-  const state: ActivityBarState = {
-    ...createDefaultState(),
-    focused: false,
-  }
+const explorer: ActivityBarItem = {
+  flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Selected,
+  icon: 'explorer',
+  id: 'Explorer',
+  keyShortcuts: '',
+  title: 'Explorer',
+}
+const search: ActivityBarItem = { flags: ActivityBarItemFlags.Enabled, icon: 'search', id: 'Search', keyShortcuts: '', title: 'Search' }
 
-  const result: ActivityBarState = handleFocus(state)
-
-  expect(result.focused).toBe(true)
-  expect(result).not.toBe(state)
-})
-
-test('handleFocus preserves other state properties', () => {
-  const items: readonly ActivityBarItem[] = [
-    {
-      flags: 0,
-      icon: 'icon1',
-      id: 'item1',
-      keyShortcuts: '',
-      title: 'Item 1',
-    },
-    {
-      flags: 0,
-      icon: 'icon2',
-      id: 'item2',
-      keyShortcuts: '',
-      title: 'Item 2',
-    },
-  ]
-
-  const state: ActivityBarState = {
-    ...createDefaultState(),
-    activityBarItems: items,
-    currentViewletId: 'test-viewlet',
-    focused: false,
-    focusedIndex: 2,
-  }
-
-  const { activityBarItems, currentViewletId, focusedIndex } = state
-  const result: ActivityBarState = handleFocus(state)
+test('handleFocus focuses the selected visible item', () => {
+  const state: ActivityBarState = { ...createDefaultState(), filteredItems: [explorer, search], focused: false, focusedIndex: -1 }
+  const result = handleFocus(state)
 
   expect(result.focused).toBe(true)
-  expect(result.focusedIndex).toBe(focusedIndex)
-  expect(result.activityBarItems).toBe(activityBarItems)
-  expect(result.currentViewletId).toBe(currentViewletId)
+  expect(result.focusedIndex).toBe(0)
 })
 
-test('handleFocus works when focused is already true', () => {
-  const state: ActivityBarState = {
-    ...createDefaultState(),
-    focused: true,
-  }
+test('handleFocus preserves a valid focused index', () => {
+  const state: ActivityBarState = { ...createDefaultState(), filteredItems: [explorer, search], focused: false, focusedIndex: 1 }
 
-  const result: ActivityBarState = handleFocus(state)
-
-  expect(result.focused).toBe(true)
-  expect(result).not.toBe(state)
+  expect(handleFocus(state).focusedIndex).toBe(1)
 })
 
-test('handleFocus returns new state object', () => {
-  const state: ActivityBarState = createDefaultState()
-  const result: ActivityBarState = handleFocus(state)
+test('handleFocus uses the first item when none is selected', () => {
+  const state: ActivityBarState = { ...createDefaultState(), filteredItems: [search], focusedIndex: -1 }
 
-  expect(result).not.toBe(state)
+  expect(handleFocus(state).focusedIndex).toBe(0)
+})
+
+test('handleFocus handles an empty activity bar', () => {
+  const state: ActivityBarState = { ...createDefaultState(), filteredItems: [], focusedIndex: -1 }
+
+  expect(handleFocus(state).focusedIndex).toBe(-1)
 })
