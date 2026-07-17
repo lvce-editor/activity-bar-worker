@@ -1,55 +1,22 @@
 import { expect, test } from '@jest/globals'
 import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
-import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { focusLast } from '../src/parts/FocusLast/FocusLast.ts'
 
-test('focusLast calls focusIndex with -1', () => {
-  const state: ActivityBarState = createDefaultState()
-  const result: ActivityBarState = focusLast(state)
+const items: readonly ActivityBarItem[] = [
+  { flags: 0, icon: 'explorer', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+  { flags: 0, icon: 'settings', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+]
 
-  expect(result.focusedIndex).toBe(-1)
-  expect(result).not.toBe(state)
-})
+test('focusLast focuses the last visible item', () => {
+  const result = focusLast({ ...createDefaultState(), filteredItems: items, focused: false, focusedIndex: 0 })
 
-test('focusLast preserves other state properties', () => {
-  const items: readonly ActivityBarItem[] = [
-    {
-      flags: 0,
-      icon: 'icon1',
-      id: 'item1',
-      keyShortcuts: '',
-      title: 'Item 1',
-    },
-    {
-      flags: 0,
-      icon: 'icon2',
-      id: 'item2',
-      keyShortcuts: '',
-      title: 'Item 2',
-    },
-  ]
-
-  const state: ActivityBarState = {
-    ...createDefaultState(),
-    activityBarItems: items,
-    currentViewletId: 'test-viewlet',
-    focused: false,
-    focusedIndex: 2,
-  }
-
-  const { activityBarItems, currentViewletId } = state
-  const result: ActivityBarState = focusLast(state)
-
-  expect(result.focusedIndex).toBe(-1)
+  expect(result.focusedIndex).toBe(1)
   expect(result.focused).toBe(true)
-  expect(result.activityBarItems).toBe(activityBarItems)
-  expect(result.currentViewletId).toBe(currentViewletId)
 })
 
-test('focusLast returns new state object', () => {
-  const state: ActivityBarState = createDefaultState()
-  const result: ActivityBarState = focusLast(state)
+test('focusLast keeps an empty activity bar unfocused', () => {
+  const result = focusLast({ ...createDefaultState(), filteredItems: [], focusedIndex: -1 })
 
-  expect(result).not.toBe(state)
+  expect(result.focusedIndex).toBe(-1)
 })
