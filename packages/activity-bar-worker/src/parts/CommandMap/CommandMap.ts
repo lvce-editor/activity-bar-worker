@@ -15,7 +15,7 @@ import { getMenuEntryIds } from '../GetMenuEntryIds/GetMenuEntryIds.ts'
 import { handleBadgeCountChange } from '../handleBadgeCountChange/handleBadgeCountChange.ts'
 import { handleBlur } from '../HandleBlur/HandleBlur.ts'
 import * as HandleClick from '../HandleClick/HandleClick.ts'
-import { handleClickAccount } from '../HandleClickAccount/HandleClickAccount.ts'
+import { handleClickAccount, showAccountMenu } from '../HandleClickAccount/HandleClickAccount.ts'
 import { handleClickAdditionalViews } from '../HandleClickAdditionalViews/HandleClickAdditionalViews.ts'
 import { handleClickIndex } from '../HandleClickIndex/HandleClickIndex.ts'
 import { handleClickSettings } from '../HandleClickSettings/HandleClickSettings.ts'
@@ -76,6 +76,7 @@ export const commandMap = {
   'ActivityBar.selectCurrent': WrapCommand.wrapCommand(SelectCurrent.selectCurrent),
   'ActivityBar.setAccountEnabled': WrapCommand.wrapCommand(setAccountEnabled),
   'ActivityBar.setUserLoginState': WrapCommand.wrapCommand(setUserLoginState),
+  'ActivityBar.showAccountMenu': WrapCommand.wrapCommand(showAccountMenu),
   'ActivityBar.terminate': terminate,
   'ActivityBar.toggleActivityBarItem': WrapCommand.wrapCommand(toggleActivityBarItem),
 }

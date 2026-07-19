@@ -2,10 +2,10 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.account.context-menu.logging-in'
 
-export const test: Test = async ({ ActivityBar, expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
   await ActivityBar.setAccountEnabled(true)
   await ActivityBar.setUserLoginState('logging in')
-  await ActivityBar.handleClickAccount(0, 0)
+  await Command.execute('ActivityBar.showAccountMenu', 0, 0)
 
   const signingIn = Locator('.MenuItem', { hasText: 'Signing In...' })
   const signIn = Locator('.MenuItem', { hasText: 'Sign In' })

@@ -5,16 +5,20 @@ import * as ContextMenu from '../ContextMenu/ContextMenu.ts'
 
 export const ACCOUNT_MENU_ID = 32_122
 
-export const handleClickAccount = async (state: ActivityBarState, eventX: number, eventY: number, viewletId: string): Promise<ActivityBarState> => {
+export const showAccountMenu = async (state: ActivityBarState, eventX: number, eventY: number): Promise<ActivityBarState> => {
   const { sideBarLocation, uid } = state
-  try {
-    await RendererWorker.invoke('Layout.refreshAuthState')
-  } catch {
-    // Keep the account menu available when auth is unavailable.
-  }
   await ContextMenu.show2(uid, ACCOUNT_MENU_ID, eventX, eventY, {
     menuId: ACCOUNT_MENU_ID,
     openSubMenuToLeft: sideBarLocation === SideBarLocationType.Right,
   })
   return state
+}
+
+export const handleClickAccount = async (state: ActivityBarState, eventX: number, eventY: number, viewletId: string): Promise<ActivityBarState> => {
+  try {
+    await RendererWorker.invoke('Layout.refreshAuthState')
+  } catch {
+    // Keep the account menu available when auth is unavailable.
+  }
+  return showAccountMenu(state, eventX, eventY)
 }
