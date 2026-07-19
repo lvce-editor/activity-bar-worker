@@ -234,7 +234,7 @@ test('handleBadgeCountChange handles large badge counts', async () => {
   const result: ActivityBarState = await handleBadgeCountChange(state)
 
   expect(result.filteredItems[0].badgeText).toBe('999')
-  expect(result.filteredItems[1].badgeText).toBe('1000')
+  expect(result.filteredItems[1].badgeText).toBe('1K')
 })
 
 test('handleBadgeCountChange preserves item properties other than badgeText', async () => {

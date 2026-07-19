@@ -132,7 +132,7 @@ test('updateItemsWithBadgeCount returns original items on error', async () => {
 test('updateItemsWithBadgeCount handles multiple items with various counts', async () => {
   RendererWorker.registerMockRpc({
     'Layout.getBadgeCounts'() {
-      return { item1: 1, item2: 99, item3: 0, item4: 1000 }
+      return { item1: 1, item2: 99, item3: 0, item4: 1000, item5: 2518 }
     },
   })
   const items: readonly ActivityBarItem[] = [
@@ -140,6 +140,7 @@ test('updateItemsWithBadgeCount handles multiple items with various counts', asy
     { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
     { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
     { flags: 0, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
+    { flags: 0, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
   ]
 
   const result: readonly ActivityBarItem[] = await updateItemsWithBadgeCount(items)
@@ -147,5 +148,6 @@ test('updateItemsWithBadgeCount handles multiple items with various counts', asy
   expect(result[0].badgeText).toBe('1')
   expect(result[1].badgeText).toBe('99')
   expect(result[2].badgeText).toBe('')
-  expect(result[3].badgeText).toBe('1000')
+  expect(result[3].badgeText).toBe('1K')
+  expect(result[4].badgeText).toBe('2K+')
 })
