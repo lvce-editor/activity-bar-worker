@@ -18,8 +18,7 @@ export const getActivityBarItemInProgressDom = (item: ActivityBarItem): readonly
   const ariaSelected = getAriaSelected(isTab, isSelected)
   const ariaHasPopup = getActivityBarItemHasPopup(item) || undefined
   const marginTop = flags & ActivityBarItemFlags.MarginTop
-  let className = getClassName(isFocused, marginTop, isSelected)
-  className += ' ' + ClassNames.ActivityBarItemNested
+  const className = mergeClassNames(getClassName(isFocused, marginTop, isSelected), ClassNames.ActivityBarItemNested)
   return [
     {
       ariaHasPopup,
