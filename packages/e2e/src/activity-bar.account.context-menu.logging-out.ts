@@ -4,8 +4,8 @@ export const name = 'activity-bar.account.context-menu.logging-out'
 
 export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
   await ActivityBar.setAccountEnabled(true)
-  await ActivityBar.setUserLoginState('logging out', { provider: 'GitHub', userName: 'test-user' })
-  await Command.execute('ActivityBar.showAccountMenu', 0, 0)
+  await Command.execute('ActivityBar.setUserLoginState', 'logging out', { provider: 'GitHub', userName: 'test-user' })
+  await Command.execute('ActivityBar.handleClickAccount', 0, 0)
 
   const signIn = Locator('.MenuItem', { hasText: 'Sign In' })
   const signingOut = Locator('.MenuItem', { hasText: 'Signing Out...' })
