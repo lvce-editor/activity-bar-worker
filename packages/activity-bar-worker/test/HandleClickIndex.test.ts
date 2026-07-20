@@ -58,6 +58,25 @@ test('handleClickIndex handles Settings viewlet click', async () => {
   expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, MenuEntryId.Settings, 10, 20, { menuId: MenuEntryId.Settings }]])
 })
 
+test('handleClickIndex clears activity bar focus for a valid left click', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'ContextMenu.show2'() {},
+  })
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+  ]
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: items,
+    filteredItems: getFilteredActivityBarItems(items, 400, 48),
+    focused: true,
+  }
+
+  const result = await handleClickIndex(state, MouseEventType.LeftClick, 0, 10, 20)
+
+  expect(result.focused).toBe(false)
+})
+
 test('handleClickIndex handles Additional Views viewlet click', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2'() {},

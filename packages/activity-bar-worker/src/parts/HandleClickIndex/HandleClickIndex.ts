@@ -12,17 +12,23 @@ export const handleClickIndex = async (state: ActivityBarState, button: number, 
   if (index === -1) {
     return state
   }
-  const { filteredItems } = state
+  const clickState = state.focused
+    ? {
+        ...state,
+        focused: false,
+      }
+    : state
+  const { filteredItems } = clickState
   const item = filteredItems[index]
   const viewletId = item.id
   switch (viewletId) {
     case 'Account':
-      return HandleClickAccount.handleClickAccount(state, x, y, viewletId)
+      return HandleClickAccount.handleClickAccount(clickState, x, y, viewletId)
     case 'Additional Views':
-      return HandleClickAdditionalViews.handleClickAdditionalViews(state, x, y, viewletId)
+      return HandleClickAdditionalViews.handleClickAdditionalViews(clickState, x, y, viewletId)
     case 'Settings':
-      return HandleClickSettings.handleClickSettings(state, x, y, viewletId)
+      return HandleClickSettings.handleClickSettings(clickState, x, y, viewletId)
     default:
-      return HandleClickOther.handleClickOther(state, viewletId)
+      return HandleClickOther.handleClickOther(clickState, viewletId)
   }
 }

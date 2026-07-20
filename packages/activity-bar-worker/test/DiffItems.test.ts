@@ -50,6 +50,18 @@ test('isEqual returns false when focusedIndex differs', () => {
   expect(result).toBe(false)
 })
 
+test('isEqual returns false when focused differs', () => {
+  const oldState: ActivityBarState = createDefaultState()
+  const newState: ActivityBarState = {
+    ...oldState,
+    focused: true,
+  }
+
+  const result: boolean = isEqual(oldState, newState)
+
+  expect(result).toBe(false)
+})
+
 test('isEqual returns false when activityBarItems differ', () => {
   const oldState: ActivityBarState = {
     ...createDefaultState(),
