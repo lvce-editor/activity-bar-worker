@@ -75,6 +75,7 @@ test('handleClickIndex clears activity bar focus for a valid left click', async 
   const result = await handleClickIndex(state, MouseEventType.LeftClick, 0, 10, 20)
 
   expect(result.focused).toBe(false)
+  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 0, MenuEntryId.Settings, 10, 20, { menuId: MenuEntryId.Settings }]])
 })
 
 test('handleClickIndex handles Additional Views viewlet click', async () => {
