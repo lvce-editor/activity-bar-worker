@@ -12,13 +12,13 @@ export const handleClickIndex = async (state: ActivityBarState, button: number, 
   if (index === -1) {
     return state
   }
-  const clickState = state.focused
+  const { filteredItems, focused } = state
+  const clickState = focused
     ? {
         ...state,
         focused: false,
       }
     : state
-  const { filteredItems } = clickState
   const item = filteredItems[index]
   const viewletId = item.id
   switch (viewletId) {
