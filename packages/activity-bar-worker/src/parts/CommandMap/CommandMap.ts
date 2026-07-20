@@ -32,6 +32,7 @@ import { handleUpdateStateChange } from '../HandleUpdateStateChange/HandleUpdate
 import { loadContent } from '../LoadContent/LoadContent.ts'
 import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
+import { reset } from '../Reset/Reset.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectCurrent from '../SelectCurrent/SelectCurrent.ts'
 import { setAccountEnabled } from '../SetAccountEnabled/SetAccountEnabled.ts'
@@ -71,6 +72,7 @@ export const commandMap = {
   'ActivityBar.loadContent': WrapCommand.wrapCommand(loadContent),
   'ActivityBar.render2': Render2.render2,
   'ActivityBar.renderEventListeners': RenderEventListeners.renderEventListeners,
+  'ActivityBar.reset': WrapCommand.wrapCommand(reset),
   'ActivityBar.resize': WrapCommand.wrapCommand(handleResize),
   'ActivityBar.saveState': WrapCommand.wrapGetter(SaveState.saveState),
   'ActivityBar.selectCurrent': WrapCommand.wrapCommand(SelectCurrent.selectCurrent),
