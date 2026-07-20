@@ -4,6 +4,7 @@ export const isEqual = (oldState: ActivityBarState, newState: ActivityBarState):
   return (
     oldState.activityBarItems === newState.activityBarItems &&
     oldState.filteredItems === newState.filteredItems &&
+    oldState.focused === newState.focused &&
     oldState.focusedIndex === newState.focusedIndex &&
     oldState.sideBarLocation === newState.sideBarLocation &&
     oldState.sideBarVisible === newState.sideBarVisible &&

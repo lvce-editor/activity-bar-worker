@@ -4,11 +4,11 @@ import { getActivityBarVirtualDom } from '../GetActivityBarVirtualDom/GetActivit
 import { getVisibleActivityBarItems } from '../GetVisibleActivityBarItems/GetVisibleActivityBarItems.ts'
 
 export const renderItems = (oldState: ActivityBarState, newState: ActivityBarState): any => {
-  const { filteredItems, focusedIndex, initial, uid } = newState
+  const { filteredItems, focused, focusedIndex, initial, uid } = newState
   if (initial) {
     return [ViewletCommand.SetDom2, uid, []]
   }
-  const visibleItems = getVisibleActivityBarItems(filteredItems, focusedIndex)
+  const visibleItems = getVisibleActivityBarItems(filteredItems, focused ? focusedIndex : -1)
   const dom = getActivityBarVirtualDom(visibleItems)
   return [ViewletCommand.SetDom2, uid, dom]
 }

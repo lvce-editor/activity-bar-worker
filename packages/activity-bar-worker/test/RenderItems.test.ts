@@ -155,6 +155,7 @@ test('renderItems applies the focus outline to the focused item', () => {
   const newState: ActivityBarState = {
     ...createDefaultState(),
     filteredItems: items,
+    focused: true,
     focusedIndex: 1,
     initial: false,
   }
@@ -163,4 +164,23 @@ test('renderItems applies the focus outline to the focused item', () => {
   const searchNode = result[2].find((node: any) => node.title === 'Search')
 
   expect(searchNode.className).toContain('FocusOutline')
+})
+
+test('renderItems removes the focus outline when the activity bar is blurred', () => {
+  const items: readonly any[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'explorer', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'search', id: 'Search', keyShortcuts: '', title: 'Search' },
+  ]
+  const newState: ActivityBarState = {
+    ...createDefaultState(),
+    filteredItems: items,
+    focused: false,
+    focusedIndex: 1,
+    initial: false,
+  }
+
+  const result: any = renderItems(createDefaultState(), newState)
+  const searchNode = result[2].find((node: any) => node.title === 'Search')
+
+  expect(searchNode.className).not.toContain('FocusOutline')
 })
