@@ -42,16 +42,16 @@ test('GetActivityBarItems.getActivityBarItems should return expected number of i
   const state = { ...CreateDefaultState.createDefaultState(), accountEnabled: false }
   const result = GetActivityBarItems.getActivityBarItems(state)
 
-  // Based on the source code, there should be 6 items (5 tabs + 1 settings button)
-  expect(result.length).toBe(6)
+  // 5 enabled tabs + 1 on-demand References tab + 1 settings button
+  expect(result.length).toBe(7)
 })
 
 test('GetActivityBarItems.getActivityBarItems should return expected number of items when accountEnabled is true', () => {
   const state = { ...CreateDefaultState.createDefaultState(), accountEnabled: true }
   const result = GetActivityBarItems.getActivityBarItems(state)
 
-  // Based on the source code, there should be 7 items (5 tabs + 1 account button + 1 settings button)
-  expect(result.length).toBe(7)
+  // 5 enabled tabs + 1 on-demand References tab + 1 account button + 1 settings button
+  expect(result.length).toBe(8)
 })
 
 test('GetActivityBarItems.getActivityBarItems should not include running extensions', () => {
@@ -77,6 +77,40 @@ test('GetActivityBarItems.getActivityBarItems should have non-empty titles', () 
   for (const item of result) {
     expect(item.title.length).toBeGreaterThan(0)
   }
+})
+
+test('GetActivityBarItems.getActivityBarItems includes References hidden by default', () => {
+  const state = CreateDefaultState.createDefaultState()
+  const result = GetActivityBarItems.getActivityBarItems(state)
+
+  const referencesItem = result.find((item) => item.id === 'References')
+  expect(referencesItem).toEqual({
+    flags: ActivityBarItemFlags.Tab,
+    icon: 'References',
+    id: 'References',
+    keyShortcuts: '',
+    title: 'References',
+  })
+})
+
+test('GetActivityBarItems.getActivityBarItems preserves an activated References item', () => {
+  const state = {
+    ...CreateDefaultState.createDefaultState(),
+    activityBarItems: [
+      {
+        flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
+        icon: 'References',
+        id: 'References',
+        keyShortcuts: '',
+        title: 'References',
+      },
+    ],
+  }
+  const result = GetActivityBarItems.getActivityBarItems(state)
+
+  const referencesItem = result.find((item) => item.id === 'References')
+  expect(referencesItem).toBeDefined()
+  expect(referencesItem!.flags & ActivityBarItemFlags.Enabled).toBe(ActivityBarItemFlags.Enabled)
 })
 
 test('GetActivityBarItems.getActivityBarItems should include account button when accountEnabled is true', () => {

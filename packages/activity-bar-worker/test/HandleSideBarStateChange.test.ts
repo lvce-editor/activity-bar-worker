@@ -135,3 +135,57 @@ test('handleSideBarStateChange uses explicit hidden visibility without querying 
     sideBarVisible: false,
   })
 })
+
+test('handleSideBarStateChange enables and selects the on-demand References item', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({})
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: [
+      { flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled, icon: 'Files', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+      { flags: ActivityBarItemFlags.Tab, icon: 'References', id: 'References', keyShortcuts: '', title: 'References' },
+    ],
+  }
+
+  const result = await handleSideBarStateChange(state, 'References', true)
+
+  expect(mockRpc.invocations).toEqual([])
+  expect(result.selectedIndex).toBe(1)
+  expect(result.currentViewletId).toBe('References')
+  expect(result.activityBarItems[1].flags & ActivityBarItemFlags.Enabled).toBe(ActivityBarItemFlags.Enabled)
+  expect(result.activityBarItems[1].flags & ActivityBarItemFlags.Selected).toBe(ActivityBarItemFlags.Selected)
+  expect(result.filteredItems.map((item) => item.id)).toEqual(['Explorer', 'References'])
+})
+
+test('handleSideBarStateChange keeps References enabled after switching away', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({})
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: [
+      { flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled, icon: 'Files', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+      { flags: ActivityBarItemFlags.Tab, icon: 'References', id: 'References', keyShortcuts: '', title: 'References' },
+    ],
+  }
+
+  const referencesState = await handleSideBarStateChange(state, 'References', true)
+  const result = await handleSideBarStateChange(referencesState, 'Explorer', true)
+
+  expect(mockRpc.invocations).toEqual([])
+  expect(result.selectedIndex).toBe(0)
+  expect(result.activityBarItems[1].flags & ActivityBarItemFlags.Enabled).toBe(ActivityBarItemFlags.Enabled)
+  expect(result.activityBarItems[1].flags & ActivityBarItemFlags.Selected).toBe(0)
+  expect(result.filteredItems.map((item) => item.id)).toEqual(['Explorer', 'References'])
+})
+
+test('handleSideBarStateChange does not automatically re-enable other hidden items', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({})
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: [{ flags: ActivityBarItemFlags.Tab, icon: 'Search', id: 'Search', keyShortcuts: '', title: 'Search' }],
+  }
+
+  const result = await handleSideBarStateChange(state, 'Search', true)
+
+  expect(mockRpc.invocations).toEqual([])
+  expect(result.activityBarItems[0].flags & ActivityBarItemFlags.Enabled).toBe(0)
+  expect(result.filteredItems).toEqual([])
+})
