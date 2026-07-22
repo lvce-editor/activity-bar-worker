@@ -30,7 +30,10 @@ const toActivityBarItem = (view: ContributedView): ActivityBarItem => {
 }
 
 export const getActivityBarItems = (state: ActivityBarState, contributedViews: readonly ContributedView[] = []): readonly ActivityBarItem[] => {
-  const { accountEnabled } = state
+  const { accountEnabled, activityBarItems } = state
+  const referencesEnabled = activityBarItems.some(
+    (item) => item.id === ViewletModuleId.References && Boolean(item.flags & ActivityBarItemFlags.Enabled),
+  )
   const settingsFlags = ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled | (accountEnabled ? 0 : ActivityBarItemFlags.MarginTop)
   const items = [
     // Top
@@ -68,6 +71,13 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
       id: ViewletModuleId.Extensions,
       keyShortcuts: 'Control+Shift+X',
       title: ViewletActivityBarStrings.extensions(),
+    },
+    {
+      flags: ActivityBarItemFlags.Tab | (referencesEnabled ? ActivityBarItemFlags.Enabled : 0),
+      icon: Icon.References,
+      id: ViewletModuleId.References,
+      keyShortcuts: '',
+      title: ViewletActivityBarStrings.references(),
     },
     ...contributedViews.map(toActivityBarItem),
     // Bottom

@@ -6,10 +6,18 @@ import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetF
 import { getSideBarVisible } from '../GetSideBarVisible/GetSideBarVisible.ts'
 import { markSelected } from '../MarkSelected/MarkSelected.ts'
 import { setFlag } from '../SetFlag/SetFlag.ts'
+import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 
 const clearItem = (item: ActivityBarItem): ActivityBarItem => {
   const withoutSelected = setFlag(item, ActivityBarItemFlags.Selected, false)
   return setFlag(withoutSelected, ActivityBarItemFlags.Focused, false)
+}
+
+const enableReferencesItem = (items: readonly ActivityBarItem[], id: string): readonly ActivityBarItem[] => {
+  if (id !== ViewletModuleId.References) {
+    return items
+  }
+  return items.map((item) => (item.id === id ? setFlag(item, ActivityBarItemFlags.Enabled, true) : item))
 }
 
 export const handleSideBarStateChange = async (state: ActivityBarState, id?: string, sideBarVisibleOverride?: boolean): Promise<ActivityBarState> => {
@@ -28,8 +36,9 @@ export const handleSideBarStateChange = async (state: ActivityBarState, id?: str
       sideBarVisible: false,
     }
   }
-  const selectedIndex = findIndex(activityBarItems, resolvedId)
-  const newActivityBarItems = markSelected(activityBarItems, selectedIndex)
+  const enabledItems = enableReferencesItem(activityBarItems, resolvedId)
+  const selectedIndex = findIndex(enabledItems, resolvedId)
+  const newActivityBarItems = markSelected(enabledItems, selectedIndex)
   const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)
   return {
     ...state,

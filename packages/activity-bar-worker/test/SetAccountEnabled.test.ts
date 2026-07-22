@@ -17,7 +17,7 @@ test('setAccountEnabled enables account and rebuilds item lists', () => {
 
   expect(result).not.toBe(state)
   expect(result.accountEnabled).toBe(true)
-  expect(result.activityBarItems.length).toBe(7)
+  expect(result.activityBarItems.length).toBe(8)
   expect(result.filteredItems.length).toBe(7)
   expect(result.activityBarItems.some((item) => item.id === 'Account')).toBe(true)
   expect(result.filteredItems.some((item) => item.id === 'Account')).toBe(true)
@@ -37,7 +37,7 @@ test('setAccountEnabled disables account and removes account item', () => {
   const result = setAccountEnabled(stateWithAccount, false)
 
   expect(result.accountEnabled).toBe(false)
-  expect(result.activityBarItems.length).toBe(6)
+  expect(result.activityBarItems.length).toBe(7)
   expect(result.filteredItems.length).toBe(6)
   expect(result.activityBarItems.some((item) => item.id === 'Account')).toBe(false)
   expect(result.filteredItems.some((item) => item.id === 'Account')).toBe(false)
@@ -69,4 +69,28 @@ test('setAccountEnabled recalculates filtered items for constrained height', () 
   expect(result.filteredItems.length).toBe(4)
   expect(result.filteredItems[2].id).toBe('Additional Views')
   expect(result.filteredItems[3].id).toBe('Settings')
+})
+
+test('setAccountEnabled preserves an activated References item', () => {
+  const state = {
+    ...createDefaultState(),
+    accountEnabled: false,
+    activityBarItems: [
+      {
+        flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
+        icon: 'References',
+        id: 'References',
+        keyShortcuts: '',
+        title: 'References',
+      },
+    ],
+    height: 1200,
+  }
+
+  const result = setAccountEnabled(state, true)
+
+  const referencesItem = result.activityBarItems.find((item) => item.id === 'References')
+  expect(referencesItem).toBeDefined()
+  expect(referencesItem!.flags & ActivityBarItemFlags.Enabled).toBe(ActivityBarItemFlags.Enabled)
+  expect(result.filteredItems.some((item) => item.id === 'References')).toBe(true)
 })

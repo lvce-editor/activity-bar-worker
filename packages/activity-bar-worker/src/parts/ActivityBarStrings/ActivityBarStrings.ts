@@ -25,6 +25,10 @@ export const extensions = (): string => {
   return I18nString.i18nString(UiStrings.Extensions)
 }
 
+export const references = (): string => {
+  return I18nString.i18nString(UiStrings.References)
+}
+
 export const settings = (): string => {
   return I18nString.i18nString(UiStrings.Settings)
 }
