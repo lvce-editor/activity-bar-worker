@@ -13,7 +13,7 @@ export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locato
   await Editor.findAllReferences()
 
   const references = Locator('.ActivityBarItem[title="References"]')
-  const referencesIcon = references.locator('.IconReferences')
+  const referencesIcon = references.locator('.MaskIconReferences')
   const sideBarTitle = Locator('.SideBarTitleAreaTitle')
   const locations = Locator('.Locations')
   await expect(references).toBeVisible()
