@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.references-switch-away-and-back'
 
-export const test: Test = async ({ ActivityBar, Editor, expect, Extension, FileSystem, Locator, Main }) => {
+export const test: Test = async ({ Command, Editor, expect, Extension, FileSystem, Locator, Main }) => {
   const url = import.meta.resolve('../fixtures/sample.reference-provider-basic')
   await Extension.addWebExtension(url)
   const tmpDir = await FileSystem.getTmpDir()
@@ -15,14 +15,14 @@ export const test: Test = async ({ ActivityBar, Editor, expect, Extension, FileS
   const sideBarTitle = Locator('.SideBarTitleAreaTitle')
   const locations = Locator('.Locations')
 
-  await ActivityBar.handleClick(1)
+  await Command.execute('ActivityBar.handleClickIndex', 0, 1, 0, 0)
 
   await expect(search).toHaveAttribute('aria-selected', 'true')
   await expect(references).toBeVisible()
   await expect(references).toHaveAttribute('aria-selected', 'false')
   await expect(references).toHaveClass('IconReferences')
 
-  await ActivityBar.handleClick(5)
+  await Command.execute('ActivityBar.handleClickIndex', 0, 5, 0, 0)
 
   await expect(references).toHaveAttribute('aria-selected', 'true')
   await expect(sideBarTitle).toHaveText('References')
