@@ -89,7 +89,7 @@ test('toContextMenuItem passes item id as argument', () => {
   expect(result.args[0]).toBe('Debug')
 })
 
-test('toContextMenuItem preserves item label from id', () => {
+test('toContextMenuItem uses item title as label', () => {
   const item: ActivityBarItem = {
     flags: ActivityBarItemFlags.Enabled,
     icon: 'debug',
@@ -100,5 +100,5 @@ test('toContextMenuItem preserves item label from id', () => {
 
   const result = toContextMenuItem(item)
 
-  expect(result.label).toBe('Run and Debug')
+  expect(result.label).toBe('Run and Debug Panel')
 })

@@ -10,6 +10,6 @@ export const toContextMenuItem = (activityBarItem: ActivityBarItem): MenuEntry =
     command: 'ActivityBar.toggleActivityBarItem',
     flags: isEnabled ? MenuItemFlags.Checked : MenuItemFlags.Unchecked,
     id: `toggle-${activityBarItem.id}`,
-    label: activityBarItem.id,
+    label: activityBarItem.title,
   }
 }
