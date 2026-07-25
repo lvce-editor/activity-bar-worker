@@ -7,6 +7,8 @@ export const test: Test = async ({ Command, expect, Locator }) => {
 
   const explorer = Locator('.ActivityBarItem[title="Explorer"]')
   const badge = explorer.locator('.ActivityBarItemBadge')
-  await expect(explorer).toHaveClass('IconFiles')
+  const icon = explorer.locator('.MaskIconFiles')
+  await expect(explorer).toHaveAttribute('aria-selected', 'true')
+  await expect(icon).toBeVisible()
   await expect(badge).toHaveCount(0)
 }
