@@ -8,9 +8,9 @@ export const test: Test = async ({ Command, ContextMenu, expect, Locator }) => {
 
   await Command.execute('ActivityBar.handleContextMenu', 300, 300, 0, 0)
 
-  const menuItem = Locator('.MenuItem', { hasText: 'Run And Debug' })
+  const menuItem = Locator('.MenuItem', { hasText: 'Run and Debug' })
   await expect(menuItem).toBeVisible()
-  await ContextMenu.selectItem('Run And Debug')
+  await ContextMenu.selectItem('Run and Debug')
 
   await expect(runAndDebug).toHaveCount(0)
 }

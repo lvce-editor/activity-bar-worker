@@ -75,7 +75,7 @@ test('getMenuEntriesAdditionalViews returns menu entries for hidden items', () =
   expect(result[0].command).toBe('-1')
   expect(result[0].flags).toBe(MenuItemFlags.None)
   expect(result[0].id).toBe('8000')
-  expect(result[0].label).toBe('item7')
+  expect(result[0].label).toBe('Item 7')
 })
 
 test('getMenuEntriesAdditionalViews maps hidden items to menu entries with correct structure', () => {
@@ -110,7 +110,7 @@ test('getMenuEntriesAdditionalViews maps hidden items to menu entries with corre
   }
 })
 
-test('getMenuEntriesAdditionalViews uses item id as label', () => {
+test('getMenuEntriesAdditionalViews uses item title as label', () => {
   const items: readonly ActivityBarItem[] = [
     { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'custom-id-1', keyShortcuts: '', title: 'Item 1' },
     { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'custom-id-2', keyShortcuts: '', title: 'Item 2' },
@@ -133,7 +133,7 @@ test('getMenuEntriesAdditionalViews uses item id as label', () => {
   const result = getMenuEntriesAdditionalViews(state)
 
   expect(result.length).toBeGreaterThan(0)
-  expect(result[0].label).toBe('custom-id-7')
+  expect(result[0].label).toBe('Item 7')
 })
 
 test('getMenuEntriesAdditionalViews handles different height and itemHeight values', () => {
@@ -155,10 +155,10 @@ test('getMenuEntriesAdditionalViews handles different height and itemHeight valu
   const result = getMenuEntriesAdditionalViews(state)
 
   expect(result.length).toBe(4)
-  expect(result[0].label).toBe('item1')
-  expect(result[1].label).toBe('item2')
-  expect(result[2].label).toBe('item3')
-  expect(result[3].label).toBe('item4')
+  expect(result[0].label).toBe('Item 1')
+  expect(result[1].label).toBe('Item 2')
+  expect(result[2].label).toBe('Item 3')
+  expect(result[3].label).toBe('Item 4')
 })
 
 test('getMenuEntriesAdditionalViews handles many items', () => {

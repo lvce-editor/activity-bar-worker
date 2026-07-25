@@ -9,7 +9,7 @@ const toContextMenuItem = (activityBarItem: ActivityBarItem): MenuEntry => {
     command: '-1', // TODO
     flags: MenuItemFlags.None,
     id: '8000', // TODO
-    label: activityBarItem.id,
+    label: activityBarItem.title,
   }
 }
 

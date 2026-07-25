@@ -29,14 +29,14 @@ test('getMenuEntriesActivityBar returns menu entries with items, separator, move
     command: 'ActivityBar.toggleActivityBarItem',
     flags: MenuItemFlags.Unchecked,
     id: 'toggle-item1',
-    label: 'item1',
+    label: 'Item 1',
   })
   expect(result[1]).toEqual({
     args: ['item2'],
     command: 'ActivityBar.toggleActivityBarItem',
     flags: MenuItemFlags.Checked,
     id: 'toggle-item2',
-    label: 'item2',
+    label: 'Item 2',
   })
   expect(result[2]).toBe(MenuEntrySeparator.menuEntrySeparator)
   expect(result[3]).toEqual({
@@ -80,7 +80,7 @@ test('getMenuEntriesActivityBar inserts a separator before bottom utility items'
       command: 'ActivityBar.toggleActivityBarItem',
       flags: MenuItemFlags.Checked,
       id: 'toggle-item1',
-      label: 'item1',
+      label: 'Item 1',
     },
     MenuEntrySeparator.menuEntrySeparator,
     {
@@ -178,7 +178,7 @@ test('getMenuEntriesActivityBar marks enabled items as checked and disabled item
   expect(result[2].flags).toBe(MenuItemFlags.Checked)
 })
 
-test('getMenuEntriesActivityBar uses item id as label', () => {
+test('getMenuEntriesActivityBar uses item title as label', () => {
   const items: readonly ActivityBarItem[] = [
     { flags: 0, icon: 'icon1', id: 'explorer', keyShortcuts: '', title: 'Explorer' },
     { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'search', keyShortcuts: '', title: 'Search' },
@@ -192,6 +192,6 @@ test('getMenuEntriesActivityBar uses item id as label', () => {
 
   const result: readonly MenuEntry[] = getMenuEntriesActivityBar(state)
 
-  expect(result[0].label).toBe('explorer')
-  expect(result[1].label).toBe('search')
+  expect(result[0].label).toBe('Explorer')
+  expect(result[1].label).toBe('Search')
 })
