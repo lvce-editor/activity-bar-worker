@@ -10,7 +10,7 @@ const instantiationsPath = join(root, 'packages', 'activity-bar-worker')
 
 const workerPath = join(root, '.tmp/dist/dist/activityBarWorkerMain.js')
 
-const playwrightPath = new URL('../../e2e/node_modules/playwright/index.mjs', import.meta.url).toString()
+const playwrightPath = new URL('../../../node_modules/playwright/index.mjs', import.meta.url).toString()
 
 const main = async () => {
   await measureMemory({

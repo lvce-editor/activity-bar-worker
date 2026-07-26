@@ -3,8 +3,7 @@
   "exclude": ["exports", "types"],
   "workspaces": {
     ".": {
-      "project": ["*.js"],
-      "ignoreDependencies": ["@lerna/legacy-package-management"]
+      "project": ["*.js"]
     },
     "packages/activity-bar-worker": {
       "entry": ["src/activityBarWorkerMain.ts", "test/**/*.test.ts"],

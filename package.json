@@ -3,6 +3,9 @@
   "version": "0.0.0-dev",
   "license": "MIT",
   "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "node packages/build/src/build.ts",
     "build:static": "node packages/build/src/build-static.ts",
@@ -15,10 +18,9 @@
     "e2e:webkit": "cd packages/e2e && npm run e2e:webkit",
     "e2e:webkit:headless": "cd packages/e2e && npm run e2e:webkit:headless",
     "format": "prettier --write .",
-    "postinstall": "lerna bootstrap --ci",
     "lint": "eslint . && prettier --check . && knip --no-config-hints",
     "measure": "node --experimental-strip-types packages/build/src/measureMemory.ts",
-    "test": "lerna run test",
+    "test": "npm test --workspaces --if-present",
     "type-check": "tsc -b"
   },
   "prettier": {
@@ -27,11 +29,9 @@
     "printWidth": 150
   },
   "devDependencies": {
-    "@lerna/legacy-package-management": "^8.2.4",
     "@lvce-editor/eslint-config": "^17.0.3",
     "eslint": "^10.7.0",
     "knip": "^6.27.0",
-    "lerna": "^8.2.4",
     "prettier": "^3.9.5",
     "typescript": "^6.0.3"
   }

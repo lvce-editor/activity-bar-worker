@@ -3,8 +3,8 @@ import { root } from './root.ts'
 
 const main = async () => {
   const isWindows = process.platform === 'win32'
-  const arg0 = isWindows ? 'node' : `packages/build/node_modules/esbuild/bin/esbuild`
-  const arg1 = isWindows ? [`packages/build/node_modules/esbuild/bin/esbuild`] : []
+  const arg0 = isWindows ? 'node' : `node_modules/esbuild/bin/esbuild`
+  const arg1 = isWindows ? [`node_modules/esbuild/bin/esbuild`] : []
 
   execa(
     arg0,
