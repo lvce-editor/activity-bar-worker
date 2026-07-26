@@ -174,7 +174,7 @@ test('handleClick handles Additional Views viewlet click', async () => {
       MenuEntryId.ActivityBarAdditionalViews,
       0,
       100,
-      { menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: 'Additional Views' },
+      { menuId: MenuEntryId.ActivityBarAdditionalViews, openSubMenuToLeft: false, viewletId: 'Additional Views' },
     ],
   ])
 })

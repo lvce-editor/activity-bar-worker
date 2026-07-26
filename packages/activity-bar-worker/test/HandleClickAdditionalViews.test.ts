@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals'
-import { MenuEntryId } from '@lvce-editor/constants'
+import { MenuEntryId, SideBarLocationType } from '@lvce-editor/constants'
 import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
@@ -20,7 +20,7 @@ test('handleClickAdditionalViews calls ContextMenu.show with correct parameters'
       MenuEntryId.ActivityBarAdditionalViews,
       100,
       200,
-      { menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: 'Additional Views' },
+      { menuId: MenuEntryId.ActivityBarAdditionalViews, openSubMenuToLeft: false, viewletId: 'Additional Views' },
     ],
   ])
   expect(result).toBe(state)
@@ -42,7 +42,7 @@ test('handleClickAdditionalViews returns the same state', async () => {
       MenuEntryId.ActivityBarAdditionalViews,
       50,
       75,
-      { menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: 'Additional Views' },
+      { menuId: MenuEntryId.ActivityBarAdditionalViews, openSubMenuToLeft: false, viewletId: 'Additional Views' },
     ],
   ])
 })
@@ -63,7 +63,7 @@ test('handleClickAdditionalViews calls ContextMenu.show with different coordinat
       MenuEntryId.ActivityBarAdditionalViews,
       0,
       0,
-      { menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: 'Additional Views' },
+      { menuId: MenuEntryId.ActivityBarAdditionalViews, openSubMenuToLeft: false, viewletId: 'Additional Views' },
     ],
     [
       'ContextMenu.show2',
@@ -71,7 +71,7 @@ test('handleClickAdditionalViews calls ContextMenu.show with different coordinat
       MenuEntryId.ActivityBarAdditionalViews,
       500,
       1000,
-      { menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: 'Additional Views' },
+      { menuId: MenuEntryId.ActivityBarAdditionalViews, openSubMenuToLeft: false, viewletId: 'Additional Views' },
     ],
   ])
 })
@@ -91,7 +91,30 @@ test('handleClickAdditionalViews calls with ActivityBarAdditionalViews MenuEntry
       MenuEntryId.ActivityBarAdditionalViews,
       10,
       20,
-      { menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: 'Additional Views' },
+      { menuId: MenuEntryId.ActivityBarAdditionalViews, openSubMenuToLeft: false, viewletId: 'Additional Views' },
+    ],
+  ])
+})
+
+test('handleClickAdditionalViews opens submenus to the left when the side bar is on the right', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'ContextMenu.show2'() {},
+  })
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    sideBarLocation: SideBarLocationType.Right,
+  }
+
+  await handleClickAdditionalViews(state, 100, 200, 'Additional Views')
+
+  expect(mockRpc.invocations).toEqual([
+    [
+      'ContextMenu.show2',
+      0,
+      MenuEntryId.ActivityBarAdditionalViews,
+      100,
+      200,
+      { menuId: MenuEntryId.ActivityBarAdditionalViews, openSubMenuToLeft: true, viewletId: 'Additional Views' },
     ],
   ])
 })
@@ -114,7 +137,7 @@ test('handleClickAdditionalViews preserves state regardless of viewletId', async
       MenuEntryId.ActivityBarAdditionalViews,
       100,
       200,
-      { menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: 'Additional Views' },
+      { menuId: MenuEntryId.ActivityBarAdditionalViews, openSubMenuToLeft: false, viewletId: 'Additional Views' },
     ],
     [
       'ContextMenu.show2',
@@ -122,7 +145,7 @@ test('handleClickAdditionalViews preserves state regardless of viewletId', async
       MenuEntryId.ActivityBarAdditionalViews,
       100,
       200,
-      { menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: 'DifferentViewlet' },
+      { menuId: MenuEntryId.ActivityBarAdditionalViews, openSubMenuToLeft: false, viewletId: 'DifferentViewlet' },
     ],
   ])
 })

@@ -18,6 +18,7 @@ import * as HandleClick from '../HandleClick/HandleClick.ts'
 import { handleClickAccount } from '../HandleClickAccount/HandleClickAccount.ts'
 import { handleClickAdditionalViews } from '../HandleClickAdditionalViews/HandleClickAdditionalViews.ts'
 import { handleClickIndex } from '../HandleClickIndex/HandleClickIndex.ts'
+import { handleClickOther } from '../HandleClickOther/HandleClickOther.ts'
 import { handleClickSettings } from '../HandleClickSettings/HandleClickSettings.ts'
 import { handleClickSignIn } from '../HandleClickSignIn/HandleClickSignIn.ts'
 import { handleClickSignOut } from '../HandleClickSignOut/HandleClickSignOut.ts'
@@ -59,6 +60,7 @@ export const commandMap = {
   'ActivityBar.handleClickAccount': WrapCommand.wrapCommand(handleClickAccount),
   'ActivityBar.handleClickAdditionalViews': WrapCommand.wrapCommand(handleClickAdditionalViews),
   'ActivityBar.handleClickIndex': WrapCommand.wrapCommand(handleClickIndex),
+  'ActivityBar.handleClickOther': WrapCommand.wrapCommand(handleClickOther),
   'ActivityBar.handleClickSettings': WrapCommand.wrapCommand(handleClickSettings),
   'ActivityBar.handleClickSignIn': WrapCommand.wrapCommand(handleClickSignIn),
   'ActivityBar.handleClickSignOut': WrapCommand.wrapCommand(handleClickSignOut),
