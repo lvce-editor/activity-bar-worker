@@ -6,6 +6,7 @@ export interface ContextMenuPropsBase {
 
 export interface ContextMenuPropsAdditionalViews extends ContextMenuPropsBase {
   readonly menuId: typeof MenuEntryId.ActivityBarAdditionalViews
+  readonly openSubMenuToLeft?: boolean
   readonly viewletId: string
 }
 

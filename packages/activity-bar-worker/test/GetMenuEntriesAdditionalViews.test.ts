@@ -5,6 +5,7 @@ import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBar
 import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getMenuEntriesAdditionalViews } from '../src/parts/GetMenuEntriesAdditionalViews/GetMenuEntriesAdditionalViews.ts'
+import { ACCOUNT_MENU_ID } from '../src/parts/HandleClickAccount/HandleClickAccount.ts'
 
 test('getMenuEntriesAdditionalViews returns empty array when no items are hidden', () => {
   const items: readonly ActivityBarItem[] = [
@@ -72,9 +73,10 @@ test('getMenuEntriesAdditionalViews returns menu entries for hidden items', () =
   const result = getMenuEntriesAdditionalViews(state)
 
   expect(result.length).toBeGreaterThan(0)
-  expect(result[0].command).toBe('-1')
+  expect(result[0].args).toEqual(['item7'])
+  expect(result[0].command).toBe('ActivityBar.handleClickOther')
   expect(result[0].flags).toBe(MenuItemFlags.None)
-  expect(result[0].id).toBe('8000')
+  expect(result[0].id).toBe('open-item7')
   expect(result[0].label).toBe('Item 7')
 })
 
@@ -103,9 +105,9 @@ test('getMenuEntriesAdditionalViews maps hidden items to menu entries with corre
   const result = getMenuEntriesAdditionalViews(state)
 
   for (const entry of result) {
-    expect(entry.command).toBe('-1')
+    expect(entry.command).toBe('ActivityBar.handleClickOther')
     expect(entry.flags).toBe(MenuItemFlags.None)
-    expect(entry.id).toBe('8000')
+    expect(entry.id).toBe(`open-${entry.args[0]}`)
     expect(typeof entry.label).toBe('string')
   }
 })
@@ -180,7 +182,44 @@ test('getMenuEntriesAdditionalViews handles many items', () => {
   const result = getMenuEntriesAdditionalViews(state)
 
   expect(result.length).toBeGreaterThan(0)
-  expect(result.every((entry) => entry.command === '-1')).toBe(true)
+  expect(result.every((entry) => entry.command === 'ActivityBar.handleClickOther')).toBe(true)
   expect(result.every((entry) => entry.flags === MenuItemFlags.None)).toBe(true)
-  expect(result.every((entry) => entry.id === '8000')).toBe(true)
+  expect(result.every((entry) => entry.id === `open-${entry.args[0]}`)).toBe(true)
+})
+
+test('getMenuEntriesAdditionalViews returns Account as a submenu', () => {
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'files', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'account', id: 'Account', keyShortcuts: '', title: 'Account' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'settings', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+  ]
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: items,
+    height: 96,
+    itemHeight: 48,
+  }
+
+  const result = getMenuEntriesAdditionalViews(state)
+
+  expect(result).toEqual([
+    {
+      args: ['Explorer'],
+      command: 'ActivityBar.handleClickOther',
+      flags: MenuItemFlags.None,
+      id: 'open-Explorer',
+      label: 'Explorer',
+    },
+    {
+      args: [
+        {
+          menuId: ACCOUNT_MENU_ID,
+        },
+      ],
+      command: '',
+      flags: MenuItemFlags.SubMenu,
+      id: ACCOUNT_MENU_ID,
+      label: 'Account',
+    },
+  ])
 })

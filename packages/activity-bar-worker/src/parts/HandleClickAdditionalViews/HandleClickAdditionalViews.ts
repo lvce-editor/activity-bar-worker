@@ -1,4 +1,4 @@
-import { MenuEntryId } from '@lvce-editor/constants'
+import { MenuEntryId, SideBarLocationType } from '@lvce-editor/constants'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import * as ContextMenu from '../ContextMenu/ContextMenu.ts'
 
@@ -8,9 +8,10 @@ export const handleClickAdditionalViews = async (
   eventY: number,
   viewletId: string,
 ): Promise<ActivityBarState> => {
-  const { uid } = state
+  const { sideBarLocation, uid } = state
   await ContextMenu.show2(uid, MenuEntryId.ActivityBarAdditionalViews, eventX, eventY, {
     menuId: MenuEntryId.ActivityBarAdditionalViews,
+    openSubMenuToLeft: sideBarLocation === SideBarLocationType.Right,
     viewletId,
   })
   return state
