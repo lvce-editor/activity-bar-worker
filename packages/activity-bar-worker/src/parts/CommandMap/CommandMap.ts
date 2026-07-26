@@ -38,7 +38,9 @@ import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectCurrent from '../SelectCurrent/SelectCurrent.ts'
 import { setAccountEnabled } from '../SetAccountEnabled/SetAccountEnabled.ts'
 import { setUserLoginState } from '../SetUserLoginState/SetUserLoginState.ts'
+import { sleep } from '../Sleep/Sleep.ts'
 import { toggleActivityBarItem } from '../ToggleActivityBarItem/ToggleActivityBarItem.ts'
+import { wakeUp } from '../WakeUp/WakeUp.ts'
 
 export const commandMap = {
   'ActivityBar.create': Create.create,
@@ -80,6 +82,8 @@ export const commandMap = {
   'ActivityBar.selectCurrent': WrapCommand.wrapCommand(SelectCurrent.selectCurrent),
   'ActivityBar.setAccountEnabled': WrapCommand.wrapCommand(setAccountEnabled),
   'ActivityBar.setUserLoginState': WrapCommand.wrapCommand(setUserLoginState),
+  'ActivityBar.sleep': sleep,
   'ActivityBar.terminate': terminate,
   'ActivityBar.toggleActivityBarItem': WrapCommand.wrapCommand(toggleActivityBarItem),
+  'ActivityBar.wakeUp': wakeUp,
 }
