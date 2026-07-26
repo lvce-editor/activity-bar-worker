@@ -1,8 +1,8 @@
 import { MenuItemFlags } from '@lvce-editor/constants'
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
-import { ACCOUNT_MENU_ID } from '../HandleClickAccount/HandleClickAccount.ts'
 import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
+import { ACCOUNT_MENU_ID } from '../HandleClickAccount/HandleClickAccount.ts'
 import { getHiddenItems } from '../ViewletActivityBar/ViewletActivityBarGetHiddenItems.ts'
 
 const toContextMenuItem = (activityBarItem: ActivityBarItem): MenuEntry => {

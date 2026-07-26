@@ -14,7 +14,7 @@ export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
   await Command.execute('ActivityBar.handleClickAdditionalViews', 300, 300)
 
   const account = Locator('.MenuItem', { hasText: 'Account' })
-  await account.click()
+  await account.hover()
 
   const signIn = Locator('.MenuItem', { hasText: 'Sign In' })
   await expect(signIn).toBeVisible()
