@@ -35,14 +35,12 @@ export const test: Test = async ({ Command, ContextMenu, expect, Locator }) => {
 
   // assert
   await waitForSideBarPosition(sideBarLeft)
-  await Command.execute('ActivityBar.handleSettingsChanged')
   await Command.execute('ActivityBar.handleContextMenu', 300, 300, 0, 0)
   await expect(moveSideBarRight).toBeVisible()
 
   await ContextMenu.selectItem('Move Side Bar Right')
 
   await waitForSideBarPosition(sideBarRight)
-  await Command.execute('ActivityBar.handleSettingsChanged')
   await Command.execute('ActivityBar.handleContextMenu', 300, 300, 0, 0)
   await expect(moveSideBarLeft).toBeVisible()
 }

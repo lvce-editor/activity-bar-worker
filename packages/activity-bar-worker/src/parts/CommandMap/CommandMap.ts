@@ -66,7 +66,7 @@ export const commandMap = {
   'ActivityBar.handleClickSettings': WrapCommand.wrapCommand(handleClickSettings),
   'ActivityBar.handleClickSignIn': WrapCommand.wrapCommand(handleClickSignIn),
   'ActivityBar.handleClickSignOut': WrapCommand.wrapCommand(handleClickSignOut),
-  'ActivityBar.handleContextMenu': WrapCommand.wrapCommand(handleContextMenu),
+  'ActivityBar.handleContextMenu': WrapCommand.wrapAsyncCommand(handleContextMenu),
   'ActivityBar.handleExtensionManagementMessagePort': handleExtensionManagementMessagePort,
   'ActivityBar.handleExtensionsChanged': WrapCommand.wrapCommand(handleExtensionsChanged),
   'ActivityBar.handleFocus': WrapCommand.wrapCommand(handleFocus),
