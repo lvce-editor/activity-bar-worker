@@ -77,11 +77,37 @@ test('handleSideBarStateChange marks the requested viewlet when sidebar is visib
   expect(result.selectedIndex).toBe(1)
   expect(result.currentViewletId).toBe('item2')
   expect(result.sideBarVisible).toBe(true)
-  expect(result.focused).toBe(true)
+  expect(result.focused).toBe(false)
   expect(result.focusedIndex).toBe(2)
   expect(result.activityBarItems[0].flags & ActivityBarItemFlags.Selected).toBeFalsy()
   expect(result.activityBarItems[1].flags & ActivityBarItemFlags.Selected).toBeTruthy()
   expect(result.activityBarItems[2].flags & ActivityBarItemFlags.Selected).toBeFalsy()
+})
+
+test('handleSideBarStateChange preserves activity bar focus when the requested viewlet is unchanged', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'Layout.getSideBarVisible'() {
+      return true
+    },
+  })
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Selected, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+  ]
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: items,
+    currentViewletId: 'item1',
+    focused: true,
+    focusedIndex: 0,
+    selectedIndex: 0,
+    sideBarVisible: true,
+  }
+
+  const result = await handleSideBarStateChange(state, 'item1')
+
+  expect(mockRpc.invocations).toEqual([['Layout.getSideBarVisible']])
+  expect(result.focused).toBe(true)
+  expect(result.focusedIndex).toBe(0)
 })
 
 test('handleSideBarStateChange sets selectedIndex to -1 when requested viewlet is missing', async () => {

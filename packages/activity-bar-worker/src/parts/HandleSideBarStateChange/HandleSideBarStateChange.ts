@@ -21,7 +21,7 @@ const enableReferencesItem = (items: readonly ActivityBarItem[], id: string): re
 }
 
 export const handleSideBarStateChange = async (state: ActivityBarState, id?: string, sideBarVisibleOverride?: boolean): Promise<ActivityBarState> => {
-  const { activityBarItems, currentViewletId, height, itemHeight } = state
+  const { activityBarItems, currentViewletId, focused, height, itemHeight } = state
   const resolvedId = id === undefined ? currentViewletId : id
   const sideBarVisible = typeof sideBarVisibleOverride === 'boolean' ? sideBarVisibleOverride : await getSideBarVisible()
   if (!sideBarVisible) {
@@ -45,6 +45,7 @@ export const handleSideBarStateChange = async (state: ActivityBarState, id?: str
     activityBarItems: newActivityBarItems,
     currentViewletId: resolvedId,
     filteredItems,
+    focused: resolvedId === currentViewletId && focused,
     selectedIndex,
     sideBarVisible,
   }
