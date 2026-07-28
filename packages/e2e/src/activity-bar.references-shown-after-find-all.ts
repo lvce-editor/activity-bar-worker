@@ -12,12 +12,16 @@ export const test: Test = async ({ Editor, expect, Extension, FileSystem, Locato
 
   await Editor.findAllReferences()
 
+  const explorer = Locator('.ActivityBarItem[title="Explorer"]')
   const references = Locator('.ActivityBarItem[title="References"]')
+  const selectedItems = Locator('.ActivityBarItemSelected')
   const referencesIcon = references.locator('.MaskIconReferences')
   const sideBarTitle = Locator('.SideBarTitleAreaTitle')
   const locations = Locator('.Locations')
+  await expect(explorer).toHaveAttribute('aria-selected', 'false')
   await expect(references).toBeVisible()
   await expect(references).toHaveAttribute('aria-selected', 'true')
+  await expect(selectedItems).toHaveCount(1)
   await expect(referencesIcon).toBeVisible()
   await expect(sideBarTitle).toHaveText('References')
   await expect(locations).toBeVisible()
