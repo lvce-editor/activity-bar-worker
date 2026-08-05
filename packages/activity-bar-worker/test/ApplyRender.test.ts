@@ -103,7 +103,7 @@ test('applyRender filters out empty results', () => {
 }
 `,
     ],
-    ['Viewlet.setFocusContext', 123, 13],
+    ['Viewlet.setFocusContext', 123, 5],
     [
       'Viewlet.setCss',
       123,
@@ -166,5 +166,5 @@ test('applyRender handles RenderFocus with focus List', () => {
   const result: readonly any[] = applyRender(oldState, newState, diffResult)
 
   expect(result).toHaveLength(1)
-  expect(result[0][0]).toBe(ViewletCommand.SetFocusContext)
+  expect(result[0][0]).toBe(ViewletCommand.FocusSelector)
 })

@@ -36,4 +36,7 @@ if (!content.includes(occurrence)) {
 const newContent = content.replace(occurrence, replacement)
 await writeFile(rendererWorkerPath, newContent)
 
+const activityBarWorkerPath = join(root, 'dist', commitHash, 'packages', 'activity-bar-worker', 'dist', 'activityBarWorkerMain.js')
+await cp(workerPath, activityBarWorkerPath)
+
 await cp(join(root, 'dist'), join(root, '.tmp', 'static'), { recursive: true })
