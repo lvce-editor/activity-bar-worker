@@ -2,6 +2,7 @@ import { expect, test } from '@jest/globals'
 import * as DiffType from '../src/parts/DiffType/DiffType.ts'
 import { getRenderer } from '../src/parts/GetRenderer/GetRenderer.ts'
 import { renderCss } from '../src/parts/RenderCss/RenderCss.ts'
+import * as RenderFocus from '../src/parts/RenderFocus/RenderFocus.ts'
 import * as RenderFocusContext from '../src/parts/RenderFocusContext/RenderFocusContext.ts'
 import { renderIncremental } from '../src/parts/RenderIncremental/RenderIncremental.ts'
 import * as RenderItems from '../src/parts/RenderItems/RenderItems.ts'
@@ -18,10 +19,10 @@ test('getRenderer returns renderFocusContext for RenderFocusContext diff type', 
   expect(renderer).toBe(RenderFocusContext.renderFocusContext)
 })
 
-test('getRenderer returns renderFocusContext for RenderFocus diff type', () => {
+test('getRenderer returns renderFocus for RenderFocus diff type', () => {
   const renderer = getRenderer(DiffType.RenderFocus)
 
-  expect(renderer).toBe(RenderFocusContext.renderFocusContext)
+  expect(renderer).toBe(RenderFocus.renderFocus)
 })
 
 test('getRenderer returns renderCss for RenderCss diff type', () => {

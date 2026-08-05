@@ -7,7 +7,9 @@ export const skip = 1
 export const test: Test = async ({ ActivityBar, expect, Locator }) => {
   await ActivityBar.focus()
 
+  const activityBar = Locator('.ActivityBar')
   const explorer = Locator('.ActivityBarItem[title="Explorer"]')
 
+  await expect(activityBar).toBeFocused()
   await expect(explorer).toHaveClass('FocusOutline')
 }

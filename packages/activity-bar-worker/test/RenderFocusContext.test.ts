@@ -1,4 +1,5 @@
 import { expect, test } from '@jest/globals'
+import { ViewletCommand, WhenExpression } from '@lvce-editor/constants'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as FocusId from '../src/parts/FocusId/FocusId.ts'
@@ -14,8 +15,7 @@ test('renderFocusContext returns focus context when focus is List', () => {
 
   const result: readonly any[] = renderFocusContext(oldState, newState)
 
-  expect(result.length).toBe(3)
-  expect(result[1]).toBe(123)
+  expect(result).toEqual([ViewletCommand.SetFocusContext, 123, WhenExpression.FocusActivityBar])
 })
 
 test('renderFocusContext returns empty array when focus is not List', () => {
