@@ -26,7 +26,6 @@ export const handleSettingsChanged = async (state: ActivityBarState): Promise<Ac
   const filteredItems = getFilteredActivityBarItems(activityBarItems, height, itemHeight)
   return {
     ...newState,
-    activeViewIds,
     activityBarItems,
     filteredItems,
     sideBarLocation: sidebarLocation,

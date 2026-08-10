@@ -1,5 +1,6 @@
 import { expect, test } from '@jest/globals'
 import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
+import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { resolveActiveViewIds } from '../src/parts/ResolveActiveViewIds/ResolveActiveViewIds.ts'
 
@@ -9,7 +10,11 @@ const items: readonly ActivityBarItem[] = [
 ]
 
 test('resolveActiveViewIds preserves explicit active views', () => {
-  const state = { ...createDefaultState(), activeViewIds: ['Explorer', 'Search'], selectedIndex: 0 }
+  const state = {
+    ...createDefaultState(),
+    activityBarItems: items.map((item) => ({ ...item, flags: item.flags | ActivityBarItemFlags.Selected })),
+    selectedIndex: 0,
+  }
   expect(resolveActiveViewIds(state, items)).toEqual(['Explorer', 'Search'])
 })
 

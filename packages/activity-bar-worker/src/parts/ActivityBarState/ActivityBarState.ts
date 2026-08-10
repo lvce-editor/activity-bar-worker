@@ -3,7 +3,6 @@ import type { UserLoginState } from '../UserLoginState/UserLoginState.ts'
 
 export interface ActivityBarState {
   readonly accountEnabled: boolean
-  readonly activeViewIds: readonly string[]
   readonly activityBarItems: readonly ActivityBarItem[]
   readonly currentViewletId: string
   readonly filteredItems: readonly ActivityBarItem[]

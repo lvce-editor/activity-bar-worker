@@ -2,6 +2,7 @@ import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { findIndex } from '../FindIndex/FindIndex.ts'
+import { getActiveViewIds } from '../GetActiveViewIds/GetActiveViewIds.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { getSideBarVisible } from '../GetSideBarVisible/GetSideBarVisible.ts'
 import { markActiveViews } from '../MarkActiveViews/MarkActiveViews.ts'
@@ -20,7 +21,8 @@ const enableReferencesItem = (items: readonly ActivityBarItem[], id: string): re
 }
 
 export const handleSideBarStateChange = async (state: ActivityBarState, id?: string, sideBarVisibleOverride?: boolean): Promise<ActivityBarState> => {
-  const { activeViewIds, activityBarItems, currentViewletId, focused, height, itemHeight } = state
+  const { activityBarItems, currentViewletId, focused, height, itemHeight } = state
+  const activeViewIds = getActiveViewIds(activityBarItems)
   const resolvedId = id === undefined ? currentViewletId : id
   const sideBarVisible = typeof sideBarVisibleOverride === 'boolean' ? sideBarVisibleOverride : await getSideBarVisible()
   const withoutCurrentSideBarView = activeViewIds.filter((activeViewId) => activeViewId !== currentViewletId && activeViewId !== resolvedId)
@@ -29,7 +31,6 @@ export const handleSideBarStateChange = async (state: ActivityBarState, id?: str
     const filteredItems = getFilteredActivityBarItems(itemsCleared, height, itemHeight)
     return {
       ...state,
-      activeViewIds: withoutCurrentSideBarView,
       activityBarItems: itemsCleared,
       filteredItems,
       focusedIndex: -1,
@@ -44,7 +45,6 @@ export const handleSideBarStateChange = async (state: ActivityBarState, id?: str
   const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)
   return {
     ...state,
-    activeViewIds: newActiveViewIds,
     activityBarItems: newActivityBarItems,
     currentViewletId: resolvedId,
     filteredItems,

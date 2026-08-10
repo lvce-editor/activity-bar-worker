@@ -1,12 +1,14 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import { findIndex } from '../FindIndex/FindIndex.ts'
+import { getActiveViewIds } from '../GetActiveViewIds/GetActiveViewIds.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { getSideBarChange } from '../GetSideBarChange/GetSideBarChange.ts'
 import { markActiveViews } from '../MarkActiveViews/MarkActiveViews.ts'
 import * as SideBar from '../SideBar/SideBar.ts'
 
 export const handleClickOther = async (state: ActivityBarState, viewletId: string): Promise<ActivityBarState> => {
-  const { activeViewIds, activityBarItems, currentViewletId, height, itemHeight, sideBarVisible } = state
+  const { activityBarItems, currentViewletId, height, itemHeight, sideBarVisible } = state
+  const activeViewIds = getActiveViewIds(activityBarItems)
   const selectedItem = activityBarItems.find((item) => item.id === viewletId)
   const sideBarChange = getSideBarChange(sideBarVisible, currentViewletId, viewletId)
   await SideBar.toggle(viewletId)
@@ -17,7 +19,6 @@ export const handleClickOther = async (state: ActivityBarState, viewletId: strin
     const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)
     return {
       ...state,
-      activeViewIds: newActiveViewIds,
       activityBarItems: newActivityBarItems,
       filteredItems,
     }
@@ -28,7 +29,6 @@ export const handleClickOther = async (state: ActivityBarState, viewletId: strin
     const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)
     return {
       ...state,
-      activeViewIds: withoutCurrentSideBarView,
       activityBarItems: newActivityBarItems,
       filteredItems,
       selectedIndex: -1,
@@ -41,7 +41,6 @@ export const handleClickOther = async (state: ActivityBarState, viewletId: strin
   const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)
   return {
     ...state,
-    activeViewIds: newActiveViewIds,
     activityBarItems: newActivityBarItems,
     currentViewletId: viewletId,
     filteredItems,

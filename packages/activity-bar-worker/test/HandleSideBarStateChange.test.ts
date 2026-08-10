@@ -4,9 +4,10 @@ import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarIt
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import { getActiveViewIds } from '../src/parts/GetActiveViewIds/GetActiveViewIds.ts'
 import { handleSideBarStateChange } from '../src/parts/HandleSideBarStateChange/HandleSideBarStateChange.ts'
 
-test('handleSideBarStateChange clears selected and focused state when sidebar is hidden', async () => {
+test('handleSideBarStateChange clears the sidebar selection and focus when the sidebar is hidden', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'Layout.getSideBarVisible'() {
       return false
@@ -37,11 +38,23 @@ test('handleSideBarStateChange clears selected and focused state when sidebar is
   expect(result).toEqual({
     ...state,
     activityBarItems: [
-      { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+      {
+        flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Selected,
+        icon: 'icon1',
+        id: 'item1',
+        keyShortcuts: '',
+        title: 'Item 1',
+      },
       { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
     ],
     filteredItems: [
-      { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+      {
+        flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Selected,
+        icon: 'icon1',
+        id: 'item1',
+        keyShortcuts: '',
+        title: 'Item 1',
+      },
       { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
     ],
     focusedIndex: -1,
@@ -171,7 +184,6 @@ test('handleSideBarStateChange switches the side bar while preserving another ac
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
-    activeViewIds: ['Explorer', 'chat.voice'],
     activityBarItems: items,
     currentViewletId: 'Explorer',
     selectedIndex: 0,
@@ -180,7 +192,7 @@ test('handleSideBarStateChange switches the side bar while preserving another ac
 
   const result = await handleSideBarStateChange(state, 'Search', true)
 
-  expect(result.activeViewIds).toEqual(['chat.voice', 'Search'])
+  expect(getActiveViewIds(result.activityBarItems)).toEqual(['Search', 'chat.voice'])
   expect(result.selectedIndex).toBe(1)
   expect(result.activityBarItems[0].flags & ActivityBarItemFlags.Selected).toBe(0)
   expect(result.activityBarItems[1].flags & ActivityBarItemFlags.Selected).toBe(ActivityBarItemFlags.Selected)
@@ -195,7 +207,6 @@ test('handleSideBarStateChange hides the side bar while preserving another activ
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
-    activeViewIds: ['Explorer', 'chat.voice'],
     activityBarItems: items,
     currentViewletId: 'Explorer',
     selectedIndex: 0,
@@ -204,7 +215,7 @@ test('handleSideBarStateChange hides the side bar while preserving another activ
 
   const result = await handleSideBarStateChange(state, 'Explorer', false)
 
-  expect(result.activeViewIds).toEqual(['chat.voice'])
+  expect(getActiveViewIds(result.activityBarItems)).toEqual(['chat.voice'])
   expect(result.selectedIndex).toBe(-1)
   expect(result.activityBarItems[0].flags & ActivityBarItemFlags.Selected).toBe(0)
   expect(result.activityBarItems[1].flags & ActivityBarItemFlags.Selected).toBe(ActivityBarItemFlags.Selected)
@@ -217,14 +228,13 @@ test('handleSideBarStateChange ignores a missing sidebar item and preserves anot
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
-    activeViewIds: ['chat.voice'],
     activityBarItems: items,
     currentViewletId: 'Explorer',
   }
 
   const result = await handleSideBarStateChange(state, 'missing', true)
 
-  expect(result.activeViewIds).toEqual(['chat.voice'])
+  expect(getActiveViewIds(result.activityBarItems)).toEqual(['chat.voice'])
   expect(result.selectedIndex).toBe(-1)
   expect(result.activityBarItems[0].flags & ActivityBarItemFlags.Selected).toBe(ActivityBarItemFlags.Selected)
 })

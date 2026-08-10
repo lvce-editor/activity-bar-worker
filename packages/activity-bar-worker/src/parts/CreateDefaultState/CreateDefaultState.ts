@@ -2,7 +2,6 @@ import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 
 export const createDefaultState = (): ActivityBarState => ({
   accountEnabled: true,
-  activeViewIds: [],
   activityBarItems: [],
   currentViewletId: '',
   filteredItems: [],

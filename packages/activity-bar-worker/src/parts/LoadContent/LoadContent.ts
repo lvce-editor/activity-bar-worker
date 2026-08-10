@@ -28,7 +28,6 @@ export const loadContent = async (state: ActivityBarState): Promise<ActivityBarS
   const filteredItems = getFilteredActivityBarItems(activityBarItems, height, itemHeight)
   return {
     ...newState,
-    activeViewIds,
     activityBarItems,
     currentViewletId: activeView || ViewletModuleId.Explorer,
     filteredItems,

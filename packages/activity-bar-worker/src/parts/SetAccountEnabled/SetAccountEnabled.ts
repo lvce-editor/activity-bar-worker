@@ -18,7 +18,6 @@ export const setAccountEnabled = (state: ActivityBarState, enabled: boolean): Ac
 
   return {
     ...newState,
-    activeViewIds,
     activityBarItems: markedItems,
     filteredItems: filteredItems,
   }

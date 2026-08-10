@@ -17,7 +17,6 @@ export const handleExtensionsChanged = async (state: ActivityBarState): Promise<
   const filteredItems = getFilteredActivityBarItems(activityBarItems, height, itemHeight)
   return {
     ...state,
-    activeViewIds,
     activityBarItems,
     filteredItems,
   }
