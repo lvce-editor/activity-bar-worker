@@ -26,6 +26,26 @@ test('getActivityBarItems includes contributed views', () => {
   )
 })
 
+test('getActivityBarItems preserves a contributed view preview preference', () => {
+  const items = getActivityBarItems(createDefaultState(), [
+    {
+      icon: 'comment-discussion',
+      id: 'chat.views.voice',
+      preferredLocation: 'preview',
+      title: 'Voice Chat',
+    },
+  ])
+
+  expect(items.find((item) => item.id === 'chat.views.voice')).toEqual({
+    flags: 9,
+    icon: 'comment-discussion',
+    id: 'chat.views.voice',
+    keyShortcuts: '',
+    preferredLocation: 'preview',
+    title: 'Voice Chat',
+  })
+})
+
 test('getActivityBarItems stores custom icon metadata for url-like contributed view icon', () => {
   const icon = 'https://example.com/icon.svg'
   const expectedItem = expect.objectContaining({

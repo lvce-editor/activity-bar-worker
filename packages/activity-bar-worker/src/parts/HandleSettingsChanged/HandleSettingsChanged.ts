@@ -4,11 +4,12 @@ import { getActivityBarItems } from '../GetActivityBarItems/GetActivityBarItems.
 import { getContributedViews } from '../GetContributedViews/GetContributedViews.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { getSideBarPosition } from '../GetSideBarPosition/GetSideBarPosition.ts'
-import { markSelected } from '../MarkSelected/MarkSelected.ts'
+import { markActiveViews } from '../MarkActiveViews/MarkActiveViews.ts'
+import { resolveActiveViewIds } from '../ResolveActiveViewIds/ResolveActiveViewIds.ts'
 import { updateItemsWithBadgeCount } from '../UpdateItemsWithBadgeCount/UpdateItemsWithBadgeCount.ts'
 
 export const handleSettingsChanged = async (state: ActivityBarState): Promise<ActivityBarState> => {
-  const { accountEnabled: currentAccountEnabled, height, itemHeight, platform, selectedIndex } = state
+  const { accountEnabled: currentAccountEnabled, height, itemHeight, platform } = state
   const [accountEnabled, contributedViews, sidebarLocation] = await Promise.all([
     getAccountEnabled(currentAccountEnabled),
     getContributedViews(platform),
@@ -19,7 +20,8 @@ export const handleSettingsChanged = async (state: ActivityBarState): Promise<Ac
     accountEnabled,
   }
   const items = getActivityBarItems(newState, contributedViews)
-  const itemsWithSelected = markSelected(items, selectedIndex)
+  const activeViewIds = resolveActiveViewIds(state, items)
+  const itemsWithSelected = markActiveViews(items, activeViewIds)
   const activityBarItems = await updateItemsWithBadgeCount(itemsWithSelected)
   const filteredItems = getFilteredActivityBarItems(activityBarItems, height, itemHeight)
   return {

@@ -4,9 +4,10 @@ import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarIt
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import { getActiveViewIds } from '../src/parts/GetActiveViewIds/GetActiveViewIds.ts'
 import { handleSideBarStateChange } from '../src/parts/HandleSideBarStateChange/HandleSideBarStateChange.ts'
 
-test('handleSideBarStateChange clears selected and focused state when sidebar is hidden', async () => {
+test('handleSideBarStateChange clears the sidebar selection and focus when the sidebar is hidden', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'Layout.getSideBarVisible'() {
       return false
@@ -37,11 +38,23 @@ test('handleSideBarStateChange clears selected and focused state when sidebar is
   expect(result).toEqual({
     ...state,
     activityBarItems: [
-      { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+      {
+        flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Selected,
+        icon: 'icon1',
+        id: 'item1',
+        keyShortcuts: '',
+        title: 'Item 1',
+      },
       { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
     ],
     filteredItems: [
-      { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+      {
+        flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Selected,
+        icon: 'icon1',
+        id: 'item1',
+        keyShortcuts: '',
+        title: 'Item 1',
+      },
       { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
     ],
     focusedIndex: -1,
@@ -160,6 +173,70 @@ test('handleSideBarStateChange uses explicit hidden visibility without querying 
     selectedIndex: -1,
     sideBarVisible: false,
   })
+})
+
+test('handleSideBarStateChange switches the side bar while preserving another active view', async () => {
+  RendererWorker.registerMockRpc({})
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Selected, icon: 'files', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+    { flags: 0, icon: 'search', id: 'Search', keyShortcuts: '', title: 'Search' },
+    { flags: ActivityBarItemFlags.Selected, icon: 'chat', id: 'chat.voice', keyShortcuts: '', title: 'Voice Chat' },
+  ]
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: items,
+    currentViewletId: 'Explorer',
+    selectedIndex: 0,
+    sideBarVisible: true,
+  }
+
+  const result = await handleSideBarStateChange(state, 'Search', true)
+
+  expect(getActiveViewIds(result.activityBarItems)).toEqual(['Search', 'chat.voice'])
+  expect(result.selectedIndex).toBe(1)
+  expect(result.activityBarItems[0].flags & ActivityBarItemFlags.Selected).toBe(0)
+  expect(result.activityBarItems[1].flags & ActivityBarItemFlags.Selected).toBe(ActivityBarItemFlags.Selected)
+  expect(result.activityBarItems[2].flags & ActivityBarItemFlags.Selected).toBe(ActivityBarItemFlags.Selected)
+})
+
+test('handleSideBarStateChange hides the side bar while preserving another active view', async () => {
+  RendererWorker.registerMockRpc({})
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Selected, icon: 'files', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+    { flags: ActivityBarItemFlags.Selected, icon: 'chat', id: 'chat.voice', keyShortcuts: '', title: 'Voice Chat' },
+  ]
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: items,
+    currentViewletId: 'Explorer',
+    selectedIndex: 0,
+    sideBarVisible: true,
+  }
+
+  const result = await handleSideBarStateChange(state, 'Explorer', false)
+
+  expect(getActiveViewIds(result.activityBarItems)).toEqual(['chat.voice'])
+  expect(result.selectedIndex).toBe(-1)
+  expect(result.activityBarItems[0].flags & ActivityBarItemFlags.Selected).toBe(0)
+  expect(result.activityBarItems[1].flags & ActivityBarItemFlags.Selected).toBe(ActivityBarItemFlags.Selected)
+})
+
+test('handleSideBarStateChange ignores a missing sidebar item and preserves another active view', async () => {
+  RendererWorker.registerMockRpc({})
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Selected, icon: 'chat', id: 'chat.voice', keyShortcuts: '', title: 'Voice Chat' },
+  ]
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: items,
+    currentViewletId: 'Explorer',
+  }
+
+  const result = await handleSideBarStateChange(state, 'missing', true)
+
+  expect(getActiveViewIds(result.activityBarItems)).toEqual(['chat.voice'])
+  expect(result.selectedIndex).toBe(-1)
+  expect(result.activityBarItems[0].flags & ActivityBarItemFlags.Selected).toBe(ActivityBarItemFlags.Selected)
 })
 
 test('handleSideBarStateChange enables and selects the on-demand References item', async () => {

@@ -12,6 +12,7 @@ import * as FocusPrevious from '../FocusPrevious/FocusPrevious.ts'
 import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
 import { getMenuEntries } from '../GetMenuEntries/GetMenuEntries.ts'
 import { getMenuEntryIds } from '../GetMenuEntryIds/GetMenuEntryIds.ts'
+import { handleActiveViewStateChange } from '../HandleActiveViewStateChange/HandleActiveViewStateChange.ts'
 import { handleBadgeCountChange } from '../handleBadgeCountChange/handleBadgeCountChange.ts'
 import { handleBlur } from '../HandleBlur/HandleBlur.ts'
 import * as HandleClick from '../HandleClick/HandleClick.ts'
@@ -56,6 +57,7 @@ export const commandMap = {
   'ActivityBar.getKeyBindings': getKeyBindings,
   'ActivityBar.getMenuEntries': WrapCommand.wrapGetter(getMenuEntries),
   'ActivityBar.getMenuEntryIds': getMenuEntryIds,
+  'ActivityBar.handleActiveViewStateChange': WrapCommand.wrapCommand(handleActiveViewStateChange),
   'ActivityBar.handleBadgeCountChange': WrapCommand.wrapCommand(handleBadgeCountChange),
   'ActivityBar.handleBlur': WrapCommand.wrapCommand(handleBlur),
   'ActivityBar.handleClick': WrapCommand.wrapCommand(HandleClick.handleClick),

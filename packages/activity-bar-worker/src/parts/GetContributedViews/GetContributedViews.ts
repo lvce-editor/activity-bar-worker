@@ -3,6 +3,7 @@ import { ExtensionManagementWorker } from '@lvce-editor/rpc-registry'
 export interface ContributedView {
   readonly icon: string
   readonly id: string
+  readonly preferredLocation?: 'preview' | 'sideBar'
   readonly title: string
   readonly type?: string
 }
