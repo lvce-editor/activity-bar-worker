@@ -151,6 +151,7 @@ test('handleClickIndex handles other viewlet click when sidebar is visible and d
 
   expect(result).toEqual({
     ...state,
+    activeViewIds: ['Explorer'],
     activityBarItems: expectedActivityBarItems,
     currentViewletId: 'Explorer',
     filteredItems: expectedFilteredItems,

@@ -17,6 +17,7 @@ const toActivityBarItem = (view: ContributedView): ActivityBarItem => {
     icon,
     id: view.id,
     keyShortcuts: '',
+    ...(view.preferredLocation === 'preview' && { preferredLocation: 'preview' as const }),
     title: view.title || view.id,
   }
   if (customIconClass && customIconUrl) {

@@ -2,18 +2,33 @@ import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import { findIndex } from '../FindIndex/FindIndex.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { getSideBarChange } from '../GetSideBarChange/GetSideBarChange.ts'
-import { markSelected } from '../MarkSelected/MarkSelected.ts'
+import { markActiveViews } from '../MarkActiveViews/MarkActiveViews.ts'
 import * as SideBar from '../SideBar/SideBar.ts'
 
 export const handleClickOther = async (state: ActivityBarState, viewletId: string): Promise<ActivityBarState> => {
-  const { activityBarItems, currentViewletId, height, itemHeight, sideBarVisible } = state
+  const { activeViewIds, activityBarItems, currentViewletId, height, itemHeight, sideBarVisible } = state
+  const selectedItem = activityBarItems.find((item) => item.id === viewletId)
   const sideBarChange = getSideBarChange(sideBarVisible, currentViewletId, viewletId)
   await SideBar.toggle(viewletId)
-  if (sideBarChange.type === 'hide') {
-    const newActivityBarItems = markSelected(activityBarItems, -1)
+  if (selectedItem?.preferredLocation === 'preview') {
+    const isActive = activeViewIds.includes(viewletId)
+    const newActiveViewIds = isActive ? activeViewIds.filter((id) => id !== viewletId) : [...activeViewIds, viewletId]
+    const newActivityBarItems = markActiveViews(activityBarItems, newActiveViewIds)
     const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)
     return {
       ...state,
+      activeViewIds: newActiveViewIds,
+      activityBarItems: newActivityBarItems,
+      filteredItems,
+    }
+  }
+  const withoutCurrentSideBarView = activeViewIds.filter((id) => id !== currentViewletId)
+  if (sideBarChange.type === 'hide') {
+    const newActivityBarItems = markActiveViews(activityBarItems, withoutCurrentSideBarView)
+    const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)
+    return {
+      ...state,
+      activeViewIds: withoutCurrentSideBarView,
       activityBarItems: newActivityBarItems,
       filteredItems,
       selectedIndex: -1,
@@ -21,10 +36,12 @@ export const handleClickOther = async (state: ActivityBarState, viewletId: strin
     }
   }
   const selectedIndex = findIndex(activityBarItems, viewletId)
-  const newActivityBarItems = markSelected(activityBarItems, selectedIndex)
+  const newActiveViewIds = [...withoutCurrentSideBarView, viewletId]
+  const newActivityBarItems = markActiveViews(activityBarItems, newActiveViewIds)
   const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)
   return {
     ...state,
+    activeViewIds: newActiveViewIds,
     activityBarItems: newActivityBarItems,
     currentViewletId: viewletId,
     filteredItems,

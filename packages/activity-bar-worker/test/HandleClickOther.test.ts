@@ -2,6 +2,7 @@ import { expect, test } from '@jest/globals'
 import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
+import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getFilteredActivityBarItems } from '../src/parts/GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { handleClickOther } from '../src/parts/HandleClickOther/HandleClickOther.ts'
@@ -22,6 +23,7 @@ test('handleClickOther toggles sidebar view when sidebar is visible and currentV
   expect(mockRpc.invocations).toEqual([['Layout.toggleSideBarView', 'test-viewlet']])
   expect(result).toEqual({
     ...state,
+    activeViewIds: [],
     activityBarItems: [],
     currentViewletId: 'test-viewlet',
     filteredItems: [],
@@ -45,6 +47,7 @@ test('handleClickOther toggles sidebar view when sidebar is visible and currentV
   expect(mockRpc.invocations).toEqual([['Layout.toggleSideBarView', 'new-viewlet']])
   expect(result).toEqual({
     ...state,
+    activeViewIds: ['new-viewlet'],
     activityBarItems: [],
     currentViewletId: 'new-viewlet',
     filteredItems: [],
@@ -73,6 +76,7 @@ test('handleClickOther toggles sidebar view when sidebar is not visible', async 
   expect(mockRpc.invocations).toEqual([['Layout.toggleSideBarView', 'new-viewlet']])
   expect(result).toEqual({
     ...state,
+    activeViewIds: ['new-viewlet'],
     activityBarItems: expectedActivityBarItems,
     currentViewletId: 'new-viewlet',
     filteredItems: expectedFilteredItems,
@@ -104,6 +108,7 @@ test('handleClickOther preserves state properties', async () => {
   expect(mockRpc.invocations).toEqual([['Layout.toggleSideBarView', 'new-viewlet']])
   expect(result).toEqual({
     ...state,
+    activeViewIds: ['new-viewlet'],
     activityBarItems: expectedActivityBarItems,
     currentViewletId: 'new-viewlet',
     filteredItems: expectedFilteredItems,
@@ -133,4 +138,65 @@ test('handleClickOther handles empty currentViewletId', async () => {
     selectedIndex: -1,
     sideBarVisible: false,
   })
+})
+
+test('handleClickOther activates a preview-preferred view without replacing the active side bar view', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'Layout.toggleSideBarView'() {},
+  })
+  const activityBarItems: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Selected, icon: 'files', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+    { flags: 0, icon: 'chat', id: 'chat.voice', keyShortcuts: '', preferredLocation: 'preview', title: 'Voice Chat' },
+  ]
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activeViewIds: ['Explorer'],
+    activityBarItems,
+    currentViewletId: 'Explorer',
+    filteredItems: activityBarItems,
+    selectedIndex: 0,
+    sideBarVisible: true,
+  }
+
+  const result = await handleClickOther(state, 'chat.voice')
+
+  expect(mockRpc.invocations).toEqual([['Layout.toggleSideBarView', 'chat.voice']])
+  expect(result.activeViewIds).toEqual(['Explorer', 'chat.voice'])
+  expect(result.currentViewletId).toBe('Explorer')
+  expect(result.selectedIndex).toBe(0)
+  expect(result.sideBarVisible).toBe(true)
+  expect(result.activityBarItems.every((item) => item.flags & ActivityBarItemFlags.Selected)).toBe(true)
+})
+
+test('handleClickOther deactivates a preview-preferred view without hiding the side bar', async () => {
+  RendererWorker.registerMockRpc({
+    'Layout.toggleSideBarView'() {},
+  })
+  const activityBarItems: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Selected, icon: 'files', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+    {
+      flags: ActivityBarItemFlags.Selected,
+      icon: 'chat',
+      id: 'chat.voice',
+      keyShortcuts: '',
+      preferredLocation: 'preview',
+      title: 'Voice Chat',
+    },
+  ]
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activeViewIds: ['Explorer', 'chat.voice'],
+    activityBarItems,
+    currentViewletId: 'Explorer',
+    filteredItems: activityBarItems,
+    selectedIndex: 0,
+    sideBarVisible: true,
+  }
+
+  const result = await handleClickOther(state, 'chat.voice')
+
+  expect(result.activeViewIds).toEqual(['Explorer'])
+  expect(result.sideBarVisible).toBe(true)
+  expect(result.activityBarItems[0].flags & ActivityBarItemFlags.Selected).toBe(ActivityBarItemFlags.Selected)
+  expect(result.activityBarItems[1].flags & ActivityBarItemFlags.Selected).toBe(0)
 })

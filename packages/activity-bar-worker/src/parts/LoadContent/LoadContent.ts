@@ -2,7 +2,7 @@ import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import { getActivityBarItems } from '../GetActivityBarItems/GetActivityBarItems.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { loadPreferences } from '../LoadPreferences/LoadPreferences.ts'
-import { markSelected } from '../MarkSelected/MarkSelected.ts'
+import { markActiveViews } from '../MarkActiveViews/MarkActiveViews.ts'
 import { updateItemsWithBadgeCount } from '../UpdateItemsWithBadgeCount/UpdateItemsWithBadgeCount.ts'
 import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 
@@ -22,13 +22,15 @@ export const loadContent = async (state: ActivityBarState): Promise<ActivityBarS
   const items = getActivityBarItems(newState, contributedViews)
   const index = items.findIndex((item) => item.id === activeView)
   const selectedIndex = sideBarVisible ? index : -1
-  const itemsWithSelected = markSelected(items, selectedIndex)
+  const activeViewIds = sideBarVisible && index !== -1 ? [activeView] : []
+  const itemsWithSelected = markActiveViews(items, activeViewIds)
   const activityBarItems = await updateItemsWithBadgeCount(itemsWithSelected)
   const filteredItems = getFilteredActivityBarItems(activityBarItems, height, itemHeight)
   return {
     ...newState,
+    activeViewIds,
     activityBarItems,
-    currentViewletId: ViewletModuleId.Explorer,
+    currentViewletId: activeView || ViewletModuleId.Explorer,
     filteredItems,
     initial: false,
     selectedIndex,

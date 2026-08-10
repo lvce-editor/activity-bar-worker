@@ -15,6 +15,7 @@ export const create = (
 ): any => {
   const state: ActivityBarState = {
     accountEnabled: true,
+    activeViewIds: [],
     activityBarItems: [],
     currentViewletId: '',
     filteredItems: [],
