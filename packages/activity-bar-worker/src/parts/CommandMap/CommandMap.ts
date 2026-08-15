@@ -27,6 +27,7 @@ import { handleContextMenu } from '../HandleContextMenu/HandleContextMenu.ts'
 import { handleExtensionManagementMessagePort } from '../HandleExtensionManagementMessagePort/HandleExtensionManagementMessagePort.ts'
 import { handleExtensionsChanged } from '../HandleExtensionsChanged/HandleExtensionsChanged.ts'
 import { handleFocus } from '../HandleFocus/HandleFocus.ts'
+import * as HandleMessagePort from '../HandleMessagePort/HandleMessagePort.ts'
 import { handleResize } from '../HandleResize/HandleResize.ts'
 import { handleSettingsChanged } from '../HandleSettingsChanged/HandleSettingsChanged.ts'
 import { handleSideBarStateChange } from '../HandleSideBarStateChange/HandleSideBarStateChange.ts'
@@ -72,6 +73,7 @@ export const commandMap = {
   'ActivityBar.handleExtensionManagementMessagePort': handleExtensionManagementMessagePort,
   'ActivityBar.handleExtensionsChanged': WrapCommand.wrapCommand(handleExtensionsChanged),
   'ActivityBar.handleFocus': WrapCommand.wrapCommand(handleFocus),
+  'ActivityBar.handleMessagePort': HandleMessagePort.handleMessagePort,
   'ActivityBar.handleSettingsChanged': WrapCommand.wrapCommand(handleSettingsChanged),
   'ActivityBar.handleSideBarStateChange': WrapCommand.wrapCommand(handleSideBarStateChange),
   'ActivityBar.handleUpdateStateChange': WrapCommand.wrapCommand(handleUpdateStateChange),
