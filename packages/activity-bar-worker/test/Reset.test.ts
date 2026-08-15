@@ -17,7 +17,7 @@ test('default-to-default reset produces no renderer command', async () => {
 
   await commandMap['ActivityBar.reset'](uid)
   const diffResult = diff2(uid)
-  const commands = render2(uid, diffResult)
+  const commands = await render2(uid, diffResult)
 
   expect(commands).toEqual([])
 })
@@ -41,7 +41,7 @@ test('dirty focus and selection reset with incremental patches', async () => {
   ActivityBarStates.set(uid, dirtyState, dirtyState)
 
   await commandMap['ActivityBar.reset'](uid)
-  const commands = render2(uid, diff2(uid))
+  const commands = await render2(uid, diff2(uid))
 
   expect(commands.length).toBeGreaterThan(0)
   expect(commands.flat()).toContain('Viewlet.setPatches')
