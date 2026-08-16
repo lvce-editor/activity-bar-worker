@@ -44,6 +44,8 @@ import { sleep } from '../Sleep/Sleep.ts'
 import { toggleActivityBarItem } from '../ToggleActivityBarItem/ToggleActivityBarItem.ts'
 import { wakeUp } from '../WakeUp/WakeUp.ts'
 
+const handleDirectMessagePort = (port: MessagePort): Promise<void> => HandleMessagePort.handleMessagePort(port, commandMap)
+
 export const commandMap = {
   'ActivityBar.create': Create.create,
   'ActivityBar.diff2': diff2,
@@ -73,7 +75,7 @@ export const commandMap = {
   'ActivityBar.handleExtensionManagementMessagePort': handleExtensionManagementMessagePort,
   'ActivityBar.handleExtensionsChanged': WrapCommand.wrapCommand(handleExtensionsChanged),
   'ActivityBar.handleFocus': WrapCommand.wrapCommand(handleFocus),
-  'ActivityBar.handleMessagePort': HandleMessagePort.handleMessagePort,
+  'ActivityBar.handleMessagePort': handleDirectMessagePort,
   'ActivityBar.handleSettingsChanged': WrapCommand.wrapCommand(handleSettingsChanged),
   'ActivityBar.handleSideBarStateChange': WrapCommand.wrapCommand(handleSideBarStateChange),
   'ActivityBar.handleUpdateStateChange': WrapCommand.wrapCommand(handleUpdateStateChange),
