@@ -44,7 +44,7 @@ import { sleep } from '../Sleep/Sleep.ts'
 import { toggleActivityBarItem } from '../ToggleActivityBarItem/ToggleActivityBarItem.ts'
 import { wakeUp } from '../WakeUp/WakeUp.ts'
 
-const handleDirectMessagePort = (port: MessagePort, setAsRendererProcess = true): Promise<void> =>
+const handleDirectMessagePort = (port: MessagePort, setAsRendererProcess?: boolean): Promise<void> =>
   HandleMessagePort.handleMessagePort(port, commandMap, setAsRendererProcess)
 
 export const commandMap = {
