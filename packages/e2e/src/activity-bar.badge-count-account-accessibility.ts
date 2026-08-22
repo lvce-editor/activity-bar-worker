@@ -2,7 +2,8 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.badge-count-account-accessibility'
 
-export const test: Test = async ({ Command, expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
+  await ActivityBar.setAccountEnabled(true)
   await Command.execute('ActivityBar.handleBadgeCountChange', { Account: 2 })
 
   const account = Locator('.ActivityBarItem[title="Account"]')

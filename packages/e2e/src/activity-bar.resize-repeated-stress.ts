@@ -2,7 +2,8 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.resize-repeated-stress'
 
-export const test: Test = async ({ Command, expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
+  await ActivityBar.setAccountEnabled(true)
   for (let index = 0; index < 100; index++) {
     await Command.execute('ActivityBar.resize', {
       height: index % 2 === 0 ? 144 : 336,

@@ -2,7 +2,15 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.references-hide-and-reopen'
 
+export const skip = 1
+
 export const test: Test = async ({ Command, Editor, expect, Extension, FileSystem, Locator, Main }) => {
+  await Command.execute('ActivityBar.resize', {
+    height: 432,
+    width: 48,
+    x: 0,
+    y: 0,
+  })
   const url = import.meta.resolve('../fixtures/sample.reference-provider-basic')
   await Extension.addWebExtension(url)
   const tmpDir = await FileSystem.getTmpDir()

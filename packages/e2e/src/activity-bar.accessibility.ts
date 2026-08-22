@@ -2,7 +2,8 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.accessibility'
 
-export const test: Test = async ({ expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, expect, Locator }) => {
+  await ActivityBar.setAccountEnabled(true)
   // Test activity bar accessibility attributes
   const activityBar = Locator('.ActivityBar')
   await expect(activityBar).toBeVisible()

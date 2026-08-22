@@ -30,7 +30,10 @@ const after = `      _onWebSocketOpened(event) {
 
 const content = await readFile(file, 'utf8')
 
-if (content.includes(after)) {
+const upstreamFix = `        if (!request2 || !response2) {
+          this._page.frameManager.onWebSocketRequest(socketId);`
+
+if (content.includes(after) || content.includes(upstreamFix)) {
   process.exit(0)
 }
 
