@@ -3,6 +3,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 export const name = 'activity-bar.toggle-item-overflow-recalculation'
 
 export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
+  await ActivityBar.setAccountEnabled(true)
   const account = Locator('.ActivityBarItem[title="Account"]')
   const additionalViews = Locator('.ActivityBarItem[title="Additional Views"]')
   const extensions = Locator('.ActivityBarItem[title="Extensions"]')

@@ -2,7 +2,14 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.selected-item-overflow-recovery'
 
-export const test: Test = async ({ Command, expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
+  await ActivityBar.setAccountEnabled(true)
+  await Command.execute('ActivityBar.resize', {
+    height: 336,
+    width: 48,
+    x: 0,
+    y: 0,
+  })
   const additionalViews = Locator('.ActivityBarItem[title="Additional Views"]')
   const extensions = Locator('.ActivityBarItem[title="Extensions"]')
 
