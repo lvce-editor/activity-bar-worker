@@ -25,13 +25,13 @@ const copyTests = async (entries, browser, batchIndex) => {
   return relativeTestPath
 }
 
-const getTests = async () => {
+const getTests = async (excludedTests) => {
   const entries = await readdir(sourcePath, { withFileTypes: true })
-  return entries.filter((entry) => entry.isFile()).toSorted((a, b) => a.name.localeCompare(b.name))
+  return entries.filter((entry) => entry.isFile() && !excludedTests.has(entry.name)).toSorted((a, b) => a.name.localeCompare(b.name))
 }
 
 const run = async (browser, testPath, forwardedArgs) => {
-  const args = [testWithPlaywrightPath, '--only-extension=.', `--test-path=${testPath}`, `--browser=${browser}`, '--reuse-page', ...forwardedArgs]
+  const args = [testWithPlaywrightPath, '--only-extension=.', `--test-path=${testPath}`, `--browser=${browser}`, ...forwardedArgs]
 
   const child = spawn(process.execPath, args, {
     cwd,
@@ -44,11 +44,11 @@ const run = async (browser, testPath, forwardedArgs) => {
   })
 }
 
-export const runBatchedE2E = async ({ browser, forwardedArgs, testBatchSize }) => {
+export const runBatchedE2E = async ({ browser, excludedTests = new Set(), forwardedArgs, testBatchSize }) => {
   const temporaryTestPath = join(temporaryRoot, `e2e-${browser}`)
   try {
     await rm(temporaryTestPath, { force: true, recursive: true })
-    const tests = await getTests()
+    const tests = await getTests(excludedTests)
     for (let index = 0; index < tests.length; index += testBatchSize) {
       const batch = tests.slice(index, index + testBatchSize)
       const testPath = await copyTests(batch, browser, index / testBatchSize)
