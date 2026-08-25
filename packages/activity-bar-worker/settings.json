@@ -1,0 +1,10 @@
+[
+  {
+    "category": "workbench",
+    "description": "Show the account item in the activity bar",
+    "heading": "Account",
+    "id": "activityBar.accountEnabled",
+    "type": 3,
+    "value": true
+  }
+]
