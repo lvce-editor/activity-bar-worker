@@ -8,7 +8,7 @@ test('contributes the account setting', async () => {
   expect(settings).toContainEqual(
     expect.objectContaining({
       id: 'activityBar.accountEnabled',
-      type: 3,
+      type: 'boolean',
       value: true,
     }),
   )
