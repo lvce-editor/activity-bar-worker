@@ -12,6 +12,7 @@ test('handleUpdateStateChange should set badgeIcon to clock and Progress flag wh
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Settings',
   }
   const state: ActivityBarState = {
@@ -37,6 +38,7 @@ test('handleUpdateStateChange should set badgeIcon to empty and badgeText to 1 w
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Settings',
   }
   const state: ActivityBarState = {
@@ -62,6 +64,7 @@ test('handleUpdateStateChange should not modify Settings item for other states',
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Settings',
   }
   const state: ActivityBarState = {
@@ -86,6 +89,7 @@ test('handleUpdateStateChange should update updateProgress and updateState', asy
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Settings',
   }
   const state: ActivityBarState = {
@@ -111,6 +115,7 @@ test('handleUpdateStateChange should preserve other state properties', async () 
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Settings',
   }
   const state: ActivityBarState = {
@@ -142,6 +147,7 @@ test('handleUpdateStateChange should only modify Settings item, not other items'
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Settings',
   }
   const otherItem: ActivityBarItem = {
@@ -149,6 +155,7 @@ test('handleUpdateStateChange should only modify Settings item, not other items'
     icon: 'explorer',
     id: 'Explorer',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Explorer',
   }
   const state: ActivityBarState = {
@@ -173,6 +180,7 @@ test('handleUpdateStateChange should handle Settings item with existing flags', 
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Settings',
   }
   const state: ActivityBarState = {
@@ -197,6 +205,7 @@ test('handleUpdateStateChange should handle state without Settings item', async 
     icon: 'explorer',
     id: 'Explorer',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Explorer',
   }
   const state: ActivityBarState = {
@@ -222,6 +231,7 @@ test('handleUpdateStateChange should handle WaitingForRestart with existing badg
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Settings',
   }
   const state: ActivityBarState = {
@@ -245,6 +255,7 @@ test('handleUpdateStateChange should handle InstallingUpdated state', async () =
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Settings',
   }
   const state: ActivityBarState = {

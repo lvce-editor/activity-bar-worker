@@ -11,7 +11,7 @@ import { markSelected } from '../src/parts/MarkSelected/MarkSelected.ts'
 
 test('handleClickIndex returns same state for non-left click', async () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', preferredLocation: 0, title: 'Settings' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -26,7 +26,7 @@ test('handleClickIndex returns same state for non-left click', async () => {
 
 test('handleClickIndex returns same state when index is -1', async () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', preferredLocation: 0, title: 'Settings' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -44,7 +44,7 @@ test('handleClickIndex handles Settings viewlet click', async () => {
     'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', preferredLocation: 0, title: 'Settings' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -63,7 +63,7 @@ test('handleClickIndex clears activity bar focus for a valid left click', async 
     'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', preferredLocation: 0, title: 'Settings' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -83,7 +83,7 @@ test('handleClickIndex handles Additional Views viewlet click', async () => {
     'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Additional Views', keyShortcuts: '', title: 'Additional Views' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Additional Views', keyShortcuts: '', preferredLocation: 0, title: 'Additional Views' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -111,7 +111,7 @@ test('handleClickIndex handles other viewlet click when sidebar is hidden', asyn
     'Layout.toggleSideBarView'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -135,7 +135,7 @@ test('handleClickIndex handles other viewlet click when sidebar is visible and d
     'Layout.toggleSideBarView'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -165,7 +165,7 @@ test('handleClickIndex handles other viewlet click when same viewlet is already 
     'Layout.toggleSideBarView'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -195,9 +195,9 @@ test('handleClickIndex handles different indices in items array', async () => {
     'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'Other', keyShortcuts: '', title: 'Other' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'Settings', keyShortcuts: '', title: 'Settings' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'Additional Views', keyShortcuts: '', title: 'Additional Views' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'Other', keyShortcuts: '', preferredLocation: 0, title: 'Other' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'Settings', keyShortcuts: '', preferredLocation: 0, title: 'Settings' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'Additional Views', keyShortcuts: '', preferredLocation: 0, title: 'Additional Views' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),

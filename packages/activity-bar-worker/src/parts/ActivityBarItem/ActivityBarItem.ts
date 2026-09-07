@@ -9,6 +9,6 @@ export interface ActivityBarItem {
   readonly icon: string
   readonly id: string // TODO should be number
   readonly keyShortcuts: string
-  readonly preferredLocation?: 'preview' | 'sideBar'
+  readonly preferredLocation: number
   readonly title: string
 }

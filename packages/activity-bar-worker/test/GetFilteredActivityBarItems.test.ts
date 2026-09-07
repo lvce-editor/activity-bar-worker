@@ -7,9 +7,9 @@ import * as Icon from '../src/parts/Icon/Icon.ts'
 
 test('getFilteredActivityBarItems returns all items when they all fit', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
   ]
   const height = 300
   const itemHeight = 50
@@ -22,11 +22,11 @@ test('getFilteredActivityBarItems returns all items when they all fit', () => {
 
 test('getFilteredActivityBarItems filters items when they do not all fit', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', preferredLocation: 0, title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', preferredLocation: 0, title: 'Item 5' },
   ]
   const height = 150
   const itemHeight = 50
@@ -42,10 +42,10 @@ test('getFilteredActivityBarItems filters items when they do not all fit', () =>
 
 test('getFilteredActivityBarItems creates show more item with correct properties', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', preferredLocation: 0, title: 'Item 4' },
   ]
   const height = 100
   const itemHeight = 50
@@ -72,7 +72,9 @@ test('getFilteredActivityBarItems handles empty items array', () => {
 })
 
 test('getFilteredActivityBarItems handles single item that fits', () => {
-  const items: readonly ActivityBarItem[] = [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }]
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+  ]
   const height = 100
   const itemHeight = 50
 
@@ -84,7 +86,9 @@ test('getFilteredActivityBarItems handles single item that fits', () => {
 })
 
 test('getFilteredActivityBarItems handles single item that does not fit', () => {
-  const items: readonly ActivityBarItem[] = [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }]
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+  ]
   const height = 30
   const itemHeight = 50
 
@@ -97,9 +101,9 @@ test('getFilteredActivityBarItems handles single item that does not fit', () => 
 
 test('getFilteredActivityBarItems handles exactly numberOfVisibleItems items', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
   ]
   const height = 150
   const itemHeight = 50
@@ -112,10 +116,10 @@ test('getFilteredActivityBarItems handles exactly numberOfVisibleItems items', (
 
 test('getFilteredActivityBarItems handles numberOfVisibleItems + 1 items', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', preferredLocation: 0, title: 'Item 4' },
   ]
   const height = 150
   const itemHeight = 50
@@ -137,11 +141,12 @@ test('getFilteredActivityBarItems preserves item properties', () => {
       icon: 'test-icon',
       id: 'item1',
       keyShortcuts: 'Ctrl+K',
+      preferredLocation: 0,
       title: 'Test Item',
     },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', preferredLocation: 0, title: 'Item 4' },
   ]
   const height = 200
   const itemHeight = 50
@@ -159,16 +164,16 @@ test('getFilteredActivityBarItems preserves item properties', () => {
 
 test('getFilteredActivityBarItems excludes disabled items', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
   ]
 
   const result = getFilteredActivityBarItems(items, 300, 50)
 
   expect(result).toEqual([
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
   ])
 })
 
@@ -178,6 +183,7 @@ test('getFilteredActivityBarItems handles many items', () => {
     icon: `icon${i}`,
     id: `item${i}`,
     keyShortcuts: '',
+    preferredLocation: 0,
     title: `Item ${i}`,
   }))
   const height = 200
@@ -194,10 +200,10 @@ test('getFilteredActivityBarItems handles many items', () => {
 
 test('getFilteredActivityBarItems handles fractional height calculations', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', preferredLocation: 0, title: 'Item 4' },
   ]
   const height = 120
   const itemHeight = 50

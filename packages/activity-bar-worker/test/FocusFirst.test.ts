@@ -3,7 +3,7 @@ import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarIt
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { focusFirst } from '../src/parts/FocusFirst/FocusFirst.ts'
 
-const item: ActivityBarItem = { flags: 0, icon: 'explorer', id: 'Explorer', keyShortcuts: '', title: 'Explorer' }
+const item: ActivityBarItem = { flags: 0, icon: 'explorer', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' }
 
 test('focusFirst focuses the first visible item', () => {
   const state = { ...createDefaultState(), filteredItems: [item], focused: false, focusedIndex: -1 }

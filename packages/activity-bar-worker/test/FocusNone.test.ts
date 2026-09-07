@@ -34,6 +34,7 @@ test('focusNone preserves other state properties', () => {
       icon: 'icon1',
       id: 'item1',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Item 1',
     },
     {
@@ -41,6 +42,7 @@ test('focusNone preserves other state properties', () => {
       icon: 'icon2',
       id: 'item2',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Item 2',
     },
   ]

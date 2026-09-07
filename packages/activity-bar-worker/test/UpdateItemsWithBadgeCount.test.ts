@@ -10,9 +10,9 @@ test('updateItemsWithBadgeCount updates badgeText with count', async () => {
     },
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
   ]
 
   const result: readonly ActivityBarItem[] = await updateItemsWithBadgeCount(items)
@@ -31,7 +31,7 @@ test('updateItemsWithBadgeCount sets empty badgeText for zero count', async () =
       return { item1: 0 }
     },
   })
-  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }]
+  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' }]
 
   const result: readonly ActivityBarItem[] = await updateItemsWithBadgeCount(items)
 
@@ -44,7 +44,7 @@ test('updateItemsWithBadgeCount sets empty badgeText for missing count', async (
       return {}
     },
   })
-  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }]
+  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' }]
 
   const result: readonly ActivityBarItem[] = await updateItemsWithBadgeCount(items)
 
@@ -64,6 +64,7 @@ test('updateItemsWithBadgeCount preserves other item properties', async () => {
       icon: 'test-icon',
       id: 'item1',
       keyShortcuts: 'Ctrl+K',
+      preferredLocation: 0,
       title: 'Test Item',
     },
   ]
@@ -92,6 +93,7 @@ test('updateItemsWithBadgeCount overwrites existing badgeText', async () => {
       icon: 'icon1',
       id: 'item1',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Item 1',
     },
   ]
@@ -121,7 +123,7 @@ test('updateItemsWithBadgeCount returns original items on error', async () => {
       throw new Error('RPC error')
     },
   })
-  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }]
+  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' }]
 
   const result: readonly ActivityBarItem[] = await updateItemsWithBadgeCount(items)
 
@@ -136,11 +138,11 @@ test('updateItemsWithBadgeCount handles multiple items with various counts', asy
     },
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: 0, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
-    { flags: 0, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
+    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
+    { flags: 0, icon: 'icon4', id: 'item4', keyShortcuts: '', preferredLocation: 0, title: 'Item 4' },
+    { flags: 0, icon: 'icon5', id: 'item5', keyShortcuts: '', preferredLocation: 0, title: 'Item 5' },
   ]
 
   const result: readonly ActivityBarItem[] = await updateItemsWithBadgeCount(items)

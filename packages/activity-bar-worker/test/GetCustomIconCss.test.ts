@@ -13,6 +13,7 @@ test('getCustomIconCss skips duplicates', () => {
       icon: 'https://example.com/icon.svg',
       id: 'test',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Test',
     },
     {
@@ -22,6 +23,7 @@ test('getCustomIconCss skips duplicates', () => {
       icon: 'https://example.com/icon.svg',
       id: 'test2',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Test 2',
     },
   ]

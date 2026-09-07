@@ -56,14 +56,14 @@ test('renderItems returns DOM structure', () => {
 })
 
 test('renderItems ignores oldState', () => {
-  const oldItems: readonly any[] = [{ flags: 0, icon: 'oldIcon', id: 'old', keyShortcuts: '', title: 'Old' }]
+  const oldItems: readonly any[] = [{ flags: 0, icon: 'oldIcon', id: 'old', keyShortcuts: '', preferredLocation: 0, title: 'Old' }]
   const oldState: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: oldItems,
     filteredItems: getFilteredActivityBarItems(oldItems, 400, 48),
     uid: 111,
   }
-  const newItems: readonly any[] = [{ flags: 0, icon: 'newIcon', id: 'new', keyShortcuts: '', title: 'New' }]
+  const newItems: readonly any[] = [{ flags: 0, icon: 'newIcon', id: 'new', keyShortcuts: '', preferredLocation: 0, title: 'New' }]
   const newState: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: newItems,
@@ -79,8 +79,8 @@ test('renderItems ignores oldState', () => {
 test('renderItems uses newState activityBarItems', () => {
   const oldState: ActivityBarState = createDefaultState()
   const items: readonly any[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item2' },
+    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item1' },
+    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item2' },
   ]
   const newState: ActivityBarState = {
     ...createDefaultState(),
@@ -113,7 +113,7 @@ test('renderItems returns new command each time', () => {
 
 test('renderItems returns command with correct structure', () => {
   const oldState: ActivityBarState = createDefaultState()
-  const items: readonly any[] = [{ flags: 0, icon: 'icon', id: 'test', keyShortcuts: '', title: 'Test' }]
+  const items: readonly any[] = [{ flags: 0, icon: 'icon', id: 'test', keyShortcuts: '', preferredLocation: 0, title: 'Test' }]
   const newState: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
@@ -131,7 +131,7 @@ test('renderItems returns command with correct structure', () => {
 
 test('renderItems returns empty DOM when initial is true', () => {
   const oldState: ActivityBarState = createDefaultState()
-  const items: readonly any[] = [{ flags: 0, icon: 'icon', id: 'test', keyShortcuts: '', title: 'Test' }]
+  const items: readonly any[] = [{ flags: 0, icon: 'icon', id: 'test', keyShortcuts: '', preferredLocation: 0, title: 'Test' }]
   const newState: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: items,
@@ -149,8 +149,8 @@ test('renderItems returns empty DOM when initial is true', () => {
 
 test('renderItems applies the focus outline to the focused item', () => {
   const items: readonly any[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'explorer', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'search', id: 'Search', keyShortcuts: '', title: 'Search' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'explorer', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'search', id: 'Search', keyShortcuts: '', preferredLocation: 0, title: 'Search' },
   ]
   const newState: ActivityBarState = {
     ...createDefaultState(),
@@ -168,8 +168,8 @@ test('renderItems applies the focus outline to the focused item', () => {
 
 test('renderItems removes the focus outline when the activity bar is blurred', () => {
   const items: readonly any[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'explorer', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'search', id: 'Search', keyShortcuts: '', title: 'Search' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'explorer', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'search', id: 'Search', keyShortcuts: '', preferredLocation: 0, title: 'Search' },
   ]
   const newState: ActivityBarState = {
     ...createDefaultState(),

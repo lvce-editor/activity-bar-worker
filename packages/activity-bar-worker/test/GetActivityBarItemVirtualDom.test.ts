@@ -22,6 +22,7 @@ test('getActivityBarItemVirtualDom adds item id as name', () => {
     icon: 'SettingsGear',
     id: 'Settings',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Settings',
   }
 

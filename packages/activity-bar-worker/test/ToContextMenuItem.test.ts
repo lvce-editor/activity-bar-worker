@@ -10,6 +10,7 @@ test('toContextMenuItem creates menu entry with correct command', () => {
     icon: 'explorer',
     id: 'Explorer',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Explorer',
   }
 
@@ -27,6 +28,7 @@ test('toContextMenuItem marks enabled items as checked', () => {
     icon: 'search',
     id: 'Search',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Search',
   }
 
@@ -41,6 +43,7 @@ test('toContextMenuItem marks disabled items as unchecked', () => {
     icon: 'git',
     id: 'Source Control',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Source Control',
   }
 
@@ -55,6 +58,7 @@ test('toContextMenuItem generates unique ids for different items', () => {
     icon: 'icon1',
     id: 'Item1',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Item 1',
   }
   const item2: ActivityBarItem = {
@@ -62,6 +66,7 @@ test('toContextMenuItem generates unique ids for different items', () => {
     icon: 'icon2',
     id: 'Item2',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Item 2',
   }
 
@@ -79,6 +84,7 @@ test('toContextMenuItem passes item id as argument', () => {
     icon: 'debug',
     id: 'Debug',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Debug',
   }
 
@@ -95,6 +101,7 @@ test('toContextMenuItem uses item title as label', () => {
     icon: 'debug',
     id: 'Run and Debug',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Run and Debug Panel',
   }
 

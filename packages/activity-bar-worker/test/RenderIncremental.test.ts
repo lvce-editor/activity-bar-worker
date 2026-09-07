@@ -21,6 +21,7 @@ test('renderIncremental returns patches when the rendered item ids change', () =
     icon: 'Files',
     id: 'Explorer',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Explorer',
   }
   const oldState: ActivityBarState = {
@@ -46,6 +47,7 @@ test('renderIncremental returns patches when item properties change', () => {
     icon: 'Files',
     id: 'Explorer',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Explorer',
   }
   const newItem: ActivityBarItem = {

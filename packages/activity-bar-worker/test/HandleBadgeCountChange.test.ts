@@ -17,9 +17,9 @@ test('handleBadgeCountChange updates filteredItems with badge counts', async () 
   })
 
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
   ]
 
   const state: ActivityBarState = {
@@ -47,9 +47,9 @@ test('handleBadgeCountChange updates filteredItems with badge counts', async () 
 test('handleBadgeCountChange applies partial badge count changes without querying the layout', async () => {
   using mockRpc = RendererWorker.registerMockRpc({})
   const items: readonly ActivityBarItem[] = [
-    { badgeText: '2', flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { badgeText: '3', flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { badgeText: '4', flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { badgeText: '2', flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { badgeText: '3', flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { badgeText: '4', flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -69,8 +69,8 @@ test('handleBadgeCountChange applies partial badge count changes without queryin
 })
 
 test('handleBadgeCountChange preserves filtered items that are not in the activity bar', async () => {
-  const activityBarItem: ActivityBarItem = { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }
-  const filteredItem: ActivityBarItem = { flags: 0, icon: 'icon2', id: 'filtered', keyShortcuts: '', title: 'Filtered Item' }
+  const activityBarItem: ActivityBarItem = { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' }
+  const filteredItem: ActivityBarItem = { flags: 0, icon: 'icon2', id: 'filtered', keyShortcuts: '', preferredLocation: 0, title: 'Filtered Item' }
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: [activityBarItem],
@@ -91,7 +91,7 @@ test('handleBadgeCountChange preserves other state properties', async () => {
     },
   })
 
-  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }]
+  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' }]
 
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -142,8 +142,8 @@ test('handleBadgeCountChange handles items with no badge counts', async () => {
   })
 
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
   ]
 
   const state: ActivityBarState = {
@@ -170,8 +170,8 @@ test('handleBadgeCountChange handles items with existing badgeText', async () =>
   })
 
   const items: readonly ActivityBarItem[] = [
-    { badgeText: 'old', flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { badgeText: 'old2', flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { badgeText: 'old', flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { badgeText: 'old2', flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
   ]
 
   const state: ActivityBarState = {
@@ -194,8 +194,8 @@ test('handleBadgeCountChange handles RPC error gracefully', async () => {
   })
 
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
   ]
 
   const state: ActivityBarState = {
@@ -221,8 +221,8 @@ test('handleBadgeCountChange handles large badge counts', async () => {
   })
 
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
   ]
 
   const state: ActivityBarState = {
@@ -253,6 +253,7 @@ test('handleBadgeCountChange preserves item properties other than badgeText', as
       icon: 'test-icon',
       id: 'item1',
       keyShortcuts: 'Ctrl+K',
+      preferredLocation: 0,
       title: 'Test Item',
     },
   ]

@@ -174,6 +174,7 @@ test('getActivityBarItemWithBadgeDom adds ariaHasPopup for settings item', () =>
     icon: 'SettingsGear',
     id: 'Settings',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Settings',
   }
 
