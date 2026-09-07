@@ -87,6 +87,7 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
   if (accountEnabled) {
     items.push({
       flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled | ActivityBarItemFlags.MarginTop,
+      hasPopup: true,
       icon: Icon.Account,
       id: 'Account',
       keyShortcuts: '',
@@ -96,6 +97,7 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
 
   items.push({
     flags: settingsFlags,
+    hasPopup: true,
     icon: Icon.SettingsGear,
     id: 'Settings',
     keyShortcuts: '',
