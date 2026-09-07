@@ -230,12 +230,13 @@ test('getVirtualDom handles item with all flags', () => {
   expect(result.length).toBeGreaterThan(0)
 })
 
-test('getVirtualDom adds ariaHasPopup for account item', () => {
+test.each(['Account', 'Settings', 'CustomPopup'])('getVirtualDom adds ariaHasPopup for %s with hasPopup enabled', (id) => {
   const items: readonly any[] = [
     {
       flags: 0,
+      hasPopup: true,
       icon: 'Account',
-      id: 'Account',
+      id,
       title: 'Account',
     },
   ]
@@ -245,12 +246,12 @@ test('getVirtualDom adds ariaHasPopup for account item', () => {
   expect(result[0].ariaHasPopup).toBe(true)
 })
 
-test('getVirtualDom does not add ariaHasPopup for regular activity bar item', () => {
+test.each(['Explorer', 'Account', 'Settings'])('getVirtualDom does not infer ariaHasPopup from the %s id', (id) => {
   const items: readonly any[] = [
     {
       flags: 0,
       icon: 'Explorer',
-      id: 'Explorer',
+      id,
       title: 'Explorer',
     },
   ]
