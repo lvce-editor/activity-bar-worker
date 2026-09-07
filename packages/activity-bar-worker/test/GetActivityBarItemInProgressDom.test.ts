@@ -7,6 +7,7 @@ import { getActivityBarItemInProgressDom } from '../src/parts/GetActivityBarItem
 test('getActivityBarItemInProgressDom adds ariaHasPopup for settings item', () => {
   const item: ActivityBarItem = {
     flags: 0,
+    hasPopup: true,
     icon: 'SettingsGear',
     id: 'Settings',
     keyShortcuts: '',

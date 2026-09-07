@@ -5,6 +5,7 @@ export interface ActivityBarItem {
   readonly customIconUrl?: string
   readonly enabled?: boolean
   readonly flags: number
+  readonly hasPopup?: boolean
   readonly icon: string
   readonly id: string // TODO should be number
   readonly keyShortcuts: string
