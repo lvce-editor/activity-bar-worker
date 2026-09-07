@@ -14,12 +14,20 @@ test('handleSideBarStateChange clears the sidebar selection and focus when the s
     },
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Selected, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    {
+      flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Selected,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
     {
       flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Selected | ActivityBarItemFlags.Focused,
       icon: 'icon2',
       id: 'item2',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Item 2',
     },
   ]
@@ -43,9 +51,10 @@ test('handleSideBarStateChange clears the sidebar selection and focus when the s
         icon: 'icon1',
         id: 'item1',
         keyShortcuts: '',
+        preferredLocation: 0,
         title: 'Item 1',
       },
-      { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+      { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
     ],
     filteredItems: [
       {
@@ -53,9 +62,10 @@ test('handleSideBarStateChange clears the sidebar selection and focus when the s
         icon: 'icon1',
         id: 'item1',
         keyShortcuts: '',
+        preferredLocation: 0,
         title: 'Item 1',
       },
-      { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+      { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
     ],
     focusedIndex: -1,
     selectedIndex: -1,
@@ -70,9 +80,9 @@ test('handleSideBarStateChange marks the requested viewlet when sidebar is visib
     },
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Tab, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Tab, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Tab, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Tab, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Tab, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Tab, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -104,7 +114,14 @@ test('handleSideBarStateChange preserves activity bar focus when the requested v
     },
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Selected, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    {
+      flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Selected,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -131,7 +148,7 @@ test('handleSideBarStateChange sets selectedIndex to -1 when requested viewlet i
   })
   const state: ActivityBarState = {
     ...createDefaultState(),
-    activityBarItems: [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }],
+    activityBarItems: [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' }],
     selectedIndex: 0,
   }
 
@@ -150,6 +167,7 @@ test('handleSideBarStateChange uses explicit hidden visibility without querying 
       icon: 'icon1',
       id: 'item1',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Item 1',
     },
   ]
@@ -167,8 +185,8 @@ test('handleSideBarStateChange uses explicit hidden visibility without querying 
   expect(mockRpc.invocations).toEqual([])
   expect(result).toEqual({
     ...state,
-    activityBarItems: [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }],
-    filteredItems: [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }],
+    activityBarItems: [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' }],
+    filteredItems: [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' }],
     focusedIndex: -1,
     selectedIndex: -1,
     sideBarVisible: false,
@@ -178,9 +196,9 @@ test('handleSideBarStateChange uses explicit hidden visibility without querying 
 test('handleSideBarStateChange switches the side bar while preserving another active view', async () => {
   RendererWorker.registerMockRpc({})
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Selected, icon: 'files', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
-    { flags: 0, icon: 'search', id: 'Search', keyShortcuts: '', title: 'Search' },
-    { flags: ActivityBarItemFlags.Selected, icon: 'chat', id: 'chat.voice', keyShortcuts: '', title: 'Voice Chat' },
+    { flags: ActivityBarItemFlags.Selected, icon: 'files', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
+    { flags: 0, icon: 'search', id: 'Search', keyShortcuts: '', preferredLocation: 0, title: 'Search' },
+    { flags: ActivityBarItemFlags.Selected, icon: 'chat', id: 'chat.voice', keyShortcuts: '', preferredLocation: 0, title: 'Voice Chat' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -202,8 +220,8 @@ test('handleSideBarStateChange switches the side bar while preserving another ac
 test('handleSideBarStateChange hides the side bar while preserving another active view', async () => {
   RendererWorker.registerMockRpc({})
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Selected, icon: 'files', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
-    { flags: ActivityBarItemFlags.Selected, icon: 'chat', id: 'chat.voice', keyShortcuts: '', title: 'Voice Chat' },
+    { flags: ActivityBarItemFlags.Selected, icon: 'files', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
+    { flags: ActivityBarItemFlags.Selected, icon: 'chat', id: 'chat.voice', keyShortcuts: '', preferredLocation: 0, title: 'Voice Chat' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -224,7 +242,7 @@ test('handleSideBarStateChange hides the side bar while preserving another activ
 test('handleSideBarStateChange ignores a missing sidebar item and preserves another active view', async () => {
   RendererWorker.registerMockRpc({})
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Selected, icon: 'chat', id: 'chat.voice', keyShortcuts: '', title: 'Voice Chat' },
+    { flags: ActivityBarItemFlags.Selected, icon: 'chat', id: 'chat.voice', keyShortcuts: '', preferredLocation: 0, title: 'Voice Chat' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -244,8 +262,15 @@ test('handleSideBarStateChange enables and selects the on-demand References item
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: [
-      { flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled, icon: 'Files', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
-      { flags: ActivityBarItemFlags.Tab, icon: 'References', id: 'References', keyShortcuts: '', title: 'References' },
+      {
+        flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
+        icon: 'Files',
+        id: 'Explorer',
+        keyShortcuts: '',
+        preferredLocation: 0,
+        title: 'Explorer',
+      },
+      { flags: ActivityBarItemFlags.Tab, icon: 'References', id: 'References', keyShortcuts: '', preferredLocation: 0, title: 'References' },
     ],
   }
 
@@ -264,8 +289,15 @@ test('handleSideBarStateChange keeps References enabled after switching away', a
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: [
-      { flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled, icon: 'Files', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
-      { flags: ActivityBarItemFlags.Tab, icon: 'References', id: 'References', keyShortcuts: '', title: 'References' },
+      {
+        flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
+        icon: 'Files',
+        id: 'Explorer',
+        keyShortcuts: '',
+        preferredLocation: 0,
+        title: 'Explorer',
+      },
+      { flags: ActivityBarItemFlags.Tab, icon: 'References', id: 'References', keyShortcuts: '', preferredLocation: 0, title: 'References' },
     ],
   }
 
@@ -283,7 +315,7 @@ test('handleSideBarStateChange does not automatically re-enable other hidden ite
   using mockRpc = RendererWorker.registerMockRpc({})
   const state: ActivityBarState = {
     ...createDefaultState(),
-    activityBarItems: [{ flags: ActivityBarItemFlags.Tab, icon: 'Search', id: 'Search', keyShortcuts: '', title: 'Search' }],
+    activityBarItems: [{ flags: ActivityBarItemFlags.Tab, icon: 'Search', id: 'Search', keyShortcuts: '', preferredLocation: 0, title: 'Search' }],
   }
 
   const result = await handleSideBarStateChange(state, 'Search', true)

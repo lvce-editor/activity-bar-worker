@@ -35,6 +35,7 @@ test('renderCss returns empty array with custom properties', () => {
       icon: 'icon',
       id: 'test',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Test',
     },
   ]
@@ -64,6 +65,7 @@ test('renderCss includes custom icon rules', () => {
       icon: 'https://example.com/icon.svg',
       id: 'test',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Test',
     },
     {
@@ -73,6 +75,7 @@ test('renderCss includes custom icon rules', () => {
       icon: 'file:///tmp/icon.png',
       id: 'test2',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Test 2',
     },
   ]
@@ -101,6 +104,7 @@ test('renderCss includes lvce custom icon rule', () => {
       icon,
       id: 'hetzner.views.cloud',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Hetzner Cloud',
     },
   ]

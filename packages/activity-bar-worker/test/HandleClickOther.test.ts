@@ -55,11 +55,13 @@ test('handleClickOther toggles sidebar view when sidebar is visible and currentV
   })
 })
 
-test('handleClickOther toggles sidebar view when sidebar is not visible', async () => {
+test.each([0, 2])('handleClickOther opens location %i in the sidebar when it is not visible', async (preferredLocation) => {
   using mockRpc = RendererWorker.registerMockRpc({
     'Layout.toggleSideBarView'() {},
   })
-  const activityBarItems: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'new-viewlet', keyShortcuts: '', title: 'New Viewlet' }]
+  const activityBarItems: readonly ActivityBarItem[] = [
+    { flags: 0, icon: 'icon', id: 'new-viewlet', keyShortcuts: '', preferredLocation, title: 'New Viewlet' },
+  ]
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems,
@@ -87,7 +89,9 @@ test('handleClickOther preserves state properties', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'Layout.toggleSideBarView'() {},
   })
-  const activityBarItems: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon', id: 'new-viewlet', keyShortcuts: '', title: 'New Viewlet' }]
+  const activityBarItems: readonly ActivityBarItem[] = [
+    { flags: 0, icon: 'icon', id: 'new-viewlet', keyShortcuts: '', preferredLocation: 0, title: 'New Viewlet' },
+  ]
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems,
@@ -142,8 +146,8 @@ test('handleClickOther activates a preview-preferred view without replacing the 
     'Layout.toggleSideBarView'() {},
   })
   const activityBarItems: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Selected, icon: 'files', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
-    { flags: 0, icon: 'chat', id: 'chat.voice', keyShortcuts: '', preferredLocation: 'preview', title: 'Voice Chat' },
+    { flags: ActivityBarItemFlags.Selected, icon: 'files', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
+    { flags: 0, icon: 'chat', id: 'chat.voice', keyShortcuts: '', preferredLocation: 1, title: 'Voice Chat' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -169,13 +173,13 @@ test('handleClickOther deactivates a preview-preferred view without hiding the s
     'Layout.toggleSideBarView'() {},
   })
   const activityBarItems: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Selected, icon: 'files', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
+    { flags: ActivityBarItemFlags.Selected, icon: 'files', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
     {
       flags: ActivityBarItemFlags.Selected,
       icon: 'chat',
       id: 'chat.voice',
       keyShortcuts: '',
-      preferredLocation: 'preview',
+      preferredLocation: 1,
       title: 'Voice Chat',
     },
   ]

@@ -160,10 +160,17 @@ test('getIndexFromPosition returns account index for second bottom slot', () => 
   const itemHeight = 50
   const height = 400
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Tab, icon: 'Files', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
-    { flags: ActivityBarItemFlags.Tab, icon: 'Search', id: 'Search', keyShortcuts: '', title: 'Search' },
-    { flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.MarginTop, icon: 'Account', id: 'Account', keyShortcuts: '', title: 'Account' },
-    { flags: ActivityBarItemFlags.Button, icon: 'Settings', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+    { flags: ActivityBarItemFlags.Tab, icon: 'Files', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
+    { flags: ActivityBarItemFlags.Tab, icon: 'Search', id: 'Search', keyShortcuts: '', preferredLocation: 0, title: 'Search' },
+    {
+      flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.MarginTop,
+      icon: 'Account',
+      id: 'Account',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Account',
+    },
+    { flags: ActivityBarItemFlags.Button, icon: 'Settings', id: 'Settings', keyShortcuts: '', preferredLocation: 0, title: 'Settings' },
   ]
   const accountTopY = y + height - itemHeight * 2
   const settingsTopY = y + height - itemHeight
@@ -178,8 +185,15 @@ test('getIndexFromPosition keeps additional views in top section when settings i
   const itemHeight = 48
   const height = 400
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Button, icon: 'Ellipsis', id: 'Additional Views', keyShortcuts: '', title: 'Additional Views' },
-    { flags: ActivityBarItemFlags.Button, icon: 'SettingsGear', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+    {
+      flags: ActivityBarItemFlags.Button,
+      icon: 'Ellipsis',
+      id: 'Additional Views',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Additional Views',
+    },
+    { flags: ActivityBarItemFlags.Button, icon: 'SettingsGear', id: 'Settings', keyShortcuts: '', preferredLocation: 0, title: 'Settings' },
   ]
   const settingsTopY = y + height - itemHeight
 

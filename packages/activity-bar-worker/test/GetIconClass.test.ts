@@ -10,6 +10,7 @@ test('getIconClass prefers custom icon class', () => {
     icon: 'https://example.com/icon.svg',
     id: 'test',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Test',
   }
 
@@ -22,6 +23,7 @@ test('getIconClass falls back to builtin prefix', () => {
     icon: 'Explorer',
     id: 'test',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Test',
   }
 

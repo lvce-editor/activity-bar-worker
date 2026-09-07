@@ -10,6 +10,7 @@ test('getActivityBarItemInProgressDom adds ariaHasPopup for settings item', () =
     icon: 'SettingsGear',
     id: 'Settings',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Settings',
   }
 
@@ -24,6 +25,7 @@ test('getActivityBarItemInProgressDom uses the tab role for tab items', () => {
     icon: 'Files',
     id: 'Explorer',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Explorer',
   }
 

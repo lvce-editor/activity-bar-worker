@@ -10,9 +10,17 @@ const items: readonly ActivityBarItem[] = [
     icon: 'files',
     id: 'Explorer',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Explorer',
   },
-  { flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Tab, icon: 'chat', id: 'chat.voice', keyShortcuts: '', title: 'Voice Chat' },
+  {
+    flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Tab,
+    icon: 'chat',
+    id: 'chat.voice',
+    keyShortcuts: '',
+    preferredLocation: 0,
+    title: 'Voice Chat',
+  },
 ]
 
 test('handleActiveViewStateChange activates an additional view', () => {

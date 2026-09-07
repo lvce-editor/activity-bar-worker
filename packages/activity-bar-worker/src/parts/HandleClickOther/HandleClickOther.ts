@@ -1,4 +1,5 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
+import * as ActivityBarItemLocation from '../ActivityBarItemLocation/ActivityBarItemLocation.ts'
 import { findIndex } from '../FindIndex/FindIndex.ts'
 import { getActiveViewIds } from '../GetActiveViewIds/GetActiveViewIds.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
@@ -12,7 +13,7 @@ export const handleClickOther = async (state: ActivityBarState, viewletId: strin
   const selectedItem = activityBarItems.find((item) => item.id === viewletId)
   const sideBarChange = getSideBarChange(sideBarVisible, currentViewletId, viewletId)
   await SideBar.toggle(viewletId)
-  if (selectedItem?.preferredLocation === 'preview') {
+  if (selectedItem?.preferredLocation === ActivityBarItemLocation.Preview) {
     const isActive = activeViewIds.includes(viewletId)
     const newActiveViewIds = isActive ? activeViewIds.filter((id) => id !== viewletId) : [...activeViewIds, viewletId]
     const newActivityBarItems = markActiveViews(activityBarItems, newActiveViewIds)

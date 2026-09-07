@@ -36,6 +36,7 @@ test('focus preserves other state properties when setting focus', () => {
       icon: 'icon1',
       id: 'item1',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Item 1',
     },
     {
@@ -43,6 +44,7 @@ test('focus preserves other state properties when setting focus', () => {
       icon: 'icon2',
       id: 'item2',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Item 2',
     },
   ]

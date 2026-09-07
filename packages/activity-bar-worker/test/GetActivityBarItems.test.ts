@@ -35,6 +35,7 @@ test('GetActivityBarItems.getActivityBarItems should return items with correct s
     expect(typeof item.icon).toBe('string')
     expect(typeof item.flags).toBe('number')
     expect(typeof item.keyShortcuts).toBe('string')
+    expect(item.preferredLocation).toBe(0)
   }
 })
 
@@ -89,6 +90,7 @@ test('GetActivityBarItems.getActivityBarItems includes References hidden by defa
     icon: 'References',
     id: 'References',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'References',
   })
 })
@@ -102,6 +104,7 @@ test('GetActivityBarItems.getActivityBarItems preserves an activated References 
         icon: 'References',
         id: 'References',
         keyShortcuts: '',
+        preferredLocation: 0,
         title: 'References',
       },
     ],

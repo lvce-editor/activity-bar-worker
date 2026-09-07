@@ -1,5 +1,6 @@
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
+import * as ActivityBarItemLocation from '../ActivityBarItemLocation/ActivityBarItemLocation.ts'
 import * as ViewletActivityBarStrings from '../ActivityBarStrings/ActivityBarStrings.ts'
 import * as Icon from '../Icon/Icon.ts'
 import { getNumberOfVisibleItems } from '../ViewletActivityBar/ViewletActivityBarGetHiddenItems.ts'
@@ -15,6 +16,7 @@ export const getFilteredActivityBarItems = (items: readonly ActivityBarItem[], h
     icon: Icon.Ellipsis,
     id: 'Additional Views',
     keyShortcuts: '',
+    preferredLocation: ActivityBarItemLocation.Default,
     title: ViewletActivityBarStrings.additionalViews(),
   }
   return [...enabledItems.slice(0, numberOfVisibleItems - 2), showMoreItem, enabledItems.at(-1)!]
