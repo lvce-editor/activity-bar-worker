@@ -4,6 +4,7 @@ import type { ContributedView } from '../GetContributedViews/GetContributedViews
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ActivityBarItemLocation from '../ActivityBarItemLocation/ActivityBarItemLocation.ts'
 import * as ViewletActivityBarStrings from '../ActivityBarStrings/ActivityBarStrings.ts'
+import { getActivityBarItemLocation } from '../GetActivityBarItemLocation/GetActivityBarItemLocation.ts'
 import { getCustomIconClass } from '../GetCustomIconClass/GetCustomIconClass.ts'
 import * as Icon from '../Icon/Icon.ts'
 import { isCustomIconUrl } from '../IsCustomIconUrl/IsCustomIconUrl.ts'
@@ -18,12 +19,7 @@ const toActivityBarItem = (view: ContributedView): ActivityBarItem => {
     icon,
     id: view.id,
     keyShortcuts: '',
-    preferredLocation:
-      view.preferredLocation === 'preview'
-        ? ActivityBarItemLocation.Preview
-        : view.preferredLocation === 'sideBar'
-          ? ActivityBarItemLocation.SideBar
-          : ActivityBarItemLocation.Default,
+    preferredLocation: getActivityBarItemLocation(view.preferredLocation),
     title: view.title || view.id,
   }
   if (customIconClass && customIconUrl) {
