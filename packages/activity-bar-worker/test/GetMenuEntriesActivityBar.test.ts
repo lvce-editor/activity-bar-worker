@@ -11,8 +11,8 @@ import * as MenuEntrySeparator from '../src/parts/MenuEntrySeparator/MenuEntrySe
 
 test('getMenuEntriesActivityBar returns menu entries with items, separator, move side bar, and hide activity bar', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
   ]
 
   const state: ActivityBarState = {
@@ -55,15 +55,30 @@ test('getMenuEntriesActivityBar returns menu entries with items, separator, move
 
 test('getMenuEntriesActivityBar inserts a separator before bottom utility items', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
+    {
+      flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
     {
       flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled | ActivityBarItemFlags.MarginTop,
       icon: 'icon2',
       id: 'Account',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Account',
     },
-    { flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+    {
+      flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled,
+      icon: 'icon3',
+      id: 'Settings',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Settings',
+    },
   ]
 
   const state: ActivityBarState = {
@@ -139,7 +154,7 @@ test('getMenuEntriesActivityBar handles empty items array', () => {
 })
 
 test('getMenuEntriesActivityBar uses correct move side bar entry for Right location', () => {
-  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }]
+  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' }]
 
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -160,9 +175,16 @@ test('getMenuEntriesActivityBar uses correct move side bar entry for Right locat
 
 test('getMenuEntriesActivityBar marks enabled items as checked and disabled items as unchecked', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Selected, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    {
+      flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Selected,
+      icon: 'icon3',
+      id: 'item3',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 3',
+    },
   ]
 
   const state: ActivityBarState = {
@@ -180,8 +202,8 @@ test('getMenuEntriesActivityBar marks enabled items as checked and disabled item
 
 test('getMenuEntriesActivityBar uses item title as label', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'explorer', keyShortcuts: '', title: 'Explorer' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'search', keyShortcuts: '', title: 'Search' },
+    { flags: 0, icon: 'icon1', id: 'explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'search', keyShortcuts: '', preferredLocation: 0, title: 'Search' },
   ]
 
   const state: ActivityBarState = {

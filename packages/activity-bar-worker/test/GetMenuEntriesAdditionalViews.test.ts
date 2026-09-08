@@ -9,8 +9,8 @@ import { ACCOUNT_MENU_ID } from '../src/parts/HandleClickAccount/HandleClickAcco
 
 test('getMenuEntriesAdditionalViews returns empty array when no items are hidden', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
   ]
 
   const state: ActivityBarState = {
@@ -27,14 +27,14 @@ test('getMenuEntriesAdditionalViews returns empty array when no items are hidden
 
 test('getMenuEntriesAdditionalViews returns empty array when all items fit in visible area', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon6', id: 'item6', keyShortcuts: '', title: 'Item 6' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon7', id: 'item7', keyShortcuts: '', title: 'Item 7' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon8', id: 'item8', keyShortcuts: '', title: 'Item 8' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', preferredLocation: 0, title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', preferredLocation: 0, title: 'Item 5' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon6', id: 'item6', keyShortcuts: '', preferredLocation: 0, title: 'Item 6' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon7', id: 'item7', keyShortcuts: '', preferredLocation: 0, title: 'Item 7' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon8', id: 'item8', keyShortcuts: '', preferredLocation: 0, title: 'Item 8' },
   ]
 
   const state: ActivityBarState = {
@@ -51,16 +51,16 @@ test('getMenuEntriesAdditionalViews returns empty array when all items fit in vi
 
 test('getMenuEntriesAdditionalViews returns menu entries for hidden items', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon6', id: 'item6', keyShortcuts: '', title: 'Item 6' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon7', id: 'item7', keyShortcuts: '', title: 'Item 7' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon8', id: 'item8', keyShortcuts: '', title: 'Item 8' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon9', id: 'item9', keyShortcuts: '', title: 'Item 9' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon10', id: 'item10', keyShortcuts: '', title: 'Item 10' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', preferredLocation: 0, title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', preferredLocation: 0, title: 'Item 5' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon6', id: 'item6', keyShortcuts: '', preferredLocation: 0, title: 'Item 6' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon7', id: 'item7', keyShortcuts: '', preferredLocation: 0, title: 'Item 7' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon8', id: 'item8', keyShortcuts: '', preferredLocation: 0, title: 'Item 8' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon9', id: 'item9', keyShortcuts: '', preferredLocation: 0, title: 'Item 9' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon10', id: 'item10', keyShortcuts: '', preferredLocation: 0, title: 'Item 10' },
   ]
 
   const state: ActivityBarState = {
@@ -82,17 +82,17 @@ test('getMenuEntriesAdditionalViews returns menu entries for hidden items', () =
 
 test('getMenuEntriesAdditionalViews maps hidden items to menu entries with correct structure', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon6', id: 'item6', keyShortcuts: '', title: 'Item 6' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon7', id: 'item7', keyShortcuts: '', title: 'Item 7' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon8', id: 'item8', keyShortcuts: '', title: 'Item 8' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon9', id: 'item9', keyShortcuts: '', title: 'Item 9' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon10', id: 'item10', keyShortcuts: '', title: 'Item 10' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon11', id: 'item11', keyShortcuts: '', title: 'Item 11' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', preferredLocation: 0, title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', preferredLocation: 0, title: 'Item 5' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon6', id: 'item6', keyShortcuts: '', preferredLocation: 0, title: 'Item 6' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon7', id: 'item7', keyShortcuts: '', preferredLocation: 0, title: 'Item 7' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon8', id: 'item8', keyShortcuts: '', preferredLocation: 0, title: 'Item 8' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon9', id: 'item9', keyShortcuts: '', preferredLocation: 0, title: 'Item 9' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon10', id: 'item10', keyShortcuts: '', preferredLocation: 0, title: 'Item 10' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon11', id: 'item11', keyShortcuts: '', preferredLocation: 0, title: 'Item 11' },
   ]
 
   const state: ActivityBarState = {
@@ -114,15 +114,15 @@ test('getMenuEntriesAdditionalViews maps hidden items to menu entries with corre
 
 test('getMenuEntriesAdditionalViews uses item title as label', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'custom-id-1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'custom-id-2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'custom-id-3', keyShortcuts: '', title: 'Item 3' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'custom-id-4', keyShortcuts: '', title: 'Item 4' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'custom-id-5', keyShortcuts: '', title: 'Item 5' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon6', id: 'custom-id-6', keyShortcuts: '', title: 'Item 6' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon7', id: 'custom-id-7', keyShortcuts: '', title: 'Item 7' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon8', id: 'custom-id-8', keyShortcuts: '', title: 'Item 8' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon9', id: 'custom-id-9', keyShortcuts: '', title: 'Item 9' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'custom-id-1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'custom-id-2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'custom-id-3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'custom-id-4', keyShortcuts: '', preferredLocation: 0, title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'custom-id-5', keyShortcuts: '', preferredLocation: 0, title: 'Item 5' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon6', id: 'custom-id-6', keyShortcuts: '', preferredLocation: 0, title: 'Item 6' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon7', id: 'custom-id-7', keyShortcuts: '', preferredLocation: 0, title: 'Item 7' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon8', id: 'custom-id-8', keyShortcuts: '', preferredLocation: 0, title: 'Item 8' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon9', id: 'custom-id-9', keyShortcuts: '', preferredLocation: 0, title: 'Item 9' },
   ]
 
   const state: ActivityBarState = {
@@ -140,11 +140,11 @@ test('getMenuEntriesAdditionalViews uses item title as label', () => {
 
 test('getMenuEntriesAdditionalViews handles different height and itemHeight values', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', preferredLocation: 0, title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', preferredLocation: 0, title: 'Item 5' },
   ]
 
   const state: ActivityBarState = {
@@ -169,6 +169,7 @@ test('getMenuEntriesAdditionalViews handles many items', () => {
     icon: `icon${i + 1}`,
     id: `item${i + 1}`,
     keyShortcuts: '',
+    preferredLocation: 0,
     title: `Item ${i + 1}`,
   }))
 
@@ -189,9 +190,9 @@ test('getMenuEntriesAdditionalViews handles many items', () => {
 
 test('getMenuEntriesAdditionalViews returns Account as a submenu', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'files', id: 'Explorer', keyShortcuts: '', title: 'Explorer' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'account', id: 'Account', keyShortcuts: '', title: 'Account' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'settings', id: 'Settings', keyShortcuts: '', title: 'Settings' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'files', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'account', id: 'Account', keyShortcuts: '', preferredLocation: 0, title: 'Account' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'settings', id: 'Settings', keyShortcuts: '', preferredLocation: 0, title: 'Settings' },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),

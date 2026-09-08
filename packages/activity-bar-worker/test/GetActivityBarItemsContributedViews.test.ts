@@ -20,18 +20,23 @@ test('getActivityBarItems includes contributed views', () => {
         icon: 'symbol-beaker',
         id: 'sample.views.testing',
         keyShortcuts: '',
+        preferredLocation: 0,
         title: 'Testing',
       },
     ]),
   )
 })
 
-test('getActivityBarItems preserves a contributed view preview preference', () => {
+test.each([
+  [undefined, 0],
+  ['preview', 1],
+  ['sideBar', 2],
+] as const)('getActivityBarItems converts contributed view location %s to %i', (preferredLocation, expectedLocation) => {
   const items = getActivityBarItems(createDefaultState(), [
     {
       icon: 'comment-discussion',
       id: 'chat.views.voice',
-      preferredLocation: 'preview',
+      ...(preferredLocation && { preferredLocation }),
       title: 'Voice Chat',
     },
   ])
@@ -41,7 +46,7 @@ test('getActivityBarItems preserves a contributed view preview preference', () =
     icon: 'comment-discussion',
     id: 'chat.views.voice',
     keyShortcuts: '',
-    preferredLocation: 'preview',
+    preferredLocation: expectedLocation,
     title: 'Voice Chat',
   })
 })
@@ -84,6 +89,7 @@ test('getActivityBarItems stores custom icon metadata for lvce contributed view 
     icon,
     id: 'hetzner.views.cloud',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Hetzner Cloud',
   })
   expect(item?.customIconClass).not.toContain(icon)
@@ -121,6 +127,7 @@ test('getActivityBarItems uses fallback values for missing contributed view meta
     icon: 'Extensions',
     id: 'sample.views.fallback',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'sample.views.fallback',
   })
 })

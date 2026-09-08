@@ -163,6 +163,7 @@ test('reset reloads badges and clears update presentation', async () => {
         icon: 'SettingsGear',
         id: 'Settings',
         keyShortcuts: '',
+        preferredLocation: 0,
         title: 'Settings',
       },
     ],

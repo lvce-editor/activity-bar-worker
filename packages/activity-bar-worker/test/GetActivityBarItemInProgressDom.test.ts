@@ -7,9 +7,11 @@ import { getActivityBarItemInProgressDom } from '../src/parts/GetActivityBarItem
 test('getActivityBarItemInProgressDom adds ariaHasPopup for settings item', () => {
   const item: ActivityBarItem = {
     flags: 0,
+    hasPopup: true,
     icon: 'SettingsGear',
     id: 'Settings',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Settings',
   }
 
@@ -24,6 +26,7 @@ test('getActivityBarItemInProgressDom uses the tab role for tab items', () => {
     icon: 'Files',
     id: 'Explorer',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Explorer',
   }
 

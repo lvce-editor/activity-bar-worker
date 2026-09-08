@@ -19,9 +19,9 @@ test('handleResize updates dimensions', () => {
 
 test('handleResize updates filteredItems when all items fit', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
   ]
 
   const state: ActivityBarState = {
@@ -41,11 +41,11 @@ test('handleResize updates filteredItems when all items fit', () => {
 
 test('handleResize updates filteredItems when not all items fit', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', preferredLocation: 0, title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', preferredLocation: 0, title: 'Item 5' },
   ]
 
   const state: ActivityBarState = {
@@ -105,7 +105,9 @@ test('handleResize handles empty activityBarItems', () => {
 })
 
 test('handleResize handles zero height', () => {
-  const items: readonly ActivityBarItem[] = [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }]
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+  ]
 
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -122,7 +124,9 @@ test('handleResize handles zero height', () => {
 })
 
 test('handleResize handles single item that fits', () => {
-  const items: readonly ActivityBarItem[] = [{ flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' }]
+  const items: readonly ActivityBarItem[] = [
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+  ]
 
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -139,13 +143,13 @@ test('handleResize handles single item that fits', () => {
 
 test('handleResize handles many items with small height', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', title: 'Item 4' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', title: 'Item 5' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon6', id: 'item6', keyShortcuts: '', title: 'Item 6' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon7', id: 'item7', keyShortcuts: '', title: 'Item 7' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon4', id: 'item4', keyShortcuts: '', preferredLocation: 0, title: 'Item 4' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon5', id: 'item5', keyShortcuts: '', preferredLocation: 0, title: 'Item 5' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon6', id: 'item6', keyShortcuts: '', preferredLocation: 0, title: 'Item 6' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon7', id: 'item7', keyShortcuts: '', preferredLocation: 0, title: 'Item 7' },
   ]
 
   const state: ActivityBarState = {
@@ -164,9 +168,9 @@ test('handleResize handles many items with small height', () => {
 
 test('handleResize uses correct itemHeight from state', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', title: 'Item 2' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', title: 'Item 3' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
   ]
 
   const state: ActivityBarState = {

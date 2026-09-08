@@ -6,8 +6,8 @@ import { getFilteredActivityBarItems } from '../src/parts/GetFilteredActivityBar
 import { toggleActivityBarItem } from '../src/parts/ToggleActivityBarItem/ToggleActivityBarItem.ts'
 
 test('toggleActivityBarItem should disable an enabled item', async () => {
-  const item1 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'test1', keyShortcuts: '', title: 'Test1' }
-  const item2 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'test2', keyShortcuts: '', title: 'Test2' }
+  const item1 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'test1', keyShortcuts: '', preferredLocation: 0, title: 'Test1' }
+  const item2 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'test2', keyShortcuts: '', preferredLocation: 0, title: 'Test2' }
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: [item1, item2],
@@ -21,7 +21,7 @@ test('toggleActivityBarItem should disable an enabled item', async () => {
 })
 
 test('toggleActivityBarItem should enable a disabled item', async () => {
-  const item1 = { flags: 0, icon: 'icon1', id: 'test1', keyShortcuts: '', title: 'Test1' }
+  const item1 = { flags: 0, icon: 'icon1', id: 'test1', keyShortcuts: '', preferredLocation: 0, title: 'Test1' }
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: [item1],
@@ -39,6 +39,7 @@ test('toggleActivityBarItem should preserve other item flags', async () => {
     icon: 'icon1',
     id: 'test1',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Test1',
   }
   const state: ActivityBarState = {
@@ -53,7 +54,7 @@ test('toggleActivityBarItem should preserve other item flags', async () => {
 })
 
 test('toggleActivityBarItem should keep other state properties', async () => {
-  const item1 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'test1', keyShortcuts: '', title: 'Test1' }
+  const item1 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'test1', keyShortcuts: '', preferredLocation: 0, title: 'Test1' }
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: [item1],
@@ -70,9 +71,9 @@ test('toggleActivityBarItem should keep other state properties', async () => {
 })
 
 test('toggleActivityBarItem should toggle correct item by id', async () => {
-  const item1 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'test1', keyShortcuts: '', title: 'Test1' }
-  const item2 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'test2', keyShortcuts: '', title: 'Test2' }
-  const item3 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'test3', keyShortcuts: '', title: 'Test3' }
+  const item1 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'test1', keyShortcuts: '', preferredLocation: 0, title: 'Test1' }
+  const item2 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'test2', keyShortcuts: '', preferredLocation: 0, title: 'Test2' }
+  const item3 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'test3', keyShortcuts: '', preferredLocation: 0, title: 'Test3' }
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: [item1, item2, item3],
@@ -86,8 +87,8 @@ test('toggleActivityBarItem should toggle correct item by id', async () => {
 })
 
 test('toggleActivityBarItem should handle multiple toggles', async () => {
-  const item1 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'test1', keyShortcuts: '', title: 'Test1' }
-  const item2 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'test2', keyShortcuts: '', title: 'Test2' }
+  const item1 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'test1', keyShortcuts: '', preferredLocation: 0, title: 'Test1' }
+  const item2 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'test2', keyShortcuts: '', preferredLocation: 0, title: 'Test2' }
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: [item1, item2],
@@ -101,7 +102,7 @@ test('toggleActivityBarItem should handle multiple toggles', async () => {
 })
 
 test('toggleActivityBarItem should accept item id as string', async () => {
-  const item1 = { flags: ActivityBarItemFlags.Enabled, icon: 'Explorer', id: 'Explorer', keyShortcuts: '', title: 'Explorer' }
+  const item1 = { flags: ActivityBarItemFlags.Enabled, icon: 'Explorer', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' }
   const state: ActivityBarState = {
     ...createDefaultState(),
     activityBarItems: [item1],
@@ -114,8 +115,8 @@ test('toggleActivityBarItem should accept item id as string', async () => {
 })
 
 test('toggleActivityBarItem should update filtered items', async () => {
-  const item1 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'test1', keyShortcuts: '', title: 'Test1' }
-  const item2 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'test2', keyShortcuts: '', title: 'Test2' }
+  const item1 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'test1', keyShortcuts: '', preferredLocation: 0, title: 'Test1' }
+  const item2 = { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'test2', keyShortcuts: '', preferredLocation: 0, title: 'Test2' }
   const activityBarItems = [item1, item2]
   const state: ActivityBarState = {
     ...createDefaultState(),

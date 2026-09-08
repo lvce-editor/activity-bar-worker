@@ -11,6 +11,7 @@ test('getCustomIconSignature returns stable class and url signature', () => {
       icon: 'https://example.com/icon.svg',
       id: 'test',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Test',
     },
     {
@@ -20,6 +21,7 @@ test('getCustomIconSignature returns stable class and url signature', () => {
       icon: 'file:///tmp/icon.png',
       id: 'test2',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Test 2',
     },
   ]
@@ -35,6 +37,7 @@ test('getCustomIconSignature skips incomplete custom icon metadata', () => {
       icon: 'https://example.com/icon.svg',
       id: 'test',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Test',
     },
     {
@@ -43,6 +46,7 @@ test('getCustomIconSignature skips incomplete custom icon metadata', () => {
       icon: 'https://example.com/icon.svg',
       id: 'test2',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Test 2',
     },
     {
@@ -50,6 +54,7 @@ test('getCustomIconSignature skips incomplete custom icon metadata', () => {
       icon: 'Extensions',
       id: 'test3',
       keyShortcuts: '',
+      preferredLocation: 0,
       title: 'Test 3',
     },
   ]

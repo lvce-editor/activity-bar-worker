@@ -2,6 +2,7 @@ import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import type { ContributedView } from '../GetContributedViews/GetContributedViews.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
+import * as ActivityBarItemLocation from '../ActivityBarItemLocation/ActivityBarItemLocation.ts'
 import * as ViewletActivityBarStrings from '../ActivityBarStrings/ActivityBarStrings.ts'
 import { getCustomIconClass } from '../GetCustomIconClass/GetCustomIconClass.ts'
 import * as Icon from '../Icon/Icon.ts'
@@ -9,6 +10,7 @@ import { isCustomIconUrl } from '../IsCustomIconUrl/IsCustomIconUrl.ts'
 import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 
 const toActivityBarItem = (view: ContributedView): ActivityBarItem => {
+  const defaultLocation = view.preferredLocation === 'sideBar' ? ActivityBarItemLocation.SideBar : ActivityBarItemLocation.Default
   const icon = view.icon || Icon.Extensions
   const customIconUrl = isCustomIconUrl(icon) ? icon : undefined
   const customIconClass = customIconUrl ? getCustomIconClass(view.id, customIconUrl) : undefined
@@ -17,7 +19,7 @@ const toActivityBarItem = (view: ContributedView): ActivityBarItem => {
     icon,
     id: view.id,
     keyShortcuts: '',
-    ...(view.preferredLocation === 'preview' && { preferredLocation: 'preview' as const }),
+    preferredLocation: view.preferredLocation === 'preview' ? ActivityBarItemLocation.Preview : defaultLocation,
     title: view.title || view.id,
   }
   if (customIconClass && customIconUrl) {
@@ -43,6 +45,7 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
       icon: Icon.Files,
       id: ViewletModuleId.Explorer,
       keyShortcuts: 'Control+Shift+E',
+      preferredLocation: ActivityBarItemLocation.Default,
       title: ViewletActivityBarStrings.explorer(),
     },
     {
@@ -50,6 +53,7 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
       icon: Icon.Search,
       id: ViewletModuleId.Search,
       keyShortcuts: 'Control+Shift+F',
+      preferredLocation: ActivityBarItemLocation.Default,
       title: ViewletActivityBarStrings.search(),
     },
     {
@@ -57,6 +61,7 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
       icon: Icon.SourceControl,
       id: ViewletModuleId.SourceControl,
       keyShortcuts: 'Control+Shift+G',
+      preferredLocation: ActivityBarItemLocation.Default,
       title: ViewletActivityBarStrings.sourceControl(),
     },
     {
@@ -64,6 +69,7 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
       icon: Icon.DebugAlt2,
       id: ViewletModuleId.RunAndDebug,
       keyShortcuts: 'Control+Shift+D',
+      preferredLocation: ActivityBarItemLocation.Default,
       title: ViewletActivityBarStrings.runAndDebug(),
     },
     {
@@ -71,6 +77,7 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
       icon: Icon.Extensions,
       id: ViewletModuleId.Extensions,
       keyShortcuts: 'Control+Shift+X',
+      preferredLocation: ActivityBarItemLocation.Default,
       title: ViewletActivityBarStrings.extensions(),
     },
     {
@@ -78,6 +85,7 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
       icon: Icon.References,
       id: ViewletModuleId.References,
       keyShortcuts: '',
+      preferredLocation: ActivityBarItemLocation.Default,
       title: ViewletActivityBarStrings.references(),
     },
     ...contributedViews.map(toActivityBarItem),
@@ -87,18 +95,22 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
   if (accountEnabled) {
     items.push({
       flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled | ActivityBarItemFlags.MarginTop,
+      hasPopup: true,
       icon: Icon.Account,
       id: 'Account',
       keyShortcuts: '',
+      preferredLocation: ActivityBarItemLocation.Default,
       title: ViewletActivityBarStrings.account(),
     })
   }
 
   items.push({
     flags: settingsFlags,
+    hasPopup: true,
     icon: Icon.SettingsGear,
     id: 'Settings',
     keyShortcuts: '',
+    preferredLocation: ActivityBarItemLocation.Default,
     title: ViewletActivityBarStrings.settings(),
   })
 

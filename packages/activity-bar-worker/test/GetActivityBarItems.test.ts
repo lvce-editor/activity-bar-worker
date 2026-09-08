@@ -35,6 +35,7 @@ test('GetActivityBarItems.getActivityBarItems should return items with correct s
     expect(typeof item.icon).toBe('string')
     expect(typeof item.flags).toBe('number')
     expect(typeof item.keyShortcuts).toBe('string')
+    expect(item.preferredLocation).toBe(0)
   }
 })
 
@@ -44,6 +45,7 @@ test('GetActivityBarItems.getActivityBarItems should return expected number of i
 
   // 5 enabled tabs + 1 on-demand References tab + 1 settings button
   expect(result.length).toBe(7)
+  expect(result.find((item) => item.id === 'Settings')?.hasPopup).toBe(true)
 })
 
 test('GetActivityBarItems.getActivityBarItems should return expected number of items when accountEnabled is true', () => {
@@ -89,6 +91,7 @@ test('GetActivityBarItems.getActivityBarItems includes References hidden by defa
     icon: 'References',
     id: 'References',
     keyShortcuts: '',
+    preferredLocation: 0,
     title: 'References',
   })
 })
@@ -102,6 +105,7 @@ test('GetActivityBarItems.getActivityBarItems preserves an activated References 
         icon: 'References',
         id: 'References',
         keyShortcuts: '',
+        preferredLocation: 0,
         title: 'References',
       },
     ],
@@ -121,6 +125,7 @@ test('GetActivityBarItems.getActivityBarItems should include account button when
   expect(accountItem).toBeDefined()
   expect(accountItem?.icon).toBe('Account')
   expect(accountItem?.title).toBe('Account')
+  expect(accountItem?.hasPopup).toBe(true)
 })
 
 test('GetActivityBarItems.getActivityBarItems should only apply MarginTop to the first bottom item when accountEnabled is true', () => {

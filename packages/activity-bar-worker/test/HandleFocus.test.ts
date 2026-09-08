@@ -10,9 +10,17 @@ const explorer: ActivityBarItem = {
   icon: 'explorer',
   id: 'Explorer',
   keyShortcuts: '',
+  preferredLocation: 0,
   title: 'Explorer',
 }
-const search: ActivityBarItem = { flags: ActivityBarItemFlags.Enabled, icon: 'search', id: 'Search', keyShortcuts: '', title: 'Search' }
+const search: ActivityBarItem = {
+  flags: ActivityBarItemFlags.Enabled,
+  icon: 'search',
+  id: 'Search',
+  keyShortcuts: '',
+  preferredLocation: 0,
+  title: 'Search',
+}
 
 test('handleFocus focuses the selected visible item', () => {
   const state: ActivityBarState = { ...createDefaultState(), filteredItems: [explorer, search], focused: false, focusedIndex: -1 }

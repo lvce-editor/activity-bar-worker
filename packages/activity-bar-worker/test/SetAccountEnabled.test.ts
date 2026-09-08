@@ -6,8 +6,8 @@ import { setAccountEnabled } from '../src/parts/SetAccountEnabled/SetAccountEnab
 test('setAccountEnabled enables account and rebuilds item lists', () => {
   const state = {
     ...createDefaultState(),
-    activityBarItems: [{ flags: 0, icon: 'x', id: 'x', keyShortcuts: '', title: 'x' }],
-    filteredItems: [{ flags: 0, icon: 'y', id: 'y', keyShortcuts: '', title: 'y' }],
+    activityBarItems: [{ flags: 0, icon: 'x', id: 'x', keyShortcuts: '', preferredLocation: 0, title: 'x' }],
+    filteredItems: [{ flags: 0, icon: 'y', id: 'y', keyShortcuts: '', preferredLocation: 0, title: 'y' }],
     height: 1200,
     itemHeight: 48,
     selectedIndex: 0,
@@ -81,6 +81,7 @@ test('setAccountEnabled preserves an activated References item', () => {
         icon: 'References',
         id: 'References',
         keyShortcuts: '',
+        preferredLocation: 0,
         title: 'References',
       },
     ],
