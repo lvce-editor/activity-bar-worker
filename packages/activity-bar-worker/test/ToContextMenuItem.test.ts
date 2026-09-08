@@ -6,7 +6,13 @@ import { toContextMenuItem } from '../src/parts/ToContextMenuItem/ToContextMenuI
 
 test('toContextMenuItem creates menu entry with correct command', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Enabled,
+    hasPopup: false,
     icon: 'explorer',
     id: 'Explorer',
     keyShortcuts: '',
@@ -24,7 +30,13 @@ test('toContextMenuItem creates menu entry with correct command', () => {
 
 test('toContextMenuItem marks enabled items as checked', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Enabled,
+    hasPopup: false,
     icon: 'search',
     id: 'Search',
     keyShortcuts: '',
@@ -39,7 +51,13 @@ test('toContextMenuItem marks enabled items as checked', () => {
 
 test('toContextMenuItem marks disabled items as unchecked', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'git',
     id: 'Source Control',
     keyShortcuts: '',
@@ -54,7 +72,13 @@ test('toContextMenuItem marks disabled items as unchecked', () => {
 
 test('toContextMenuItem generates unique ids for different items', () => {
   const item1: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Enabled,
+    hasPopup: false,
     icon: 'icon1',
     id: 'Item1',
     keyShortcuts: '',
@@ -62,7 +86,13 @@ test('toContextMenuItem generates unique ids for different items', () => {
     title: 'Item 1',
   }
   const item2: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Enabled,
+    hasPopup: false,
     icon: 'icon2',
     id: 'Item2',
     keyShortcuts: '',
@@ -80,7 +110,13 @@ test('toContextMenuItem generates unique ids for different items', () => {
 
 test('toContextMenuItem passes item id as argument', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Enabled,
+    hasPopup: false,
     icon: 'debug',
     id: 'Debug',
     keyShortcuts: '',
@@ -97,7 +133,13 @@ test('toContextMenuItem passes item id as argument', () => {
 
 test('toContextMenuItem uses item title as label', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Enabled,
+    hasPopup: false,
     icon: 'debug',
     id: 'Run and Debug',
     keyShortcuts: '',

@@ -6,7 +6,13 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { handleFocus } from '../src/parts/HandleFocus/HandleFocus.ts'
 
 const explorer: ActivityBarItem = {
+  badgeIcon: '',
+  badgeText: '',
+  customIconClass: '',
+  customIconUrl: '',
+  enabled: false,
   flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Selected,
+  hasPopup: false,
   icon: 'explorer',
   id: 'Explorer',
   keyShortcuts: '',
@@ -14,7 +20,13 @@ const explorer: ActivityBarItem = {
   title: 'Explorer',
 }
 const search: ActivityBarItem = {
+  badgeIcon: '',
+  badgeText: '',
+  customIconClass: '',
+  customIconUrl: '',
+  enabled: false,
   flags: ActivityBarItemFlags.Enabled,
+  hasPopup: false,
   icon: 'search',
   id: 'Search',
   keyShortcuts: '',

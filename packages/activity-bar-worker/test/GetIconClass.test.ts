@@ -4,9 +4,13 @@ import { getIconClass } from '../src/parts/GetIconClass/GetIconClass.ts'
 
 test('getIconClass prefers custom icon class', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
     customIconClass: 'MaskIconCustomViewabc',
     customIconUrl: 'https://example.com/icon.svg',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'https://example.com/icon.svg',
     id: 'test',
     keyShortcuts: '',
@@ -19,7 +23,13 @@ test('getIconClass prefers custom icon class', () => {
 
 test('getIconClass falls back to builtin prefix', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'Explorer',
     id: 'test',
     keyShortcuts: '',

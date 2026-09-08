@@ -94,7 +94,22 @@ test('handleSettingsChanged preserves other state properties', async () => {
       return 0
     },
     'ViewletRegistry.getActivityBarItems'() {
-      return [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' }]
+      return [
+        {
+          badgeIcon: '',
+          badgeText: '',
+          customIconClass: '',
+          customIconUrl: '',
+          enabled: false,
+          flags: 0,
+          hasPopup: false,
+          icon: 'icon1',
+          id: 'item1',
+          keyShortcuts: '',
+          preferredLocation: 0,
+          title: 'Item 1',
+        },
+      ]
     },
   })
 

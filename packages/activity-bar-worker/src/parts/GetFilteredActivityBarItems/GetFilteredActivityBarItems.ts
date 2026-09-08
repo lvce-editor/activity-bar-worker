@@ -12,7 +12,13 @@ export const getFilteredActivityBarItems = (items: readonly ActivityBarItem[], h
     return enabledItems
   }
   const showMoreItem: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Button,
+    hasPopup: false,
     icon: Icon.Ellipsis,
     id: 'Additional Views',
     keyShortcuts: '',

@@ -6,7 +6,13 @@ import { handleActiveViewStateChange } from '../src/parts/HandleActiveViewStateC
 
 const items: readonly ActivityBarItem[] = [
   {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Tab | ActivityBarItemFlags.Selected,
+    hasPopup: false,
     icon: 'files',
     id: 'Explorer',
     keyShortcuts: '',
@@ -14,7 +20,13 @@ const items: readonly ActivityBarItem[] = [
     title: 'Explorer',
   },
   {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Tab,
+    hasPopup: false,
     icon: 'chat',
     id: 'chat.voice',
     keyShortcuts: '',

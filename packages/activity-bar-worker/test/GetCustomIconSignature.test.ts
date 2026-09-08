@@ -5,9 +5,13 @@ import { getCustomIconSignature } from '../src/parts/GetCustomIconSignature/GetC
 test('getCustomIconSignature returns stable class and url signature', () => {
   const items: readonly ActivityBarItem[] = [
     {
+      badgeIcon: '',
+      badgeText: '',
       customIconClass: 'MaskIconCustomViewabc',
       customIconUrl: 'https://example.com/icon.svg',
+      enabled: false,
       flags: 0,
+      hasPopup: false,
       icon: 'https://example.com/icon.svg',
       id: 'test',
       keyShortcuts: '',
@@ -15,9 +19,13 @@ test('getCustomIconSignature returns stable class and url signature', () => {
       title: 'Test',
     },
     {
+      badgeIcon: '',
+      badgeText: '',
       customIconClass: 'MaskIconCustomViewdef',
       customIconUrl: 'file:///tmp/icon.png',
+      enabled: false,
       flags: 0,
+      hasPopup: false,
       icon: 'file:///tmp/icon.png',
       id: 'test2',
       keyShortcuts: '',
@@ -32,8 +40,13 @@ test('getCustomIconSignature returns stable class and url signature', () => {
 test('getCustomIconSignature skips incomplete custom icon metadata', () => {
   const items: readonly ActivityBarItem[] = [
     {
+      badgeIcon: '',
+      badgeText: '',
       customIconClass: 'MaskIconCustomViewabc',
+      customIconUrl: '',
+      enabled: false,
       flags: 0,
+      hasPopup: false,
       icon: 'https://example.com/icon.svg',
       id: 'test',
       keyShortcuts: '',
@@ -41,8 +54,13 @@ test('getCustomIconSignature skips incomplete custom icon metadata', () => {
       title: 'Test',
     },
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
       customIconUrl: 'https://example.com/icon.svg',
+      enabled: false,
       flags: 0,
+      hasPopup: false,
       icon: 'https://example.com/icon.svg',
       id: 'test2',
       keyShortcuts: '',
@@ -50,7 +68,13 @@ test('getCustomIconSignature skips incomplete custom icon metadata', () => {
       title: 'Test 2',
     },
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: 0,
+      hasPopup: false,
       icon: 'Extensions',
       id: 'test3',
       keyShortcuts: '',

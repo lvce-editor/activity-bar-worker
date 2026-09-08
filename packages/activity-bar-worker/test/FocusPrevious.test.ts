@@ -4,8 +4,34 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { focusPrevious } from '../src/parts/FocusPrevious/FocusPrevious.ts'
 
 const items: readonly ActivityBarItem[] = [
-  { flags: 0, icon: 'explorer', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
-  { flags: 0, icon: 'search', id: 'Search', keyShortcuts: '', preferredLocation: 0, title: 'Search' },
+  {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
+    flags: 0,
+    hasPopup: false,
+    icon: 'explorer',
+    id: 'Explorer',
+    keyShortcuts: '',
+    preferredLocation: 0,
+    title: 'Explorer',
+  },
+  {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
+    flags: 0,
+    hasPopup: false,
+    icon: 'search',
+    id: 'Search',
+    keyShortcuts: '',
+    preferredLocation: 0,
+    title: 'Search',
+  },
 ]
 
 test('focusPrevious focuses the previous visible item', () => {

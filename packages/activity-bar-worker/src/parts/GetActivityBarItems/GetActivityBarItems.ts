@@ -12,24 +12,22 @@ import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 const toActivityBarItem = (view: ContributedView): ActivityBarItem => {
   const defaultLocation = view.preferredLocation === 'sideBar' ? ActivityBarItemLocation.SideBar : ActivityBarItemLocation.Default
   const icon = view.icon || Icon.Extensions
-  const customIconUrl = isCustomIconUrl(icon) ? icon : undefined
-  const customIconClass = customIconUrl ? getCustomIconClass(view.id, customIconUrl) : undefined
-  const item: ActivityBarItem = {
+  const customIconUrl = isCustomIconUrl(icon) ? icon : ''
+  const customIconClass = customIconUrl ? getCustomIconClass(view.id, customIconUrl) : ''
+  return {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass,
+    customIconUrl,
+    enabled: false,
     flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
+    hasPopup: false,
     icon,
     id: view.id,
     keyShortcuts: '',
     preferredLocation: view.preferredLocation === 'preview' ? ActivityBarItemLocation.Preview : defaultLocation,
     title: view.title || view.id,
   }
-  if (customIconClass && customIconUrl) {
-    return {
-      ...item,
-      customIconClass,
-      customIconUrl,
-    }
-  }
-  return item
 }
 
 export const getActivityBarItems = (state: ActivityBarState, contributedViews: readonly ContributedView[] = []): readonly ActivityBarItem[] => {
@@ -38,10 +36,16 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
     (item) => item.id === ViewletModuleId.References && Boolean(item.flags & ActivityBarItemFlags.Enabled),
   )
   const settingsFlags = ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled | (accountEnabled ? 0 : ActivityBarItemFlags.MarginTop)
-  const items = [
+  const items: ActivityBarItem[] = [
     // Top
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
+      hasPopup: false,
       icon: Icon.Files,
       id: ViewletModuleId.Explorer,
       keyShortcuts: 'Control+Shift+E',
@@ -49,7 +53,13 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
       title: ViewletActivityBarStrings.explorer(),
     },
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
+      hasPopup: false,
       icon: Icon.Search,
       id: ViewletModuleId.Search,
       keyShortcuts: 'Control+Shift+F',
@@ -57,7 +67,13 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
       title: ViewletActivityBarStrings.search(),
     },
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
+      hasPopup: false,
       icon: Icon.SourceControl,
       id: ViewletModuleId.SourceControl,
       keyShortcuts: 'Control+Shift+G',
@@ -65,7 +81,13 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
       title: ViewletActivityBarStrings.sourceControl(),
     },
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
+      hasPopup: false,
       icon: Icon.DebugAlt2,
       id: ViewletModuleId.RunAndDebug,
       keyShortcuts: 'Control+Shift+D',
@@ -73,7 +95,13 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
       title: ViewletActivityBarStrings.runAndDebug(),
     },
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
+      hasPopup: false,
       icon: Icon.Extensions,
       id: ViewletModuleId.Extensions,
       keyShortcuts: 'Control+Shift+X',
@@ -81,7 +109,13 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
       title: ViewletActivityBarStrings.extensions(),
     },
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: ActivityBarItemFlags.Tab | (referencesEnabled ? ActivityBarItemFlags.Enabled : 0),
+      hasPopup: false,
       icon: Icon.References,
       id: ViewletModuleId.References,
       keyShortcuts: '',
@@ -94,6 +128,11 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
 
   if (accountEnabled) {
     items.push({
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled | ActivityBarItemFlags.MarginTop,
       hasPopup: true,
       icon: Icon.Account,
@@ -105,6 +144,11 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
   }
 
   items.push({
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: settingsFlags,
     hasPopup: true,
     icon: Icon.SettingsGear,

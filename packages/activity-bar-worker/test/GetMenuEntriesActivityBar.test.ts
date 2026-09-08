@@ -11,8 +11,34 @@ import * as MenuEntrySeparator from '../src/parts/MenuEntrySeparator/MenuEntrySe
 
 test('getMenuEntriesActivityBar returns menu entries with items, separator, move side bar, and hide activity bar', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'icon2',
+      id: 'item2',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 2',
+    },
   ]
 
   const state: ActivityBarState = {
@@ -56,7 +82,13 @@ test('getMenuEntriesActivityBar returns menu entries with items, separator, move
 test('getMenuEntriesActivityBar inserts a separator before bottom utility items', () => {
   const items: readonly ActivityBarItem[] = [
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
+      hasPopup: false,
       icon: 'icon1',
       id: 'item1',
       keyShortcuts: '',
@@ -64,7 +96,13 @@ test('getMenuEntriesActivityBar inserts a separator before bottom utility items'
       title: 'Item 1',
     },
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled | ActivityBarItemFlags.MarginTop,
+      hasPopup: false,
       icon: 'icon2',
       id: 'Account',
       keyShortcuts: '',
@@ -72,7 +110,13 @@ test('getMenuEntriesActivityBar inserts a separator before bottom utility items'
       title: 'Account',
     },
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled,
+      hasPopup: false,
       icon: 'icon3',
       id: 'Settings',
       keyShortcuts: '',
@@ -154,7 +198,22 @@ test('getMenuEntriesActivityBar handles empty items array', () => {
 })
 
 test('getMenuEntriesActivityBar uses correct move side bar entry for Right location', () => {
-  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' }]
+  const items: readonly ActivityBarItem[] = [
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
+  ]
 
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -175,10 +234,42 @@ test('getMenuEntriesActivityBar uses correct move side bar entry for Right locat
 
 test('getMenuEntriesActivityBar marks enabled items as checked and disabled items as unchecked', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'icon2',
+      id: 'item2',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 2',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: ActivityBarItemFlags.Enabled | ActivityBarItemFlags.Selected,
+      hasPopup: false,
       icon: 'icon3',
       id: 'item3',
       keyShortcuts: '',
@@ -202,8 +293,34 @@ test('getMenuEntriesActivityBar marks enabled items as checked and disabled item
 
 test('getMenuEntriesActivityBar uses item title as label', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'search', keyShortcuts: '', preferredLocation: 0, title: 'Search' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'explorer',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Explorer',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'icon2',
+      id: 'search',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Search',
+    },
   ]
 
   const state: ActivityBarState = {
