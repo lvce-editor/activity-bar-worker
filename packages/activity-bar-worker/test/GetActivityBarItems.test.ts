@@ -41,7 +41,7 @@ test('GetActivityBarItems.getActivityBarItems should return items with correct s
     expect(item.customIconClass).toBe('')
     expect(item.customIconUrl).toBe('')
     expect(item.enabled).toBe(false)
-    expect(item.hasPopup).toBe(item.id === 'Settings')
+    expect(item.hasPopup).toBe(item.id === 'Settings' || item.id === 'Account')
   }
 })
 
