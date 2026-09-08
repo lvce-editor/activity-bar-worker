@@ -14,7 +14,20 @@ test('handleClick calculates index correctly for first item', async () => {
     'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', preferredLocation: 0, title: 'Settings' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'icon',
+      id: 'Settings',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Settings',
+    },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -36,8 +49,34 @@ test('handleClick calculates index correctly for second item', async () => {
     'Layout.showSideBar'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'Settings', keyShortcuts: '', preferredLocation: 0, title: 'Settings' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'Explorer',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Explorer',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'icon2',
+      id: 'Settings',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Settings',
+    },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -63,9 +102,48 @@ test('handleClick calculates index correctly for multiple items', async () => {
     'Layout.toggleSideBarView'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon1', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon2', id: 'Search', keyShortcuts: '', preferredLocation: 0, title: 'Search' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon3', id: 'Explorer2', keyShortcuts: '', preferredLocation: 0, title: 'Explorer2' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'Explorer',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Explorer',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'icon2',
+      id: 'Search',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Search',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'icon3',
+      id: 'Explorer2',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Explorer2',
+    },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -91,7 +169,20 @@ test('handleClick calculates index correctly for multiple items', async () => {
 
 test('handleClick returns same state when button is not left click', async () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', preferredLocation: 0, title: 'Settings' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'icon',
+      id: 'Settings',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Settings',
+    },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -108,7 +199,20 @@ test('handleClick returns same state when button is not left click', async () =>
 
 test('handleClick returns same state when index is -1', async () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', preferredLocation: 0, title: 'Settings' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'icon',
+      id: 'Settings',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Settings',
+    },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -128,7 +232,20 @@ test('handleClick handles Explorer viewlet click', async () => {
     'Layout.toggleSideBarView'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'icon',
+      id: 'Explorer',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Explorer',
+    },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -154,7 +271,20 @@ test('handleClick handles Additional Views viewlet click', async () => {
     'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Additional Views', keyShortcuts: '', preferredLocation: 0, title: 'Additional Views' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'icon',
+      id: 'Additional Views',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Additional Views',
+    },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -184,7 +314,20 @@ test('handleClick handles different y and itemHeight values', async () => {
     'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'icon', id: 'Settings', keyShortcuts: '', preferredLocation: 0, title: 'Settings' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'icon',
+      id: 'Settings',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Settings',
+    },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -206,7 +349,20 @@ test('handleClick handles Account button click', async () => {
     'Layout.refreshAuthState'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'Account', id: 'Account', keyShortcuts: '', preferredLocation: 0, title: 'Account' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'Account',
+      id: 'Account',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Account',
+    },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -233,7 +389,20 @@ test('handleClick opens the Account menu when refreshing auth state fails', asyn
     },
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'Account', id: 'Account', keyShortcuts: '', preferredLocation: 0, title: 'Account' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'Account',
+      id: 'Account',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Account',
+    },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -258,7 +427,20 @@ test('handleClick opens the Account submenu to the left when the side bar is on 
     'Layout.refreshAuthState'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'Account', id: 'Account', keyShortcuts: '', preferredLocation: 0, title: 'Account' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'Account',
+      id: 'Account',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Account',
+    },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -284,10 +466,62 @@ test('handleClick resolves account button from bottom stack when settings is als
     'Layout.refreshAuthState'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'Explorer', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'Search', id: 'Search', keyShortcuts: '', preferredLocation: 0, title: 'Search' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'Account', id: 'Account', keyShortcuts: '', preferredLocation: 0, title: 'Account' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'Settings', id: 'Settings', keyShortcuts: '', preferredLocation: 0, title: 'Settings' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'Explorer',
+      id: 'Explorer',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Explorer',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'Search',
+      id: 'Search',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Search',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'Account',
+      id: 'Account',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Account',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'Settings',
+      id: 'Settings',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Settings',
+    },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),
@@ -314,10 +548,62 @@ test('handleClick resolves settings from target name when geometry is stale', as
     'ContextMenu.show2'() {},
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Enabled, icon: 'Explorer', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'Search', id: 'Search', keyShortcuts: '', preferredLocation: 0, title: 'Search' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'Account', id: 'Account', keyShortcuts: '', preferredLocation: 0, title: 'Account' },
-    { flags: ActivityBarItemFlags.Enabled, icon: 'Settings', id: 'Settings', keyShortcuts: '', preferredLocation: 0, title: 'Settings' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'Explorer',
+      id: 'Explorer',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Explorer',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'Search',
+      id: 'Search',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Search',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'Account',
+      id: 'Account',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Account',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'Settings',
+      id: 'Settings',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Settings',
+    },
   ]
   const state: ActivityBarState = {
     ...createDefaultState(),

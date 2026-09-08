@@ -1,5 +1,5 @@
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 
 export const getActivityBarItemHasPopup = (item: ActivityBarItem): boolean => {
-  return item.hasPopup ?? false
+  return item.hasPopup
 }

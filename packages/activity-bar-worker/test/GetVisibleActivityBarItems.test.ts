@@ -4,8 +4,34 @@ import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/Activit
 import { getVisibleActivityBarItems } from '../src/parts/GetVisibleActivityBarItems/GetVisibleActivityBarItems.ts'
 
 const items: readonly ActivityBarItem[] = [
-  { flags: ActivityBarItemFlags.Focused, icon: 'explorer', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
-  { flags: 0, icon: 'search', id: 'Search', keyShortcuts: '', preferredLocation: 0, title: 'Search' },
+  {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
+    flags: ActivityBarItemFlags.Focused,
+    hasPopup: false,
+    icon: 'explorer',
+    id: 'Explorer',
+    keyShortcuts: '',
+    preferredLocation: 0,
+    title: 'Explorer',
+  },
+  {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
+    flags: 0,
+    hasPopup: false,
+    icon: 'search',
+    id: 'Search',
+    keyShortcuts: '',
+    preferredLocation: 0,
+    title: 'Search',
+  },
 ]
 
 test('getVisibleActivityBarItems marks only the focused item', () => {

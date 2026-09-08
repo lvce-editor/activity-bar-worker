@@ -5,9 +5,48 @@ import { markSelected } from '../src/parts/MarkSelected/MarkSelected.ts'
 
 test('markSelected marks item at index 0 as selected', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon2',
+      id: 'item2',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 2',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon3',
+      id: 'item3',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 3',
+    },
   ]
 
   const result: readonly ActivityBarItem[] = markSelected(items, 0)
@@ -19,9 +58,48 @@ test('markSelected marks item at index 0 as selected', () => {
 
 test('markSelected marks item at index 1 as selected', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon2',
+      id: 'item2',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 2',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon3',
+      id: 'item3',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 3',
+    },
   ]
 
   const result: readonly ActivityBarItem[] = markSelected(items, 1)
@@ -33,9 +111,48 @@ test('markSelected marks item at index 1 as selected', () => {
 
 test('markSelected marks item at last index as selected', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon2',
+      id: 'item2',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 2',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon3',
+      id: 'item3',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 3',
+    },
   ]
 
   const result: readonly ActivityBarItem[] = markSelected(items, 2)
@@ -47,8 +164,34 @@ test('markSelected marks item at last index as selected', () => {
 
 test('markSelected does not mark any item when selectedIndex is -1', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon2',
+      id: 'item2',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 2',
+    },
   ]
 
   const result: readonly ActivityBarItem[] = markSelected(items, -1)
@@ -59,8 +202,34 @@ test('markSelected does not mark any item when selectedIndex is -1', () => {
 
 test('markSelected preserves other flags on items', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Tab, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
-    { flags: ActivityBarItemFlags.Focused, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Tab,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Focused,
+      hasPopup: false,
+      icon: 'icon2',
+      id: 'item2',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 2',
+    },
   ]
 
   const result: readonly ActivityBarItem[] = markSelected(items, 0)
@@ -80,7 +249,22 @@ test('markSelected handles empty array', () => {
 })
 
 test('markSelected handles single item array', () => {
-  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' }]
+  const items: readonly ActivityBarItem[] = [
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
+  ]
 
   const result: readonly ActivityBarItem[] = markSelected(items, 0)
 
@@ -89,8 +273,34 @@ test('markSelected handles single item array', () => {
 
 test('markSelected returns new array', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon2',
+      id: 'item2',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 2',
+    },
   ]
 
   const result: readonly ActivityBarItem[] = markSelected(items, 0)
@@ -100,8 +310,34 @@ test('markSelected returns new array', () => {
 
 test('markSelected unm selects previously selected item', () => {
   const items: readonly ActivityBarItem[] = [
-    { flags: ActivityBarItemFlags.Selected, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Selected,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon2',
+      id: 'item2',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 2',
+    },
   ]
 
   const result: readonly ActivityBarItem[] = markSelected(items, 1)

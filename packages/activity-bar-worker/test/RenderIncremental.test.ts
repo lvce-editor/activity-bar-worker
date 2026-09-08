@@ -17,7 +17,13 @@ test('renderIncremental returns no commands when the rendered items are unchange
 
 test('renderIncremental returns patches when the rendered item ids change', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
+    hasPopup: false,
     icon: 'Files',
     id: 'Explorer',
     keyShortcuts: '',
@@ -43,7 +49,13 @@ test('renderIncremental returns patches when the rendered item ids change', () =
 
 test('renderIncremental returns patches when item properties change', () => {
   const oldItem: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
+    hasPopup: false,
     icon: 'Files',
     id: 'Explorer',
     keyShortcuts: '',

@@ -5,11 +5,19 @@ import { getActivityBarItemWithBadgeDom } from '../src/parts/GetActivityBarItemW
 
 test('getActivityBarItemVirtualDom uses badge dom when badgeText is present', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
     badgeText: '3',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'Explorer',
+    id: '',
+    keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Explorer',
-  } as any
+  }
 
   const result = getActivityBarItemVirtualDom(item)
 
@@ -18,7 +26,13 @@ test('getActivityBarItemVirtualDom uses badge dom when badgeText is present', ()
 
 test('getActivityBarItemVirtualDom adds item id as name', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'SettingsGear',
     id: 'Settings',
     keyShortcuts: '',

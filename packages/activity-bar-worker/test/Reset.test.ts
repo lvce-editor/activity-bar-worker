@@ -159,7 +159,11 @@ test('reset reloads badges and clears update presentation', async () => {
       {
         badgeIcon: 'clock',
         badgeText: '1',
+        customIconClass: '',
+        customIconUrl: '',
+        enabled: false,
         flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Progress,
+        hasPopup: false,
         icon: 'SettingsGear',
         id: 'Settings',
         keyShortcuts: '',
@@ -178,7 +182,7 @@ test('reset reloads badges and clears update presentation', async () => {
   expect(result.updateState).toBe('')
   expect(result.activityBarItems.find((item) => item.id === 'Source Control')?.badgeText).toBe('5')
   const settings = result.activityBarItems.find((item) => item.id === 'Settings')
-  expect(settings?.badgeIcon).toBeUndefined()
+  expect(settings?.badgeIcon).toBe('')
   expect(settings?.badgeText).toBe('')
   expect(settings!.flags & ActivityBarItemFlags.Progress).toBeFalsy()
 })

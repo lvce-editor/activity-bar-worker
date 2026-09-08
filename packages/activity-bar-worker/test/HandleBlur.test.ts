@@ -19,7 +19,13 @@ test('handleBlur sets focused to false', () => {
 test('handleBlur preserves other state properties', () => {
   const items: readonly ActivityBarItem[] = [
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: 0,
+      hasPopup: false,
       icon: 'icon1',
       id: 'item1',
       keyShortcuts: '',
@@ -27,7 +33,13 @@ test('handleBlur preserves other state properties', () => {
       title: 'Item 1',
     },
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: 0,
+      hasPopup: false,
       icon: 'icon2',
       id: 'item2',
       keyShortcuts: '',

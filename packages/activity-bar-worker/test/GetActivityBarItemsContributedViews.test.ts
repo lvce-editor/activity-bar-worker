@@ -16,7 +16,13 @@ test('getActivityBarItems includes contributed views', () => {
   expect(items).toEqual(
     expect.arrayContaining([
       {
+        badgeIcon: '',
+        badgeText: '',
+        customIconClass: '',
+        customIconUrl: '',
+        enabled: false,
         flags: 9,
+        hasPopup: false,
         icon: 'symbol-beaker',
         id: 'sample.views.testing',
         keyShortcuts: '',
@@ -42,7 +48,13 @@ test.each([
   ])
 
   expect(items.find((item) => item.id === 'chat.views.voice')).toEqual({
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 9,
+    hasPopup: false,
     icon: 'comment-discussion',
     id: 'chat.views.voice',
     keyShortcuts: '',
@@ -83,9 +95,13 @@ test('getActivityBarItems stores custom icon metadata for lvce contributed view 
   const item = items.find((item) => item.id === 'hetzner.views.cloud')
 
   expect(item).toEqual({
+    badgeIcon: '',
+    badgeText: '',
     customIconClass: expect.stringMatching(customIconClassRegex),
     customIconUrl: icon,
+    enabled: false,
     flags: 9,
+    hasPopup: false,
     icon,
     id: 'hetzner.views.cloud',
     keyShortcuts: '',
@@ -106,8 +122,8 @@ test('getActivityBarItems preserves builtin symbolic contributed view icon behav
 
   const item = items.find((item) => item.id === 'sample.views.symbol')
 
-  expect(item?.customIconClass).toBeUndefined()
-  expect(item?.customIconUrl).toBeUndefined()
+  expect(item?.customIconClass).toBe('')
+  expect(item?.customIconUrl).toBe('')
   expect(item?.icon).toBe('symbol-beaker')
 })
 
@@ -123,7 +139,13 @@ test('getActivityBarItems uses fallback values for missing contributed view meta
   const item = items.find((item) => item.id === 'sample.views.fallback')
 
   expect(item).toEqual({
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 9,
+    hasPopup: false,
     icon: 'Extensions',
     id: 'sample.views.fallback',
     keyShortcuts: '',

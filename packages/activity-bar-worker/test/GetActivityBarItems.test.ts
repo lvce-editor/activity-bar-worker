@@ -36,6 +36,12 @@ test('GetActivityBarItems.getActivityBarItems should return items with correct s
     expect(typeof item.flags).toBe('number')
     expect(typeof item.keyShortcuts).toBe('string')
     expect(item.preferredLocation).toBe(0)
+    expect(item.badgeIcon).toBe('')
+    expect(item.badgeText).toBe('')
+    expect(item.customIconClass).toBe('')
+    expect(item.customIconUrl).toBe('')
+    expect(item.enabled).toBe(false)
+    expect(item.hasPopup).toBe(item.id === 'Settings' || item.id === 'Account')
   }
 })
 
@@ -87,7 +93,13 @@ test('GetActivityBarItems.getActivityBarItems includes References hidden by defa
 
   const referencesItem = result.find((item) => item.id === 'References')
   expect(referencesItem).toEqual({
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Tab,
+    hasPopup: false,
     icon: 'References',
     id: 'References',
     keyShortcuts: '',
@@ -101,7 +113,13 @@ test('GetActivityBarItems.getActivityBarItems preserves an activated References 
     ...CreateDefaultState.createDefaultState(),
     activityBarItems: [
       {
+        badgeIcon: '',
+        badgeText: '',
+        customIconClass: '',
+        customIconUrl: '',
+        enabled: false,
         flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled,
+        hasPopup: false,
         icon: 'References',
         id: 'References',
         keyShortcuts: '',

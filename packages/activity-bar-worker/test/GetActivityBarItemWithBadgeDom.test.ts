@@ -8,10 +8,19 @@ import { getActivityBarItemWithBadgeDom } from '../src/parts/GetActivityBarItemW
 
 test('getActivityBarItemWithBadgeDom returns empty array when badgeText is missing', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'Explorer',
+    id: '',
+    keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Explorer',
-  } as any
+  }
 
   const result = getActivityBarItemWithBadgeDom(item)
 
@@ -20,11 +29,19 @@ test('getActivityBarItemWithBadgeDom returns empty array when badgeText is missi
 
 test('getActivityBarItemWithBadgeDom returns empty array when badgeText is empty string', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
     badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'Explorer',
+    id: '',
+    keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Explorer',
-  } as any
+  }
 
   const result = getActivityBarItemWithBadgeDom(item)
 
@@ -33,11 +50,19 @@ test('getActivityBarItemWithBadgeDom returns empty array when badgeText is empty
 
 test('getActivityBarItemWithBadgeDom creates correct DOM structure with badgeText', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
     badgeText: '5',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'Explorer',
+    id: '',
+    keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Explorer',
-  } as any
+  }
 
   const result = getActivityBarItemWithBadgeDom(item)
 
@@ -55,11 +80,19 @@ test('getActivityBarItemWithBadgeDom creates correct DOM structure with badgeTex
 
 test('getActivityBarItemWithBadgeDom handles Tab flag', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
     badgeText: '3',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Tab,
+    hasPopup: false,
     icon: 'Settings',
+    id: '',
+    keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Settings',
-  } as any
+  }
 
   const result = getActivityBarItemWithBadgeDom(item)
 
@@ -69,11 +102,19 @@ test('getActivityBarItemWithBadgeDom handles Tab flag', () => {
 
 test('getActivityBarItemWithBadgeDom handles Selected flag', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
     badgeText: '2',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Selected,
+    hasPopup: false,
     icon: 'Explorer',
+    id: '',
+    keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Explorer',
-  } as any
+  }
 
   const result = getActivityBarItemWithBadgeDom(item)
 
@@ -83,11 +124,19 @@ test('getActivityBarItemWithBadgeDom handles Selected flag', () => {
 
 test('getActivityBarItemWithBadgeDom handles Tab and Selected flags together', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
     badgeText: '10',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Selected,
+    hasPopup: false,
     icon: 'Search',
+    id: '',
+    keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Search',
-  } as any
+  }
 
   const result = getActivityBarItemWithBadgeDom(item)
 
@@ -98,11 +147,19 @@ test('getActivityBarItemWithBadgeDom handles Tab and Selected flags together', (
 
 test('getActivityBarItemWithBadgeDom handles Focused flag', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
     badgeText: '1',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Focused,
+    hasPopup: false,
     icon: 'Explorer',
+    id: '',
+    keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Explorer',
-  } as any
+  }
 
   const result = getActivityBarItemWithBadgeDom(item)
 
@@ -111,11 +168,19 @@ test('getActivityBarItemWithBadgeDom handles Focused flag', () => {
 
 test('getActivityBarItemWithBadgeDom handles MarginTop flag', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
     badgeText: '7',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.MarginTop,
+    hasPopup: false,
     icon: 'Git',
+    id: '',
+    keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Git',
-  } as any
+  }
 
   const result = getActivityBarItemWithBadgeDom(item)
 
@@ -124,11 +189,19 @@ test('getActivityBarItemWithBadgeDom handles MarginTop flag', () => {
 
 test('getActivityBarItemWithBadgeDom handles multiple flags together', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
     badgeText: '99',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Selected | ActivityBarItemFlags.Focused | ActivityBarItemFlags.MarginTop,
+    hasPopup: false,
     icon: 'Explorer',
+    id: '',
+    keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Explorer',
-  } as any
+  }
 
   const result = getActivityBarItemWithBadgeDom(item)
 
@@ -142,11 +215,19 @@ test('getActivityBarItemWithBadgeDom handles multiple flags together', () => {
 
 test('getActivityBarItemWithBadgeDom uses correct icon in className', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
     badgeText: '3',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'Settings',
+    id: '',
+    keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Settings',
-  } as any
+  }
 
   const result = getActivityBarItemWithBadgeDom(item)
 
@@ -155,11 +236,19 @@ test('getActivityBarItemWithBadgeDom uses correct icon in className', () => {
 
 test('getActivityBarItemWithBadgeDom uses correct badgeText', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
     badgeText: '42',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'Explorer',
+    id: '',
+    keyShortcuts: '',
+    preferredLocation: 0,
     title: 'Explorer',
-  } as any
+  }
 
   const result = getActivityBarItemWithBadgeDom(item)
 
@@ -168,7 +257,11 @@ test('getActivityBarItemWithBadgeDom uses correct badgeText', () => {
 
 test('getActivityBarItemWithBadgeDom adds ariaHasPopup for settings item', () => {
   const item: ActivityBarItem = {
+    badgeIcon: '',
     badgeText: '1',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
     hasPopup: true,
     icon: 'SettingsGear',

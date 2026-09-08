@@ -32,7 +32,13 @@ test('focus returns same state when state.focus is truthy', () => {
 test('focus preserves other state properties when setting focus', () => {
   const items: readonly ActivityBarItem[] = [
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: 0,
+      hasPopup: false,
       icon: 'icon1',
       id: 'item1',
       keyShortcuts: '',
@@ -40,7 +46,13 @@ test('focus preserves other state properties when setting focus', () => {
       title: 'Item 1',
     },
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: 0,
+      hasPopup: false,
       icon: 'icon2',
       id: 'item2',
       keyShortcuts: '',

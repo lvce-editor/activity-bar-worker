@@ -7,9 +7,13 @@ const customIconRegex = /MaskIconCustomViewabc/g
 test('getCustomIconCss skips duplicates', () => {
   const items: readonly ActivityBarItem[] = [
     {
+      badgeIcon: '',
+      badgeText: '',
       customIconClass: 'MaskIconCustomViewabc',
       customIconUrl: 'https://example.com/icon.svg',
+      enabled: false,
       flags: 0,
+      hasPopup: false,
       icon: 'https://example.com/icon.svg',
       id: 'test',
       keyShortcuts: '',
@@ -17,9 +21,13 @@ test('getCustomIconCss skips duplicates', () => {
       title: 'Test',
     },
     {
+      badgeIcon: '',
+      badgeText: '',
       customIconClass: 'MaskIconCustomViewabc',
       customIconUrl: 'https://example.com/icon.svg',
+      enabled: false,
       flags: 0,
+      hasPopup: false,
       icon: 'https://example.com/icon.svg',
       id: 'test2',
       keyShortcuts: '',

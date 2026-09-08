@@ -43,7 +43,13 @@ test('DiffCss.isEqual should return false when focused changes', () => {
 test('DiffCss.isEqual should return false when activityBarItems changes', () => {
   const items: readonly ActivityBarItem[] = [
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: 0,
+      hasPopup: false,
       icon: 'icon',
       id: 'test',
       keyShortcuts: '',
@@ -77,9 +83,13 @@ test('DiffCss.isEqual should return false when custom icon is added', () => {
     ...createDefaultState(),
     filteredItems: [
       {
+        badgeIcon: '',
+        badgeText: '',
         customIconClass: 'MaskIconCustomViewabc',
         customIconUrl: 'https://example.com/icon.svg',
+        enabled: false,
         flags: 0,
+        hasPopup: false,
         icon: 'https://example.com/icon.svg',
         id: 'test',
         keyShortcuts: '',
@@ -97,9 +107,13 @@ test('DiffCss.isEqual should return false when custom icon url changes', () => {
     ...createDefaultState(),
     filteredItems: [
       {
+        badgeIcon: '',
+        badgeText: '',
         customIconClass: 'MaskIconCustomViewabc',
         customIconUrl: 'https://example.com/icon.svg',
+        enabled: false,
         flags: 0,
+        hasPopup: false,
         icon: 'https://example.com/icon.svg',
         id: 'test',
         keyShortcuts: '',
@@ -112,9 +126,13 @@ test('DiffCss.isEqual should return false when custom icon url changes', () => {
     ...state1,
     filteredItems: [
       {
+        badgeIcon: '',
+        badgeText: '',
         customIconClass: 'MaskIconCustomViewabc',
         customIconUrl: 'https://example.com/other.svg',
+        enabled: false,
         flags: 0,
+        hasPopup: false,
         icon: 'https://example.com/other.svg',
         id: 'test',
         keyShortcuts: '',

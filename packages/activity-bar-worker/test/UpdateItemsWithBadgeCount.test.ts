@@ -10,9 +10,48 @@ test('updateItemsWithBadgeCount updates badgeText with count', async () => {
     },
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon2',
+      id: 'item2',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 2',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon3',
+      id: 'item3',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 3',
+    },
   ]
 
   const result: readonly ActivityBarItem[] = await updateItemsWithBadgeCount(items)
@@ -31,7 +70,22 @@ test('updateItemsWithBadgeCount sets empty badgeText for zero count', async () =
       return { item1: 0 }
     },
   })
-  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' }]
+  const items: readonly ActivityBarItem[] = [
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
+  ]
 
   const result: readonly ActivityBarItem[] = await updateItemsWithBadgeCount(items)
 
@@ -44,7 +98,22 @@ test('updateItemsWithBadgeCount sets empty badgeText for missing count', async (
       return {}
     },
   })
-  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' }]
+  const items: readonly ActivityBarItem[] = [
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
+  ]
 
   const result: readonly ActivityBarItem[] = await updateItemsWithBadgeCount(items)
 
@@ -60,7 +129,12 @@ test('updateItemsWithBadgeCount preserves other item properties', async () => {
   const items: readonly ActivityBarItem[] = [
     {
       badgeIcon: 'badge-icon',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: 1,
+      hasPopup: false,
       icon: 'test-icon',
       id: 'item1',
       keyShortcuts: 'Ctrl+K',
@@ -88,8 +162,13 @@ test('updateItemsWithBadgeCount overwrites existing badgeText', async () => {
   })
   const items: readonly ActivityBarItem[] = [
     {
+      badgeIcon: '',
       badgeText: 'old',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: 0,
+      hasPopup: false,
       icon: 'icon1',
       id: 'item1',
       keyShortcuts: '',
@@ -123,12 +202,27 @@ test('updateItemsWithBadgeCount returns original items on error', async () => {
       throw new Error('RPC error')
     },
   })
-  const items: readonly ActivityBarItem[] = [{ flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' }]
+  const items: readonly ActivityBarItem[] = [
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
+  ]
 
   const result: readonly ActivityBarItem[] = await updateItemsWithBadgeCount(items)
 
   expect(result).toBe(items)
-  expect(result[0].badgeText).toBeUndefined()
+  expect(result[0].badgeText).toBe('')
 })
 
 test('updateItemsWithBadgeCount handles multiple items with various counts', async () => {
@@ -138,11 +232,76 @@ test('updateItemsWithBadgeCount handles multiple items with various counts', asy
     },
   })
   const items: readonly ActivityBarItem[] = [
-    { flags: 0, icon: 'icon1', id: 'item1', keyShortcuts: '', preferredLocation: 0, title: 'Item 1' },
-    { flags: 0, icon: 'icon2', id: 'item2', keyShortcuts: '', preferredLocation: 0, title: 'Item 2' },
-    { flags: 0, icon: 'icon3', id: 'item3', keyShortcuts: '', preferredLocation: 0, title: 'Item 3' },
-    { flags: 0, icon: 'icon4', id: 'item4', keyShortcuts: '', preferredLocation: 0, title: 'Item 4' },
-    { flags: 0, icon: 'icon5', id: 'item5', keyShortcuts: '', preferredLocation: 0, title: 'Item 5' },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon1',
+      id: 'item1',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 1',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon2',
+      id: 'item2',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 2',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon3',
+      id: 'item3',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 3',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon4',
+      id: 'item4',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 4',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: 0,
+      hasPopup: false,
+      icon: 'icon5',
+      id: 'item5',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Item 5',
+    },
   ]
 
   const result: readonly ActivityBarItem[] = await updateItemsWithBadgeCount(items)

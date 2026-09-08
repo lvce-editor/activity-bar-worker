@@ -7,9 +7,48 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { selectCurrent } from '../src/parts/SelectCurrent/SelectCurrent.ts'
 
 const items: readonly ActivityBarItem[] = [
-  { flags: 0, icon: 'explorer', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
-  { flags: 0, icon: 'account', id: 'Account', keyShortcuts: '', preferredLocation: 0, title: 'Account' },
-  { flags: 0, icon: 'settings', id: 'Settings', keyShortcuts: '', preferredLocation: 0, title: 'Settings' },
+  {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
+    flags: 0,
+    hasPopup: false,
+    icon: 'explorer',
+    id: 'Explorer',
+    keyShortcuts: '',
+    preferredLocation: 0,
+    title: 'Explorer',
+  },
+  {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
+    flags: 0,
+    hasPopup: false,
+    icon: 'account',
+    id: 'Account',
+    keyShortcuts: '',
+    preferredLocation: 0,
+    title: 'Account',
+  },
+  {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
+    flags: 0,
+    hasPopup: false,
+    icon: 'settings',
+    id: 'Settings',
+    keyShortcuts: '',
+    preferredLocation: 0,
+    title: 'Settings',
+  },
 ]
 
 test('selectCurrent activates the focused settings item at its visual position', async () => {

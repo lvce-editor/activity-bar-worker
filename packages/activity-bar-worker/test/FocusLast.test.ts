@@ -4,8 +4,34 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { focusLast } from '../src/parts/FocusLast/FocusLast.ts'
 
 const items: readonly ActivityBarItem[] = [
-  { flags: 0, icon: 'explorer', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
-  { flags: 0, icon: 'settings', id: 'Settings', keyShortcuts: '', preferredLocation: 0, title: 'Settings' },
+  {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
+    flags: 0,
+    hasPopup: false,
+    icon: 'explorer',
+    id: 'Explorer',
+    keyShortcuts: '',
+    preferredLocation: 0,
+    title: 'Explorer',
+  },
+  {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
+    flags: 0,
+    hasPopup: false,
+    icon: 'settings',
+    id: 'Settings',
+    keyShortcuts: '',
+    preferredLocation: 0,
+    title: 'Settings',
+  },
 ]
 
 test('focusLast focuses the last visible item', () => {

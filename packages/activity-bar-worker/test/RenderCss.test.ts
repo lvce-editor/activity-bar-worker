@@ -31,7 +31,13 @@ test('renderCss returns empty array for different states', () => {
 test('renderCss returns empty array with custom properties', () => {
   const items: readonly ActivityBarItem[] = [
     {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
       flags: 0,
+      hasPopup: false,
       icon: 'icon',
       id: 'test',
       keyShortcuts: '',
@@ -59,9 +65,13 @@ test('renderCss returns empty array with custom properties', () => {
 test('renderCss includes custom icon rules', () => {
   const items: readonly ActivityBarItem[] = [
     {
+      badgeIcon: '',
+      badgeText: '',
       customIconClass: 'MaskIconCustomViewabc',
       customIconUrl: 'https://example.com/icon.svg',
+      enabled: false,
       flags: 0,
+      hasPopup: false,
       icon: 'https://example.com/icon.svg',
       id: 'test',
       keyShortcuts: '',
@@ -69,9 +79,13 @@ test('renderCss includes custom icon rules', () => {
       title: 'Test',
     },
     {
+      badgeIcon: '',
+      badgeText: '',
       customIconClass: 'MaskIconCustomViewfile',
       customIconUrl: 'file:///tmp/icon.png',
+      enabled: false,
       flags: 0,
+      hasPopup: false,
       icon: 'file:///tmp/icon.png',
       id: 'test2',
       keyShortcuts: '',
@@ -98,9 +112,13 @@ test('renderCss includes lvce custom icon rule', () => {
   const icon = 'lvce://-/remote/home/test/.local/share/lvce/extensions/hetzner/hetzner.svg'
   const items: readonly ActivityBarItem[] = [
     {
+      badgeIcon: '',
+      badgeText: '',
       customIconClass: 'MaskIconCustomViewhetzner',
       customIconUrl: icon,
+      enabled: false,
       flags: 0,
+      hasPopup: false,
       icon,
       id: 'hetzner.views.cloud',
       keyShortcuts: '',

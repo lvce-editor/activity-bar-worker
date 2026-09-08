@@ -5,8 +5,34 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { resolveActiveViewIds } from '../src/parts/ResolveActiveViewIds/ResolveActiveViewIds.ts'
 
 const items: readonly ActivityBarItem[] = [
-  { flags: 0, icon: 'files', id: 'Explorer', keyShortcuts: '', preferredLocation: 0, title: 'Explorer' },
-  { flags: 0, icon: 'search', id: 'Search', keyShortcuts: '', preferredLocation: 0, title: 'Search' },
+  {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
+    flags: 0,
+    hasPopup: false,
+    icon: 'files',
+    id: 'Explorer',
+    keyShortcuts: '',
+    preferredLocation: 0,
+    title: 'Explorer',
+  },
+  {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
+    flags: 0,
+    hasPopup: false,
+    icon: 'search',
+    id: 'Search',
+    keyShortcuts: '',
+    preferredLocation: 0,
+    title: 'Search',
+  },
 ]
 
 test('resolveActiveViewIds preserves explicit active views', () => {

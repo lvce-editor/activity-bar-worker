@@ -8,7 +8,13 @@ import * as UpdateState from '../src/parts/UpdateState/UpdateState.ts'
 
 test('handleUpdateStateChange should set badgeIcon to clock and Progress flag when CheckingForUpdate', async () => {
   const settingsItem: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
@@ -34,7 +40,13 @@ test('handleUpdateStateChange should set badgeIcon to clock and Progress flag wh
 
 test('handleUpdateStateChange should set badgeIcon to empty and badgeText to 1 when WaitingForRestart', async () => {
   const settingsItem: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
@@ -60,7 +72,13 @@ test('handleUpdateStateChange should set badgeIcon to empty and badgeText to 1 w
 
 test('handleUpdateStateChange should not modify Settings item for other states', async () => {
   const settingsItem: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
@@ -85,7 +103,13 @@ test('handleUpdateStateChange should not modify Settings item for other states',
 
 test('handleUpdateStateChange should update updateProgress and updateState', async () => {
   const settingsItem: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
@@ -111,7 +135,13 @@ test('handleUpdateStateChange should update updateProgress and updateState', asy
 
 test('handleUpdateStateChange should preserve other state properties', async () => {
   const settingsItem: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
@@ -143,7 +173,13 @@ test('handleUpdateStateChange should preserve other state properties', async () 
 
 test('handleUpdateStateChange should only modify Settings item, not other items', async () => {
   const settingsItem: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
@@ -151,7 +187,13 @@ test('handleUpdateStateChange should only modify Settings item, not other items'
     title: 'Settings',
   }
   const otherItem: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'explorer',
     id: 'Explorer',
     keyShortcuts: '',
@@ -176,7 +218,13 @@ test('handleUpdateStateChange should only modify Settings item, not other items'
 
 test('handleUpdateStateChange should handle Settings item with existing flags', async () => {
   const settingsItem: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Selected,
+    hasPopup: false,
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
@@ -201,7 +249,13 @@ test('handleUpdateStateChange should handle Settings item with existing flags', 
 
 test('handleUpdateStateChange should handle state without Settings item', async () => {
   const otherItem: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'explorer',
     id: 'Explorer',
     keyShortcuts: '',
@@ -227,7 +281,12 @@ test('handleUpdateStateChange should handle state without Settings item', async 
 test('handleUpdateStateChange should handle WaitingForRestart with existing badgeIcon', async () => {
   const settingsItem: ActivityBarItem = {
     badgeIcon: 'clock',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: ActivityBarItemFlags.Progress,
+    hasPopup: false,
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
@@ -251,7 +310,13 @@ test('handleUpdateStateChange should handle WaitingForRestart with existing badg
 
 test('handleUpdateStateChange should handle InstallingUpdated state', async () => {
   const settingsItem: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
     flags: 0,
+    hasPopup: false,
     icon: 'settings',
     id: 'Settings',
     keyShortcuts: '',
