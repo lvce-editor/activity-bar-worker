@@ -28,8 +28,8 @@ test('drag end and leave clear their transient state', () => {
   const emptyState = createDefaultState()
   const state = { ...createDefaultState(), draggedItemId: 'Explorer', dropIndicator: { id: 'Search', position: 'before' as const } }
 
-  expect(handleDragEnd(state)).toEqual(createDefaultState())
-  expect(handleDragLeave(state)).toEqual({ ...createDefaultState(), draggedItemId: 'Explorer' })
+  expect(handleDragEnd(state)).toEqual({ ...createDefaultState(), draggedItemId: undefined, dropIndicator: undefined })
+  expect(handleDragLeave(state)).toEqual({ ...createDefaultState(), draggedItemId: 'Explorer', dropIndicator: undefined })
   expect(handleDragEnd(emptyState)).toBe(emptyState)
   expect(handleDragLeave(emptyState)).toBe(emptyState)
 })

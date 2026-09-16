@@ -6,11 +6,13 @@ export interface ActivityBarState {
   readonly activityBarItems: readonly ActivityBarItem[]
   readonly currentViewletId: string
   readonly dragAndDropEnabled?: boolean
-  readonly draggedItemId?: string
-  readonly dropIndicator?: {
-    readonly id: string
-    readonly position: 'after' | 'before'
-  }
+  readonly draggedItemId?: string | undefined
+  readonly dropIndicator?:
+    | {
+        readonly id: string
+        readonly position: 'after' | 'before'
+      }
+    | undefined
   readonly filteredItems: readonly ActivityBarItem[]
   readonly focus: number
   readonly focused: boolean

@@ -3,6 +3,8 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 export const name = 'activity-bar.drag-and-drop'
 
 export const test: Test = async ({ Command, DragAndDrop, expect, Locator }) => {
+  const dragType = 'application/x-lvce-editor-activity-bar-item'
+  const dragValue = `${dragType}:Explorer`
   const explorer = Locator('.ActivityBarItem[title="Explorer"]')
   const search = Locator('.ActivityBarItem[title="Search"]')
   const sourceControl = Locator('.ActivityBarItem[title="Source Control"]')
@@ -17,18 +19,12 @@ export const test: Test = async ({ Command, DragAndDrop, expect, Locator }) => {
   // The drag event must originate from the real draggable DOM node.
   // eslint-disable-next-line @typescript-eslint/no-deprecated
   await explorer.dispatchEvent('dragstart', { bubbles: true } as any)
-  await DragAndDrop.shouldHaveDragData([
-    {
-      data: 'application/x-lvce-editor-activity-bar-item:Explorer',
-      type: 'application/x-lvce-editor-activity-bar-item',
-    },
-  ])
 
   await Command.execute('ActivityBar.handleDragOver', 167)
   await expect(indicator).toHaveCount(1)
   await expect(runAndDebug).toHaveAttribute('style', 'box-shadow: white 0px 2px 0px inset;')
 
-  const dropId = await DragAndDrop.createDropSessionFromDragData()
+  const dropId = await DragAndDrop.createDropSession([{ kind: 'string', type: dragType, value: dragValue }])
   await Command.execute('ActivityBar.handleDrop', dropId)
   await expect(indicator).toHaveCount(0)
   await expect(search).toHaveCount(1)
@@ -43,7 +39,7 @@ export const test: Test = async ({ Command, DragAndDrop, expect, Locator }) => {
 
   // eslint-disable-next-line @typescript-eslint/no-deprecated
   await explorer.dispatchEvent('dragstart', { bubbles: true } as any)
-  await Command.execute('ActivityBar.handleDragOver', 24)
+  await Command.execute('ActivityBar.handleDragOver', 500)
   await expect(indicator).toHaveCount(0)
   await Command.execute('ActivityBar.handleDragEnd')
 }

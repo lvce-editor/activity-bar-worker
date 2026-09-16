@@ -38,6 +38,8 @@ export const handleDragOver = (state: ActivityBarState, clientY: number): Activi
   if (oldIndicator?.id === dropIndicator?.id && oldIndicator?.position === dropIndicator?.position) {
     return state
   }
-  const { dropIndicator: _oldDropIndicator, ...rest } = state
-  return dropIndicator ? { ...rest, dropIndicator } : rest
+  return {
+    ...state,
+    dropIndicator,
+  }
 }

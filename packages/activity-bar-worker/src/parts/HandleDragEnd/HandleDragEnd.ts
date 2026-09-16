@@ -5,6 +5,9 @@ export const handleDragEnd = (state: ActivityBarState): ActivityBarState => {
   if (!draggedItemId && !dropIndicator) {
     return state
   }
-  const { draggedItemId: _draggedItemId, dropIndicator: _dropIndicator, ...rest } = state
-  return rest
+  return {
+    ...state,
+    draggedItemId: undefined,
+    dropIndicator: undefined,
+  }
 }

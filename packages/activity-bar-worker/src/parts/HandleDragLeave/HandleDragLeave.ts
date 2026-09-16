@@ -5,6 +5,8 @@ export const handleDragLeave = (state: ActivityBarState): ActivityBarState => {
   if (!dropIndicator) {
     return state
   }
-  const { dropIndicator: _dropIndicator, ...rest } = state
-  return rest
+  return {
+    ...state,
+    dropIndicator: undefined,
+  }
 }

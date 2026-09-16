@@ -6,6 +6,9 @@ export const handleDragStart = (state: ActivityBarState, id: string): ActivityBa
   if (!dragAndDropEnabled || !isMovableActivityBarItem(filteredItems.find((item) => item.id === id))) {
     return state
   }
-  const { dropIndicator: _dropIndicator, ...rest } = state
-  return { ...rest, draggedItemId: id }
+  return {
+    ...state,
+    draggedItemId: id,
+    dropIndicator: undefined,
+  }
 }
