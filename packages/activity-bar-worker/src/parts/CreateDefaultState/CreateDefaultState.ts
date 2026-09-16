@@ -4,6 +4,7 @@ export const createDefaultState = (): ActivityBarState => ({
   accountEnabled: true,
   activityBarItems: [],
   currentViewletId: '',
+  dragAndDropEnabled: false,
   filteredItems: [],
   focus: 0,
   focused: false,

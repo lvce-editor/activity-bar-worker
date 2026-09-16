@@ -2,6 +2,7 @@ import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import { getAccountEnabled } from '../GetAccountEnabled/GetAccountEnabled.ts'
 import { getActivityBarItems } from '../GetActivityBarItems/GetActivityBarItems.ts'
 import { getContributedViews } from '../GetContributedViews/GetContributedViews.ts'
+import { getDragAndDropEnabled } from '../GetDragAndDropEnabled/GetDragAndDropEnabled.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { getSideBarPosition } from '../GetSideBarPosition/GetSideBarPosition.ts'
 import { markActiveViews } from '../MarkActiveViews/MarkActiveViews.ts'
@@ -9,15 +10,17 @@ import { resolveActiveViewIds } from '../ResolveActiveViewIds/ResolveActiveViewI
 import { updateItemsWithBadgeCount } from '../UpdateItemsWithBadgeCount/UpdateItemsWithBadgeCount.ts'
 
 export const handleSettingsChanged = async (state: ActivityBarState): Promise<ActivityBarState> => {
-  const { accountEnabled: currentAccountEnabled, height, itemHeight, platform } = state
-  const [accountEnabled, contributedViews, sidebarLocation] = await Promise.all([
+  const { accountEnabled: currentAccountEnabled, dragAndDropEnabled: currentDragAndDropEnabled, height, itemHeight, platform } = state
+  const [accountEnabled, dragAndDropEnabled, contributedViews, sidebarLocation] = await Promise.all([
     getAccountEnabled(currentAccountEnabled),
+    getDragAndDropEnabled(Boolean(currentDragAndDropEnabled)),
     getContributedViews(platform),
     getSideBarPosition(),
   ])
   const newState = {
     ...state,
     accountEnabled,
+    dragAndDropEnabled,
   }
   const items = getActivityBarItems(newState, contributedViews)
   const activeViewIds = resolveActiveViewIds(state, items)

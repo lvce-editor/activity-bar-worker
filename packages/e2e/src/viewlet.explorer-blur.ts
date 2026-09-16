@@ -10,6 +10,7 @@ export const test: Test = async ({ expect, Explorer, FileSystem, Locator, Worksp
     { content: 'content 2', uri: `${tmpDir}/file2.txt` },
     { content: 'content 3', uri: `${tmpDir}/file3.txt` },
   ])
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- the current server runtime does not expose setUri yet
   await Workspace.setPath(tmpDir)
   await Explorer.selectIndices([0, 1])
 

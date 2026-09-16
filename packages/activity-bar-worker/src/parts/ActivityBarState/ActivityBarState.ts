@@ -5,6 +5,14 @@ export interface ActivityBarState {
   readonly accountEnabled: boolean
   readonly activityBarItems: readonly ActivityBarItem[]
   readonly currentViewletId: string
+  readonly dragAndDropEnabled?: boolean
+  readonly draggedItemId?: string | undefined
+  readonly dropIndicator?:
+    | {
+        readonly id: string
+        readonly position: 'after' | 'before'
+      }
+    | undefined
   readonly filteredItems: readonly ActivityBarItem[]
   readonly focus: number
   readonly focused: boolean

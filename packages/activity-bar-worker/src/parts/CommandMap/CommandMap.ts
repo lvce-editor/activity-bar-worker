@@ -24,6 +24,11 @@ import { handleClickSettings } from '../HandleClickSettings/HandleClickSettings.
 import { handleClickSignIn } from '../HandleClickSignIn/HandleClickSignIn.ts'
 import { handleClickSignOut } from '../HandleClickSignOut/HandleClickSignOut.ts'
 import { handleContextMenu } from '../HandleContextMenu/HandleContextMenu.ts'
+import { handleDragEnd } from '../HandleDragEnd/HandleDragEnd.ts'
+import { handleDragLeave } from '../HandleDragLeave/HandleDragLeave.ts'
+import { handleDragOver } from '../HandleDragOver/HandleDragOver.ts'
+import { handleDragStart } from '../HandleDragStart/HandleDragStart.ts'
+import { handleDrop } from '../HandleDrop/HandleDrop.ts'
 import { handleExtensionManagementMessagePort } from '../HandleExtensionManagementMessagePort/HandleExtensionManagementMessagePort.ts'
 import { handleExtensionsChanged } from '../HandleExtensionsChanged/HandleExtensionsChanged.ts'
 import { handleFocus } from '../HandleFocus/HandleFocus.ts'
@@ -39,6 +44,7 @@ import { reset } from '../Reset/Reset.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectCurrent from '../SelectCurrent/SelectCurrent.ts'
 import { setAccountEnabled } from '../SetAccountEnabled/SetAccountEnabled.ts'
+import { setDragAndDropEnabled } from '../SetDragAndDropEnabled/SetDragAndDropEnabled.ts'
 import { setUserLoginState } from '../SetUserLoginState/SetUserLoginState.ts'
 import { sleep } from '../Sleep/Sleep.ts'
 import { toggleActivityBarItem } from '../ToggleActivityBarItem/ToggleActivityBarItem.ts'
@@ -73,6 +79,11 @@ export const commandMap = {
   'ActivityBar.handleClickSignIn': WrapCommand.wrapCommand(handleClickSignIn),
   'ActivityBar.handleClickSignOut': WrapCommand.wrapCommand(handleClickSignOut),
   'ActivityBar.handleContextMenu': WrapCommand.wrapAsyncCommand(handleContextMenu),
+  'ActivityBar.handleDragEnd': WrapCommand.wrapCommand(handleDragEnd),
+  'ActivityBar.handleDragLeave': WrapCommand.wrapCommand(handleDragLeave),
+  'ActivityBar.handleDragOver': WrapCommand.wrapCommand(handleDragOver),
+  'ActivityBar.handleDragStart': WrapCommand.wrapCommand(handleDragStart),
+  'ActivityBar.handleDrop': WrapCommand.wrapAsyncCommand(handleDrop),
   'ActivityBar.handleExtensionManagementMessagePort': handleExtensionManagementMessagePort,
   'ActivityBar.handleExtensionsChanged': WrapCommand.wrapCommand(handleExtensionsChanged),
   'ActivityBar.handleFocus': WrapCommand.wrapCommand(handleFocus),
@@ -88,6 +99,7 @@ export const commandMap = {
   'ActivityBar.saveState': WrapCommand.wrapGetter(SaveState.saveState),
   'ActivityBar.selectCurrent': WrapCommand.wrapCommand(SelectCurrent.selectCurrent),
   'ActivityBar.setAccountEnabled': WrapCommand.wrapCommand(setAccountEnabled),
+  'ActivityBar.setDragAndDropEnabled': WrapCommand.wrapCommand(setDragAndDropEnabled),
   'ActivityBar.setUserLoginState': WrapCommand.wrapCommand(setUserLoginState),
   'ActivityBar.sleep': sleep,
   'ActivityBar.terminate': terminate,

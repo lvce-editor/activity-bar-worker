@@ -6,5 +6,13 @@
     "id": "activityBar.accountEnabled",
     "type": "boolean",
     "value": true
+  },
+  {
+    "category": "workbench",
+    "description": "Enable dragging activity bar items to reorder them",
+    "heading": "Activity Bar",
+    "id": "activityBar.dragAndDropEnabled",
+    "type": "boolean",
+    "value": false
   }
 ]

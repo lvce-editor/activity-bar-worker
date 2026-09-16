@@ -2,6 +2,7 @@ import { AriaRoles } from '@lvce-editor/constants'
 import { type VirtualDomNode, mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getActivityBarItemHasPopup } from '../GetActivityBarItemHasPopup/GetActivityBarItemHasPopup.ts'
 import { getActivityBarItemInProgressDom } from '../GetActivityBarItemInProgressDom/GetActivityBarItemInProgressDom.ts'
 import { getActivityBarItemWithBadgeDom } from '../GetActivityBarItemWithBadgeDom/GetActivityBarItemWithBadgeDom.ts'
@@ -10,7 +11,19 @@ import { getClassName } from '../GetClassName/GetClassName.ts'
 import { getIconClass } from '../GetIconClass/GetIconClass.ts'
 import * as GetIconVirtualDom from '../GetIconVirtualDom/GetIconVirtualDom.ts'
 
-export const getActivityBarItemVirtualDom = (item: ActivityBarItem): readonly VirtualDomNode[] => {
+type DropIndicator = {
+  readonly id: string
+  readonly position: 'after' | 'before'
+}
+
+const getDropIndicatorStyle = (dropIndicator: DropIndicator | undefined, id: string): string | undefined => {
+  if (!dropIndicator || dropIndicator.id !== id) {
+    return undefined
+  }
+  return dropIndicator.position === 'before' ? 'box-shadow:inset 0 2px 0 white;' : 'box-shadow:inset 0 -2px 0 white;'
+}
+
+export const getActivityBarItemVirtualDom = (item: ActivityBarItem, draggable = false, dropIndicator?: DropIndicator): readonly VirtualDomNode[] => {
   const { badgeText, flags, icon, id, title } = item
   const ariaHasPopup = getActivityBarItemHasPopup(item) || undefined
   const isTab = flags & ActivityBarItemFlags.Tab
@@ -21,8 +34,9 @@ export const getActivityBarItemVirtualDom = (item: ActivityBarItem): readonly Vi
   const ariaSelected = getAriaSelected(isTab, isSelected)
   const marginTop = flags & ActivityBarItemFlags.MarginTop
   const className = getClassName(isFocused, marginTop, isSelected)
+  let dom: readonly VirtualDomNode[]
   if (isSelected && !badgeText) {
-    return [
+    dom = [
       {
         ariaHasPopup,
         ariaSelected,
@@ -38,26 +52,35 @@ export const getActivityBarItemVirtualDom = (item: ActivityBarItem): readonly Vi
         name: id,
       },
     ]
+  } else if (isProgress) {
+    dom = getActivityBarItemInProgressDom(item)
+  } else if (badgeText) {
+    dom = getActivityBarItemWithBadgeDom(item)
+  } else {
+    dom = [
+      {
+        ariaHasPopup,
+        ariaSelected,
+        childCount: 0,
+        className: mergeClassNames(className, getIconClass(item, 'Icon')),
+        name: id,
+        role,
+        title,
+        type: VirtualDomElements.Div,
+      },
+    ]
   }
-
-  // TODO support progress on selected activity bar item
-  if (isProgress) {
-    return getActivityBarItemInProgressDom(item)
-  }
-
-  if (badgeText) {
-    return getActivityBarItemWithBadgeDom(item)
-  }
+  const [root, ...children] = dom
   return [
     {
-      ariaHasPopup,
-      ariaSelected,
-      childCount: 0,
-      className: mergeClassNames(className, getIconClass(item, 'Icon')),
-      name: id,
-      role,
-      title,
-      type: VirtualDomElements.Div,
+      ...root,
+      ...(draggable && { draggable: true }),
+      ...(draggable && {
+        onDragEnd: DomEventListenerFunctions.HandleDragEnd,
+        onDragStart: DomEventListenerFunctions.HandleDragStart,
+      }),
+      ...(getDropIndicatorStyle(dropIndicator, id) && { style: getDropIndicatorStyle(dropIndicator, id) }),
     },
+    ...children,
   ]
 }

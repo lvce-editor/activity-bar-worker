@@ -2,6 +2,7 @@ import { expect, test } from '@jest/globals'
 import * as DiffType from '../src/parts/DiffType/DiffType.ts'
 import { getRenderer } from '../src/parts/GetRenderer/GetRenderer.ts'
 import { renderCss } from '../src/parts/RenderCss/RenderCss.ts'
+import * as RenderDragData from '../src/parts/RenderDragData/RenderDragData.ts'
 import * as RenderFocus from '../src/parts/RenderFocus/RenderFocus.ts'
 import * as RenderFocusContext from '../src/parts/RenderFocusContext/RenderFocusContext.ts'
 import { renderIncremental } from '../src/parts/RenderIncremental/RenderIncremental.ts'
@@ -35,6 +36,12 @@ test('getRenderer returns renderIncremental for RenderIncremental diff type', ()
   const renderer = getRenderer(DiffType.RenderIncremental)
 
   expect(renderer).toBe(renderIncremental)
+})
+
+test('getRenderer returns renderDragData for RenderDragData diff type', () => {
+  const renderer = getRenderer(DiffType.RenderDragData)
+
+  expect(renderer).toBe(RenderDragData.renderDragData)
 })
 
 test('getRenderer throws error for unknown diff type', () => {
