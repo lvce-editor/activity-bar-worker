@@ -33,7 +33,37 @@ const content = await readFile(file, 'utf8')
 const upstreamFix = `        if (!request2 || !response2) {
           this._page.frameManager.onWebSocketRequest(socketId);`
 
-if (content.includes(after) || content.includes(upstreamFix)) {
+const currentBefore = `      _onWebSocketOpened(event) {
+        const request2 = this._webSocketRequests.get(event.requestId);
+        assert(request2);
+        const response2 = this._webSocketResponses.get(event.requestId);
+        assert(response2);
+        this._webSocketRequests.delete(event.requestId);
+        this._webSocketResponses.delete(event.requestId);
+        this._page.frameManager.onWebSocketRequest(webSocketId(event.frameId, event.wsid), request2);
+        this._page.frameManager.onWebSocketResponse(webSocketId(event.frameId, event.wsid), response2);
+      }`
+
+const currentAfter = `      _onWebSocketOpened(event) {
+        const request2 = this._webSocketRequests.get(event.requestId);
+        const response2 = this._webSocketResponses.get(event.requestId);
+        if (!request2 || !response2) {
+          this._webSocketRequests.delete(event.requestId);
+          this._webSocketResponses.delete(event.requestId);
+          return;
+        }
+        this._webSocketRequests.delete(event.requestId);
+        this._webSocketResponses.delete(event.requestId);
+        this._page.frameManager.onWebSocketRequest(webSocketId(event.frameId, event.wsid), request2);
+        this._page.frameManager.onWebSocketResponse(webSocketId(event.frameId, event.wsid), response2);
+      }`
+
+if (content.includes(after) || content.includes(currentAfter) || content.includes(upstreamFix)) {
+  process.exit(0)
+}
+
+if (content.includes(currentBefore)) {
+  await writeFile(file, content.replace(currentBefore, currentAfter))
   process.exit(0)
 }
 
