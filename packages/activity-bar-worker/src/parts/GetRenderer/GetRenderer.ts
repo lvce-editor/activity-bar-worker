@@ -4,6 +4,7 @@ import { renderCss } from '../RenderCss/RenderCss.ts'
 import * as RenderFocus from '../RenderFocus/RenderFocus.ts'
 import * as RenderFocusContext from '../RenderFocusContext/RenderFocusContext.ts'
 import { renderIncremental } from '../RenderIncremental/RenderIncremental.ts'
+import * as RenderDragData from '../RenderDragData/RenderDragData.ts'
 import * as RenderItems from '../RenderItems/RenderItems.ts'
 
 export const getRenderer = (diffType: number): Renderer => {
@@ -16,6 +17,8 @@ export const getRenderer = (diffType: number): Renderer => {
       return RenderFocusContext.renderFocusContext
     case DiffType.RenderIncremental:
       return renderIncremental
+    case DiffType.RenderDragData:
+      return RenderDragData.renderDragData
     case DiffType.RenderItems:
       return RenderItems.renderItems
     default:

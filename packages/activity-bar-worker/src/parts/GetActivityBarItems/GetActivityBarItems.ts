@@ -30,6 +30,23 @@ const toActivityBarItem = (view: ContributedView): ActivityBarItem => {
   }
 }
 
+const isBottomItem = (item: ActivityBarItem): boolean => item.id === 'Account' || item.id === 'Settings'
+
+const applyExistingOrder = (items: readonly ActivityBarItem[], existingItems: readonly ActivityBarItem[]): readonly ActivityBarItem[] => {
+  if (existingItems.length === 0) {
+    return items
+  }
+  const itemsById = new Map(items.map((item) => [item.id, item]))
+  const orderedTopItems = existingItems
+    .filter((item) => !isBottomItem(item))
+    .map((item) => itemsById.get(item.id))
+    .filter((item): item is ActivityBarItem => Boolean(item))
+  const orderedTopIds = new Set(orderedTopItems.map((item) => item.id))
+  const newTopItems = items.filter((item) => !isBottomItem(item) && !orderedTopIds.has(item.id))
+  const bottomItems = items.filter(isBottomItem)
+  return [...orderedTopItems, ...newTopItems, ...bottomItems]
+}
+
 export const getActivityBarItems = (state: ActivityBarState, contributedViews: readonly ContributedView[] = []): readonly ActivityBarItem[] => {
   const { accountEnabled, activityBarItems } = state
   const referencesEnabled = activityBarItems.some(
@@ -158,5 +175,5 @@ export const getActivityBarItems = (state: ActivityBarState, contributedViews: r
     title: ViewletActivityBarStrings.settings(),
   })
 
-  return items
+  return applyExistingOrder(items, activityBarItems)
 }

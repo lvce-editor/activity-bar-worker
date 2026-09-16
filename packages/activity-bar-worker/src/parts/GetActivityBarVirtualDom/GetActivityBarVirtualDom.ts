@@ -12,7 +12,11 @@ import * as TabIndex from '../TabIndex/TabIndex.ts'
 
 const className = mergeClassNames(ClassNames.Viewlet, ClassNames.ActivityBar)
 
-export const getActivityBarVirtualDom = (visibleItems: readonly ActivityBarItem[]): readonly VirtualDomNode[] => {
+export const getActivityBarVirtualDom = (
+  visibleItems: readonly ActivityBarItem[],
+  dragAndDropEnabled = false,
+  dropIndicator?: { readonly id: string; readonly position: 'after' | 'before' },
+): readonly VirtualDomNode[] => {
   return [
     {
       ariaOrientation: AriaOrientationType.Vertical,
@@ -22,12 +26,15 @@ export const getActivityBarVirtualDom = (visibleItems: readonly ActivityBarItem[
       id: DomId.ActivityBar,
       onBlur: DomEventListenerFunctions.HandleBlur,
       onContextMenu: DomEventListenerFunctions.HandleContextMenu,
+      onDragLeave: DomEventListenerFunctions.HandleDragLeave,
+      onDragOver: DomEventListenerFunctions.HandleDragOver,
+      onDrop: DomEventListenerFunctions.HandleDrop,
       onFocus: DomEventListenerFunctions.HandleFocus,
       onMouseDown: DomEventListenerFunctions.HandleMouseDown,
       role: AriaRoles.ToolBar,
       tabIndex: TabIndex.Focusable,
       type: VirtualDomElements.Div,
     },
-    ...GetActivityBarItemsVirtualDom.getVirtualDom(visibleItems),
+    ...GetActivityBarItemsVirtualDom.getVirtualDom(visibleItems, dragAndDropEnabled, dropIndicator),
   ]
 }

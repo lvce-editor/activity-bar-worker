@@ -17,6 +17,7 @@ export const create = (
     accountEnabled: true,
     activityBarItems: [],
     currentViewletId: '',
+    dragAndDropEnabled: false,
     filteredItems: [],
     focus: 0,
     focused: false,

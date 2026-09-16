@@ -1,5 +1,6 @@
 import { expect, test } from '@jest/globals'
 import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
+import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { getActivityBarItemVirtualDom } from '../src/parts/GetActivityBarItemVirtualDom/GetActivityBarItemVirtualDom.ts'
 import { getActivityBarItemWithBadgeDom } from '../src/parts/GetActivityBarItemWithBadgeDom/GetActivityBarItemWithBadgeDom.ts'
 
@@ -45,5 +46,30 @@ test('getActivityBarItemVirtualDom adds item id as name', () => {
   expect(result[0]).toMatchObject({
     name: 'Settings',
     title: 'Settings',
+  })
+})
+
+test('getActivityBarItemVirtualDom renders draggable drop indicators', () => {
+  const item: ActivityBarItem = {
+    badgeIcon: '',
+    badgeText: '',
+    customIconClass: '',
+    customIconUrl: '',
+    enabled: false,
+    flags: ActivityBarItemFlags.Tab,
+    hasPopup: false,
+    icon: 'Search',
+    id: 'Search',
+    keyShortcuts: '',
+    preferredLocation: 0,
+    title: 'Search',
+  }
+
+  expect(getActivityBarItemVirtualDom(item, true, { id: 'Search', position: 'before' })[0]).toMatchObject({
+    draggable: true,
+    style: 'box-shadow:inset 0 2px 0 white;',
+  })
+  expect(getActivityBarItemVirtualDom(item, true, { id: 'Search', position: 'after' })[0]).toMatchObject({
+    style: 'box-shadow:inset 0 -2px 0 white;',
   })
 })
