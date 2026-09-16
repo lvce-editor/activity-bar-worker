@@ -1,7 +1,8 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 
 export const setDragAndDropEnabled = (state: ActivityBarState, enabled: boolean): ActivityBarState => {
-  if (state.dragAndDropEnabled === enabled) {
+  const { dragAndDropEnabled } = state
+  if (dragAndDropEnabled === enabled) {
     return state
   }
   return {

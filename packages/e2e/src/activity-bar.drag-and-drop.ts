@@ -14,6 +14,8 @@ export const test: Test = async ({ Command, DragAndDrop, expect, Locator }) => {
   await Command.execute('ActivityBar.setDragAndDropEnabled', true)
   await expect(explorer).toHaveJSProperty('draggable', true)
 
+  // The drag event must originate from the real draggable DOM node.
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   await explorer.dispatchEvent('dragstart', { bubbles: true } as any)
   await DragAndDrop.shouldHaveDragData([
     {
@@ -32,10 +34,14 @@ export const test: Test = async ({ Command, DragAndDrop, expect, Locator }) => {
   await expect(search).toHaveCount(1)
   await expect(sourceControl).toHaveCount(1)
   await expect(explorer).toHaveCount(1)
-  await expect(Locator('.ActivityBarItem').nth(0)).toHaveAttribute('title', 'Search')
-  await expect(Locator('.ActivityBarItem').nth(1)).toHaveAttribute('title', 'Source Control')
-  await expect(Locator('.ActivityBarItem').nth(2)).toHaveAttribute('title', 'Explorer')
+  const firstActivityBarItem = Locator('.ActivityBarItem').nth(0)
+  const secondActivityBarItem = Locator('.ActivityBarItem').nth(1)
+  const thirdActivityBarItem = Locator('.ActivityBarItem').nth(2)
+  await expect(firstActivityBarItem).toHaveAttribute('title', 'Search')
+  await expect(secondActivityBarItem).toHaveAttribute('title', 'Source Control')
+  await expect(thirdActivityBarItem).toHaveAttribute('title', 'Explorer')
 
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
   await explorer.dispatchEvent('dragstart', { bubbles: true } as any)
   await Command.execute('ActivityBar.handleDragOver', 24)
   await expect(indicator).toHaveCount(0)

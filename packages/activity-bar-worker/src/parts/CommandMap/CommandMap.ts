@@ -15,11 +15,6 @@ import { getMenuEntryIds } from '../GetMenuEntryIds/GetMenuEntryIds.ts'
 import { handleActiveViewStateChange } from '../HandleActiveViewStateChange/HandleActiveViewStateChange.ts'
 import { handleBadgeCountChange } from '../handleBadgeCountChange/handleBadgeCountChange.ts'
 import { handleBlur } from '../HandleBlur/HandleBlur.ts'
-import { handleDragEnd } from '../HandleDragEnd/HandleDragEnd.ts'
-import { handleDragLeave } from '../HandleDragLeave/HandleDragLeave.ts'
-import { handleDragOver } from '../HandleDragOver/HandleDragOver.ts'
-import { handleDragStart } from '../HandleDragStart/HandleDragStart.ts'
-import { handleDrop } from '../HandleDrop/HandleDrop.ts'
 import * as HandleClick from '../HandleClick/HandleClick.ts'
 import { handleClickAccount } from '../HandleClickAccount/HandleClickAccount.ts'
 import { handleClickAdditionalViews } from '../HandleClickAdditionalViews/HandleClickAdditionalViews.ts'
@@ -29,6 +24,11 @@ import { handleClickSettings } from '../HandleClickSettings/HandleClickSettings.
 import { handleClickSignIn } from '../HandleClickSignIn/HandleClickSignIn.ts'
 import { handleClickSignOut } from '../HandleClickSignOut/HandleClickSignOut.ts'
 import { handleContextMenu } from '../HandleContextMenu/HandleContextMenu.ts'
+import { handleDragEnd } from '../HandleDragEnd/HandleDragEnd.ts'
+import { handleDragLeave } from '../HandleDragLeave/HandleDragLeave.ts'
+import { handleDragOver } from '../HandleDragOver/HandleDragOver.ts'
+import { handleDragStart } from '../HandleDragStart/HandleDragStart.ts'
+import { handleDrop } from '../HandleDrop/HandleDrop.ts'
 import { handleExtensionManagementMessagePort } from '../HandleExtensionManagementMessagePort/HandleExtensionManagementMessagePort.ts'
 import { handleExtensionsChanged } from '../HandleExtensionsChanged/HandleExtensionsChanged.ts'
 import { handleFocus } from '../HandleFocus/HandleFocus.ts'
@@ -70,11 +70,6 @@ export const commandMap = {
   'ActivityBar.handleActiveViewStateChange': WrapCommand.wrapCommand(handleActiveViewStateChange),
   'ActivityBar.handleBadgeCountChange': WrapCommand.wrapCommand(handleBadgeCountChange),
   'ActivityBar.handleBlur': WrapCommand.wrapCommand(handleBlur),
-  'ActivityBar.handleDragEnd': WrapCommand.wrapCommand(handleDragEnd),
-  'ActivityBar.handleDragLeave': WrapCommand.wrapCommand(handleDragLeave),
-  'ActivityBar.handleDragOver': WrapCommand.wrapCommand(handleDragOver),
-  'ActivityBar.handleDragStart': WrapCommand.wrapCommand(handleDragStart),
-  'ActivityBar.handleDrop': WrapCommand.wrapAsyncCommand(handleDrop),
   'ActivityBar.handleClick': WrapCommand.wrapCommand(HandleClick.handleClick),
   'ActivityBar.handleClickAccount': WrapCommand.wrapCommand(handleClickAccount),
   'ActivityBar.handleClickAdditionalViews': WrapCommand.wrapCommand(handleClickAdditionalViews),
@@ -84,6 +79,11 @@ export const commandMap = {
   'ActivityBar.handleClickSignIn': WrapCommand.wrapCommand(handleClickSignIn),
   'ActivityBar.handleClickSignOut': WrapCommand.wrapCommand(handleClickSignOut),
   'ActivityBar.handleContextMenu': WrapCommand.wrapAsyncCommand(handleContextMenu),
+  'ActivityBar.handleDragEnd': WrapCommand.wrapCommand(handleDragEnd),
+  'ActivityBar.handleDragLeave': WrapCommand.wrapCommand(handleDragLeave),
+  'ActivityBar.handleDragOver': WrapCommand.wrapCommand(handleDragOver),
+  'ActivityBar.handleDragStart': WrapCommand.wrapCommand(handleDragStart),
+  'ActivityBar.handleDrop': WrapCommand.wrapAsyncCommand(handleDrop),
   'ActivityBar.handleExtensionManagementMessagePort': handleExtensionManagementMessagePort,
   'ActivityBar.handleExtensionsChanged': WrapCommand.wrapCommand(handleExtensionsChanged),
   'ActivityBar.handleFocus': WrapCommand.wrapCommand(handleFocus),

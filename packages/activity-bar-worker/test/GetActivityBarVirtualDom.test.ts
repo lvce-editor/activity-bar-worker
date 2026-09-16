@@ -2,7 +2,7 @@ import { expect, test } from '@jest/globals'
 import { getActivityBarVirtualDom } from '../src/parts/GetActivityBarVirtualDom/GetActivityBarVirtualDom.ts'
 
 test('renders activity bar drag listeners and draggable items', () => {
-  const [root, item] = getActivityBarVirtualDom([{ id: 'Explorer', title: 'Explorer', flags: 9 } as any], true, {
+  const [root, item] = getActivityBarVirtualDom([{ flags: 9, id: 'Explorer', title: 'Explorer' } as any], true, {
     id: 'Explorer',
     position: 'before',
   })

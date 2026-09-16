@@ -12,7 +12,7 @@ export const test: Test = async ({ Command, expect, Locator }) => {
 
   const search = Locator('.ActivityBarItem[title="Search"]')
   // Exercise the browser focus transition caused by an actual pointer click.
-  // eslint-disable-next-line e2e/no-direct-click
+  // eslint-disable-next-line @typescript-eslint/no-deprecated, e2e/no-direct-click
   await search.click()
 
   const focusedItems = Locator('.ActivityBarItem.FocusOutline')

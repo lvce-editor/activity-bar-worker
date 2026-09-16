@@ -3,7 +3,7 @@ import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarIt
 import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { reorderActivityBarItems } from '../src/parts/ReorderActivityBarItems/ReorderActivityBarItems.ts'
 
-const item = (id: string, flags = ActivityBarItemFlags.Tab): ActivityBarItem => ({ id, flags }) as ActivityBarItem
+const item = (id: string, flags = ActivityBarItemFlags.Tab): ActivityBarItem => ({ flags, id }) as ActivityBarItem
 
 test('reorders an item before another item', () => {
   const items = [item('Explorer'), item('Search'), item('SourceControl')]

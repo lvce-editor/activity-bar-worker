@@ -1,37 +1,48 @@
+import type { AsyncCommandContext } from '@lvce-editor/viewlet-registry'
 import { PlatformType } from '@lvce-editor/constants'
 import { DragAndDropWorker } from '@lvce-editor/rpc-registry'
-import type { AsyncCommandContext } from '@lvce-editor/viewlet-registry'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
-import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ActivityBarDragData from '../ActivityBarDragData/ActivityBarDragData.ts'
+import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { handleDragEnd } from '../HandleDragEnd/HandleDragEnd.ts'
 import { reorderActivityBarItems } from '../ReorderActivityBarItems/ReorderActivityBarItems.ts'
 
 export const handleDrop = async (context: AsyncCommandContext<ActivityBarState>, dropId: number): Promise<void> => {
   const state = context.getState()
-  const { draggedItemId, dropIndicator } = state
+  const {
+    activityBarItems: initialActivityBarItems,
+    dragAndDropEnabled,
+    draggedItemId,
+    dropIndicator,
+    filteredItems: initialFilteredItems,
+    focusedIndex: initialFocusedIndex,
+    height,
+    itemHeight,
+    platform,
+    selectedIndex: initialSelectedIndex,
+  } = state
   const clearState = handleDragEnd(state)
-  if (!state.dragAndDropEnabled || !draggedItemId || !dropIndicator) {
+  if (!dragAndDropEnabled || !draggedItemId || !dropIndicator) {
     await context.updateState(() => clearState)
     return
   }
-  const isElectron = state.platform === PlatformType.Electron
+  const isElectron = platform === PlatformType.Electron
   const result = await DragAndDropWorker.invoke('DragAndDrop.getDroppedItemsByDropId', dropId, isElectron)
   const values = Array.isArray(result?.strings) ? result.strings : []
   if (values.length !== 1 || ActivityBarDragData.getId(values[0]) !== draggedItemId) {
     await context.updateState(() => clearState)
     return
   }
-  const activityBarItems = reorderActivityBarItems(state.activityBarItems, draggedItemId, dropIndicator.id, dropIndicator.position)
-  const filteredItems = getFilteredActivityBarItems(activityBarItems, state.height, state.itemHeight)
-  const selectedId = state.activityBarItems.find((item) => item.flags & ActivityBarItemFlags.Selected)?.id
-  const focusedId = state.filteredItems[state.focusedIndex]?.id
+  const activityBarItems = reorderActivityBarItems(initialActivityBarItems, draggedItemId, dropIndicator.id, dropIndicator.position)
+  const filteredItems = getFilteredActivityBarItems(activityBarItems, height, itemHeight)
+  const selectedId = initialActivityBarItems.find((item) => item.flags & ActivityBarItemFlags.Selected)?.id
+  const focusedId = initialFilteredItems[initialFocusedIndex]?.id
   await context.updateState(() => ({
     ...clearState,
     activityBarItems,
     filteredItems,
-    selectedIndex: selectedId ? filteredItems.findIndex((item) => item.id === selectedId) : state.selectedIndex,
-    focusedIndex: focusedId ? filteredItems.findIndex((item) => item.id === focusedId) : state.focusedIndex,
+    focusedIndex: focusedId ? filteredItems.findIndex((item) => item.id === focusedId) : initialFocusedIndex,
+    selectedIndex: selectedId ? filteredItems.findIndex((item) => item.id === selectedId) : initialSelectedIndex,
   }))
 }

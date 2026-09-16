@@ -10,10 +10,10 @@ import { resolveActiveViewIds } from '../ResolveActiveViewIds/ResolveActiveViewI
 import { updateItemsWithBadgeCount } from '../UpdateItemsWithBadgeCount/UpdateItemsWithBadgeCount.ts'
 
 export const handleSettingsChanged = async (state: ActivityBarState): Promise<ActivityBarState> => {
-  const { accountEnabled: currentAccountEnabled, height, itemHeight, platform } = state
+  const { accountEnabled: currentAccountEnabled, dragAndDropEnabled: currentDragAndDropEnabled, height, itemHeight, platform } = state
   const [accountEnabled, dragAndDropEnabled, contributedViews, sidebarLocation] = await Promise.all([
     getAccountEnabled(currentAccountEnabled),
-    getDragAndDropEnabled(Boolean(state.dragAndDropEnabled)),
+    getDragAndDropEnabled(Boolean(currentDragAndDropEnabled)),
     getContributedViews(platform),
     getSideBarPosition(),
   ])

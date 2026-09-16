@@ -2,20 +2,21 @@ import { expect, test } from '@jest/globals'
 import { PlatformType } from '@lvce-editor/constants'
 import { DragAndDropWorker } from '@lvce-editor/rpc-registry'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
+import * as ActivityBarDragData from '../src/parts/ActivityBarDragData/ActivityBarDragData.ts'
 import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ActivityBarStates from '../src/parts/ActivityBarStates/ActivityBarStates.ts'
-import * as ActivityBarDragData from '../src/parts/ActivityBarDragData/ActivityBarDragData.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { handleDrop } from '../src/parts/HandleDrop/HandleDrop.ts'
 
 const run = async (state: ActivityBarState, dropId = 1): Promise<ActivityBarState> => {
-  ActivityBarStates.set(state.uid, state, state)
+  const { uid } = state
+  ActivityBarStates.set(uid, state, state)
   const command = ActivityBarStates.wrapAsyncCommand(handleDrop)
-  await command(state.uid, dropId)
-  return ActivityBarStates.get(state.uid).newState
+  await command(uid, dropId)
+  return ActivityBarStates.get(uid).newState
 }
 
-const item = (id: string, flags = ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled): any => ({ id, flags })
+const item = (id: string, flags = ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled): any => ({ flags, id })
 
 test('clears an incomplete drag', async () => {
   const state = { ...createDefaultState(), draggedItemId: 'Explorer' }
@@ -36,8 +37,9 @@ test('ignores an unrelated drop', async () => {
     draggedItemId: 'Explorer',
     dropIndicator: { id: 'Search', position: 'after' as const },
   }
+  const { activityBarItems } = state
 
-  await expect(run(state)).resolves.toMatchObject({ activityBarItems: state.activityBarItems })
+  await expect(run(state)).resolves.toMatchObject({ activityBarItems })
   expect(mockRpc.invocations).toEqual([['DragAndDrop.getDroppedItemsByDropId', 1, false]])
 })
 

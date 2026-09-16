@@ -19,10 +19,10 @@ const getDropIndicator = (state: ActivityBarState, clientY: number): ActivityBar
     if (!isMovableActivityBarItem(item)) {
       return undefined
     }
-    const position = clientY < itemY + itemHeight / 2 ? 'before' : 'after'
     if (item.id === draggedItemId) {
       return undefined
     }
+    const position = clientY < itemY + itemHeight / 2 ? 'before' : 'after'
     const sourceIndex = topItems.findIndex((candidate) => candidate.id === draggedItemId)
     if ((position === 'before' && sourceIndex === index - 1) || (position === 'after' && sourceIndex === index + 1)) {
       return undefined
@@ -34,7 +34,7 @@ const getDropIndicator = (state: ActivityBarState, clientY: number): ActivityBar
 
 export const handleDragOver = (state: ActivityBarState, clientY: number): ActivityBarState => {
   const dropIndicator = getDropIndicator(state, clientY)
-  const oldIndicator = state.dropIndicator
+  const { dropIndicator: oldIndicator } = state
   if (oldIndicator?.id === dropIndicator?.id && oldIndicator?.position === dropIndicator?.position) {
     return state
   }

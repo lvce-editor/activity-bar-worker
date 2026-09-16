@@ -1,9 +1,9 @@
 import { expect, test } from '@jest/globals'
-import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
+import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { handleDragOver } from '../src/parts/HandleDragOver/HandleDragOver.ts'
 
-const createItem = (id: string, flags = ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled): any => ({ id, flags })
+const createItem = (id: string, flags = ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled): any => ({ flags, id })
 
 test('shows an insertion indicator for a valid target', () => {
   const items = [createItem('Explorer'), createItem('Search'), createItem('Source Control')]
@@ -76,9 +76,9 @@ test('clears an existing indicator when the pointer leaves the bar', () => {
     activityBarItems: items,
     dragAndDropEnabled: true,
     draggedItemId: 'Explorer',
+    dropIndicator: { id: 'Search', position: 'before' as const },
     filteredItems: items,
     itemHeight: 48,
-    dropIndicator: { id: 'Search', position: 'before' as const },
   }
 
   expect(handleDragOver(state, 500).dropIndicator).toBeUndefined()

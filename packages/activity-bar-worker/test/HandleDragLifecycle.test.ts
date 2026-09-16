@@ -1,13 +1,13 @@
 import { expect, test } from '@jest/globals'
+import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { handleDragEnd } from '../src/parts/HandleDragEnd/HandleDragEnd.ts'
 import { handleDragLeave } from '../src/parts/HandleDragLeave/HandleDragLeave.ts'
 import { handleDragStart } from '../src/parts/HandleDragStart/HandleDragStart.ts'
-import * as ActivityBarItemFlags from '../src/parts/ActivityBarItemFlags/ActivityBarItemFlags.ts'
 
 const items: any = [
-  { id: 'Explorer', flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled },
-  { id: 'Search', flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled },
+  { flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled, id: 'Explorer' },
+  { flags: ActivityBarItemFlags.Tab | ActivityBarItemFlags.Enabled, id: 'Search' },
 ]
 
 test('drag start records a movable item when enabled', () => {
