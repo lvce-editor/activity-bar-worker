@@ -9,6 +9,7 @@ import * as FocusLast from '../FocusLast/FocusLast.ts'
 import * as FocusNext from '../FocusNext/FocusNext.ts'
 import * as FocusNone from '../FocusNone/FocusNone.ts'
 import * as FocusPrevious from '../FocusPrevious/FocusPrevious.ts'
+import { getComponentState } from '../GetComponentState/GetComponentState.ts'
 import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
 import { getMenuEntries } from '../GetMenuEntries/GetMenuEntries.ts'
 import { getMenuEntryIds } from '../GetMenuEntryIds/GetMenuEntryIds.ts'
@@ -44,6 +45,7 @@ import { reset } from '../Reset/Reset.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectCurrent from '../SelectCurrent/SelectCurrent.ts'
 import { setAccountEnabled } from '../SetAccountEnabled/SetAccountEnabled.ts'
+import { setComponentState } from '../SetComponentState/SetComponentState.ts'
 import { setDragAndDropEnabled } from '../SetDragAndDropEnabled/SetDragAndDropEnabled.ts'
 import { setUserLoginState } from '../SetUserLoginState/SetUserLoginState.ts'
 import { sleep } from '../Sleep/Sleep.ts'
@@ -64,6 +66,7 @@ export const commandMap = {
   'ActivityBar.focusNone': WrapCommand.wrapCommand(FocusNone.focusNone),
   'ActivityBar.focusPrevious': WrapCommand.wrapCommand(FocusPrevious.focusPrevious),
   'ActivityBar.getCommandIds': WrapCommand.getCommandIds,
+  'ActivityBar.getComponentState': getComponentState,
   'ActivityBar.getKeyBindings': getKeyBindings,
   'ActivityBar.getMenuEntries': WrapCommand.wrapGetter(getMenuEntries),
   'ActivityBar.getMenuEntryIds': getMenuEntryIds,
@@ -99,6 +102,7 @@ export const commandMap = {
   'ActivityBar.saveState': WrapCommand.wrapGetter(SaveState.saveState),
   'ActivityBar.selectCurrent': WrapCommand.wrapCommand(SelectCurrent.selectCurrent),
   'ActivityBar.setAccountEnabled': WrapCommand.wrapCommand(setAccountEnabled),
+  'ActivityBar.setComponentState': setComponentState,
   'ActivityBar.setDragAndDropEnabled': WrapCommand.wrapCommand(setDragAndDropEnabled),
   'ActivityBar.setUserLoginState': WrapCommand.wrapCommand(setUserLoginState),
   'ActivityBar.sleep': sleep,
