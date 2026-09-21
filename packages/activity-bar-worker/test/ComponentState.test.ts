@@ -1,8 +1,40 @@
 import { expect, test } from '@jest/globals'
 import * as ActivityBarStates from '../src/parts/ActivityBarStates/ActivityBarStates.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import { getComponentDom } from '../src/parts/GetComponentDom/GetComponentDom.ts'
 import { getComponentState } from '../src/parts/GetComponentState/GetComponentState.ts'
 import { setComponentState } from '../src/parts/SetComponentState/SetComponentState.ts'
+
+test('gets the current live component DOM', () => {
+  const uid = 100
+  const state = {
+    ...createDefaultState(),
+    filteredItems: [
+      {
+        badgeIcon: '',
+        badgeText: '',
+        customIconClass: '',
+        customIconUrl: '',
+        enabled: true,
+        flags: 0,
+        hasPopup: false,
+        icon: 'explorer',
+        id: 'Explorer',
+        keyShortcuts: '',
+        preferredLocation: 0,
+        title: 'Explorer',
+      },
+    ],
+    initial: false,
+    uid,
+  }
+  ActivityBarStates.set(uid, state, state)
+
+  const dom = getComponentDom(uid)
+
+  expect(dom).toEqual(expect.arrayContaining([expect.objectContaining({ id: 'ActivityBar' })]))
+  expect(dom).toHaveLength(2)
+})
 
 test('gets and sets the live component state', async () => {
   const uid = 101

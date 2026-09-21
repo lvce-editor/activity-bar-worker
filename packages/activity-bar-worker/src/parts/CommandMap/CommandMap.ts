@@ -9,6 +9,7 @@ import * as FocusLast from '../FocusLast/FocusLast.ts'
 import * as FocusNext from '../FocusNext/FocusNext.ts'
 import * as FocusNone from '../FocusNone/FocusNone.ts'
 import * as FocusPrevious from '../FocusPrevious/FocusPrevious.ts'
+import { getComponentDom } from '../GetComponentDom/GetComponentDom.ts'
 import { getComponentState } from '../GetComponentState/GetComponentState.ts'
 import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
 import { getMenuEntries } from '../GetMenuEntries/GetMenuEntries.ts'
@@ -66,6 +67,7 @@ export const commandMap = {
   'ActivityBar.focusNone': WrapCommand.wrapCommand(FocusNone.focusNone),
   'ActivityBar.focusPrevious': WrapCommand.wrapCommand(FocusPrevious.focusPrevious),
   'ActivityBar.getCommandIds': WrapCommand.getCommandIds,
+  'ActivityBar.getComponentDom': getComponentDom,
   'ActivityBar.getComponentState': getComponentState,
   'ActivityBar.getKeyBindings': getKeyBindings,
   'ActivityBar.getMenuEntries': WrapCommand.wrapGetter(getMenuEntries),
