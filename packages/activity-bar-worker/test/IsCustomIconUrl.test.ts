@@ -8,6 +8,7 @@ test('isCustomIconUrl detects url-like icons', () => {
   expect(isCustomIconUrl('file:///tmp/icon.svg')).toBe(true)
   expect(isCustomIconUrl('lvce://-/remote/home/test/.local/share/lvce/extensions/example/icon.svg')).toBe(true)
   expect(isCustomIconUrl('/icons/icon.svg')).toBe(true)
+  expect(isCustomIconUrl('/assets/extensions/builtin.theme-slime/media/icon.svg')).toBe(true)
   expect(isCustomIconUrl('Extensions')).toBe(false)
   expect(isCustomIconUrl('symbol-beaker')).toBe(false)
 })
