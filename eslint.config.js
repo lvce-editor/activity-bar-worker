@@ -44,4 +44,20 @@ export default defineConfig([
       'sonarjs/prefer-specific-assertions': 'off',
     },
   },
+  {
+    // The pinned application supplies its own Node runtime.
+    files: ['.github/workflows/integration.yml'],
+    rules: { 'github-actions/node-version-file': 'off', 'github-actions/on': 'off' },
+  },
+  {
+    // Preserve real DOM input events covered by the migrated application scenarios.
+    files: [
+      'packages/e2e-integration/src/viewlet.activity-bar-source-control-selected-with-badge.ts',
+      'packages/e2e-integration/src/viewlet.activity-bar-source-control-repeated.ts',
+      'packages/e2e-integration/src/viewlet.activity-bar-source-control-nested-icon.ts',
+      'packages/e2e-integration/src/viewlet.activity-bar-source-control-badge-updates-on-save.ts',
+      'packages/e2e-integration/src/viewlet.activity-bar-keyboard-navigation.ts',
+    ],
+    rules: { '@typescript-eslint/no-deprecated': 'off' },
+  },
 ])
