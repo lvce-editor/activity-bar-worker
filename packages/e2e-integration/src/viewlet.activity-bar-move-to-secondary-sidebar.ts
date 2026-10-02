@@ -4,6 +4,8 @@ export const name = 'viewlet.activity-bar-move-to-secondary-sidebar'
 
 export const test: Test = async ({ Command, ContextMenu, expect, Locator, SideBar }) => {
   const explorerItem = Locator('.ActivityBarItem[title="Explorer"]')
+  const sourceControlView = Locator('.SecondarySideBar .Viewlet.SourceControl')
+  const primarySourceControlView = Locator('.SideBar:not(.SecondarySideBar) .Viewlet.SourceControl')
   const explorerView = Locator('.Viewlet.Explorer')
   const primarySearchView = Locator('.SideBar:not(.SecondarySideBar) .Viewlet.Search')
   const searchView = Locator('.SecondarySideBar .Viewlet.Search')
@@ -26,6 +28,26 @@ export const test: Test = async ({ Command, ContextMenu, expect, Locator, SideBa
   }
   if (activeSecondary !== 'Search') {
     throw new Error(`Expected Search to open in the secondary sidebar, got ${activeSecondary}`)
+  }
+
+  // A second move stays in the secondary host without duplicating the primary view.
+  await Command.execute('ActivityBar.handleContextMenu', 2, 0, 0, 'Source Control')
+  await ContextMenu.selectItem('Move To')
+  await ContextMenu.selectItem('Secondary Side Bar')
+  await expect(primarySourceControlView).toHaveCount(0)
+  await expect(sourceControlView).toBeVisible()
+  const secondActiveSecondary = await Command.execute('Layout.getActiveSecondarySideBarView')
+  if (secondActiveSecondary !== 'Source Control') {
+    throw new Error(`Expected Source Control to move into the secondary sidebar, got ${secondActiveSecondary}`)
+  }
+
+  // Resizing and switching among multiple moved views preserves their location.
+  await Command.execute('Layout.handleResize', 1024, 768)
+  await Command.execute('ActivityBar.handleClick', 0, -1000, -1000, 'Search')
+  await expect(searchView).toBeVisible()
+  const switchedSecondary = await Command.execute('Layout.getActiveSecondarySideBarView')
+  if (switchedSecondary !== 'Search') {
+    throw new Error(`Expected Search to remain in the secondary sidebar after resize, got ${switchedSecondary}`)
   }
 
   // Hiding and reopening the moved activity item keeps it in the secondary host.
