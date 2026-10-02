@@ -1,4 +1,4 @@
-import { MenuItemFlags } from '@lvce-editor/constants'
+import { MenuEntryId, MenuItemFlags } from '@lvce-editor/constants'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
@@ -6,12 +6,14 @@ import * as ViewletActivityBarStrings from '../ActivityBarStrings/ActivityBarStr
 import { menuEntryMoveSideBar } from '../MenuEntryMoveSideBar/MenuEntryMoveSideBar.ts'
 import * as MenuEntrySeparator from '../MenuEntrySeparator/MenuEntrySeparator.ts'
 import { toContextMenuItem } from '../ToContextMenuItem/ToContextMenuItem.ts'
+import { isMovableActivityBarItem } from '../IsMovableActivityBarItem/IsMovableActivityBarItem.ts'
 
-export const getMenuEntriesActivityBar = (state: ActivityBarState): readonly MenuEntry[] => {
+export const getMenuEntriesActivityBar = (state: ActivityBarState, targetViewletId = ''): readonly MenuEntry[] => {
   const { activityBarItems, sideBarLocation } = state
   const topItems = activityBarItems.filter((item) => !(item.flags & ActivityBarItemFlags.Button))
   const bottomItems = activityBarItems.filter((item) => item.flags & ActivityBarItemFlags.Button)
   const entries = topItems.map(toContextMenuItem)
+  const targetItem = activityBarItems.find((item) => item.id === targetViewletId)
 
   if (bottomItems.length > 0) {
     entries.push(MenuEntrySeparator.menuEntrySeparator, ...bottomItems.map(toContextMenuItem))
@@ -19,6 +21,17 @@ export const getMenuEntriesActivityBar = (state: ActivityBarState): readonly Men
 
   return [
     ...entries,
+    ...(isMovableActivityBarItem(targetItem)
+      ? [
+          {
+            args: [{ menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: targetViewletId, action: 'moveTo' }],
+            command: '',
+            flags: MenuItemFlags.SubMenu,
+            id: 'moveTo',
+            label: 'Move To',
+          },
+        ]
+      : []),
     MenuEntrySeparator.menuEntrySeparator,
     menuEntryMoveSideBar(sideBarLocation),
     {

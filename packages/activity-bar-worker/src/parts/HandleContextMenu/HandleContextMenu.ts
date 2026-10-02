@@ -9,6 +9,7 @@ export const handleContextMenu = async (
   button: number,
   eventX: number,
   eventY: number,
+  targetName = '',
 ): Promise<void> => {
   const sideBarLocation = await getSideBarPosition()
   const state = await context.updateState((state) => {
@@ -20,5 +21,6 @@ export const handleContextMenu = async (
   const { uid } = state
   await ContextMenu.show2(uid, MenuEntryId.ActivityBar, eventX, eventY, {
     menuId: MenuEntryId.ActivityBar,
+    targetViewletId: targetName,
   })
 }

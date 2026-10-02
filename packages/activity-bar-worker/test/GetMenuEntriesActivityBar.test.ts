@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals'
-import { MenuItemFlags, SideBarLocationType } from '@lvce-editor/constants'
+import { MenuEntryId, MenuItemFlags, SideBarLocationType } from '@lvce-editor/constants'
 import type { ActivityBarItem } from '../src/parts/ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBarState.ts'
 import type { MenuEntry } from '../src/parts/MenuEntry/MenuEntry.ts'
@@ -77,6 +77,54 @@ test('getMenuEntriesActivityBar returns menu entries with items, separator, move
     id: 'hideActivityBar',
     label: ActivityBarStrings.hideActivityBar(),
   })
+})
+
+test('getMenuEntriesActivityBar offers Move To for the movable context-menu target only', () => {
+  const state = {
+    ...createDefaultState(),
+    activityBarItems: [
+      {
+        badgeIcon: '',
+        badgeText: '',
+        customIconClass: '',
+        customIconUrl: '',
+        enabled: false,
+        flags: ActivityBarItemFlags.Tab,
+        hasPopup: false,
+        icon: 'explorer',
+        id: 'Explorer',
+        keyShortcuts: '',
+        preferredLocation: 0,
+        title: 'Explorer',
+      },
+      {
+        badgeIcon: '',
+        badgeText: '',
+        customIconClass: '',
+        customIconUrl: '',
+        enabled: false,
+        flags: ActivityBarItemFlags.Button,
+        hasPopup: false,
+        icon: 'settings',
+        id: 'Settings',
+        keyShortcuts: '',
+        preferredLocation: 0,
+        title: 'Settings',
+      },
+    ],
+    sideBarLocation: SideBarLocationType.Left,
+  }
+
+  const result = getMenuEntriesActivityBar(state, 'Explorer')
+  expect(result).toContainEqual({
+    args: [{ menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: 'Explorer', action: 'moveTo' }],
+    command: '',
+    flags: MenuItemFlags.SubMenu,
+    id: 'moveTo',
+    label: 'Move To',
+  })
+  expect(getMenuEntriesActivityBar(state, 'Settings')).not.toContainEqual(expect.objectContaining({ id: 'moveTo' }))
+  expect(getMenuEntriesActivityBar(state)).not.toContainEqual(expect.objectContaining({ id: 'moveTo' }))
 })
 
 test('getMenuEntriesActivityBar inserts a separator before bottom utility items', () => {

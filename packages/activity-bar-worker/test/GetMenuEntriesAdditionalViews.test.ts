@@ -51,6 +51,19 @@ test('getMenuEntriesAdditionalViews returns empty array when no items are hidden
   expect(result).toEqual([])
 })
 
+test('getMenuEntriesAdditionalViews returns the destination for Move To', () => {
+  const result = getMenuEntriesAdditionalViews(createDefaultState(), { action: 'moveTo', viewletId: 'Explorer' })
+  expect(result).toEqual([
+    {
+      args: ['Explorer'],
+      command: 'Layout.moveViewletToSecondarySideBar',
+      flags: MenuItemFlags.None,
+      id: 'moveToSecondarySideBar',
+      label: 'Secondary Side Bar',
+    },
+  ])
+})
+
 test('getMenuEntriesAdditionalViews returns empty array when all items fit in visible area', () => {
   const items: readonly ActivityBarItem[] = [
     {

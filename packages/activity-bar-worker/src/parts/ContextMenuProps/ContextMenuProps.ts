@@ -8,6 +8,7 @@ export interface ContextMenuPropsAdditionalViews extends ContextMenuPropsBase {
   readonly menuId: typeof MenuEntryId.ActivityBarAdditionalViews
   readonly openSubMenuToLeft?: boolean
   readonly viewletId: string
+  readonly action?: 'moveTo'
 }
 
 export interface ContextMenuPropsSettings extends ContextMenuPropsBase {
@@ -16,6 +17,7 @@ export interface ContextMenuPropsSettings extends ContextMenuPropsBase {
 
 export interface ContextMenuPropsActivityBar extends ContextMenuPropsBase {
   readonly menuId: typeof MenuEntryId.ActivityBar
+  readonly targetViewletId?: string
 }
 
 export interface ContextMenuPropsAccount extends ContextMenuPropsBase {

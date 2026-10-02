@@ -6,11 +6,17 @@ import * as ActivityBarStates from '../src/parts/ActivityBarStates/ActivityBarSt
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { handleContextMenu } from '../src/parts/HandleContextMenu/HandleContextMenu.ts'
 
-const runHandleContextMenu = async (state: ActivityBarState, button: number, eventX: number, eventY: number): Promise<ActivityBarState> => {
+const runHandleContextMenu = async (
+  state: ActivityBarState,
+  button: number,
+  eventX: number,
+  eventY: number,
+  targetName = '',
+): Promise<ActivityBarState> => {
   const { uid } = state
   ActivityBarStates.set(uid, state, state)
   const command = ActivityBarStates.wrapAsyncCommand(handleContextMenu)
-  await command(uid, button, eventX, eventY)
+  await command(uid, button, eventX, eventY, targetName)
   return ActivityBarStates.get(uid).newState
 }
 
@@ -27,7 +33,28 @@ test('handleContextMenu calls ContextMenu.show with correct parameters', async (
 
   expect(mockRpc.invocations).toEqual([
     ['Layout.getSideBarPosition'],
-    ['ContextMenu.show2', 0, MenuEntryId.ActivityBar, 100, 200, { menuId: MenuEntryId.ActivityBar }],
+    ['ContextMenu.show2', 0, MenuEntryId.ActivityBar, 100, 200, { menuId: MenuEntryId.ActivityBar, targetViewletId: '' }],
+  ])
+})
+
+test('handleContextMenu passes the clicked activity item to the menu', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'ContextMenu.show2'() {},
+    'Layout.getSideBarPosition'() {
+      return 1
+    },
+  })
+  const state: ActivityBarState = createDefaultState()
+
+  await runHandleContextMenu(state, 2, 100, 200, 'Explorer')
+
+  expect(mockRpc.invocations.at(-1)).toEqual([
+    'ContextMenu.show2',
+    0,
+    MenuEntryId.ActivityBar,
+    100,
+    200,
+    { menuId: MenuEntryId.ActivityBar, targetViewletId: 'Explorer' },
   ])
 })
 
@@ -51,7 +78,7 @@ test('handleContextMenu updates the side bar location before showing the menu', 
   })
   expect(mockRpc.invocations).toEqual([
     ['Layout.getSideBarPosition'],
-    ['ContextMenu.show2', 0, MenuEntryId.ActivityBar, 100, 200, { menuId: MenuEntryId.ActivityBar }],
+    ['ContextMenu.show2', 0, MenuEntryId.ActivityBar, 100, 200, { menuId: MenuEntryId.ActivityBar, targetViewletId: '' }],
   ])
 })
 
@@ -68,7 +95,7 @@ test('handleContextMenu calls ContextMenu.show with right button', async () => {
 
   expect(mockRpc.invocations).toEqual([
     ['Layout.getSideBarPosition'],
-    ['ContextMenu.show2', 0, MenuEntryId.ActivityBar, 50, 75, { menuId: MenuEntryId.ActivityBar }],
+    ['ContextMenu.show2', 0, MenuEntryId.ActivityBar, 50, 75, { menuId: MenuEntryId.ActivityBar, targetViewletId: '' }],
   ])
 })
 
@@ -86,8 +113,8 @@ test('handleContextMenu handles different coordinates', async () => {
 
   expect(mockRpc.invocations).toEqual([
     ['Layout.getSideBarPosition'],
-    ['ContextMenu.show2', 0, MenuEntryId.ActivityBar, 0, 0, { menuId: MenuEntryId.ActivityBar }],
+    ['ContextMenu.show2', 0, MenuEntryId.ActivityBar, 0, 0, { menuId: MenuEntryId.ActivityBar, targetViewletId: '' }],
     ['Layout.getSideBarPosition'],
-    ['ContextMenu.show2', 0, MenuEntryId.ActivityBar, 500, 1000, { menuId: MenuEntryId.ActivityBar }],
+    ['ContextMenu.show2', 0, MenuEntryId.ActivityBar, 500, 1000, { menuId: MenuEntryId.ActivityBar, targetViewletId: '' }],
   ])
 })
