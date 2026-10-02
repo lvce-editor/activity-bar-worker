@@ -117,7 +117,7 @@ test('getMenuEntriesActivityBar offers Move To for the movable context-menu targ
 
   const result = getMenuEntriesActivityBar(state, 'Explorer')
   expect(result).toContainEqual({
-    args: [{ menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: 'Explorer', action: 'moveTo' }],
+    args: [{ action: 'moveTo', menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: 'Explorer' }],
     command: '',
     flags: MenuItemFlags.SubMenu,
     id: 'moveTo',

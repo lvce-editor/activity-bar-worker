@@ -3,10 +3,10 @@ import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ViewletActivityBarStrings from '../ActivityBarStrings/ActivityBarStrings.ts'
+import { isMovableActivityBarItem } from '../IsMovableActivityBarItem/IsMovableActivityBarItem.ts'
 import { menuEntryMoveSideBar } from '../MenuEntryMoveSideBar/MenuEntryMoveSideBar.ts'
 import * as MenuEntrySeparator from '../MenuEntrySeparator/MenuEntrySeparator.ts'
 import { toContextMenuItem } from '../ToContextMenuItem/ToContextMenuItem.ts'
-import { isMovableActivityBarItem } from '../IsMovableActivityBarItem/IsMovableActivityBarItem.ts'
 
 export const getMenuEntriesActivityBar = (state: ActivityBarState, targetViewletId = ''): readonly MenuEntry[] => {
   const { activityBarItems, sideBarLocation } = state
@@ -24,7 +24,7 @@ export const getMenuEntriesActivityBar = (state: ActivityBarState, targetViewlet
     ...(isMovableActivityBarItem(targetItem)
       ? [
           {
-            args: [{ menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: targetViewletId, action: 'moveTo' }],
+            args: [{ action: 'moveTo', menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: targetViewletId }],
             command: '',
             flags: MenuItemFlags.SubMenu,
             id: 'moveTo',
