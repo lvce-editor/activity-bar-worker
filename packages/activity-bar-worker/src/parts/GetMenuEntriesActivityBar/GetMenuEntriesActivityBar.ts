@@ -27,7 +27,7 @@ export const getMenuEntriesActivityBar = (state: ActivityBarState, targetViewlet
             args: [{ action: 'moveTo', menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: targetViewletId }],
             command: '',
             flags: MenuItemFlags.SubMenu,
-            id: 'moveTo',
+            id: MenuEntryId.ActivityBarAdditionalViews,
             label: 'Move To',
           },
         ]

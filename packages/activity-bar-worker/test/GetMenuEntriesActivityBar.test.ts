@@ -120,11 +120,15 @@ test('getMenuEntriesActivityBar offers Move To for the movable context-menu targ
     args: [{ action: 'moveTo', menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: 'Explorer' }],
     command: '',
     flags: MenuItemFlags.SubMenu,
-    id: 'moveTo',
+    id: MenuEntryId.ActivityBarAdditionalViews,
     label: 'Move To',
   })
-  expect(getMenuEntriesActivityBar(state, 'Settings')).not.toContainEqual(expect.objectContaining({ id: 'moveTo' }))
-  expect(getMenuEntriesActivityBar(state)).not.toContainEqual(expect.objectContaining({ id: 'moveTo' }))
+  expect(getMenuEntriesActivityBar(state, 'Settings')).not.toContainEqual(
+    expect.objectContaining({ id: MenuEntryId.ActivityBarAdditionalViews, label: 'Move To' }),
+  )
+  expect(getMenuEntriesActivityBar(state)).not.toContainEqual(
+    expect.objectContaining({ id: MenuEntryId.ActivityBarAdditionalViews, label: 'Move To' }),
+  )
 })
 
 test('getMenuEntriesActivityBar inserts a separator before bottom utility items', () => {
