@@ -20,3 +20,15 @@ test('renderEventListeners includes target name for mouse down', () => {
     EventExpression.TargetName,
   ])
 })
+
+test('renderEventListeners includes target name for context menu', () => {
+  const listeners = renderEventListeners()
+  const contextMenuListener = listeners.find((listener) => listener.name === DomEventListenerFunctions.HandleContextMenu)
+  expect(contextMenuListener?.params).toEqual([
+    'handleContextMenu',
+    EventExpression.Button,
+    EventExpression.ClientX,
+    EventExpression.ClientY,
+    EventExpression.TargetName,
+  ])
+})

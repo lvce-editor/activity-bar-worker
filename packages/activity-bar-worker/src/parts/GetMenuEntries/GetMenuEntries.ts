@@ -16,9 +16,9 @@ export const getMenuEntries = (state: ActivityBarState, options: ContextMenuProp
     case ACCOUNT_SUBMENU_ID:
       return getMenuEntriesAccountSubMenu(state)
     case MenuEntryId.ActivityBar:
-      return getMenuEntriesActivityBar(state)
+      return getMenuEntriesActivityBar(state, 'targetViewletId' in options ? options.targetViewletId : '')
     case MenuEntryId.ActivityBarAdditionalViews:
-      return getMenuEntriesAdditionalViews(state)
+      return getMenuEntriesAdditionalViews(state, options)
     case MenuEntryId.Settings:
       return getMenuEntriesSettings(state)
     default:

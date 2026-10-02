@@ -28,7 +28,21 @@ const toContextMenuItem = (activityBarItem: ActivityBarItem): MenuEntry => {
   }
 }
 
-export const getMenuEntriesAdditionalViews = (state: ActivityBarState): readonly MenuEntry[] => {
+export const getMenuEntriesAdditionalViews = (
+  state: ActivityBarState,
+  options?: { readonly action?: string; readonly viewletId?: string; readonly menuId?: number },
+): readonly MenuEntry[] => {
+  if (options && 'action' in options && options.action === 'moveTo' && 'viewletId' in options && options.viewletId) {
+    return [
+      {
+        args: [options.viewletId],
+        command: 'Layout.moveViewletToSecondarySideBar',
+        flags: MenuItemFlags.None,
+        id: 'moveToSecondarySideBar',
+        label: 'Secondary Side Bar',
+      },
+    ]
+  }
   const hiddenActivityBarItems = getHiddenItems(state)
   return hiddenActivityBarItems.map(toContextMenuItem)
 }
