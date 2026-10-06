@@ -12,6 +12,7 @@ export const handleDrop = async (context: AsyncCommandContext<ActivityBarState>,
   const state = context.getState()
   const {
     activityBarItems: initialActivityBarItems,
+    aiNativeLayout,
     dragAndDropEnabled,
     draggedItemId,
     dropIndicator,
@@ -35,7 +36,7 @@ export const handleDrop = async (context: AsyncCommandContext<ActivityBarState>,
     return
   }
   const activityBarItems = reorderActivityBarItems(initialActivityBarItems, draggedItemId, dropIndicator.id, dropIndicator.position)
-  const filteredItems = getFilteredActivityBarItems(activityBarItems, height, itemHeight)
+  const filteredItems = getFilteredActivityBarItems(activityBarItems, height, itemHeight, aiNativeLayout)
   const selectedId = initialActivityBarItems.find((item) => item.flags & ActivityBarItemFlags.Selected)?.id
   const focusedId = initialFilteredItems[initialFocusedIndex]?.id
   await context.updateState(() => ({

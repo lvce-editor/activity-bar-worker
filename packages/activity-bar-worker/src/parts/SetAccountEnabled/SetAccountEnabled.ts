@@ -5,7 +5,7 @@ import { markActiveViews } from '../MarkActiveViews/MarkActiveViews.ts'
 import { resolveActiveViewIds } from '../ResolveActiveViewIds/ResolveActiveViewIds.ts'
 
 export const setAccountEnabled = (state: ActivityBarState, enabled: boolean): ActivityBarState => {
-  const { height, itemHeight } = state
+  const { aiNativeLayout, height, itemHeight } = state
   const newState = {
     ...state,
     accountEnabled: enabled,
@@ -14,7 +14,7 @@ export const setAccountEnabled = (state: ActivityBarState, enabled: boolean): Ac
   const newActivityBarItems = getActivityBarItems(newState)
   const activeViewIds = resolveActiveViewIds(state, newActivityBarItems)
   const markedItems = markActiveViews(newActivityBarItems, activeViewIds)
-  const filteredItems = getFilteredActivityBarItems(markedItems, height, itemHeight)
+  const filteredItems = getFilteredActivityBarItems(markedItems, height, itemHeight, aiNativeLayout)
 
   return {
     ...newState,

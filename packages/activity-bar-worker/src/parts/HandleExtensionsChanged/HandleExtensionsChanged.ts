@@ -7,14 +7,14 @@ import { resolveActiveViewIds } from '../ResolveActiveViewIds/ResolveActiveViewI
 import { updateItemsWithBadgeCount } from '../UpdateItemsWithBadgeCount/UpdateItemsWithBadgeCount.ts'
 
 export const handleExtensionsChanged = async (state: ActivityBarState): Promise<ActivityBarState> => {
-  const { height, itemHeight, platform } = state
+  const { aiNativeLayout, height, itemHeight, platform } = state
   const contributedViews = await getContributedViews(platform)
 
   const items = getActivityBarItems(state, contributedViews)
   const activeViewIds = resolveActiveViewIds(state, items)
   const itemsWithSelected = markActiveViews(items, activeViewIds)
   const activityBarItems = await updateItemsWithBadgeCount(itemsWithSelected)
-  const filteredItems = getFilteredActivityBarItems(activityBarItems, height, itemHeight)
+  const filteredItems = getFilteredActivityBarItems(activityBarItems, height, itemHeight, aiNativeLayout)
   return {
     ...state,
     activityBarItems,

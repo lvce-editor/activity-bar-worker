@@ -3,10 +3,24 @@ import { createDefaultState } from '../CreateDefaultState/CreateDefaultState.ts'
 import { loadContent } from '../LoadContent/LoadContent.ts'
 
 const createResetState = (state: ActivityBarState): ActivityBarState => {
-  const { accountEnabled, height, itemHeight, platform, uid, userLoginProvider, userLoginState, userName, width, x, y } = state
+  const {
+    accountEnabled,
+    aiNativeLayout = false,
+    height,
+    itemHeight,
+    platform,
+    uid,
+    userLoginProvider,
+    userLoginState,
+    userName,
+    width,
+    x,
+    y,
+  } = state
   return {
     ...createDefaultState(),
     accountEnabled,
+    aiNativeLayout,
     focusedIndex: -1,
     height,
     itemHeight,

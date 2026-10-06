@@ -3,7 +3,7 @@ import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFl
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 
 export const toggleActivityBarItem = async (state: ActivityBarState, itemId: string): Promise<ActivityBarState> => {
-  const { activityBarItems, height, itemHeight } = state
+  const { activityBarItems, aiNativeLayout, height, itemHeight } = state
   const updatedItems = activityBarItems.map((item) => {
     if (item.id === itemId) {
       const isCurrentlyEnabled = item.flags & ActivityBarItemFlags.Enabled
@@ -14,7 +14,7 @@ export const toggleActivityBarItem = async (state: ActivityBarState, itemId: str
     }
     return item
   })
-  const filteredItems = getFilteredActivityBarItems(updatedItems, height, itemHeight)
+  const filteredItems = getFilteredActivityBarItems(updatedItems, height, itemHeight, aiNativeLayout)
   return {
     ...state,
     activityBarItems: updatedItems,

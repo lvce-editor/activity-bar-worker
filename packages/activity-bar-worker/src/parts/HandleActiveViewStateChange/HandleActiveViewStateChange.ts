@@ -4,12 +4,12 @@ import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetF
 import { markActiveViews } from '../MarkActiveViews/MarkActiveViews.ts'
 
 export const handleActiveViewStateChange = (state: ActivityBarState, id: string, visible: boolean): ActivityBarState => {
-  const { activityBarItems, height, itemHeight } = state
+  const { activityBarItems, aiNativeLayout, height, itemHeight } = state
   const activeViewIds = getActiveViewIds(activityBarItems)
   const withoutView = activeViewIds.filter((activeViewId) => activeViewId !== id)
   const newActiveViewIds = visible ? [...withoutView, id] : withoutView
   const newActivityBarItems = markActiveViews(activityBarItems, newActiveViewIds)
-  const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)
+  const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight, aiNativeLayout)
   return {
     ...state,
     activityBarItems: newActivityBarItems,

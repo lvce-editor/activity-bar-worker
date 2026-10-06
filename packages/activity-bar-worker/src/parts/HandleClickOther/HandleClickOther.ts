@@ -8,7 +8,7 @@ import { markActiveViews } from '../MarkActiveViews/MarkActiveViews.ts'
 import * as SideBar from '../SideBar/SideBar.ts'
 
 export const handleClickOther = async (state: ActivityBarState, viewletId: string): Promise<ActivityBarState> => {
-  const { activityBarItems, currentViewletId, height, itemHeight, sideBarVisible } = state
+  const { activityBarItems, aiNativeLayout, currentViewletId, height, itemHeight, sideBarVisible } = state
   const activeViewIds = getActiveViewIds(activityBarItems)
   const selectedItem = activityBarItems.find((item) => item.id === viewletId)
   const sideBarChange = getSideBarChange(sideBarVisible, currentViewletId, viewletId)
@@ -17,7 +17,7 @@ export const handleClickOther = async (state: ActivityBarState, viewletId: strin
     const isActive = activeViewIds.includes(viewletId)
     const newActiveViewIds = isActive ? activeViewIds.filter((id) => id !== viewletId) : [...activeViewIds, viewletId]
     const newActivityBarItems = markActiveViews(activityBarItems, newActiveViewIds)
-    const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)
+    const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight, aiNativeLayout)
     return {
       ...state,
       activityBarItems: newActivityBarItems,
@@ -27,7 +27,7 @@ export const handleClickOther = async (state: ActivityBarState, viewletId: strin
   const withoutCurrentSideBarView = activeViewIds.filter((id) => id !== currentViewletId)
   if (sideBarChange.type === 'hide') {
     const newActivityBarItems = markActiveViews(activityBarItems, withoutCurrentSideBarView)
-    const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)
+    const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight, aiNativeLayout)
     return {
       ...state,
       activityBarItems: newActivityBarItems,
@@ -39,7 +39,7 @@ export const handleClickOther = async (state: ActivityBarState, viewletId: strin
   const selectedIndex = findIndex(activityBarItems, viewletId)
   const newActiveViewIds = [...withoutCurrentSideBarView, viewletId]
   const newActivityBarItems = markActiveViews(activityBarItems, newActiveViewIds)
-  const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)
+  const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight, aiNativeLayout)
   return {
     ...state,
     activityBarItems: newActivityBarItems,

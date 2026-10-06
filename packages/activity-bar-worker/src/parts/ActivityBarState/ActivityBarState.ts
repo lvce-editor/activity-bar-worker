@@ -4,6 +4,7 @@ import type { UserLoginState } from '../UserLoginState/UserLoginState.ts'
 export interface ActivityBarState {
   readonly accountEnabled: boolean
   readonly activityBarItems: readonly ActivityBarItem[]
+  readonly aiNativeLayout?: boolean
   readonly currentViewletId: string
   readonly dragAndDropEnabled?: boolean
   readonly draggedItemId?: string | undefined

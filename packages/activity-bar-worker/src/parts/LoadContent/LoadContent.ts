@@ -7,7 +7,7 @@ import { updateItemsWithBadgeCount } from '../UpdateItemsWithBadgeCount/UpdateIt
 import * as ViewletModuleId from '../ViewletModuleId/ViewletModuleId.ts'
 
 export const loadContent = async (state: ActivityBarState): Promise<ActivityBarState> => {
-  const { accountEnabled, height, itemHeight, platform } = state
+  const { accountEnabled, aiNativeLayout, height, itemHeight, platform } = state
   const {
     accountEnabled: accountEnabledNew,
     activeView,
@@ -25,7 +25,7 @@ export const loadContent = async (state: ActivityBarState): Promise<ActivityBarS
   const activeViewIds = sideBarVisible && index !== -1 ? [activeView] : []
   const itemsWithSelected = markActiveViews(items, activeViewIds)
   const activityBarItems = await updateItemsWithBadgeCount(itemsWithSelected)
-  const filteredItems = getFilteredActivityBarItems(activityBarItems, height, itemHeight)
+  const filteredItems = getFilteredActivityBarItems(activityBarItems, height, itemHeight, aiNativeLayout)
   return {
     ...newState,
     activityBarItems,
