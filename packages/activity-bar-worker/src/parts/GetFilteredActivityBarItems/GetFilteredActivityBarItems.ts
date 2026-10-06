@@ -5,8 +5,16 @@ import * as ViewletActivityBarStrings from '../ActivityBarStrings/ActivityBarStr
 import * as Icon from '../Icon/Icon.ts'
 import { getNumberOfVisibleItems } from '../ViewletActivityBar/ViewletActivityBarGetHiddenItems.ts'
 
-export const getFilteredActivityBarItems = (items: readonly ActivityBarItem[], height: number, itemHeight: number): readonly ActivityBarItem[] => {
+export const getFilteredActivityBarItems = (
+  items: readonly ActivityBarItem[],
+  height: number,
+  itemHeight: number,
+  aiNativeLayout = false,
+): readonly ActivityBarItem[] => {
   const enabledItems = items.filter((item) => item.flags & ActivityBarItemFlags.Enabled)
+  if (aiNativeLayout) {
+    return enabledItems.filter((item) => item.id === 'Account' || item.id === 'Settings')
+  }
   const numberOfVisibleItems = getNumberOfVisibleItems({ height, itemHeight })
   if (numberOfVisibleItems >= enabledItems.length) {
     return enabledItems

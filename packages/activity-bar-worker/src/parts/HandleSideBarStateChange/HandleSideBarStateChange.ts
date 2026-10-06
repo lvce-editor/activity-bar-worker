@@ -21,14 +21,14 @@ const enableReferencesItem = (items: readonly ActivityBarItem[], id: string): re
 }
 
 export const handleSideBarStateChange = async (state: ActivityBarState, id?: string, sideBarVisibleOverride?: boolean): Promise<ActivityBarState> => {
-  const { activityBarItems, currentViewletId, focused, height, itemHeight } = state
+  const { activityBarItems, aiNativeLayout, currentViewletId, focused, height, itemHeight } = state
   const activeViewIds = getActiveViewIds(activityBarItems)
   const resolvedId = id === undefined ? currentViewletId : id
   const sideBarVisible = typeof sideBarVisibleOverride === 'boolean' ? sideBarVisibleOverride : await getSideBarVisible()
   const withoutCurrentSideBarView = activeViewIds.filter((activeViewId) => activeViewId !== currentViewletId && activeViewId !== resolvedId)
   if (!sideBarVisible) {
     const itemsCleared = markActiveViews(activityBarItems.map(clearFocus), withoutCurrentSideBarView)
-    const filteredItems = getFilteredActivityBarItems(itemsCleared, height, itemHeight)
+    const filteredItems = getFilteredActivityBarItems(itemsCleared, height, itemHeight, aiNativeLayout)
     return {
       ...state,
       activityBarItems: itemsCleared,
@@ -42,7 +42,7 @@ export const handleSideBarStateChange = async (state: ActivityBarState, id?: str
   const selectedIndex = findIndex(enabledItems, resolvedId)
   const newActiveViewIds = selectedIndex === -1 ? withoutCurrentSideBarView : [...withoutCurrentSideBarView, resolvedId]
   const newActivityBarItems = markActiveViews(enabledItems, newActiveViewIds)
-  const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight)
+  const filteredItems = getFilteredActivityBarItems(newActivityBarItems, height, itemHeight, aiNativeLayout)
   return {
     ...state,
     activityBarItems: newActivityBarItems,

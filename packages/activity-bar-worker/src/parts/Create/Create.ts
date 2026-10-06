@@ -16,6 +16,7 @@ export const create = (
   const state: ActivityBarState = {
     accountEnabled: true,
     activityBarItems: [],
+    aiNativeLayout: false,
     currentViewletId: '',
     dragAndDropEnabled: false,
     filteredItems: [],

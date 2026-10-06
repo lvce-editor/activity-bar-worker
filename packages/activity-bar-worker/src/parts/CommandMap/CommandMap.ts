@@ -46,6 +46,7 @@ import { reset } from '../Reset/Reset.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectCurrent from '../SelectCurrent/SelectCurrent.ts'
 import { setAccountEnabled } from '../SetAccountEnabled/SetAccountEnabled.ts'
+import { setAiNativeLayout } from '../SetAiNativeLayout/SetAiNativeLayout.ts'
 import { setComponentState } from '../SetComponentState/SetComponentState.ts'
 import { setDragAndDropEnabled } from '../SetDragAndDropEnabled/SetDragAndDropEnabled.ts'
 import { setUserLoginState } from '../SetUserLoginState/SetUserLoginState.ts'
@@ -104,6 +105,7 @@ export const commandMap = {
   'ActivityBar.saveState': WrapCommand.wrapGetter(SaveState.saveState),
   'ActivityBar.selectCurrent': WrapCommand.wrapCommand(SelectCurrent.selectCurrent),
   'ActivityBar.setAccountEnabled': WrapCommand.wrapCommand(setAccountEnabled),
+  'ActivityBar.setAiNativeLayout': WrapCommand.wrapCommand(setAiNativeLayout),
   'ActivityBar.setComponentState': setComponentState,
   'ActivityBar.setDragAndDropEnabled': WrapCommand.wrapCommand(setDragAndDropEnabled),
   'ActivityBar.setUserLoginState': WrapCommand.wrapCommand(setUserLoginState),
