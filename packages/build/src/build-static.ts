@@ -27,9 +27,8 @@ const content = await readFile(rendererWorkerPath, 'utf8')
 const workerPath = join(root, '.tmp/dist/dist/activityBarWorkerMain.js')
 const remoteUrl = getRemoteUrl(workerPath)
 
-const occurrence = `// const activityBarWorkerUrl = \`\${assetDir}/packages/activity-bar-worker/dist/activityBarWorkerMain.js\`
-const activityBarWorkerUrl = \`${remoteUrl}\``
-const replacement = `const activityBarWorkerUrl = \`\${assetDir}/packages/activity-bar-worker/dist/activityBarWorkerMain.js\``
+const occurrence = remoteUrl
+const replacement = '${assetDir}/packages/activity-bar-worker/dist/activityBarWorkerMain.js'
 if (!content.includes(occurrence)) {
   throw new Error('occurrence not found')
 }
