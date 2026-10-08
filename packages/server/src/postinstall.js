@@ -28,11 +28,11 @@ const rendererWorkerMainPath = join(serverStaticPath, commitHash, 'packages', 'r
 const content = await readFile(rendererWorkerMainPath, 'utf-8')
 
 const remoteUrl = getRemoteUrl(workerPath)
-if (!content.includes('// const activityBarWorkerUrl = ')) {
-  const occurrence = `const activityBarWorkerUrl = \`\${assetDir}/packages/activity-bar-worker/dist/activityBarWorkerMain.js\``
-  const replacement = `// const activityBarWorkerUrl = \`\${assetDir}/packages/activity-bar-worker/dist/activityBarWorkerMain.js\`
-const activityBarWorkerUrl = \`${remoteUrl}\``
-
-  const newContent = content.replace(occurrence, replacement)
+const occurrence = '${assetDir}/packages/renderer-worker/node_modules/@lvce-editor/activity-bar-worker/dist/activityBarWorkerMain.js'
+if (!content.includes(remoteUrl)) {
+  if (!content.includes(occurrence)) {
+    throw new Error('Could not find the activity bar worker URL')
+  }
+  const newContent = content.replace(occurrence, remoteUrl)
   await writeFile(rendererWorkerMainPath, newContent)
 }

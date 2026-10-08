@@ -8,7 +8,7 @@ export const test: Test = async ({ ActivityBar, ContextMenu, expect, Locator }) 
   await ContextMenu.selectItem('Settings')
 
   const menuItem = Locator('.ContextMenuItem[title="Settings"]')
-  const tab = Locator('.MainTab[title="app://settings.json"]')
+  const tab = Locator('.MainTab[title="app:///settings.json"]')
 
   await expect(tab).toBeVisible()
   await expect(menuItem).toHaveCount(0)
