@@ -9,19 +9,21 @@ import * as MenuEntrySeparator from '../MenuEntrySeparator/MenuEntrySeparator.ts
 import { toContextMenuItem } from '../ToContextMenuItem/ToContextMenuItem.ts'
 
 export const getMenuEntriesActivityBar = (state: ActivityBarState, targetViewletId = ''): readonly MenuEntry[] => {
-  const { activityBarItems, sideBarLocation } = state
+  const { activityBarItems, aiNativeLayout, sideBarLocation } = state
   const topItems = activityBarItems.filter((item) => !(item.flags & ActivityBarItemFlags.Button))
   const bottomItems = activityBarItems.filter((item) => item.flags & ActivityBarItemFlags.Button)
-  const entries = topItems.map(toContextMenuItem)
+  const entries = (aiNativeLayout ? bottomItems : topItems).map(toContextMenuItem)
   const targetItem = activityBarItems.find((item) => item.id === targetViewletId)
 
-  if (bottomItems.length > 0) {
+  if (!aiNativeLayout && bottomItems.length > 0) {
     entries.push(MenuEntrySeparator.menuEntrySeparator, ...bottomItems.map(toContextMenuItem))
   }
 
+  const hasMoveToEntry = isMovableActivityBarItem(targetItem)
+
   return [
     ...entries,
-    ...(isMovableActivityBarItem(targetItem)
+    ...(hasMoveToEntry
       ? [
           {
             args: [{ action: 'moveTo', menuId: MenuEntryId.ActivityBarAdditionalViews, viewletId: targetViewletId }],
@@ -32,7 +34,7 @@ export const getMenuEntriesActivityBar = (state: ActivityBarState, targetViewlet
           },
         ]
       : []),
-    MenuEntrySeparator.menuEntrySeparator,
+    ...(!aiNativeLayout || entries.length > 0 || hasMoveToEntry ? [MenuEntrySeparator.menuEntrySeparator] : []),
     menuEntryMoveSideBar(sideBarLocation),
     {
       command: 'Layout.hideActivityBar',
