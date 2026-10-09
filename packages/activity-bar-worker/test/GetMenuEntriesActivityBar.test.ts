@@ -131,6 +131,118 @@ test('getMenuEntriesActivityBar offers Move To for the movable context-menu targ
   )
 })
 
+test('getMenuEntriesActivityBar omits view toggles in AI-native layout', () => {
+  const items: readonly ActivityBarItem[] = [
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'explorer',
+      id: 'Explorer',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Explorer',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'account',
+      id: 'Account',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Account',
+    },
+    {
+      badgeIcon: '',
+      badgeText: '',
+      customIconClass: '',
+      customIconUrl: '',
+      enabled: false,
+      flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled,
+      hasPopup: false,
+      icon: 'settings',
+      id: 'Settings',
+      keyShortcuts: '',
+      preferredLocation: 0,
+      title: 'Settings',
+    },
+  ]
+
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: items,
+    aiNativeLayout: true,
+    sideBarLocation: SideBarLocationType.Left,
+  }
+
+  const result = getMenuEntriesActivityBar(state)
+
+  expect(result).toEqual([
+    {
+      args: ['Account'],
+      command: 'ActivityBar.toggleActivityBarItem',
+      flags: MenuItemFlags.Checked,
+      id: 'toggle-Account',
+      label: 'Account',
+    },
+    {
+      args: ['Settings'],
+      command: 'ActivityBar.toggleActivityBarItem',
+      flags: MenuItemFlags.Checked,
+      id: 'toggle-Settings',
+      label: 'Settings',
+    },
+    MenuEntrySeparator.menuEntrySeparator,
+    {
+      command: 'Layout.moveSideBarRight',
+      flags: MenuItemFlags.None,
+      id: 'moveSideBarRight',
+      label: ActivityBarStrings.moveSideBarRight(),
+    },
+    {
+      command: 'Layout.hideActivityBar',
+      flags: MenuItemFlags.None,
+      id: 'hideActivityBar',
+      label: ActivityBarStrings.hideActivityBar(),
+    },
+  ])
+})
+
+test('getMenuEntriesActivityBar omits leading separator when AI-native layout has no utility items', () => {
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: [],
+    aiNativeLayout: true,
+    sideBarLocation: SideBarLocationType.Left,
+  }
+
+  const result = getMenuEntriesActivityBar(state)
+
+  expect(result).toEqual([
+    {
+      command: 'Layout.moveSideBarRight',
+      flags: MenuItemFlags.None,
+      id: 'moveSideBarRight',
+      label: ActivityBarStrings.moveSideBarRight(),
+    },
+    {
+      command: 'Layout.hideActivityBar',
+      flags: MenuItemFlags.None,
+      id: 'hideActivityBar',
+      label: ActivityBarStrings.hideActivityBar(),
+    },
+  ])
+})
+
 test('getMenuEntriesActivityBar inserts a separator before bottom utility items', () => {
   const items: readonly ActivityBarItem[] = [
     {
