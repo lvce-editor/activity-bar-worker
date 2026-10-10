@@ -2,7 +2,8 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.badge-count-empty-change'
 
-export const test: Test = async ({ Command, expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
+  await ActivityBar.setAccountEnabled(true)
   const badges = Locator('.ActivityBarItemBadge')
   const explorer = Locator('.ActivityBarItem[title="Explorer"]')
   const items = Locator('.ActivityBarItem')
