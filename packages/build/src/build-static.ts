@@ -1,4 +1,4 @@
-import { cp, readFile, writeFile } from 'node:fs/promises'
+import { cp, readFile, readdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { root } from './root.ts'
@@ -16,24 +16,33 @@ const { commitHash } = await sharedProcess.exportStatic({
   testPath: 'packages/e2e',
 })
 
-const rendererWorkerPath = join(root, 'dist', commitHash, 'packages', 'renderer-worker', 'dist', 'rendererWorkerMain.js')
+const rendererWorkerDistPath = join(root, 'dist', commitHash, 'packages', 'renderer-worker', 'dist')
 
 export const getRemoteUrl = (path: string): string => {
   const url = pathToFileURL(path).toString().slice(8)
   return `/remote/${url}`
 }
 
-const content = await readFile(rendererWorkerPath, 'utf8')
 const workerPath = join(root, '.tmp/dist/dist/activityBarWorkerMain.js')
 const remoteUrl = getRemoteUrl(workerPath)
 
 const occurrence = remoteUrl
 const replacement = '${assetDir}/packages/activity-bar-worker/dist/activityBarWorkerMain.js'
-if (!content.includes(occurrence)) {
+let found = false
+for (const name of await readdir(rendererWorkerDistPath)) {
+  if (!name.endsWith('.js')) {
+    continue
+  }
+  const filePath = join(rendererWorkerDistPath, name)
+  const content = await readFile(filePath, 'utf8')
+  if (content.includes(occurrence)) {
+    found = true
+    await writeFile(filePath, content.replaceAll(occurrence, replacement))
+  }
+}
+if (!found) {
   throw new Error('occurrence not found')
 }
-const newContent = content.replace(occurrence, replacement)
-await writeFile(rendererWorkerPath, newContent)
 
 const activityBarWorkerPath = join(root, 'dist', commitHash, 'packages', 'activity-bar-worker', 'dist', 'activityBarWorkerMain.js')
 await cp(workerPath, activityBarWorkerPath)
