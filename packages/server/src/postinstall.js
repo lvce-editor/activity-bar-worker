@@ -23,16 +23,23 @@ const isCommitHash = (dirent) => {
 
 const dirents = await readdir(serverStaticPath)
 const commitHash = dirents.find(isCommitHash) || ''
-const rendererWorkerMainPath = join(serverStaticPath, commitHash, 'packages', 'renderer-worker', 'dist', 'rendererWorkerMain.js')
-
-const content = await readFile(rendererWorkerMainPath, 'utf-8')
-
+const rendererWorkerDistPath = join(serverStaticPath, commitHash, 'packages', 'renderer-worker', 'dist')
 const remoteUrl = getRemoteUrl(workerPath)
 const occurrence = '${assetDir}/packages/renderer-worker/node_modules/@lvce-editor/activity-bar-worker/dist/activityBarWorkerMain.js'
-if (!content.includes(remoteUrl)) {
-  if (!content.includes(occurrence)) {
-    throw new Error('Could not find the activity bar worker URL')
+let found = false
+for (const name of await readdir(rendererWorkerDistPath)) {
+  if (!name.endsWith('.js')) {
+    continue
   }
-  const newContent = content.replace(occurrence, remoteUrl)
-  await writeFile(rendererWorkerMainPath, newContent)
+  const filePath = join(rendererWorkerDistPath, name)
+  const content = await readFile(filePath, 'utf8')
+  if (content.includes(remoteUrl)) {
+    found = true
+  } else if (content.includes(occurrence)) {
+    found = true
+    await writeFile(filePath, content.replaceAll(occurrence, remoteUrl))
+  }
+}
+if (!found) {
+  throw new Error('Could not find the activity bar worker URL')
 }
