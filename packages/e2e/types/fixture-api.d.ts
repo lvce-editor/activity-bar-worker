@@ -1,7 +1,10 @@
 declare const vscode: {
   registerReferenceProvider(provider: {
     languageId: string
-    provideReferences2(textDocument: { uri: string }, offset: number): Array<{
+    provideReferences2(
+      textDocument: { uri: string },
+      offset: number,
+    ): Array<{
       uri: string
       startRowIndex: number
       startColumnIndex: number
