@@ -7,6 +7,7 @@ export interface ActivityBarState {
   readonly aiNativeLayout?: boolean
   readonly currentViewletId: string
   readonly dragAndDropEnabled?: boolean
+  readonly dragAndDropMimeType: string
   readonly draggedItemId?: string | undefined
   readonly dropIndicator?:
     | {

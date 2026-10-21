@@ -14,6 +14,7 @@ export const handleDrop = async (context: AsyncCommandContext<ActivityBarState>,
     activityBarItems: initialActivityBarItems,
     aiNativeLayout,
     dragAndDropEnabled,
+    dragAndDropMimeType,
     draggedItemId,
     dropIndicator,
     filteredItems: initialFilteredItems,
@@ -31,7 +32,7 @@ export const handleDrop = async (context: AsyncCommandContext<ActivityBarState>,
   const isElectron = platform === PlatformType.Electron
   const result = await DragAndDropWorker.invoke('DragAndDrop.getDroppedItemsByDropId', dropId, isElectron)
   const values = Array.isArray(result?.strings) ? result.strings : []
-  if (values.length !== 1 || ActivityBarDragData.getId(values[0]) !== draggedItemId) {
+  if (values.length !== 1 || ActivityBarDragData.getId(dragAndDropMimeType, values[0]) !== draggedItemId) {
     await context.updateState(() => clearState)
     return
   }

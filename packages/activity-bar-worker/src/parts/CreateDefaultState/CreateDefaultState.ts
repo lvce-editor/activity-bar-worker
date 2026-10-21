@@ -5,6 +5,7 @@ export const createDefaultState = (): ActivityBarState => ({
   activityBarItems: [],
   currentViewletId: '',
   dragAndDropEnabled: false,
+  dragAndDropMimeType: 'application/x-lvce-editor-activity-bar-item',
   filteredItems: [],
   focus: 0,
   focused: false,

@@ -25,6 +25,7 @@ const createState = (): ActivityBarState => {
     activityBarItems: ['Explorer', 'Chat', 'Account', 'Settings'].map(makeItem),
     aiNativeLayout: false,
     currentViewletId: 'Explorer',
+    dragAndDropMimeType: 'application/x-lvce-editor-activity-bar-item',
     filteredItems: [],
     focus: 0,
     focused: false,
