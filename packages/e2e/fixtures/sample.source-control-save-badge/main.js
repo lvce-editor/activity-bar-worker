@@ -1,6 +1,4 @@
-const currentUrl = new URL(import.meta.url)
-const assetDir = currentUrl.pathname.startsWith('/remote/') ? '' : currentUrl.pathname.slice(0, currentUrl.pathname.indexOf('/packages/'))
-const { WebWorkerRpcClient } = await import(`${assetDir}/js/lvce-editor-rpc.js`)
+const { WebWorkerRpcClient } = await import('/77a0e5a/js/lvce-editor-rpc.js')
 
 let badgeCount = 1
 
