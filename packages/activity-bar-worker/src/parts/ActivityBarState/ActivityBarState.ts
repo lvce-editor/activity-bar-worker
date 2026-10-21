@@ -23,6 +23,7 @@ export interface ActivityBarState {
   readonly itemHeight: number
   readonly numberOfVisibleItems: number
   readonly platform: number
+  readonly productName: string
   readonly scrollBarHeight: any
   readonly selectedIndex: number
   readonly sideBarLocation: number
