@@ -77,6 +77,7 @@ test('reset preserves bounds, platform, and authentication state', async () => {
     height: 640,
     itemHeight: 52,
     platform: 2,
+    productName: 'Custom Product',
     uid: 99,
     userLoginProvider: 'GitHub',
     userLoginState: 'logged in',

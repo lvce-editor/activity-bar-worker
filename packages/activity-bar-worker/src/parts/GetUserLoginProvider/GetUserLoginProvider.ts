@@ -1,8 +1,8 @@
 const providerKeys = ['userLoginProvider', 'loginProvider', 'authProvider', 'provider'] as const
 
-export const getUserLoginProvider = (userInfo: unknown): string => {
+export const getUserLoginProvider = (userInfo: unknown, productName: string): string => {
   if (!userInfo || typeof userInfo !== 'object') {
-    return 'Lvce Editor'
+    return productName
   }
   const record = userInfo as Record<string, unknown>
   for (const key of providerKeys) {
@@ -10,5 +10,5 @@ export const getUserLoginProvider = (userInfo: unknown): string => {
       return record[key]
     }
   }
-  return 'Lvce Editor'
+  return productName
 }

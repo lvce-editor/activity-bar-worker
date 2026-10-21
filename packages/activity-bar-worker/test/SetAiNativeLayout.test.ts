@@ -34,6 +34,7 @@ const createState = (): ActivityBarState => {
     itemHeight: 48,
     numberOfVisibleItems: 0,
     platform: 0,
+    productName: '',
     scrollBarHeight: 0,
     selectedIndex: 0,
     sideBarLocation: 0,
