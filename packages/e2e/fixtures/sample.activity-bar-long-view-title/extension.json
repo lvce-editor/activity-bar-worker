@@ -4,7 +4,7 @@
   "description": "Activity bar fixture with a very long view title",
   "version": "0.0.0",
   "isolated": true,
-  "browser": "src/extensionMain.js",
+  "browser": "src/extensionMain.ts",
   "views": [
     {
       "id": "test.activityBar.longTitle",

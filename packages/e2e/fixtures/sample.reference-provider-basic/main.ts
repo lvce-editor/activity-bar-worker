@@ -1,6 +1,6 @@
 const referenceProvider = {
   languageId: 'xyz',
-  provideReferences2(textDocument, offset) {
+  provideReferences2(textDocument: { uri: string }, _offset: number) {
     return [
       {
         uri: `${textDocument.uri}`,
