@@ -34,6 +34,6 @@
     "knip": "^6.42.1",
     "prettier": "^3.9.10",
     "typescript": "^6.0.3",
-    "@lvce-editor/server": "0.121.22"
+    "@lvce-editor/server": "0.125.1"
   }
 }

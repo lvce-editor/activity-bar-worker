@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 const trailingSlashPattern = /\/$/
 
-export const name = 'viewlet.activity-bar-source-control-badge-updates-on-save'
+export const name = 'activity-bar.source-control-badge-updates-on-save'
 
 export const test: Test = async ({ ActivityBar, Command, Editor, expect, Extension, FileSystem, Locator, Main, SourceControl, Workspace }) => {
   const tmpDir = await FileSystem.getTmpDir()
@@ -28,7 +28,7 @@ export const test: Test = async ({ ActivityBar, Command, Editor, expect, Extensi
   await Main.openUri(uri)
   await Editor.setCursor(0, 1)
   await Editor.type(' ')
-  await Command.execute('ExtensionHost.executeCommand', 'sourceControlSaveBadge.clear')
+  await Command.executeExtensionCommand('sourceControlSaveBadge.clear')
   await Main.save()
 
   await expect(sourceControlBadge).toHaveCount(0)
