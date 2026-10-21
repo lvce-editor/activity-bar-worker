@@ -22,5 +22,6 @@ export const test: Test = async ({ Command, expect, Locator }) => {
   })
 
   await expect(extensions).toBeVisible()
-  await expect(extensions.locator('.ActivityBarItemBadge')).toHaveText('23')
+  const badge = extensions.locator('.ActivityBarItemBadge')
+  await expect(badge).toHaveText('23')
 }

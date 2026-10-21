@@ -3,10 +3,16 @@ import type { UserLoginState } from '../UserLoginState/UserLoginState.ts'
 import { getUserLoginProvider } from '../GetUserLoginProvider/GetUserLoginProvider.ts'
 import { getUserName } from '../GetUserName/GetUserName.ts'
 
-export const setUserLoginState = (state: ActivityBarState, userLoginState: UserLoginState, userInfo?: unknown): ActivityBarState => {
+export const setUserLoginState = (
+  state: ActivityBarState,
+  userLoginState: UserLoginState,
+  userInfo: unknown,
+  productName: string,
+): ActivityBarState => {
   return {
     ...state,
-    userLoginProvider: getUserLoginProvider(userInfo),
+    productName,
+    userLoginProvider: getUserLoginProvider(userInfo, productName),
     userLoginState,
     userName: getUserName(userInfo),
   }

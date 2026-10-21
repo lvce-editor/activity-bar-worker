@@ -27,6 +27,7 @@ test('getMenuEntriesAccountLoggedOut returns sign in entry for logged out state'
 test('getMenuEntriesAccountLoggedOut returns signing in entry for logging in state', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
+    productName: 'Custom Product',
     userLoginState: 'logging in',
   }
 
@@ -45,6 +46,7 @@ test('getMenuEntriesAccountLoggedOut returns signing in entry for logging in sta
 test('getMenuEntriesAccountLoggedIn returns account submenu entry for logged in state', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
+    productName: 'Custom Product',
     userLoginState: 'logged in',
     userName: 'test-user',
   }
@@ -61,7 +63,7 @@ test('getMenuEntriesAccountLoggedIn returns account submenu entry for logged in 
       command: '',
       flags: MenuItemFlags.SubMenu,
       id: ACCOUNT_SUBMENU_ID,
-      label: 'test-user (Lvce Editor)',
+      label: 'test-user (Custom Product)',
     },
   ])
 })
@@ -69,6 +71,7 @@ test('getMenuEntriesAccountLoggedIn returns account submenu entry for logged in 
 test('getMenuEntriesAccountLoggedIn uses fallback account metadata', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
+    productName: 'Custom Product',
     userLoginProvider: '',
     userLoginState: 'logged in',
     userName: '',
@@ -76,7 +79,7 @@ test('getMenuEntriesAccountLoggedIn uses fallback account metadata', () => {
 
   const result = getMenuEntriesAccountLoggedIn(state)
 
-  expect(result[0].label).toBe('Account (Lvce Editor)')
+  expect(result[0].label).toBe('Account (Custom Product)')
 })
 
 test('getMenuEntriesAccountSubMenu returns sign out entry for logged in state', () => {

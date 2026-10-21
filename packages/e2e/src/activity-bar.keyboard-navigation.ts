@@ -3,6 +3,8 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 export const name = 'activity-bar.keyboard-navigation'
 
 export const test: Test = async ({ ActivityBar, Command, expect, KeyBoard, Locator }) => {
+  // act
+  await ActivityBar.focus()
   await Command.execute('ActivityBar.handleFocus')
 
   // assert
@@ -12,42 +14,45 @@ export const test: Test = async ({ ActivityBar, Command, expect, KeyBoard, Locat
   await expect(sideBarHeaderTitle).toHaveText('Explorer')
 
   // act
-  await ActivityBar.focusNext()
+  await KeyBoard.press('ArrowDown')
 
   // assert
   const activityBarItemSearch = Locator('.ActivityBarItem[title="Search"]')
   await expect(activityBarItemSearch).toHaveClass('FocusOutline')
 
   // act
-  await ActivityBar.focusPrevious()
+  await KeyBoard.press('ArrowUp')
 
   // assert
   await expect(activityBarItemExplorer).toHaveClass('FocusOutline')
 
   // act
-  await ActivityBar.focusLast()
+  await Command.execute('ActivityBar.handleFocus')
+  await KeyBoard.press('End')
 
   // assert
   const activityBarItemSettings = Locator('.ActivityBarItem[title="Settings"]')
   await expect(activityBarItemSettings).toHaveClass('FocusOutline')
 
   // act
-  await ActivityBar.focusFirst()
+  await KeyBoard.press('Home')
 
   // assert
   await expect(activityBarItemExplorer).toHaveClass('FocusOutline')
 
   // act
-  await ActivityBar.focusNext()
-  await ActivityBar.selectCurrent()
+  await KeyBoard.press('ArrowDown')
+  await KeyBoard.press('Enter')
 
   // assert
   await expect(sideBarHeaderTitle).toHaveText('Search')
 
   // act
+  await ActivityBar.focus()
   await Command.execute('ActivityBar.handleFocus')
   await expect(activityBarItemSearch).toHaveClass('FocusOutline')
-  await ActivityBar.focusLast()
+  await Command.execute('ActivityBar.handleFocus')
+  await KeyBoard.press('End')
   await expect(activityBarItemSettings).toHaveClass('FocusOutline')
   await KeyBoard.press('Space')
 

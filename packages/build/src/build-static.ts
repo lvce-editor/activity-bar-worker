@@ -1,13 +1,8 @@
 import { cp, readFile, readdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
+import * as sharedProcess from '@lvce-editor/shared-process'
 import { root } from './root.ts'
-
-const sharedProcessPath = join(root, 'node_modules', '@lvce-editor', 'shared-process', 'index.js')
-
-const sharedProcessUrl = pathToFileURL(sharedProcessPath).toString()
-
-const sharedProcess = await import(sharedProcessUrl)
 
 process.env.PATH_PREFIX = '/activity-bar-worker'
 const { commitHash } = await sharedProcess.exportStatic({

@@ -5,9 +5,9 @@ import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
 export const ACCOUNT_SUBMENU_ID = 32_123
 
 const getAccountLabel = (state: ActivityBarState): string => {
-  const { userLoginProvider, userName } = state
+  const { productName, userLoginProvider, userName } = state
   const name = userName || 'Account'
-  const provider = userLoginProvider || 'Lvce Editor'
+  const provider = userLoginProvider || productName
   return `${name} (${provider})`
 }
 

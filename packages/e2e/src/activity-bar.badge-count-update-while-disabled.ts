@@ -12,5 +12,6 @@ export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
   await ActivityBar.toggleActivityBarItem('Search')
 
   await expect(search).toBeVisible()
-  await expect(search.locator('.ActivityBarItemBadge')).toHaveText('17')
+  const badge = search.locator('.ActivityBarItemBadge')
+  await expect(badge).toHaveText('17')
 }

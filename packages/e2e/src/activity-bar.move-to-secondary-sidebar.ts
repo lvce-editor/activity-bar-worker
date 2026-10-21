@@ -1,15 +1,15 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
 interface LayoutState {
-  readonly secondarySideBarViewlets: readonly string[]
   readonly secondarySideBarView: string
-  readonly windowWidth: number
+  readonly secondarySideBarViewlets: readonly string[]
   readonly windowHeight: number
+  readonly windowWidth: number
 }
 
 export const name = 'activity-bar.move-to-secondary-sidebar'
 
-export const test: Test = async ({ ComponentState, Command, ContextMenu, expect, Locator, SideBar }) => {
+export const test: Test = async ({ Command, ComponentState, ContextMenu, expect, Locator, SideBar }) => {
   const explorerItem = Locator('.ActivityBarItem[title="Explorer"]')
   const sourceControlView = Locator('.SecondarySideBar .Viewlet.SourceControl')
   const primarySourceControlView = Locator('.SideBar:not(.SecondarySideBar) .Viewlet.SourceControl')
@@ -17,8 +17,8 @@ export const test: Test = async ({ ComponentState, Command, ContextMenu, expect,
   const primarySearchView = Locator('.SideBar:not(.SecondarySideBar) .Viewlet.Search')
   const searchView = Locator('.SecondarySideBar .Viewlet.Search')
 
-  const layout = await ComponentState.getComponent('Layout')
-  const { secondarySideBarViewlets, secondarySideBarView, windowWidth, windowHeight } = await ComponentState.getState<LayoutState>(layout.uid)
+  const { uid } = await ComponentState.getComponent('Layout')
+  const { secondarySideBarView, secondarySideBarViewlets, windowHeight, windowWidth } = await ComponentState.getState<LayoutState>(uid)
   await Command.execute('Layout.resetViewLocations')
   await Command.execute('Layout.handleResize', 1440, 900)
 
@@ -76,10 +76,10 @@ export const test: Test = async ({ ComponentState, Command, ContextMenu, expect,
     }
   } finally {
     await Command.execute('Layout.hideSecondarySideBar')
-    await ComponentState.setState(layout.uid, {
-      ...(await ComponentState.getState<LayoutState>(layout.uid)),
-      secondarySideBarViewlets,
+    await ComponentState.setState(uid, {
+      ...(await ComponentState.getState<LayoutState>(uid)),
       secondarySideBarView,
+      secondarySideBarViewlets,
     })
     await Command.execute('Layout.resetViewLocations')
     await Command.execute('Layout.handleResize', windowWidth, windowHeight)

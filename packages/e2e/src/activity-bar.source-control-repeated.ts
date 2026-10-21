@@ -2,32 +2,18 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.source-control-repeated'
 
-const waitFor = async (assertion: () => Promise<void>): Promise<void> => {
-  for (let attempt = 0; attempt < 100; attempt++) {
-    try {
-      await assertion()
-      return
-    } catch (error) {
-      if (attempt === 99) {
-        throw error
-      }
-      await new Promise((resolve) => setTimeout(resolve, 50))
-    }
-  }
-}
-
-export const test: Test = async ({ Command, expect, Locator, SideBar }) => {
+export const test: Test = async ({ expect, Locator, SideBar }) => {
   const sourceControlItem = Locator('.ActivityBarItem[title="Source Control"]')
   const sourceControlView = Locator('.Viewlet.SourceControl')
 
   await SideBar.open('Explorer')
-  await Command.execute('ActivityBar.handleClick', 0, -1000, -1000, 'Source Control')
-  await waitFor(() => expect(sourceControlItem).toHaveAttribute('aria-selected', 'true'))
-  await waitFor(() => expect(sourceControlView).toBeVisible())
+  await sourceControlItem.click()
+  await expect(sourceControlItem).toHaveAttribute('aria-selected', 'true')
+  await expect(sourceControlView).toBeVisible()
 
   await SideBar.open('Explorer')
-  await waitFor(() => expect(sourceControlItem).toHaveAttribute('aria-selected', 'false'))
-  await Command.execute('ActivityBar.handleClick', 0, -1000, -1000, 'Source Control')
-  await waitFor(() => expect(sourceControlItem).toHaveAttribute('aria-selected', 'true'))
-  await waitFor(() => expect(sourceControlView).toBeVisible())
+  await expect(sourceControlItem).toHaveAttribute('aria-selected', 'false')
+  await sourceControlItem.click()
+  await expect(sourceControlItem).toHaveAttribute('aria-selected', 'true')
+  await expect(sourceControlView).toBeVisible()
 }

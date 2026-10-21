@@ -10,9 +10,10 @@ export const test: Test = async ({ Command, expect, Locator }) => {
 
   const activityBar = Locator('.ActivityBar')
   const settings = Locator('.ActivityBarItem[title="Settings"]')
+  const badge = settings.locator('.ActivityBarItemBadge')
 
   await expect(activityBar).toBeVisible()
   await expect(settings).toBeVisible()
   await expect(settings).toHaveClass('IconSettingsGear')
-  await expect(settings.locator('.ActivityBarItemBadge')).toHaveCount(0)
+  await expect(badge).toHaveCount(0)
 }

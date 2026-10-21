@@ -46,7 +46,11 @@ export default defineConfig([
   },
   {
     // Preserve real DOM input events covered by the migrated application scenarios.
-    files: ['packages/e2e/src/activity-bar.source-control-nested-icon.ts'],
+    files: [
+      'packages/e2e/src/activity-bar.source-control-nested-icon.ts',
+      'packages/e2e/src/activity-bar.source-control-repeated.ts',
+      'packages/e2e/src/activity-bar.source-control-selected-with-badge.ts',
+    ],
     rules: { 'e2e/no-direct-click': 'off' },
   },
   {

@@ -85,6 +85,7 @@ test('getMenuEntries returns account menu entries for logging in state', () => {
 test('getMenuEntries returns account menu entries for logged in state', () => {
   const state: ActivityBarState = {
     ...createDefaultState(),
+    productName: 'Custom Product',
     userLoginState: 'logged in',
     userName: 'test-user',
   }
@@ -104,7 +105,7 @@ test('getMenuEntries returns account menu entries for logged in state', () => {
       command: '',
       flags: MenuItemFlags.SubMenu,
       id: ACCOUNT_SUBMENU_ID,
-      label: 'test-user (Lvce Editor)',
+      label: 'test-user (Custom Product)',
     },
   ])
 })
