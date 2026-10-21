@@ -4,7 +4,7 @@
   "description": "Custom view icon invalid image fixture",
   "version": "0.0.0",
   "isolated": true,
-  "browser": "src/extensionMain.js",
+  "browser": "src/extensionMain.ts",
   "views": [
     {
       "id": "test.views.customIconInvalidImage",

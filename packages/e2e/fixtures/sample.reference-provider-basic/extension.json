@@ -1,5 +1,5 @@
 {
-  "browser": "main.js",
+  "browser": "main.ts",
   "activation": ["onReferences:xyz", "onReferences"],
   "languages": [
     {

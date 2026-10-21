@@ -1,18 +1,14 @@
+// @ts-expect-error The runtime bundle is provided by the extension host.
 import { WebWorkerRpcClient } from '/7c12bd7/js/lvce-editor-rpc.js'
 
-const view = {
-  icon: new URL('./invalid.png', import.meta.url).href,
-  id: 'test.views.customIconInvalidImage',
-  title: 'Custom Invalid Image Icon',
-}
-
+const title = 'Activity Bar Long Title '.repeat(500)
 const commandMap = {
   'ExtensionApi.getStatusBarItems'() {
     return []
   },
   'ExtensionApi.getViewRegistrySnapshot'() {
     return {
-      views: [view],
+      views: [{ id: 'test.activityBar.longTitle', title }],
     }
   },
 }
