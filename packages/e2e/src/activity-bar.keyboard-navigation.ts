@@ -2,10 +2,17 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.keyboard-navigation'
 
-export const test: Test = async ({ ActivityBar, Command, expect, KeyBoard, Locator }) => {
+export const test: Test = async ({ Command, ComponentState, expect, KeyBoard, Locator }) => {
+  const { uid } = await ComponentState.getComponent('ActivityBar')
+  const activityBar = Locator('#ActivityBar')
+  const focusActivityBar = async (): Promise<void> => {
+    await Command.execute('Viewlet.focusSelector', uid, '#ActivityBar')
+    await expect(activityBar).toBeFocused()
+    await Command.execute('ActivityBar.handleFocus')
+  }
+
   // act
-  await ActivityBar.focus()
-  await Command.execute('ActivityBar.handleFocus')
+  await focusActivityBar()
 
   // assert
   const activityBarItemExplorer = Locator('.ActivityBarItem[title="Explorer"]')
@@ -27,7 +34,7 @@ export const test: Test = async ({ ActivityBar, Command, expect, KeyBoard, Locat
   await expect(activityBarItemExplorer).toHaveClass('FocusOutline')
 
   // act
-  await Command.execute('ActivityBar.handleFocus')
+  await focusActivityBar()
   await KeyBoard.press('End')
 
   // assert
@@ -48,10 +55,9 @@ export const test: Test = async ({ ActivityBar, Command, expect, KeyBoard, Locat
   await expect(sideBarHeaderTitle).toHaveText('Search')
 
   // act
-  await ActivityBar.focus()
-  await Command.execute('ActivityBar.handleFocus')
+  await focusActivityBar()
   await expect(activityBarItemSearch).toHaveClass('FocusOutline')
-  await Command.execute('ActivityBar.handleFocus')
+  await focusActivityBar()
   await KeyBoard.press('End')
   await expect(activityBarItemSettings).toHaveClass('FocusOutline')
   await KeyBoard.press('Space')
