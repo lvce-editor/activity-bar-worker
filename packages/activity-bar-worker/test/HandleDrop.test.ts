@@ -65,7 +65,7 @@ test('ignores a drop with no retained strings', async () => {
 test('reorders an activity bar item and clears transient state', async () => {
   using mockRpc = DragAndDropWorker.registerMockRpc({
     'DragAndDrop.getDroppedItemsByDropId'() {
-      return { strings: [ActivityBarDragData.getData('Explorer')] }
+      return { strings: [ActivityBarDragData.getData('application/x-lvce-editor-activity-bar-item', 'Explorer')] }
     },
   })
   const items = [
@@ -98,7 +98,7 @@ test('reorders an activity bar item and clears transient state', async () => {
 test('keeps selection and focus indexes when they have no matching item', async () => {
   using mockRpc = DragAndDropWorker.registerMockRpc({
     'DragAndDrop.getDroppedItemsByDropId'() {
-      return { strings: [ActivityBarDragData.getData('Explorer')] }
+      return { strings: [ActivityBarDragData.getData('application/x-lvce-editor-activity-bar-item', 'Explorer')] }
     },
   })
   const items = [item('Explorer'), item('Search'), item('Source Control')]
@@ -117,5 +117,25 @@ test('keeps selection and focus indexes when they have no matching item', async 
 
   expect(result.selectedIndex).toBe(-1)
   expect(result.focusedIndex).toBe(-1)
+  expect(mockRpc.invocations).toHaveLength(1)
+})
+
+test('validates drops using the configured type', async () => {
+  using mockRpc = DragAndDropWorker.registerMockRpc({
+    'DragAndDrop.getDroppedItemsByDropId'() {
+      return { strings: [ActivityBarDragData.getData('application/x-custom-activity-bar-item', 'Explorer')] }
+    },
+  })
+  const items = [item('Explorer'), item('Search')]
+  const state = {
+    ...createDefaultState(),
+    activityBarItems: items,
+    dragAndDropEnabled: true,
+    dragAndDropMimeType: 'application/x-custom-activity-bar-item',
+    draggedItemId: 'Explorer',
+    dropIndicator: { id: 'Search', position: 'after' as const },
+  }
+
+  await expect(run(state)).resolves.toMatchObject({ activityBarItems: [items[1], items[0]] })
   expect(mockRpc.invocations).toHaveLength(1)
 })

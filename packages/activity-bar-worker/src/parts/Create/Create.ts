@@ -19,6 +19,7 @@ export const create = (
     aiNativeLayout: false,
     currentViewletId: '',
     dragAndDropEnabled: false,
+    dragAndDropMimeType: 'application/x-lvce-editor-activity-bar-item',
     filteredItems: [],
     focus: 0,
     focused: false,

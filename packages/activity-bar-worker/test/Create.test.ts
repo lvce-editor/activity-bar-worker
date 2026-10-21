@@ -6,5 +6,6 @@ test('Create.create should create a new ActivityBarState', () => {
 
   expect(result).toBeDefined()
   expect(result.accountEnabled).toBe(true)
+  expect(result.dragAndDropMimeType).toBe('application/x-lvce-editor-activity-bar-item')
   expect(result.userLoginState).toBe('logged out')
 })
