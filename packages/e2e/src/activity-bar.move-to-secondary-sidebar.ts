@@ -1,6 +1,6 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const name = 'viewlet.activity-bar-move-to-secondary-sidebar'
+export const name = 'activity-bar.move-to-secondary-sidebar'
 
 export const test: Test = async ({ Command, ContextMenu, expect, Locator, SideBar }) => {
   const explorerItem = Locator('.ActivityBarItem[title="Explorer"]')
@@ -12,7 +12,8 @@ export const test: Test = async ({ Command, ContextMenu, expect, Locator, SideBa
 
   await SideBar.open('Explorer')
   await Command.execute('ActivityBar.handleContextMenu', 2, 0, 0, 'Search')
-  await expect(Locator('body')).toContainText('Move To')
+  const body = Locator('body')
+  await expect(body).toContainText('Move To')
   await ContextMenu.selectItem('Move To')
   await ContextMenu.selectItem('Secondary Side Bar')
 

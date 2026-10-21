@@ -1,35 +1,58 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const name = 'viewlet.activity-bar-keyboard-navigation'
-
-export const skip = 1
+export const name = 'activity-bar.keyboard-navigation'
 
 export const test: Test = async ({ ActivityBar, expect, KeyBoard, Locator }) => {
-  await ActivityBar.focus()
+  // act
+  await ActivityBar.handleClick()
 
-  const activityBar = Locator('.ActivityBar')
+  // assert
   const activityBarItemExplorer = Locator('.ActivityBarItem[title="Explorer"]')
-  const activityBarItemSearch = Locator('.ActivityBarItem[title="Search"]')
-  const activityBarItemSettings = Locator('.ActivityBarItem[title="Settings"]')
-  const sideBarHeaderTitle = Locator('.SideBarTitleAreaTitle')
-
-  await expect(activityBar).toBeFocused()
   await expect(activityBarItemExplorer).toHaveClass('FocusOutline')
+  const sideBarHeaderTitle = Locator('.SideBarTitleAreaTitle')
+  await expect(sideBarHeaderTitle).toHaveText('Explorer')
 
+  // act
   await KeyBoard.press('ArrowDown')
+
+  // assert
+  const activityBarItemSearch = Locator('.ActivityBarItem[title="Search"]')
   await expect(activityBarItemSearch).toHaveClass('FocusOutline')
 
-  await KeyBoard.press('Enter')
-  await expect(sideBarHeaderTitle).toHaveText('Search')
+  // act
+  await KeyBoard.press('ArrowUp')
 
-  await ActivityBar.focus()
-  await KeyBoard.press('Home')
+  // assert
   await expect(activityBarItemExplorer).toHaveClass('FocusOutline')
 
+  // act
   await KeyBoard.press('End')
+
+  // assert
+  const activityBarItemSettings = Locator('.ActivityBarItem[title="Settings"]')
   await expect(activityBarItemSettings).toHaveClass('FocusOutline')
 
+  // act
+  await KeyBoard.press('Home')
+
+  // assert
+  await expect(activityBarItemExplorer).toHaveClass('FocusOutline')
+
+  // act
+  await KeyBoard.press('ArrowDown')
+  await KeyBoard.press('Enter')
+
+  // assert
+  await expect(sideBarHeaderTitle).toHaveText('Search')
+
+  // act
+  await ActivityBar.handleClick()
+  await expect(activityBarItemSearch).toHaveClass('FocusOutline')
+  await KeyBoard.press('End')
+  await expect(activityBarItemSettings).toHaveClass('FocusOutline')
   await KeyBoard.press('Space')
+
+  // assert
   const menu = Locator('#Menu-0')
-  await expect(menu).toBeVisible()
+  await expect(menu).toBeFocused()
 }

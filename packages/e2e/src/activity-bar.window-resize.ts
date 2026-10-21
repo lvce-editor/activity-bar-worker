@@ -1,6 +1,6 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const name = 'viewlet.activity-bar-window-resize'
+export const name = 'activity-bar.window-resize'
 
 export const test: Test = async ({ Command, expect, Locator }) => {
   const additionalViews = Locator('.ActivityBarItem[title="Additional Views"]')
