@@ -5,17 +5,19 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "e2e": "test-with-playwright",
-    "e2e:firefox": "test-with-playwright --browser=firefox",
-    "e2e:firefox:headless": "test-with-playwright --browser=firefox --headless",
-    "e2e:headless": "test-with-playwright --headless",
-    "e2e:webkit": "node ./scripts/run-webkit-e2e.js",
-    "e2e:webkit:headless": "node ./scripts/run-webkit-e2e.js --headless",
+    "prepare:fixtures": "node ./scripts/prepare-fixtures.mjs",
+    "e2e": "npm run prepare:fixtures && test-with-playwright",
+    "e2e:firefox": "npm run prepare:fixtures && test-with-playwright --browser=firefox",
+    "e2e:firefox:headless": "npm run prepare:fixtures && test-with-playwright --browser=firefox --headless",
+    "e2e:headless": "npm run prepare:fixtures && test-with-playwright --headless",
+    "e2e:webkit": "npm run prepare:fixtures && node ./scripts/run-webkit-e2e.js",
+    "e2e:webkit:headless": "npm run prepare:fixtures && node ./scripts/run-webkit-e2e.js --headless",
     "type-check": "tsc"
   },
   "devDependencies": {
     "@lvce-editor/api": "^9.53.1",
     "@lvce-editor/rpc": "^6.23.0",
-    "@lvce-editor/test-with-playwright": "^22.43.0"
+    "@lvce-editor/test-with-playwright": "^22.43.0",
+    "esbuild": "^0.28.2"
   }
 }
