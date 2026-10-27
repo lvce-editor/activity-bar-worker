@@ -15,6 +15,7 @@ export const test: Test = async ({ Command, ComponentState, expect, KeyBoard, Lo
   await focusActivityBar()
 
   // assert
+  await expect(activityBar).toHaveCSS('outline-style', 'none')
   const activityBarItemExplorer = Locator('.ActivityBarItem[title="Explorer"]')
   await expect(activityBarItemExplorer).toHaveClass('FocusOutline')
   const sideBarHeaderTitle = Locator('.SideBarTitleAreaTitle')
