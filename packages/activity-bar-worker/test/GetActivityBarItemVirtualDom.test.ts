@@ -49,7 +49,7 @@ test('getActivityBarItemVirtualDom adds item id as name', () => {
   })
 })
 
-test('getActivityBarItemVirtualDom renders draggable drop indicators', () => {
+test('getActivityBarItemVirtualDom renders drop indicator classes only for the matching item', () => {
   const item: ActivityBarItem = {
     badgeIcon: '',
     badgeText: '',
@@ -65,11 +65,12 @@ test('getActivityBarItemVirtualDom renders draggable drop indicators', () => {
     title: 'Search',
   }
 
-  expect(getActivityBarItemVirtualDom(item, true, { id: 'Search', position: 'before' })[0]).toMatchObject({
-    draggable: true,
-    style: 'box-shadow:inset 0 2px 0 white;',
-  })
-  expect(getActivityBarItemVirtualDom(item, true, { id: 'Search', position: 'after' })[0]).toMatchObject({
-    style: 'box-shadow:inset 0 -2px 0 white;',
-  })
+  const before = getActivityBarItemVirtualDom(item, true, { id: 'Search', position: 'before' })[0]
+  expect(before).toMatchObject({ draggable: true, className: expect.stringContaining('ActivityBarItemDropBefore') })
+  expect(before).not.toHaveProperty('style')
+  const after = getActivityBarItemVirtualDom(item, true, { id: 'Search', position: 'after' })[0]
+  expect(after.className).toContain('ActivityBarItemDropAfter')
+  const unmatched = getActivityBarItemVirtualDom(item, false, { id: 'Explorer', position: 'after' })[0]
+  expect(unmatched.className).not.toMatch(/ActivityBarItemDrop/)
+  expect(unmatched).not.toHaveProperty('style')
 })
