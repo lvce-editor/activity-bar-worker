@@ -1,5 +1,4 @@
-// @ts-expect-error The runtime bundle is provided by the extension host.
-import { WebWorkerRpcClient } from '/7c12bd7/js/lvce-editor-rpc.js'
+import { WebWorkerRpcClient } from '@lvce-editor/rpc'
 
 const views = [
   { id: 'test.activityBar.duplicate', title: 'Duplicate View One' },
