@@ -22,11 +22,11 @@ export const test: Test = async ({ Command, DragAndDrop, expect, Locator }) => {
 
   await Command.execute('ActivityBar.handleDragOver', 167)
   await expect(indicator).toHaveCount(1)
-  await expect(runAndDebug).toHaveClass(/ActivityBarItemDropBefore/)
+  await expect(Locator('.ActivityBarItemDropBefore')).toHaveCount(1)
   await expect(runAndDebug).toHaveCSS('box-shadow', 'rgba(255, 255, 255, 1) 0px 2px 0px inset')
   await Command.execute('ActivityBar.handleDragOver', 190)
   await expect(indicator).toHaveCount(1)
-  await expect(runAndDebug).toHaveClass(/ActivityBarItemDropAfter/)
+  await expect(Locator('.ActivityBarItemDropAfter')).toHaveCount(1)
   await expect(runAndDebug).toHaveCSS('box-shadow', 'rgba(255, 255, 255, 1) 0px -2px 0px inset')
   await Command.execute('ActivityBar.handleDragOver', 167)
 
