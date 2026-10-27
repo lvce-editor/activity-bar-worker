@@ -1,5 +1,6 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import { getActiveViewIds } from '../GetActiveViewIds/GetActiveViewIds.ts'
+import { getCustomIconSignature } from '../GetCustomIconSignature/GetCustomIconSignature.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { markActiveViews } from '../MarkActiveViews/MarkActiveViews.ts'
 
@@ -14,5 +15,6 @@ export const handleActiveViewStateChange = (state: ActivityBarState, id: string,
     ...state,
     activityBarItems: newActivityBarItems,
     filteredItems,
+    iconSignature: getCustomIconSignature(filteredItems),
   }
 }

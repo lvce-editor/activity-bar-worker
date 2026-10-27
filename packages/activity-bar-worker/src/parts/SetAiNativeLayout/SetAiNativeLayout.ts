@@ -1,4 +1,5 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
+import { getCustomIconSignature } from '../GetCustomIconSignature/GetCustomIconSignature.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 
 export const setAiNativeLayout = (state: ActivityBarState, aiNativeLayout: boolean): ActivityBarState => {
@@ -8,5 +9,6 @@ export const setAiNativeLayout = (state: ActivityBarState, aiNativeLayout: boole
     ...state,
     aiNativeLayout,
     filteredItems,
+    iconSignature: getCustomIconSignature(filteredItems),
   }
 }

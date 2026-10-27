@@ -1,5 +1,6 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import { getActivityBarItems } from '../GetActivityBarItems/GetActivityBarItems.ts'
+import { getCustomIconSignature } from '../GetCustomIconSignature/GetCustomIconSignature.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { markActiveViews } from '../MarkActiveViews/MarkActiveViews.ts'
 import { resolveActiveViewIds } from '../ResolveActiveViewIds/ResolveActiveViewIds.ts'
@@ -20,5 +21,6 @@ export const setAccountEnabled = (state: ActivityBarState, enabled: boolean): Ac
     ...newState,
     activityBarItems: markedItems,
     filteredItems: filteredItems,
+    iconSignature: getCustomIconSignature(filteredItems),
   }
 }

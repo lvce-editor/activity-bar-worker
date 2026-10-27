@@ -7,8 +7,8 @@ import { setAiNativeLayout } from '../src/parts/SetAiNativeLayout/SetAiNativeLay
 const makeItem = (id: string): ActivityBarItem => ({
   badgeIcon: '',
   badgeText: '',
-  customIconClass: '',
-  customIconUrl: '',
+  customIconClass: id === 'Chat' ? 'MaskIconCustomChat' : '',
+  customIconUrl: id === 'Chat' ? 'https://example.com/chat.svg' : '',
   enabled: true,
   flags: ActivityBarItemFlags.Enabled,
   hasPopup: false,
@@ -34,6 +34,7 @@ const createState = (): ActivityBarState => {
     focused: false,
     focusedIndex: -1,
     height: 600,
+    iconSignature: '',
     initial: false,
     itemHeight: 48,
     numberOfVisibleItems: 0,
@@ -61,8 +62,10 @@ test('setAiNativeLayout filters ordinary and contributed views, then restores th
 
   const aiNative = setAiNativeLayout(state, true)
   expect(aiNative.filteredItems.map((item) => item.id)).toEqual(['Account', 'Settings'])
+  expect(aiNative.iconSignature).toBe('')
   expect(aiNative.activityBarItems).toBe(activityBarItems)
 
   const ide = setAiNativeLayout(aiNative, false)
   expect(ide.filteredItems.map((item) => item.id)).toEqual(['Explorer', 'Chat', 'Account', 'Settings'])
+  expect(ide.iconSignature).toBe('MaskIconCustomChat\nhttps://example.com/chat.svg')
 })

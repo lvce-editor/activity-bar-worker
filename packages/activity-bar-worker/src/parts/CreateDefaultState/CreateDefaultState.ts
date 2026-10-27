@@ -14,6 +14,7 @@ export const createDefaultState = (): ActivityBarState => ({
   focused: false,
   focusedIndex: 0,
   height: 400,
+  iconSignature: '',
   initial: true,
   itemHeight: 48,
   numberOfVisibleItems: 0,

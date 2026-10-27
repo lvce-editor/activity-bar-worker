@@ -2,6 +2,7 @@ import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import * as ActivityBarItemLocation from '../ActivityBarItemLocation/ActivityBarItemLocation.ts'
 import { findIndex } from '../FindIndex/FindIndex.ts'
 import { getActiveViewIds } from '../GetActiveViewIds/GetActiveViewIds.ts'
+import { getCustomIconSignature } from '../GetCustomIconSignature/GetCustomIconSignature.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { getSideBarChange } from '../GetSideBarChange/GetSideBarChange.ts'
 import { markActiveViews } from '../MarkActiveViews/MarkActiveViews.ts'
@@ -22,6 +23,7 @@ export const handleClickOther = async (state: ActivityBarState, viewletId: strin
       ...state,
       activityBarItems: newActivityBarItems,
       filteredItems,
+      iconSignature: getCustomIconSignature(filteredItems),
     }
   }
   const withoutCurrentSideBarView = activeViewIds.filter((id) => id !== currentViewletId)
@@ -32,6 +34,7 @@ export const handleClickOther = async (state: ActivityBarState, viewletId: strin
       ...state,
       activityBarItems: newActivityBarItems,
       filteredItems,
+      iconSignature: getCustomIconSignature(filteredItems),
       selectedIndex: -1,
       sideBarVisible: false,
     }
@@ -45,6 +48,7 @@ export const handleClickOther = async (state: ActivityBarState, viewletId: strin
     activityBarItems: newActivityBarItems,
     currentViewletId: viewletId,
     filteredItems,
+    iconSignature: getCustomIconSignature(filteredItems),
     selectedIndex,
     sideBarVisible: true,
   }
