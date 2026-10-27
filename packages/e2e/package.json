@@ -6,18 +6,18 @@
   "main": "index.js",
   "scripts": {
     "prepare:fixtures": "node ./scripts/prepare-fixtures.mjs",
-    "e2e": "npm run prepare:fixtures && test-with-playwright",
-    "e2e:firefox": "npm run prepare:fixtures && test-with-playwright --browser=firefox",
-    "e2e:firefox:headless": "npm run prepare:fixtures && test-with-playwright --browser=firefox --headless",
-    "e2e:headless": "npm run prepare:fixtures && test-with-playwright --headless",
-    "e2e:webkit": "npm run prepare:fixtures && node ./scripts/run-webkit-e2e.js",
-    "e2e:webkit:headless": "npm run prepare:fixtures && node ./scripts/run-webkit-e2e.js --headless",
+    "e2e": "npm run prepare:fixtures && test-with-playwright --only-extension=. --test-path=. --reuse-page",
+    "e2e:firefox": "npm run prepare:fixtures && test-with-playwright --only-extension=. --test-path=. --browser=firefox --reuse-page",
+    "e2e:firefox:headless": "npm run prepare:fixtures && test-with-playwright --only-extension=. --test-path=. --browser=firefox --headless --reuse-page",
+    "e2e:headless": "npm run prepare:fixtures && test-with-playwright --only-extension=. --test-path=. --headless --reuse-page",
+    "e2e:webkit": "npm run prepare:fixtures && test-with-playwright --only-extension=. --test-path=. --browser=webkit",
+    "e2e:webkit:headless": "npm run prepare:fixtures && test-with-playwright --only-extension=. --test-path=. --browser=webkit --headless",
     "type-check": "tsc"
   },
   "devDependencies": {
     "@lvce-editor/api": "^9.53.1",
-    "@lvce-editor/rpc": "^6.23.0",
     "@lvce-editor/test-with-playwright": "^22.43.0",
+    "@lvce-editor/rpc": "^6.23.0",
     "esbuild": "^0.28.2"
   }
 }
