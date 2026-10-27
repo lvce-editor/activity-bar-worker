@@ -27,6 +27,7 @@ export const create = (
     focused: false,
     focusedIndex: -1,
     height,
+    iconSignature: '',
     initial: true,
     itemHeight: 48,
     numberOfVisibleItems: 0,

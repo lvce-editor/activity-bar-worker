@@ -1,5 +1,6 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import type { Dimensions } from '../Dimensions/Dimensions.ts'
+import { getCustomIconSignature } from '../GetCustomIconSignature/GetCustomIconSignature.ts'
 import * as GetFilteredActivityBarItems from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 
 export const handleResize = (state: ActivityBarState, dimensions: Dimensions): ActivityBarState => {
@@ -10,6 +11,7 @@ export const handleResize = (state: ActivityBarState, dimensions: Dimensions): A
     ...state,
     filteredItems,
     height,
+    iconSignature: getCustomIconSignature(filteredItems),
     width,
     x,
     y,
