@@ -2,6 +2,7 @@ import { AriaRoles } from '@lvce-editor/constants'
 import { type VirtualDomNode, mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
+import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getActivityBarItemHasPopup } from '../GetActivityBarItemHasPopup/GetActivityBarItemHasPopup.ts'
 import { getActivityBarItemInProgressDom } from '../GetActivityBarItemInProgressDom/GetActivityBarItemInProgressDom.ts'
@@ -16,11 +17,11 @@ type DropIndicator = {
   readonly position: 'after' | 'before'
 }
 
-const getDropIndicatorStyle = (dropIndicator: DropIndicator | undefined, id: string): string | undefined => {
+const getDropIndicatorClassName = (dropIndicator: DropIndicator | undefined, id: string): string => {
   if (!dropIndicator || dropIndicator.id !== id) {
-    return undefined
+    return ''
   }
-  return dropIndicator.position === 'before' ? 'box-shadow:inset 0 2px 0 white;' : 'box-shadow:inset 0 -2px 0 white;'
+  return dropIndicator.position === 'before' ? ClassNames.ActivityBarItemDropBefore : ClassNames.ActivityBarItemDropAfter
 }
 
 export const getActivityBarItemVirtualDom = (item: ActivityBarItem, draggable = false, dropIndicator?: DropIndicator): readonly VirtualDomNode[] => {
@@ -79,7 +80,7 @@ export const getActivityBarItemVirtualDom = (item: ActivityBarItem, draggable = 
         onDragEnd: DomEventListenerFunctions.HandleDragEnd,
         onDragStart: DomEventListenerFunctions.HandleDragStart,
       }),
-      ...(getDropIndicatorStyle(dropIndicator, id) && { style: getDropIndicatorStyle(dropIndicator, id) }),
+      className: mergeClassNames(root.className, getDropIndicatorClassName(dropIndicator, id)),
     },
     ...children,
   ]
