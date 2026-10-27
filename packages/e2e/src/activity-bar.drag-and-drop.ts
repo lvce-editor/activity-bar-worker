@@ -9,7 +9,7 @@ export const test: Test = async ({ Command, DragAndDrop, expect, Locator }) => {
   const search = Locator('.ActivityBarItem[title="Search"]')
   const sourceControl = Locator('.ActivityBarItem[title="Source Control"]')
   const runAndDebug = Locator('.ActivityBarItem[title="Run and Debug"]')
-  const indicator = Locator('.ActivityBarItem[style*="box-shadow"]')
+  const indicator = Locator('.ActivityBarItem[style*="box-shadow"], .ActivityBarItemDropBefore, .ActivityBarItemDropAfter')
 
   await expect(explorer).toHaveJSProperty('draggable', false)
 
@@ -22,7 +22,11 @@ export const test: Test = async ({ Command, DragAndDrop, expect, Locator }) => {
 
   await Command.execute('ActivityBar.handleDragOver', 167)
   await expect(indicator).toHaveCount(1)
-  await expect(runAndDebug).toHaveAttribute('style', 'box-shadow: white 0px 2px 0px inset;')
+  await expect(runAndDebug).toHaveCSS('box-shadow', 'rgb(255, 255, 255) 0px 2px 0px 0px inset')
+  await Command.execute('ActivityBar.handleDragOver', 190)
+  await expect(indicator).toHaveCount(1)
+  await expect(runAndDebug).toHaveCSS('box-shadow', 'rgb(255, 255, 255) 0px -2px 0px 0px inset')
+  await Command.execute('ActivityBar.handleDragOver', 167)
 
   const dropId = await DragAndDrop.createDropSession([{ kind: 'string', type: dragType, value: dragValue }])
   await Command.execute('ActivityBar.handleDrop', dropId)

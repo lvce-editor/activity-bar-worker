@@ -4,6 +4,7 @@ import { DragAndDropWorker } from '@lvce-editor/rpc-registry'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import * as ActivityBarDragData from '../ActivityBarDragData/ActivityBarDragData.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
+import { getCustomIconSignature } from '../GetCustomIconSignature/GetCustomIconSignature.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { handleDragEnd } from '../HandleDragEnd/HandleDragEnd.ts'
 import { reorderActivityBarItems } from '../ReorderActivityBarItems/ReorderActivityBarItems.ts'
@@ -45,6 +46,7 @@ export const handleDrop = async (context: AsyncCommandContext<ActivityBarState>,
     activityBarItems,
     filteredItems,
     focusedIndex: focusedId ? filteredItems.findIndex((item) => item.id === focusedId) : initialFocusedIndex,
+    iconSignature: getCustomIconSignature(filteredItems),
     selectedIndex: selectedId ? filteredItems.findIndex((item) => item.id === selectedId) : initialSelectedIndex,
   }))
 }

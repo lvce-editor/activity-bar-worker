@@ -97,6 +97,7 @@ test('DiffCss.isEqual should return false when custom icon is added', () => {
         title: 'Test',
       },
     ],
+    iconSignature: 'MaskIconCustomViewabc\nhttps://example.com/icon.svg',
   }
   const result = DiffCss.isEqual(state1, state2)
   expect(result).toBe(false)
@@ -121,6 +122,7 @@ test('DiffCss.isEqual should return false when custom icon url changes', () => {
         title: 'Test',
       },
     ],
+    iconSignature: 'MaskIconCustomViewabc\nhttps://example.com/icon.svg',
   }
   const state2: ActivityBarState = {
     ...state1,
@@ -140,7 +142,17 @@ test('DiffCss.isEqual should return false when custom icon url changes', () => {
         title: 'Test',
       },
     ],
+    iconSignature: 'MaskIconCustomViewabc\nhttps://example.com/other.svg',
   }
   const result = DiffCss.isEqual(state1, state2)
   expect(result).toBe(false)
+})
+
+test('DiffCss.isEqual should detect item height changes', () => {
+  const state1 = createDefaultState()
+  const state2: ActivityBarState = {
+    ...state1,
+    itemHeight: state1.itemHeight + 1,
+  }
+  expect(DiffCss.isEqual(state1, state2)).toBe(false)
 })

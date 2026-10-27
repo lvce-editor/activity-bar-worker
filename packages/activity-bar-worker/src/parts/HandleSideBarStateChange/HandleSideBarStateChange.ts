@@ -3,6 +3,7 @@ import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import { findIndex } from '../FindIndex/FindIndex.ts'
 import { getActiveViewIds } from '../GetActiveViewIds/GetActiveViewIds.ts'
+import { getCustomIconSignature } from '../GetCustomIconSignature/GetCustomIconSignature.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { getSideBarVisible } from '../GetSideBarVisible/GetSideBarVisible.ts'
 import { markActiveViews } from '../MarkActiveViews/MarkActiveViews.ts'
@@ -34,6 +35,7 @@ export const handleSideBarStateChange = async (state: ActivityBarState, id?: str
       activityBarItems: itemsCleared,
       filteredItems,
       focusedIndex: -1,
+      iconSignature: getCustomIconSignature(filteredItems),
       selectedIndex: -1,
       sideBarVisible: false,
     }
@@ -49,6 +51,7 @@ export const handleSideBarStateChange = async (state: ActivityBarState, id?: str
     currentViewletId: resolvedId,
     filteredItems,
     focused: resolvedId === currentViewletId && focused,
+    iconSignature: getCustomIconSignature(filteredItems),
     selectedIndex,
     sideBarVisible,
   }

@@ -2,6 +2,7 @@ import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import { getAccountEnabled } from '../GetAccountEnabled/GetAccountEnabled.ts'
 import { getActivityBarItems } from '../GetActivityBarItems/GetActivityBarItems.ts'
 import { getContributedViews } from '../GetContributedViews/GetContributedViews.ts'
+import { getCustomIconSignature } from '../GetCustomIconSignature/GetCustomIconSignature.ts'
 import { getDragAndDropEnabled } from '../GetDragAndDropEnabled/GetDragAndDropEnabled.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { getSideBarPosition } from '../GetSideBarPosition/GetSideBarPosition.ts'
@@ -13,7 +14,7 @@ export const handleSettingsChanged = async (state: ActivityBarState): Promise<Ac
   const { accountEnabled: currentAccountEnabled, aiNativeLayout, dragAndDropEnabled: currentDragAndDropEnabled, height, itemHeight, platform } = state
   const [accountEnabled, dragAndDropEnabled, contributedViews, sidebarLocation] = await Promise.all([
     getAccountEnabled(currentAccountEnabled),
-    getDragAndDropEnabled(Boolean(currentDragAndDropEnabled)),
+    getDragAndDropEnabled(currentDragAndDropEnabled),
     getContributedViews(platform),
     getSideBarPosition(),
   ])
@@ -31,6 +32,7 @@ export const handleSettingsChanged = async (state: ActivityBarState): Promise<Ac
     ...newState,
     activityBarItems,
     filteredItems,
+    iconSignature: getCustomIconSignature(filteredItems),
     sideBarLocation: sidebarLocation,
   }
 }

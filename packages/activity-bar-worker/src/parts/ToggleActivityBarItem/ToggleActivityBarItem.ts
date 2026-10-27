@@ -1,5 +1,6 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
+import { getCustomIconSignature } from '../GetCustomIconSignature/GetCustomIconSignature.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 
 export const toggleActivityBarItem = async (state: ActivityBarState, itemId: string): Promise<ActivityBarState> => {
@@ -19,5 +20,6 @@ export const toggleActivityBarItem = async (state: ActivityBarState, itemId: str
     ...state,
     activityBarItems: updatedItems,
     filteredItems,
+    iconSignature: getCustomIconSignature(filteredItems),
   }
 }

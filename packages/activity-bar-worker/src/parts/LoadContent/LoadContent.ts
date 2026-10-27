@@ -1,5 +1,6 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import { getActivityBarItems } from '../GetActivityBarItems/GetActivityBarItems.ts'
+import { getCustomIconSignature } from '../GetCustomIconSignature/GetCustomIconSignature.ts'
 import { getFilteredActivityBarItems } from '../GetFilteredActivityBarItems/GetFilteredActivityBarItems.ts'
 import { loadPreferences } from '../LoadPreferences/LoadPreferences.ts'
 import { markActiveViews } from '../MarkActiveViews/MarkActiveViews.ts'
@@ -31,6 +32,7 @@ export const loadContent = async (state: ActivityBarState): Promise<ActivityBarS
     activityBarItems,
     currentViewletId: activeView || ViewletModuleId.Explorer,
     filteredItems,
+    iconSignature: getCustomIconSignature(filteredItems),
     initial: false,
     selectedIndex,
     sideBarLocation: sidebarLocation,
