@@ -6,7 +6,7 @@ const main = async (): Promise<void> => {
     cwd: root,
     stdio: 'inherit',
   })
-  execa('node', ['node_modules/@lvce-editor/server/bin/server.js', '--test-path=packages/e2e'], {
+  execa('node', ['node_modules/@lvce-editor/server/bin/server.js', '--test-path=packages/e2e', '--activity-bar-worker=.tmp/dist/dist/activityBarWorkerMain.js'], {
     cwd: root,
     stdio: 'inherit',
   })
