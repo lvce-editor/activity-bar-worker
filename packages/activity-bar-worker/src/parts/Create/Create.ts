@@ -20,6 +20,8 @@ export const create = (
     currentViewletId: '',
     dragAndDropEnabled: false,
     dragAndDropMimeType: 'application/x-lvce-editor-activity-bar-item',
+    draggedItemId: undefined,
+    dropIndicator: undefined,
     filteredItems: [],
     focus: 0,
     focused: false,
