@@ -10,6 +10,8 @@ export const test: Test = async ({ Command, DragAndDrop, expect, Locator }) => {
   const sourceControl = Locator('.ActivityBarItem[title="Source Control"]')
   const runAndDebug = Locator('.ActivityBarItem[title="Run and Debug"]')
   const indicator = Locator('.ActivityBarItemDropBefore, .ActivityBarItemDropAfter')
+  const beforeIndicator = Locator('.ActivityBarItemDropBefore')
+  const afterIndicator = Locator('.ActivityBarItemDropAfter')
 
   await expect(explorer).toHaveJSProperty('draggable', false)
 
@@ -22,11 +24,11 @@ export const test: Test = async ({ Command, DragAndDrop, expect, Locator }) => {
 
   await Command.execute('ActivityBar.handleDragOver', 167)
   await expect(indicator).toHaveCount(1)
-  await expect(Locator('.ActivityBarItemDropBefore')).toHaveCount(1)
+  await expect(beforeIndicator).toHaveCount(1)
   await expect(runAndDebug).toHaveCSS('box-shadow', 'rgba(255, 255, 255, 1) 0px 2px 0px inset')
   await Command.execute('ActivityBar.handleDragOver', 190)
   await expect(indicator).toHaveCount(1)
-  await expect(Locator('.ActivityBarItemDropAfter')).toHaveCount(1)
+  await expect(afterIndicator).toHaveCount(1)
   await expect(runAndDebug).toHaveCSS('box-shadow', 'rgba(255, 255, 255, 1) 0px -2px 0px inset')
   await Command.execute('ActivityBar.handleDragOver', 167)
 

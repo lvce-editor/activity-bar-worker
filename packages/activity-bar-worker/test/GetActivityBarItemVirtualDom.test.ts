@@ -66,11 +66,11 @@ test('getActivityBarItemVirtualDom renders drop indicator classes only for the m
   }
 
   const before = getActivityBarItemVirtualDom(item, true, { id: 'Search', position: 'before' })[0]
-  expect(before).toMatchObject({ draggable: true, className: expect.stringContaining('ActivityBarItemDropBefore') })
+  expect(before).toMatchObject({ className: expect.stringContaining('ActivityBarItemDropBefore'), draggable: true })
   expect(before).not.toHaveProperty('style')
   const after = getActivityBarItemVirtualDom(item, true, { id: 'Search', position: 'after' })[0]
   expect(after.className).toContain('ActivityBarItemDropAfter')
   const unmatched = getActivityBarItemVirtualDom(item, false, { id: 'Explorer', position: 'after' })[0]
-  expect(unmatched.className).not.toMatch(/ActivityBarItemDrop/)
+  expect(unmatched.className).not.toContain('ActivityBarItemDrop')
   expect(unmatched).not.toHaveProperty('style')
 })
