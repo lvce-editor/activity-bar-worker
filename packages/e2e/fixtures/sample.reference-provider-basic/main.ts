@@ -1,6 +1,7 @@
 import { activate, registerReferenceProvider } from '@lvce-editor/api'
 
 const referenceProvider = {
+  id: 'reference-provider-basic',
   languageId: 'xyz',
   provideReferences(textDocument: { uri: string }, _offset: number) {
     return [
