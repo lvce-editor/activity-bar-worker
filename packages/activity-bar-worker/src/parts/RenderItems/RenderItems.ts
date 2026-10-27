@@ -9,6 +9,6 @@ export const renderItems = (oldState: ActivityBarState, newState: ActivityBarSta
     return [ViewletCommand.SetDom2, uid, []]
   }
   const visibleItems = getVisibleActivityBarItems(filteredItems, focused ? focusedIndex : -1)
-  const dom = getActivityBarVirtualDom(visibleItems, Boolean(dragAndDropEnabled), dropIndicator)
+  const dom = getActivityBarVirtualDom(visibleItems, dragAndDropEnabled, dropIndicator)
   return [ViewletCommand.SetDom2, uid, dom]
 }

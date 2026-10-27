@@ -13,7 +13,7 @@ export const handleSettingsChanged = async (state: ActivityBarState): Promise<Ac
   const { accountEnabled: currentAccountEnabled, aiNativeLayout, dragAndDropEnabled: currentDragAndDropEnabled, height, itemHeight, platform } = state
   const [accountEnabled, dragAndDropEnabled, contributedViews, sidebarLocation] = await Promise.all([
     getAccountEnabled(currentAccountEnabled),
-    getDragAndDropEnabled(Boolean(currentDragAndDropEnabled)),
+    getDragAndDropEnabled(currentDragAndDropEnabled),
     getContributedViews(platform),
     getSideBarPosition(),
   ])

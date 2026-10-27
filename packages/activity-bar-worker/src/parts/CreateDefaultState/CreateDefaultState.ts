@@ -3,9 +3,12 @@ import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 export const createDefaultState = (): ActivityBarState => ({
   accountEnabled: true,
   activityBarItems: [],
+  aiNativeLayout: false,
   currentViewletId: '',
   dragAndDropEnabled: false,
   dragAndDropMimeType: 'application/x-lvce-editor-activity-bar-item',
+  draggedItemId: undefined,
+  dropIndicator: undefined,
   filteredItems: [],
   focus: 0,
   focused: false,

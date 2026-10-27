@@ -4,12 +4,12 @@ import type { UserLoginState } from '../UserLoginState/UserLoginState.ts'
 export interface ActivityBarState {
   readonly accountEnabled: boolean
   readonly activityBarItems: readonly ActivityBarItem[]
-  readonly aiNativeLayout?: boolean
+  readonly aiNativeLayout: boolean
   readonly currentViewletId: string
-  readonly dragAndDropEnabled?: boolean
+  readonly dragAndDropEnabled: boolean
   readonly dragAndDropMimeType: string
-  readonly draggedItemId?: string | undefined
-  readonly dropIndicator?:
+  readonly draggedItemId: string | undefined
+  readonly dropIndicator:
     | {
         readonly id: string
         readonly position: 'after' | 'before'
