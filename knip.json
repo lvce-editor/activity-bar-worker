@@ -14,8 +14,8 @@
       "ignoreDependencies": ["@babel/preset-typescript", "@lvce-editor/verror", "esbuild", "playwright"]
     },
     "packages/e2e": {
-      "entry": ["src/**/*.ts", "fixtures/**/main.ts"],
-      "project": ["src/**/*.ts", "fixtures/**/main.ts"]
+      "entry": ["src/**/*.ts", "fixtures/**/main.ts", "fixtures/**/src/**/*.ts"],
+      "project": ["src/**/*.ts", "fixtures/**/main.ts", "fixtures/**/src/**/*.ts"]
     },
     "packages/server": {
       "project": ["src/**/*.js"]

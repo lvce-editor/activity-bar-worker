@@ -4,7 +4,7 @@
   "description": "Custom view icon missing image fixture",
   "version": "0.0.0",
   "isolated": true,
-  "browser": "src/extensionMain.ts",
+  "browser": "src/extensionMain.bundle.js",
   "views": [
     {
       "id": "test.views.customIconMissingImage",

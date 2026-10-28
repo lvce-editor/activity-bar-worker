@@ -1,19 +1,12 @@
-// @ts-expect-error The runtime bundle is provided by the extension host.
-import { WebWorkerRpcClient } from '/7c12bd7/js/lvce-editor-rpc.js'
+import { activate, registerView } from '@lvce-editor/api'
 
-const views = Array.from({ length: 500 }, (_, index) => ({
-  icon: 'symbol-beaker',
-  id: `test.activityBar.manyViews.${index}`,
-  title: `Stress View ${index}`,
-}))
+await activate()
 
-const commandMap = {
-  'ExtensionApi.getStatusBarItems'() {
-    return []
-  },
-  'ExtensionApi.getViewRegistrySnapshot'() {
-    return { views }
-  },
+for (let index = 0; index < 500; index++) {
+  registerView({
+    create: () => ({}),
+    icon: 'symbol-beaker',
+    id: `test.activityBar.manyViews.${index}`,
+    title: `Stress View ${index}`,
+  })
 }
-
-await WebWorkerRpcClient.create({ commandMap })

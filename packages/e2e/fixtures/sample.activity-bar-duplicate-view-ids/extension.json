@@ -4,7 +4,7 @@
   "description": "Activity bar fixture with duplicate contributed view ids",
   "version": "0.0.0",
   "isolated": true,
-  "browser": "src/extensionMain.ts",
+  "browser": "src/extensionMain.bundle.js",
   "views": [
     {
       "id": "test.activityBar.duplicate",
