@@ -15,10 +15,20 @@ export const toggleActivityBarItem = async (state: ActivityBarState, itemId: str
     }
     return item
   })
-  const filteredItems = getFilteredActivityBarItems(updatedItems, height, itemHeight, aiNativeLayout)
+  const accountEnabled = updatedItems.some((item) => item.id === 'Account' && item.flags & ActivityBarItemFlags.Enabled)
+  const itemsWithUpdatedSettingsMargin = updatedItems.map((item) => {
+    if (item.id !== 'Settings') {
+      return item
+    }
+    return {
+      ...item,
+      flags: accountEnabled ? item.flags & ~ActivityBarItemFlags.MarginTop : item.flags | ActivityBarItemFlags.MarginTop,
+    }
+  })
+  const filteredItems = getFilteredActivityBarItems(itemsWithUpdatedSettingsMargin, height, itemHeight, aiNativeLayout)
   return {
     ...state,
-    activityBarItems: updatedItems,
+    activityBarItems: itemsWithUpdatedSettingsMargin,
     filteredItems,
     iconSignature: getCustomIconSignature(filteredItems),
   }
