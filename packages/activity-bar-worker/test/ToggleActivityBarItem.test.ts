@@ -294,3 +294,49 @@ test('toggleActivityBarItem should update filtered items', async () => {
   expect(result.filteredItems[0].id).toBe('test2')
   expect(result.filteredItems[0].flags & ActivityBarItemFlags.Enabled).toBe(ActivityBarItemFlags.Enabled)
 })
+
+test('toggleActivityBarItem keeps Settings at the bottom when Account visibility changes', async () => {
+  const state: ActivityBarState = {
+    ...createDefaultState(),
+    activityBarItems: [
+      {
+        badgeIcon: '',
+        badgeText: '',
+        customIconClass: '',
+        customIconUrl: '',
+        enabled: false,
+        flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled | ActivityBarItemFlags.MarginTop,
+        hasPopup: true,
+        icon: 'account',
+        id: 'Account',
+        keyShortcuts: '',
+        preferredLocation: 0,
+        title: 'Account',
+      },
+      {
+        badgeIcon: '',
+        badgeText: '',
+        customIconClass: '',
+        customIconUrl: '',
+        enabled: false,
+        flags: ActivityBarItemFlags.Button | ActivityBarItemFlags.Enabled,
+        hasPopup: true,
+        icon: 'settings',
+        id: 'Settings',
+        keyShortcuts: '',
+        preferredLocation: 0,
+        title: 'Settings',
+      },
+    ],
+  }
+
+  const hidden = await toggleActivityBarItem(state, 'Account')
+  const hiddenSettings = hidden.activityBarItems.find((item) => item.id === 'Settings')!
+  expect(hidden.filteredItems.map((item) => item.id)).toEqual(['Settings'])
+  expect(hiddenSettings.flags & ActivityBarItemFlags.MarginTop).toBe(ActivityBarItemFlags.MarginTop)
+
+  const restored = await toggleActivityBarItem(hidden, 'Account')
+  const restoredSettings = restored.activityBarItems.find((item) => item.id === 'Settings')!
+  expect(restored.filteredItems.map((item) => item.id)).toEqual(['Account', 'Settings'])
+  expect(restoredSettings.flags & ActivityBarItemFlags.MarginTop).toBe(0)
+})
