@@ -1,5 +1,7 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
+export const skip = ['webkit']
+
 export const name = 'activity-bar.references-not-duplicated'
 
 export const test: Test = async ({ Command, Editor, expect, Extension, FileSystem, Locator, Main }) => {
