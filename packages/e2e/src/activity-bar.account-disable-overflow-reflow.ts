@@ -2,13 +2,13 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.account-disable-overflow-reflow'
 
-export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, expect, Locator }) => {
   const additionalViews = Locator('.ActivityBarItem[title="Additional Views"]')
   const items = Locator('.ActivityBarItem')
   const settings = Locator('.ActivityBarItem[title="Settings"]')
 
   await ActivityBar.setAccountEnabled(true)
-  await Command.execute('ActivityBar.resize', {
+  await ActivityBar.resize({
     height: 288,
     width: 48,
     x: 0,

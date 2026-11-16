@@ -2,9 +2,9 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.resize-account-overflow'
 
-export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, expect, Locator }) => {
   await ActivityBar.setAccountEnabled(true)
-  await Command.execute('ActivityBar.resize', {
+  await ActivityBar.resize({
     height: 192,
     width: 48,
     x: 0,

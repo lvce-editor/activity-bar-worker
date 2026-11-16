@@ -2,10 +2,10 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.command-focus-previous-boundary'
 
-export const test: Test = async ({ Command, expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
   await Command.execute('ActivityBar.handleFocus')
   await Command.execute('ActivityBar.focusFirst')
-  await Command.execute('ActivityBar.focusPrevious')
+  await ActivityBar.focusPrevious()
 
   const explorer = Locator('.ActivityBarItem[title="Explorer"]')
   const focusedItems = Locator('.ActivityBarItem.FocusOutline')

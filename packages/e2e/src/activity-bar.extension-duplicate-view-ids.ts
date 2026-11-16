@@ -4,10 +4,10 @@ export const name = 'activity-bar.extension-duplicate-view-ids'
 
 export const skip = 1
 
-export const test: Test = async ({ Command, expect, Extension, Locator }) => {
+export const test: Test = async ({ ActivityBar, expect, Extension, Locator }) => {
   await Extension.addWebExtension(import.meta.resolve('../fixtures/sample.activity-bar-duplicate-view-ids'))
-  await Command.execute('ActivityBar.handleExtensionsChanged')
-  await Command.execute('ActivityBar.resize', {
+  await ActivityBar.handleExtensionsChanged()
+  await ActivityBar.resize({
     height: 432,
     width: 48,
     x: 0,

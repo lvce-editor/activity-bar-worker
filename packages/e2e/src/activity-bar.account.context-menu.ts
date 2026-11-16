@@ -2,12 +2,12 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.account.context-menu'
 
-export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, expect, Locator }) => {
   // arrange
   await ActivityBar.setAccountEnabled(true)
 
   // act
-  await Command.execute('ActivityBar.handleClickAccount', 0, 0)
+  await ActivityBar.handleClickAccount(0, 0)
 
   // assert
   const signIn = Locator('.MenuItem', {
