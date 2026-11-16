@@ -16,6 +16,9 @@ const referenceProvider = {
   },
 }
 
-await activate()
+const main = async (): Promise<void> => {
+  await activate()
+  registerReferenceProvider(referenceProvider)
+}
 
-registerReferenceProvider(referenceProvider)
+main()

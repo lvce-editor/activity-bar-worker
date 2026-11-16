@@ -2,24 +2,28 @@ import { activate, registerCommand, registerSourceControlProvider } from '@lvce-
 
 let badgeCount = 1
 
-await activate()
+const main = async () => {
+  await activate()
 
-registerSourceControlProvider({
-  getBadgeCount() {
-    return badgeCount
-  },
-  getChangedFiles() {
-    return []
-  },
-  id: 'source-control-save-badge',
-  isActive(scheme) {
-    return scheme === 'memfs'
-  },
-})
+  registerSourceControlProvider({
+    getBadgeCount() {
+      return badgeCount
+    },
+    getChangedFiles() {
+      return []
+    },
+    id: 'source-control-save-badge',
+    isActive(scheme) {
+      return scheme === 'memfs'
+    },
+  })
 
-registerCommand({
-  execute() {
-    badgeCount = 0
-  },
-  id: 'sourceControlSaveBadge.clear',
-})
+  registerCommand({
+    execute() {
+      badgeCount = 0
+    },
+    id: 'sourceControlSaveBadge.clear',
+  })
+}
+
+main()

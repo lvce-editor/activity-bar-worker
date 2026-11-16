@@ -11,4 +11,8 @@ const commandMap = {
   },
 }
 
-await WebWorkerRpcClient.create({ commandMap })
+const main = async (): Promise<void> => {
+  await WebWorkerRpcClient.create({ commandMap })
+}
+
+main()
