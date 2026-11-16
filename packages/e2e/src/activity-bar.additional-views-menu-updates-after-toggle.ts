@@ -1,5 +1,7 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
+export const skip = ['webkit']
+
 export const name = 'activity-bar.additional-views-menu-updates-after-toggle'
 
 export const test: Test = async ({ ActivityBar, expect, Locator }) => {

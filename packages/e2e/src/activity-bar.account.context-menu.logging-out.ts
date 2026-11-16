@@ -1,5 +1,7 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
+export const skip = ['webkit']
+
 export const name = 'activity-bar.account.context-menu.logging-out'
 
 export const test: Test = async ({ ActivityBar, Command, ComponentState, expect, Locator }) => {

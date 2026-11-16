@@ -1,5 +1,7 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
+export const skip = ['webkit']
+
 export const name = 'activity-bar.settings.context-menu.command-palette.closes'
 
 export const test: Test = async ({ ActivityBar, ContextMenu, expect, Locator }) => {

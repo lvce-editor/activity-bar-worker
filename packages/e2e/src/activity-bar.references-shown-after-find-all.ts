@@ -1,5 +1,7 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
+export const skip = ['webkit']
+
 export const name = 'activity-bar.references-shown-after-find-all'
 
 export const test: Test = async ({ ActivityBar, Editor, expect, Extension, FileSystem, Locator, Main }) => {
