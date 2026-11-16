@@ -19,17 +19,17 @@ const toExtensionBaseUrl = (uri: string): string => {
   return url.href.endsWith('/') ? url.href : `${url.href}/`
 }
 
-export const name = 'activity-bar.custom-view-icon.png'
-export const skip = 1
+export const name = 'activity-bar.custom-view-icon.svg'
 
 export const test: Test = async ({ ActivityBar, expect, Extension, Locator }) => {
-  const uri = import.meta.resolve('../fixtures/sample.custom-view-icon-png')
+  const uri = import.meta.resolve('../fixtures/sample.custom-view-icon-svg')
   await Extension.addWebExtension(uri)
   await ActivityBar.handleExtensionsChanged()
-  const iconUrl = new URL('icons/icon.png', toExtensionBaseUrl(uri)).href
-  const hashInput = `test.views.customIconPng\n${iconUrl}`
+  await ActivityBar.resize({ height: 1000, width: 48, x: 0, y: 0 })
+  const iconUrl = new URL('icons/icon.svg', toExtensionBaseUrl(uri)).href
+  const hashInput = `test.views.customIconSvg\n${iconUrl}`
   const customIconClass = `MaskIconCustomView${hashString(hashInput)}`
-  const item = Locator('.ActivityBarItem[title="Custom PNG Icon"]')
+  const item = Locator('.ActivityBarItem[title="Custom SVG Icon"]')
 
   await expect(item).toBeVisible()
   await expect(item).toHaveAttribute('role', 'tab')
