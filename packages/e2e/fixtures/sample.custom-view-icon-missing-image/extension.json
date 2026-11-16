@@ -9,7 +9,7 @@
     {
       "id": "test.views.customIconMissingImage",
       "title": "Custom Missing Image Icon",
-      "icon": "src/missing.png"
+      "icon": "icons/missing.png"
     }
   ]
 }

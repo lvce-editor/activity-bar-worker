@@ -26,7 +26,7 @@ export const test: Test = async ({ Command, expect, Extension, Locator }) => {
   const uri = import.meta.resolve('../fixtures/sample.custom-view-icon-svg')
   await Extension.addWebExtension(uri)
   await Command.execute('ActivityBar.handleExtensionsChanged')
-  const iconUrl = new URL('src/icon.svg', toExtensionBaseUrl(uri)).href
+  const iconUrl = new URL('icons/icon.svg', toExtensionBaseUrl(uri)).href
   const hashInput = `test.views.customIconSvg\n${iconUrl}`
   const customIconClass = `MaskIconCustomView${hashString(hashInput)}`
   const item = Locator('.ActivityBarItem[title="Custom SVG Icon"]')
