@@ -20,12 +20,12 @@ const toExtensionBaseUrl = (uri: string): string => {
 }
 
 export const name = 'activity-bar.custom-view-icon.tiny-png'
-export const skip = 1
 
 export const test: Test = async ({ ActivityBar, expect, Extension, Locator }) => {
   const uri = import.meta.resolve('../fixtures/sample.custom-view-icon-tiny-png')
   await Extension.addWebExtension(uri)
   await ActivityBar.handleExtensionsChanged()
+  await ActivityBar.resize({ height: 1000, width: 48, x: 0, y: 0 })
   const iconUrl = new URL('icons/icon.png', toExtensionBaseUrl(uri)).href
   const hashInput = `test.views.customIconTinyPng\n${iconUrl}`
   const customIconClass = `MaskIconCustomView${hashString(hashInput)}`
