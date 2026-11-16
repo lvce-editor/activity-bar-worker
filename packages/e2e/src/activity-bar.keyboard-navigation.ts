@@ -9,6 +9,7 @@ export const test: Test = async ({ Command, ComponentState, expect, KeyBoard, Lo
     await Command.execute('Viewlet.focusSelector', uid, '#ActivityBar')
     await expect(activityBar).toBeFocused()
     await Command.execute('ActivityBar.handleFocus')
+    await Command.execute('ActivityBar.focus')
   }
 
   // act
