@@ -2,8 +2,8 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.resize-overflow'
 
-export const test: Test = async ({ Command, expect, Locator }) => {
-  await Command.execute('ActivityBar.resize', {
+export const test: Test = async ({ ActivityBar, expect, Locator }) => {
+  await ActivityBar.resize({
     height: 144,
     width: 48,
     x: 0,

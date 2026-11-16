@@ -4,8 +4,8 @@ export const name = 'activity-bar.extension-500-views'
 
 export const skip = 1
 
-export const test: Test = async ({ Command, expect, Extension, Locator }) => {
-  await Command.execute('ActivityBar.resize', {
+export const test: Test = async ({ ActivityBar, Command, expect, Extension, Locator }) => {
+  await ActivityBar.resize({
     height: 144,
     width: 48,
     x: 0,
@@ -14,7 +14,7 @@ export const test: Test = async ({ Command, expect, Extension, Locator }) => {
 
   const uri = import.meta.resolve('../fixtures/sample.activity-bar-many-views')
   await Extension.addWebExtension(uri)
-  await Command.execute('ActivityBar.handleExtensionsChanged')
+  await ActivityBar.handleExtensionsChanged()
 
   const activityBar = Locator('.ActivityBar')
   const items = Locator('.ActivityBarItem')

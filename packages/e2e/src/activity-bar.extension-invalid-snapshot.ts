@@ -4,9 +4,9 @@ export const name = 'activity-bar.extension-invalid-snapshot'
 
 export const skip = 1
 
-export const test: Test = async ({ Command, expect, Extension, Locator }) => {
+export const test: Test = async ({ ActivityBar, expect, Extension, Locator }) => {
   await Extension.addWebExtension(import.meta.resolve('../fixtures/sample.activity-bar-invalid-snapshot'))
-  await Command.execute('ActivityBar.handleExtensionsChanged')
+  await ActivityBar.handleExtensionsChanged()
 
   const activityBar = Locator('.ActivityBar')
   const explorer = Locator('.ActivityBarItem[title="Explorer"]')

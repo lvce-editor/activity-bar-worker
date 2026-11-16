@@ -4,7 +4,7 @@ export const name = 'activity-bar.selected-item-overflow-recovery'
 
 export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
   await ActivityBar.setAccountEnabled(true)
-  await Command.execute('ActivityBar.resize', {
+  await ActivityBar.resize({
     height: 336,
     width: 48,
     x: 0,
@@ -16,7 +16,7 @@ export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
   await Command.execute('ActivityBar.handleSideBarStateChange', 'Extensions', true)
   await expect(extensions).toHaveAttribute('aria-selected', 'true')
 
-  await Command.execute('ActivityBar.resize', {
+  await ActivityBar.resize({
     height: 144,
     width: 48,
     x: 0,
@@ -26,7 +26,7 @@ export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
   await expect(extensions).toHaveCount(0)
   await expect(additionalViews).toBeVisible()
 
-  await Command.execute('ActivityBar.resize', {
+  await ActivityBar.resize({
     height: 336,
     width: 48,
     x: 0,

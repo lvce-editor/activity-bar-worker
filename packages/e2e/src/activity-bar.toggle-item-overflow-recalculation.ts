@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.toggle-item-overflow-recalculation'
 
-export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, expect, Locator }) => {
   await ActivityBar.setAccountEnabled(true)
   const account = Locator('.ActivityBarItem[title="Account"]')
   const additionalViews = Locator('.ActivityBarItem[title="Additional Views"]')
@@ -10,7 +10,7 @@ export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
   const items = Locator('.ActivityBarItem')
   const search = Locator('.ActivityBarItem[title="Search"]')
 
-  await Command.execute('ActivityBar.resize', {
+  await ActivityBar.resize({
     height: 288,
     width: 48,
     x: 0,

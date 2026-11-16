@@ -2,13 +2,13 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'activity-bar.resize-focused-item-recovery'
 
-export const test: Test = async ({ Command, expect, Locator }) => {
+export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
   await Command.execute('ActivityBar.focusIndex', 4)
 
   const extensions = Locator('.ActivityBarItem[title="Extensions"]')
   await expect(extensions).toHaveClass('FocusOutline')
 
-  await Command.execute('ActivityBar.resize', {
+  await ActivityBar.resize({
     height: 144,
     width: 48,
     x: 0,
@@ -19,7 +19,7 @@ export const test: Test = async ({ Command, expect, Locator }) => {
   await expect(extensions).toHaveCount(0)
   await expect(focusedItems).toHaveCount(0)
 
-  await Command.execute('ActivityBar.resize', {
+  await ActivityBar.resize({
     height: 336,
     width: 48,
     x: 0,

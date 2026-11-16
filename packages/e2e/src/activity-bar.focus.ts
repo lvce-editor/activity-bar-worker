@@ -4,8 +4,8 @@ export const name = 'activity-bar.focus'
 
 export const skip = 1
 
-export const test: Test = async ({ ActivityBar, expect, Locator }) => {
-  await ActivityBar.focus()
+export const test: Test = async ({ Command, expect, Locator }) => {
+  await Command.execute('ActivityBar.handleFocus')
 
   const activityBar = Locator('.ActivityBar')
   const explorer = Locator('.ActivityBarItem[title="Explorer"]')

@@ -6,8 +6,8 @@ export const test: Test = async ({ ActivityBar, Command, expect, Locator }) => {
   await ActivityBar.setAccountEnabled(true)
   await Command.execute('ActivityBar.handleFocus')
   await Command.execute('ActivityBar.focusLast')
-  await Command.execute('ActivityBar.focusPrevious')
-  await Command.execute('ActivityBar.selectCurrent')
+  await ActivityBar.focusPrevious()
+  await ActivityBar.selectCurrent()
 
   const signIn = Locator('.MenuItem', { hasText: 'Sign In' })
   await expect(signIn).toBeVisible()
