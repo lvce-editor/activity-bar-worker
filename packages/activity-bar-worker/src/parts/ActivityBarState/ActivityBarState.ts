@@ -1,4 +1,5 @@
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
+import type { DropIndicator } from '../DropIndicator/DropIndicator.ts'
 import type { UserLoginState } from '../UserLoginState/UserLoginState.ts'
 
 export interface ActivityBarState {
@@ -9,12 +10,7 @@ export interface ActivityBarState {
   readonly dragAndDropEnabled: boolean
   readonly dragAndDropMimeType: string
   readonly draggedItemId: string | undefined
-  readonly dropIndicator:
-    | {
-        readonly id: string
-        readonly position: 'after' | 'before'
-      }
-    | undefined
+  readonly dropIndicator: DropIndicator | undefined
   readonly filteredItems: readonly ActivityBarItem[]
   readonly focus: number
   readonly focused: boolean

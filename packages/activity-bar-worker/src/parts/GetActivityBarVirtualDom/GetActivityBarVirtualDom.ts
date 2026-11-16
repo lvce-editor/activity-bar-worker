@@ -2,6 +2,7 @@ import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { AriaRoles } from '@lvce-editor/constants'
 import { mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
+import type { DropIndicator } from '../DropIndicator/DropIndicator.ts'
 import * as ActivityBarStrings from '../ActivityBarStrings/ActivityBarStrings.ts'
 import * as AriaOrientationType from '../AriaOrientationType/AriaOrientationType.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
@@ -15,7 +16,7 @@ const className = mergeClassNames(ClassNames.Viewlet, ClassNames.ActivityBar)
 export const getActivityBarVirtualDom = (
   visibleItems: readonly ActivityBarItem[],
   dragAndDropEnabled = false,
-  dropIndicator?: { readonly id: string; readonly position: 'after' | 'before' },
+  dropIndicator?: DropIndicator,
 ): readonly VirtualDomNode[] => {
   return [
     {

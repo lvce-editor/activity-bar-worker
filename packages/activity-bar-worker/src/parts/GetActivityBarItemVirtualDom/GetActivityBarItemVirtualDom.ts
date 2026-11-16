@@ -1,6 +1,7 @@
 import { AriaRoles } from '@lvce-editor/constants'
 import { type VirtualDomNode, mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
+import type { DropIndicator } from '../DropIndicator/DropIndicator.ts'
 import * as ActivityBarItemFlags from '../ActivityBarItemFlags/ActivityBarItemFlags.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
@@ -11,11 +12,6 @@ import { getAriaSelected } from '../GetAriaSelected/GetAriaSelected.ts'
 import { getClassName } from '../GetClassName/GetClassName.ts'
 import { getIconClass } from '../GetIconClass/GetIconClass.ts'
 import * as GetIconVirtualDom from '../GetIconVirtualDom/GetIconVirtualDom.ts'
-
-type DropIndicator = {
-  readonly id: string
-  readonly position: 'after' | 'before'
-}
 
 const getDropIndicatorClassName = (dropIndicator: DropIndicator | undefined, id: string): string => {
   if (!dropIndicator || dropIndicator.id !== id) {
