@@ -9,7 +9,7 @@
     {
       "id": "test.views.customIconSvg",
       "title": "Custom SVG Icon",
-      "icon": "src/icon.svg"
+      "icon": "icons/icon.svg"
     }
   ]
 }

@@ -9,7 +9,7 @@
     {
       "id": "test.views.customIconPng",
       "title": "Custom PNG Icon",
-      "icon": "src/icon.png"
+      "icon": "icons/icon.png"
     }
   ]
 }

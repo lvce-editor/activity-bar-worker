@@ -9,7 +9,7 @@
     {
       "id": "test.views.customIconInvalidImage",
       "title": "Custom Invalid Image Icon",
-      "icon": "src/invalid.png"
+      "icon": "icons/invalid.png"
     }
   ]
 }
