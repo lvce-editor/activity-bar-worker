@@ -1,5 +1,5 @@
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
-import * as ExplorerStates from '../ActivityBarStates/ActivityBarStates.ts'
+import * as ActivityBarStates from '../ActivityBarStates/ActivityBarStates.ts'
 
 // TODO parentUid might ot be needed
 export const create = (
@@ -47,6 +47,6 @@ export const create = (
     x,
     y,
   }
-  ExplorerStates.set(id, state, state)
+  ActivityBarStates.set(id, state, state)
   return state
 }
