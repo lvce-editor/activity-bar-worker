@@ -68,3 +68,19 @@ export const keyboardShortcuts = (): string => {
 export const colorTheme = (): string => {
   return I18nString.i18nString(UiStrings.ColorTheme)
 }
+
+export const layout = (): string => {
+  return I18nString.i18nString(UiStrings.Layout)
+}
+
+export const ideLayout = (): string => {
+  return I18nString.i18nString(UiStrings.IdeLayout)
+}
+
+export const chatLayout = (): string => {
+  return I18nString.i18nString(UiStrings.ChatLayout)
+}
+
+export const boardLayout = (): string => {
+  return I18nString.i18nString(UiStrings.BoardLayout)
+}

@@ -5,6 +5,7 @@ import type { ContextMenuProps } from '../src/parts/ContextMenuProps/ContextMenu
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getMenuEntries } from '../src/parts/GetMenuEntries/GetMenuEntries.ts'
 import { ACCOUNT_SUBMENU_ID } from '../src/parts/GetMenuEntriesAccount/GetMenuEntriesAccount.ts'
+import { LAYOUT_SUBMENU_ID } from '../src/parts/GetMenuEntriesSettings/GetMenuEntriesSettings.ts'
 import { ACCOUNT_MENU_ID } from '../src/parts/HandleClickAccount/HandleClickAccount.ts'
 
 test('getMenuEntries returns menu entries for ActivityBar menuId', () => {
@@ -128,6 +129,16 @@ test('getMenuEntries returns account submenu entries', () => {
       id: 'signOut',
       label: 'Signing Out...',
     },
+  ])
+})
+
+test('getMenuEntries routes each layout to its extension command', () => {
+  const entries = getMenuEntries(createDefaultState(), { menuId: LAYOUT_SUBMENU_ID })
+
+  expect(entries).toEqual([
+    { args: ['chat2.showIdeLayout'], command: 'ExtensionHost.executeCommand', flags: MenuItemFlags.None, id: 'ideLayout', label: 'IDE' },
+    { args: ['chat2.showAiNativeLayout'], command: 'ExtensionHost.executeCommand', flags: MenuItemFlags.None, id: 'chatLayout', label: 'Chat' },
+    { args: ['chat2.showBoardLayout'], command: 'ExtensionHost.executeCommand', flags: MenuItemFlags.None, id: 'boardLayout', label: 'Board' },
   ])
 })
 

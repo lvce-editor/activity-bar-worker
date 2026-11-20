@@ -5,7 +5,7 @@ import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
 import { ACCOUNT_SUBMENU_ID, getMenuEntriesAccount, getMenuEntriesAccountSubMenu } from '../GetMenuEntriesAccount/GetMenuEntriesAccount.ts'
 import { getMenuEntriesActivityBar } from '../GetMenuEntriesActivityBar/GetMenuEntriesActivityBar.ts'
 import { getMenuEntriesAdditionalViews } from '../GetMenuEntriesAdditionalViews/GetMenuEntriesAdditionalViews.ts'
-import { getMenuEntriesSettings } from '../GetMenuEntriesSettings/GetMenuEntriesSettings.ts'
+import { getMenuEntriesLayout, getMenuEntriesSettings, LAYOUT_SUBMENU_ID } from '../GetMenuEntriesSettings/GetMenuEntriesSettings.ts'
 import { ACCOUNT_MENU_ID } from '../HandleClickAccount/HandleClickAccount.ts'
 
 export const getMenuEntries = (state: ActivityBarState, options: ContextMenuProps): readonly MenuEntry[] => {
@@ -15,6 +15,8 @@ export const getMenuEntries = (state: ActivityBarState, options: ContextMenuProp
       return getMenuEntriesAccount(state)
     case ACCOUNT_SUBMENU_ID:
       return getMenuEntriesAccountSubMenu(state)
+    case LAYOUT_SUBMENU_ID:
+      return getMenuEntriesLayout()
     case MenuEntryId.ActivityBar:
       return getMenuEntriesActivityBar(state, 'targetViewletId' in options ? options.targetViewletId : '')
     case MenuEntryId.ActivityBarAdditionalViews:
