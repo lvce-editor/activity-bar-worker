@@ -4,6 +4,8 @@ import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
 import * as ActivityBarStrings from '../ActivityBarStrings/ActivityBarStrings.ts'
 import * as MenuEntrySeparator from '../MenuEntrySeparator/MenuEntrySeparator.ts'
 
+export const LAYOUT_SUBMENU_ID = 32_124
+
 const keyBindingsUri = 'app://keybindings'
 
 export const getMenuEntriesSettings = (state: ActivityBarState): readonly MenuEntry[] => {
@@ -35,6 +37,13 @@ export const getMenuEntriesSettings = (state: ActivityBarState): readonly MenuEn
       id: 'colorTheme',
       label: ActivityBarStrings.colorTheme(),
     },
+    {
+      args: [{ menuId: LAYOUT_SUBMENU_ID }],
+      command: '',
+      flags: MenuItemFlags.SubMenu,
+      id: LAYOUT_SUBMENU_ID,
+      label: ActivityBarStrings.layout(),
+    },
   ]
   if (platform === PlatformType.Electron) {
     items.push(MenuEntrySeparator.menuEntrySeparator, {
@@ -45,4 +54,30 @@ export const getMenuEntriesSettings = (state: ActivityBarState): readonly MenuEn
     })
   }
   return items
+}
+
+export const getMenuEntriesLayout = (): readonly MenuEntry[] => {
+  return [
+    {
+      args: ['chat2.showIdeLayout'],
+      command: 'ExtensionHost.executeCommand',
+      flags: MenuItemFlags.None,
+      id: 'ideLayout',
+      label: ActivityBarStrings.ideLayout(),
+    },
+    {
+      args: ['chat2.showAiNativeLayout'],
+      command: 'ExtensionHost.executeCommand',
+      flags: MenuItemFlags.None,
+      id: 'chatLayout',
+      label: ActivityBarStrings.chatLayout(),
+    },
+    {
+      args: ['chat2.showBoardLayout'],
+      command: 'ExtensionHost.executeCommand',
+      flags: MenuItemFlags.None,
+      id: 'boardLayout',
+      label: ActivityBarStrings.boardLayout(),
+    },
+  ]
 }

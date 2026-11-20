@@ -4,7 +4,7 @@ import type { ActivityBarState } from '../src/parts/ActivityBarState/ActivityBar
 import type { MenuEntry } from '../src/parts/MenuEntry/MenuEntry.ts'
 import * as ActivityBarStrings from '../src/parts/ActivityBarStrings/ActivityBarStrings.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
-import { getMenuEntriesSettings } from '../src/parts/GetMenuEntriesSettings/GetMenuEntriesSettings.ts'
+import { getMenuEntriesSettings, LAYOUT_SUBMENU_ID } from '../src/parts/GetMenuEntriesSettings/GetMenuEntriesSettings.ts'
 import * as MenuEntrySeparator from '../src/parts/MenuEntrySeparator/MenuEntrySeparator.ts'
 
 test('getMenuEntriesSettings returns correct menu entries for Web platform', () => {
@@ -15,7 +15,7 @@ test('getMenuEntriesSettings returns correct menu entries for Web platform', () 
 
   const result: readonly MenuEntry[] = getMenuEntriesSettings(state)
 
-  expect(result.length).toBe(5)
+  expect(result.length).toBe(6)
   expect(result[0]).toEqual({
     command: 'QuickPick.showEverything',
     flags: MenuItemFlags.None,
@@ -41,6 +41,13 @@ test('getMenuEntriesSettings returns correct menu entries for Web platform', () 
     flags: MenuItemFlags.None,
     id: 'colorTheme',
     label: ActivityBarStrings.colorTheme(),
+  })
+  expect(result[5]).toEqual({
+    args: [{ menuId: LAYOUT_SUBMENU_ID }],
+    command: '',
+    flags: MenuItemFlags.SubMenu,
+    id: LAYOUT_SUBMENU_ID,
+    label: 'Layout',
   })
 })
 
@@ -52,7 +59,7 @@ test('getMenuEntriesSettings includes checkForUpdates for Electron platform', ()
 
   const result: readonly MenuEntry[] = getMenuEntriesSettings(state)
 
-  expect(result.length).toBe(7)
+  expect(result.length).toBe(8)
   expect(result[0]).toEqual({
     command: 'QuickPick.showEverything',
     flags: MenuItemFlags.None,
@@ -79,8 +86,8 @@ test('getMenuEntriesSettings includes checkForUpdates for Electron platform', ()
     id: 'colorTheme',
     label: ActivityBarStrings.colorTheme(),
   })
-  expect(result[5]).toBe(MenuEntrySeparator.menuEntrySeparator)
-  expect(result[6]).toEqual({
+  expect(result[6]).toBe(MenuEntrySeparator.menuEntrySeparator)
+  expect(result[7]).toEqual({
     command: 'AutoUpdater.checkForUpdates',
     flags: MenuItemFlags.None,
     id: 'checkForUpdates',
@@ -120,7 +127,7 @@ test('getMenuEntriesSettings all entries have correct flags', () => {
 
   const result: readonly MenuEntry[] = getMenuEntriesSettings(state)
 
-  const nonSeparatorEntries = result.filter((entry) => entry.id !== 'separator')
+  const nonSeparatorEntries = result.filter((entry) => entry.id !== 'separator' && entry.id !== LAYOUT_SUBMENU_ID)
   for (const entry of nonSeparatorEntries) {
     expect(entry.flags).toBe(MenuItemFlags.None)
   }
