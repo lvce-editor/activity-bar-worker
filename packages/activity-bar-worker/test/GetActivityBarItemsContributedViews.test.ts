@@ -153,3 +153,21 @@ test('getActivityBarItems uses fallback values for missing contributed view meta
     title: 'sample.views.fallback',
   })
 })
+
+test('getActivityBarItems restores order for contributed IDs that match object properties', () => {
+  const state = { ...createDefaultState(), accountEnabled: false }
+  const retainedView = { icon: '', id: '__proto__', title: 'Retained view' }
+  const removedView = { icon: '', id: 'constructor', title: 'Removed view' }
+  const newView = { icon: '', id: 'toString', title: 'New view' }
+  const existingItems = getActivityBarItems(state, [removedView, retainedView])
+  const activityBarItems = [
+    ...existingItems.filter((item) => item.id === removedView.id || item.id === retainedView.id),
+    ...existingItems.filter((item) => item.id !== removedView.id && item.id !== retainedView.id),
+  ]
+
+  const items = getActivityBarItems({ ...state, activityBarItems }, [retainedView, newView])
+
+  expect(items[0]?.id).toBe(retainedView.id)
+  expect(items.slice(-2).map((item) => item.id)).toEqual([newView.id, 'Settings'])
+  expect(items.some((item) => item.id === removedView.id)).toBe(false)
+})

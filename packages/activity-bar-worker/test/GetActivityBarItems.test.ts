@@ -73,9 +73,7 @@ test('GetActivityBarItems.getActivityBarItems should have unique IDs', () => {
   const state = CreateDefaultState.createDefaultState()
   const result = GetActivityBarItems.getActivityBarItems(state)
   const ids = result.map((item) => item.id)
-  const uniqueIds = new Set(ids)
-
-  expect(uniqueIds.size).toBe(ids.length)
+  expect(ids.filter((id, index) => ids.indexOf(id) !== index)).toEqual([])
 })
 
 test('GetActivityBarItems.getActivityBarItems should have non-empty titles', () => {

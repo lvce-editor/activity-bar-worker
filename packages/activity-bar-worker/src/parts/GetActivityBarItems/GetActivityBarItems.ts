@@ -36,13 +36,19 @@ const applyExistingOrder = (items: readonly ActivityBarItem[], existingItems: re
   if (existingItems.length === 0) {
     return items
   }
-  const itemsById = new Map(items.map((item) => [item.id, item]))
+  const itemsById: Record<string, ActivityBarItem | undefined> = Object.create(null)
+  for (const item of items) {
+    itemsById[item.id] = item
+  }
   const orderedTopItems = existingItems
     .filter((item) => !isBottomItem(item))
-    .map((item) => itemsById.get(item.id))
+    .map((item) => itemsById[item.id])
     .filter((item): item is ActivityBarItem => Boolean(item))
-  const orderedTopIds = new Set(orderedTopItems.map((item) => item.id))
-  const newTopItems = items.filter((item) => !isBottomItem(item) && !orderedTopIds.has(item.id))
+  const orderedTopIds: Record<string, true | undefined> = Object.create(null)
+  for (const item of orderedTopItems) {
+    orderedTopIds[item.id] = true
+  }
+  const newTopItems = items.filter((item) => !isBottomItem(item) && !orderedTopIds[item.id])
   const bottomItems = items.filter(isBottomItem)
   return [...orderedTopItems, ...newTopItems, ...bottomItems]
 }
