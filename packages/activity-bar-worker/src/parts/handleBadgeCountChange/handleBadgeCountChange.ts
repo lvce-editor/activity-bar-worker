@@ -1,10 +1,14 @@
+import type { ActivityBarItem } from '../ActivityBarItem/ActivityBarItem.ts'
 import type { ActivityBarState } from '../ActivityBarState/ActivityBarState.ts'
 import { updateItemsWithBadgeCount } from '../UpdateItemsWithBadgeCount/UpdateItemsWithBadgeCount.ts'
 
 const updateStateItems = (state: ActivityBarState, activityBarItems: ActivityBarState['activityBarItems']): ActivityBarState => {
   const { filteredItems: currentFilteredItems } = state
-  const itemById = new Map(activityBarItems.map((item) => [item.id, item]))
-  const filteredItems = currentFilteredItems.map((item) => itemById.get(item.id) || item)
+  const itemById: Record<string, ActivityBarItem | undefined> = Object.create(null)
+  for (const item of activityBarItems) {
+    itemById[item.id] = item
+  }
+  const filteredItems = currentFilteredItems.map((item) => itemById[item.id] ?? item)
   return {
     ...state,
     activityBarItems,
